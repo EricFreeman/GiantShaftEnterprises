@@ -22,8 +22,9 @@
 				<ng-view>Loading...</ng-view>
 				
 				<script type="text/ng-template" id="store.html">
-					<!-- Store -->
-					Store
+					<div class="item" ng-repeat="item in items">
+						<button ng-disabled='cantBuy({{item.id}})' ng-click="buy(item.id)">{{item.name}} - {{item.count}}</button>
+					</div>
 				</script>
 				
 				<script type="text/ng-template" id="stats.html">

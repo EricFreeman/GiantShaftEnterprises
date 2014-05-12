@@ -27,9 +27,9 @@ idleGame.service('gameService', function() {
 	
 	// All base items (not upgrades) you can purchase are defined here
 	this.items = [
-		{ "name" : "minimum wage worker", "count" : 1, "mps" : 1 , "price" : 15},
-		{ "name" : "cubicals", "count" : 5, "mps" : 5 , "price" : 100},
-		{ "name" : "salary employee", "count" : 2, "mps" : 50, "price" : 1500}
+		{ id: 0, name : "minimum wage worker", count : 1, mps : 1 , price : 15},
+		{ id: 1, name : "cubicals", count : 0, mps : 5 , price : 100},
+		{ id: 2, name : "salary employee", count : 0, mps : 50, price : 1500}
 	];
 	
 	// Your cumulative mps (money per second) is the combination of the 
@@ -61,7 +61,16 @@ function GameLoopController($scope, $timeout, gameService) {
 }
 
 function StoreController($scope, gameService) {
+	$scope.items = gameService.items;
 	
+	$scope.cantBuy = function(id) {
+		return gameService.items[id].price > gameService.money;
+	};
+	
+	$scope.buy = function(id) {
+		gameService.money -= gameService.items[id].price;
+		gameService.items[id].count++;
+	};
 };
 
 function StatasController($scope, gameService) {
