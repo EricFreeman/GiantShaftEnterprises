@@ -2,15 +2,39 @@
 	<script src="scripts/angular.min.js"></script>
 	<script src="scripts/jquery-1.11.1.min.js"></script>
 	<script src="scripts/game.js"></script>
+	<script src="scripts/angular-route.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 <body>
-	<div ng-app>
-		<div ng-controller="GameController">
-			<div class="stats">
-				<h2>Total Money: {{money | currency}}</h2>
-				<h3>Money/Second: {{mps() | currency}}</h3>
+	<div ng-app="idleGame">
+		<div>
+			<div class="stats" ng-controller="GameLoopController">
+				<h2>Total Money: {{getMoney() | currency}}</h2>
+				<h3>Money/Second: {{getMps() | currency}}</h3>
+			</div>
+			<div class="links">
+				<a href="#/store">Store</a>
+				<a href="#/stats">Stats</a>
+				<a href="#/menu">Menu</a>
+			</div>
+			<div class="mainContent">
+				<ng-view>Loading...</ng-view>
+				
+				<script type="text/ng-template" id="store.html">
+					<!-- Store -->
+					Store
+				</script>
+				
+				<script type="text/ng-template" id="stats.html">
+					<!-- Store -->
+					Stats
+				</script>
+				
+				<script type="text/ng-template" id="menu.html">
+					<!-- Store -->
+					Menu
+				</script>
 			</div>
 		</div>
 	</div>
