@@ -1,0 +1,3 @@
+function StatsController($scope, gameService) {
+	
+};

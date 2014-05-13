@@ -1,0 +1,3 @@
+function MenuController($scope, gameService) {
+	
+};

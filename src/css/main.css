@@ -1,4 +1,4 @@
-body {
+body  {
 	background-color: #C0FFEE;
 	font-family: Segoe UI Light;
 }
@@ -6,6 +6,25 @@ body {
 .stats {
 	text-align: center;
 	width: 100%;
+}
+
+.item  {
+	min-width: 100px;
+	min-height: 64px;
+	
+	/* Prevent double clicking the page or items or something from highlighting text */
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.item.enabled {
+	background-color: green;
+}
+
+.item.disabled {
+	background-color: gray;
 }
 
 h2 {

@@ -1,8 +1,12 @@
 <head>
 	<script src="scripts/angular.min.js"></script>
 	<script src="scripts/jquery-1.11.1.min.js"></script>
-	<script src="scripts/game.js"></script>
 	<script src="scripts/angular-route.min.js"></script>
+	<script src="scripts/idleGame.js"></script>
+	<script src="scripts/gameLoop.js"></script>
+	<script src="scripts/store.js"></script>
+	<script src="scripts/stats.js"></script>
+	<script src="scripts/menu.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
@@ -22,8 +26,13 @@
 				<ng-view>Loading...</ng-view>
 				
 				<script type="text/ng-template" id="store.html">
-					<div class="item" ng-repeat="item in items">
-						<button ng-disabled='cantBuy({{item.id}})' ng-click="buy(item.id)">{{item.name}} - {{item.count}}</button>
+					<div class="item" 
+						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id)}" 
+						 ng-repeat="item in items" 
+						 ng-click="buy(item.id)">
+						<span>{{item.name}}</span>
+						<span>{{item.count}}</span> <br />
+						<span>{{currentPrice(item.id) | currency}}</span>
 					</div>
 				</script>
 				
