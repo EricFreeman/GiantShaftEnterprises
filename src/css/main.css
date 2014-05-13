@@ -13,6 +13,15 @@ body  {
 	text-align: center;
 }
 
+a {
+	padding: 0 5px;
+	transition: color .25s ease;
+}
+a:link {color: rgba(0, 0, 0, 1);}
+a:visited {color: rgba(0, 0, 0, 1);} 
+a:hover {color: rgba(0, 0, 0, .75);}
+a:active {color: rgba(0, 0, 0, .75);}
+
 .mainContent {
 	margin-top: 32px;
 	border: 1px solid;
