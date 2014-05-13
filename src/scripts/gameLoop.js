@@ -12,10 +12,15 @@ function GameLoopController($scope, $timeout, gameService) {
 	
 	// Game Loop
 	$scope.update = function() {
+		if(!isNumeric(gameService.fps)) gameService.fps = 10;
 		gameService.money += (gameService.mps() / gameService.fps);
 		$timeout($scope.update, 1000 / gameService.fps);
 	};
 	
 	// Start game loop
 	$scope.update();
+}
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }

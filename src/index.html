@@ -57,7 +57,7 @@
 						</section>
 						<section>
 							<p>FPS - Higher numbers will make the game smoother but may lag older systems.</p>
-							<input type="text" ng-model="gameService.fps" />
+							<input type="number" ng-model="gameService.fps" min="1" max="100" step="any" />
 						</section>
 					</div>
 				</script>
