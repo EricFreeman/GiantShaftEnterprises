@@ -15,33 +15,10 @@ body  {
 
 .mainContent {
 	margin-top: 32px;
-}
-
-.itemContainer {
 	border: 1px solid;
 	border-color: rgba(0, 0, 0, .25);
 
 	max-width: 300px;
-}
-
-.item  {
-	height: 64px;
-	padding: 15px;
-	border-top: 1px solid;
-	border-color: rgba(0, 0, 0, .25);
-
-	/* Transition between colors smoothly */
-	transition: background-color 0.25s ease;
-
-	/* Prevent double clicking the page or items or something from highlighting text */
-	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit (konqueror) browsers */
-    -ms-user-select: none; /* IE10+ */
-}
-
-.item:first-child {
-	border: none;
 }
 
 .left {
@@ -59,19 +36,6 @@ body  {
 
 .textCenter {
 	text-align: center;
-}
-
-.item.enabled {
-	background-color: rgba(0, 255, 0, .25);
-}
-
-.item.disabled {
-	background-color: rgba(128, 128, 128, .25);
-}
-
-.item.hover {
-	background-color: rgba(255, 255, 0, .25);
-	cursor: pointer;
 }
 
 h1 {

@@ -9,11 +9,14 @@
 	<script src="scripts/menu.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/store.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
 	<div ng-app="idleGame">
 		<div>
 			<div class="stats" ng-controller="GameLoopController">
+				<h1>{{getCompanyName()}}</h1>
 				<h2>Total Money: {{getMoney() | currency}}</h2>
 				<h3>Money/Second: {{getMps() | currency}}</h3>
 			</div>
@@ -22,36 +25,41 @@
 				<a href="#/stats">Stats</a>
 				<a href="#/menu">Menu</a>
 			</div>
-			<div class="mainContent">
+			<div class="mainContent center">
 				<ng-view>Loading...</ng-view>
 				
 				<script type="text/ng-template" id="store.html">
-					<div class="itemContainer center">
-						<div class="item" 
-							 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id), hover: !cantBuy(item.id) && hover}" 
-							 ng-repeat="item in items" 
-							 ng-click="buy(item.id)"
-							 ng-mouseenter="hover = true"
-							 ng-mouseleave="hover = false">
-							 <div class="left">
-								<p>{{item.name}}</p>
-								<p>{{currentPrice(item.id) | currency}}</p>
-							</div>
-							<div class="right">
-								<h1>{{item.count}}</h1>
-							</div>
+					<div class="item" 
+						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id), hover: !cantBuy(item.id) && hover}" 
+						 ng-repeat="item in items" 
+						 ng-click="buy(item.id)"
+						 ng-mouseenter="hover = true"
+						 ng-mouseleave="hover = false">
+						 <div class="left">
+							<p>{{item.name}}</p>
+							<p>{{currentPrice(item.id) | currency}}</p>
+						</div>
+						<div class="right">
+							<h1>{{item.count}}</h1>
 						</div>
 					</div>
 				</script>
 				
 				<script type="text/ng-template" id="stats.html">
-					<!-- Store -->
 					Stats
 				</script>
 				
 				<script type="text/ng-template" id="menu.html">
-					<!-- Store -->
-					Menu
+					<div class="menu center">
+						<section>
+							<p>Set the name of your new corporation!</p>
+							<input type="text" ng-model="gameService.companyName" />
+						</section>
+						<section>
+							<p>FPS - Higher numbers will make the game smoother but may lag older systems.</p>
+							<input type="text" ng-model="gameService.fps" />
+						</section>
+					</div>
 				</script>
 			</div>
 		</div>

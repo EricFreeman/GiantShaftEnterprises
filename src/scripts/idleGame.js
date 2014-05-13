@@ -22,6 +22,7 @@ idleGame.config(['$routeProvider',
 ]);
 
 idleGame.service('gameService', function() {
+	this.companyName = "Default Company";
 	this.money = 15;
 	this.fps = 10;
 	
