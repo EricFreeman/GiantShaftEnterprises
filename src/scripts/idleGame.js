@@ -27,9 +27,9 @@ idleGame.service('gameService', function() {
 	
 	// All base items (not upgrades) you can purchase are defined here
 	this.items = [
-		{ id: 0, name : "minimum wage worker", count : 0, mps : .1 , price : 15},
-		{ id: 1, name : "cubicals", count : 0, mps : .3 , price : 100},
-		{ id: 2, name : "salary employee", count : 0, mps : 2, price : 1500}
+		{ id: 0, name : "Minimum Wage Worker", count : 0, mps : .1 , price : 15},
+		{ id: 1, name : "Cubicals", count : 0, mps : .3 , price : 100},
+		{ id: 2, name : "Salary Employee", count : 0, mps : 2, price : 1500}
 	];
 	
 	// Your cumulative mps (money per second) is the combination of the 

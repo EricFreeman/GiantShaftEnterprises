@@ -8,8 +8,29 @@ body  {
 	width: 100%;
 }
 
+.links {
+	margin-top: 32px;
+	text-align: center;
+}
+
+.mainContent {
+	margin-top: 32px;
+}
+
+.itemContainer {
+	border: 1px solid;
+	border-color: rgba(0, 0, 0, .25);
+
+	max-width: 300px;
+}
+
 .item  {
-	min-height: 64px;
+	height: 64px;
+	padding: 15px;
+	border-top: 1px solid;
+	border-color: rgba(0, 0, 0, .25);
+
+	/* Transition between colors smoothly */
 	transition: background-color 0.25s ease;
 
 	/* Prevent double clicking the page or items or something from highlighting text */
@@ -19,17 +40,42 @@ body  {
     -ms-user-select: none; /* IE10+ */
 }
 
+.item:first-child {
+	border: none;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.textCenter {
+	text-align: center;
+}
+
 .item.enabled {
-	background-color: green;
+	background-color: rgba(0, 255, 0, .25);
 }
 
 .item.disabled {
-	background-color: gray;
+	background-color: rgba(128, 128, 128, .25);
 }
 
 .item.hover {
-	background-color: yellow;
+	background-color: rgba(255, 255, 0, .25);
 	cursor: pointer;
+}
+
+h1 {
+	font-size: 36px;
 }
 
 h2 {
