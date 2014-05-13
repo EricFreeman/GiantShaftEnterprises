@@ -12,7 +12,7 @@ function StoreController($scope, gameService) {
 	
 	$scope.buy = function(id) {
 		if(!$scope.cantBuy(id)) {
-			gameService.money -= gameService.items[id].price;
+			gameService.money -= $scope.currentPrice(id);
 			gameService.items[id].count++;
 		}
 	};

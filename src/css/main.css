@@ -9,9 +9,9 @@ body  {
 }
 
 .item  {
-	min-width: 100px;
 	min-height: 64px;
-	
+	transition: background-color 0.25s ease;
+
 	/* Prevent double clicking the page or items or something from highlighting text */
 	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
     -moz-user-select: none; /* mozilla browsers */
