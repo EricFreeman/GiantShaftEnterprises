@@ -27,9 +27,11 @@
 				
 				<script type="text/ng-template" id="store.html">
 					<div class="item" 
-						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id)}" 
+						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id), hover: !cantBuy(item.id) && hover}" 
 						 ng-repeat="item in items" 
-						 ng-click="buy(item.id)">
+						 ng-click="buy(item.id)"
+						 ng-mouseenter="hover = true"
+						 ng-mouseleave="hover = false">
 						<span>{{item.name}}</span>
 						<span>{{item.count}}</span> <br />
 						<span>{{currentPrice(item.id) | currency}}</span>

@@ -27,6 +27,11 @@ body  {
 	background-color: gray;
 }
 
+.item.hover {
+	background-color: yellow;
+	cursor: pointer;
+}
+
 h2 {
 	font-size: 24px;
 }
