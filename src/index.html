@@ -37,11 +37,11 @@
 						 ng-mouseleave="hover = false">
 						 <div class="left">
 							<p>Name: {{item.name}}</p>
-							<p>Adds: {{item.mps | currency}}</p>
+							<p>Adds: {{getMps(item.id) | currency}}</p>
 							<p>Cost: {{currentPrice(item.id) | currency}}</p>
 						</div>
 						<div class="right">
-							<h1>{{item.count}}</h1>
+							<h1>{{getCount(item.id)}}</h1>
 						</div>
 					</div>
 				</script>
@@ -54,7 +54,7 @@
 					<div class="menu center">
 						<section>
 							<p>Set the name of your new corporation!</p>
-							<input type="text" ng-model="gameService.companyName" />
+							<input type="text" ng-model="playerService.companyName" />
 						</section>
 						<section>
 							<p>FPS - Higher numbers will make the game smoother but may lag older systems.</p>

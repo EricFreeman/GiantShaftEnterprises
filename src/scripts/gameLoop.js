@@ -1,45 +1,29 @@
-function GameLoopController($scope, $timeout, gameService) {	
+function GameLoopController($scope, $timeout, gameService, playerService) {	
 	// Getters to grab values through gameService
 	$scope.getCompanyName = function() {
-		return gameService.companyName;
+		return playerService.companyName;
 	};
 	$scope.getMoney = function() {
-		return gameService.money;
-	};
-	$scope.getMps = function() {
-		return gameService.mps();
+		return playerService.money;
 	};
 
 	$scope.loadGame = function() {
 		// Grab current items.  Will be useful if more items were added after you started game
-		var curr = gameService.items;
+		var curr = playerService.items;
 
-		// Go through each property of gameService, and if it exists, load it
-		for(var prop in gameService) {
+		// Go through each property of playerService, and if it exists, load it
+		for(var prop in playerService) {
 			var propName = "CompanyGame." + prop;
 			if(localStorage[propName] != undefined)
-				gameService[prop] = JSON.parse(localStorage.getItem(propName));
-		}
-
-		// If any items are not in the current save file, add them in now
-		for(var prop in curr) {
-			var found = false;
-			for(var oProp in gameService.items) {
-				delete gameService.items[oProp].$$hashKey;
-				if(curr[prop].id == gameService.items[oProp].id)
-					found = true;
-			}
-
-			if(!found)
-				gameService.items.push(curr[prop]);
+				playerService[prop] = JSON.parse(localStorage.getItem(propName));
 		}
 	};
 
 	$scope.saveGame = function() {
 		// Save everything in the game service that isn't a function as JSON to local storage
-		for(var prop in gameService) {
-			if(typeof(gameService[prop]) != "function")
-				localStorage.setItem("CompanyGame." + prop, JSON.stringify(gameService[prop]));
+		for(var prop in playerService) {
+			if(typeof(playerService[prop]) != "function")
+				localStorage.setItem("CompanyGame." + prop, JSON.stringify(playerService[prop]));
 		}
 
 		$timeout($scope.saveGame, 30000); // Recall this method to autosave every 30 seconds
@@ -50,8 +34,16 @@ function GameLoopController($scope, $timeout, gameService) {
 		// Make sure the FPS is valid, otherwise default it
 		if(!isNumeric(gameService.fps)) gameService.fps = 10;
 
-		gameService.money += (gameService.mps() / gameService.fps);
+		playerService.money += ($scope.getMps() / gameService.fps);
 		$timeout($scope.update, 1000 / gameService.fps);
+	};
+
+	// Your cumulative mps (money per second) is the combination of the 
+	// count of each item multiplied by the item's individual mps
+	$scope.getMps = function() {
+		return playerService.items.reduce(function (prev, cur) {
+			return prev += gameService.getItem(cur.id).mps * cur.count;
+		}, 0);
 	};
 	
 	// Load the game if it was previously saved

@@ -1,19 +1,28 @@
-function StoreController($scope, gameService) {
+function StoreController($scope, gameService, playerService) {
 	$scope.items = gameService.items;
+	$scope.boughtItems = playerService.items;
 	
 	$scope.currentPrice = function(id) {
 		var priceIncrease = .15; // 15% per item already bought
-		return gameService.items[id].price + (gameService.items[id].count * gameService.items[id].price * priceIncrease);
+		return gameService.getItem(id).price + (playerService.getItem(id).count * gameService.getItem(id).price * priceIncrease);
 	}
 	
+	$scope.getMps = function(id) {
+		return gameService.getItem(id).mps;
+	}
+
+	$scope.getCount = function(id) {
+		return playerService.getItem(id).count;
+	}
+
 	$scope.cantBuy = function(id) {
-		return $scope.currentPrice(id) > gameService.money;
+		return $scope.currentPrice(id) > playerService.money;
 	};
 	
 	$scope.buy = function(id) {
 		if(!$scope.cantBuy(id)) {
-			gameService.money -= $scope.currentPrice(id);
-			gameService.items[id].count++;
+			playerService.money -= $scope.currentPrice(id);
+			playerService.buyItem(id);
 		}
 	};
 };

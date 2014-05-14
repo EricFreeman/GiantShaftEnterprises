@@ -22,28 +22,57 @@ idleGame.config(['$routeProvider',
 ]);
 
 idleGame.service('gameService', function() {
-	this.companyName = "Default Company";
-	this.money = 15;
 	this.fps = 10;
 	
 	// All base items (not upgrades) you can purchase are defined here
 	this.items = [
-		{ id: 0, name: "Minimum Wage Worker", count: 0, mps: .1 , price: 15 },
-		{ id: 1, name: "Cubical", count: 0, mps: .3 , price: 100 },
-		{ id: 2, name: "Salary Employee", count: 0, mps: 2, price: 1500 },
-		{ id: 7, name: "Ergonomic Keyboards", count: 0, mps: 1, price: 1500 },
-		{ id: 3, name: "Upper Management", count: 0, mps: 1, price: 2000 },
-		{ id: 4, name: "Standing Desk", count: 0, mps: 3, price: 2500 },
-		{ id: 5, name: "Office Building", count: 0, mps: 3, price: 2500 },
-		{ id: 6, name: "Executive", count: 0, mps: 10, price: 5000 },
-		{ id: 8, name: "Benefits Package", count: 0, mps: 20, price: 50000 }
+		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
+		{ id: 1, name: "Cubical", mps: .3 , price: 100 },
+		{ id: 2, name: "Salary Employee", mps: 2, price: 1500 },
+		{ id: 7, name: "Ergonomic Keyboards", mps: 1, price: 1500 },
+		{ id: 9, name: "HR Department", mps: .5, price: 2000 },
+		{ id: 3, name: "Upper Management", mps: 1, price: 2250 },
+		{ id: 4, name: "Standing Desk", mps: 3, price: 2500 },
+		{ id: 5, name: "Office Building", mps: 3, price: 2500 },
+		{ id: 6, name: "Executive", mps: 10, price: 5000 },
+		{ id: 8, name: "Benefits Package", mps: 20, price: 50000 }
 	];
-	
-	// Your cumulative mps (money per second) is the combination of the 
-	// count of each item multiplied by the item's individual mps
-	this.mps = function() {
-		return this.items.reduce(function (prev, cur) {
-			return prev += cur.mps * cur.count;
-		}, 0);
+
+	this.getItem = function(id) {
+		for(var item in this.items)
+			if(this.items[item].id === id) 
+				return this.items[item];
+
+		return { id: -1, name: "", mps: 0, price: 0 };
 	};
+});
+
+idleGame.service('playerService', function () {
+	// Owned items are defined here as: { id: x, count: y }
+	this.items = [];
+	this.money = 15;
+	this.companyName = "Default Company";
+
+	this.getItem = function(id) {
+		for(var item in this.items)
+			if(this.items[item].id === id) 
+				return this.items[item];
+
+		return { id: -1, count: 0 };
+	};
+
+	this.buyItem = function(id) {
+		var item = this.getItem(id);
+
+		// Add an entry for it if nobody has bought it yet.
+		if(item.id === -1) {
+			item.id = id;
+			item.count++;
+			this.items.push(item);
+		}
+		else {
+			var index = this.items.indexOf(item);
+			this.items[index].count++;
+		}
+	}
 });
