@@ -36,8 +36,9 @@
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						 <div class="left">
-							<p>{{item.name}}</p>
-							<p>{{currentPrice(item.id) | currency}}</p>
+							<p>Name: {{item.name}}</p>
+							<p>Adds: {{item.mps | currency}}</p>
+							<p>Cost: {{currentPrice(item.id) | currency}}</p>
 						</div>
 						<div class="right">
 							<h1>{{item.count}}</h1>
