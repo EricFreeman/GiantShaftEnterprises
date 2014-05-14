@@ -11,11 +11,27 @@ function GameLoopController($scope, $timeout, gameService) {
 	};
 
 	$scope.loadGame = function() {
+		// Grab current items.  Will be useful if more items were added after you started game
+		var curr = gameService.items;
+
 		// Go through each property of gameService, and if it exists, load it
 		for(var prop in gameService) {
 			var propName = "CompanyGame." + prop;
 			if(localStorage[propName] != undefined)
 				gameService[prop] = JSON.parse(localStorage.getItem(propName));
+		}
+
+		// If any items are not in the current save file, add them in now
+		for(var prop in curr) {
+			var found = false;
+			for(var oProp in gameService.items) {
+				delete gameService.items[oProp].$$hashKey;
+				if(curr[prop].id == gameService.items[oProp].id)
+					found = true;
+			}
+
+			if(!found)
+				gameService.items.push(curr[prop]);
 		}
 	};
 
