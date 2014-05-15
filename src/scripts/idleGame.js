@@ -44,7 +44,10 @@ idleGame.service('gameService', function() {
 
 	// All upgrades for items
 	this.upgrades = [
-		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", price: 500, mps: .05 }
+		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", price: 500, mps: .05 },
+		{ id: 1, itemId: 0, name: "Illegal Aliens", description: "By hiring only illegal aliens, you can make twice as much per worker!", price: 1500, mps: .1 },
+		{ id: 2, itemId: 0, name: "On-Site Housing", description: "Why make your employees waste precious work hours by driving to and from work?  Maximize efficiency with on-site housing!", price: 30000, mps: .1 }
+//		{ id: 0, itemId: 0, name: "", description: "", price: 0, mps: 0 }
 	];
 
 	this.getItem = function(id) {

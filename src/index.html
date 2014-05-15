@@ -57,7 +57,8 @@
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						<p>{{upgrade.name}}</p>
-						<p>{{upgrade.price}}</p>
+						<p>{{upgrade.price | currency}}</p>
+						<br />
 						<p>{{upgrade.description}}</p>
 					</div>
 				</script>
