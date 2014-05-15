@@ -57,26 +57,19 @@ idleGame.service('gameService', function() {
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 10000, mps: .3,
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" }
-		
 
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" }
 	];
 
 	this.getItem = function(id) {
-		for(var item in this.items)
-			if(this.items[item].id === id) 
-				return this.items[item];
-
-		return { id: -1, name: "", mps: 0, price: 0 };
+		return search(this.items, "id", id,
+			{ id: -1, name: "", mps: 0, price: 0 });
 	};
 
 	this.getUpgrade = function(id) {
-		for(var upgrade in this.upgrades)
-			if(this.upgrades[upgrade].id === id)
-				return this.upgrades[upgrade];
-
-		return { id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 };
-	};
+		return search(this.upgrades, "id", id,
+			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
+	}
 });
 
 idleGame.service('playerService', function () {
@@ -88,20 +81,14 @@ idleGame.service('playerService', function () {
 	this.companyName = "Default Company";
 
 	this.getItem = function(id) {
-		for(var item in this.items)
-			if(this.items[item].id === id) 
-				return this.items[item];
-
-		return { id: -1, count: 0 };
+		return search(this.items, "id", id,
+			{ id: -1, count: 0 });
 	};
 
 	this.getUpgrade = function(id) {
-		for(var upgrade in this.upgrades)
-			if(this.upgrades[upgrade].id === id) 
-				return this.upgrades[upgrade];
-
-		return { id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 };
-	};
+		return search(this.upgrades, "id", id,
+			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
+	}
 
 	this.buyItem = function(id) {
 		var item = this.getItem(id);
@@ -122,3 +109,14 @@ idleGame.service('playerService', function () {
 		this.upgrades.push(upgrade);
 	}
 });
+
+// A simple search that will go through the passed in list and find
+// the first item that the specified property matches a given value.
+// Otherwise it will return a default value
+var search = function(list, property, value, def) {
+	for(var item in list)
+		if(list[item][property] === value)
+			return list[item];
+
+	return def;
+}
