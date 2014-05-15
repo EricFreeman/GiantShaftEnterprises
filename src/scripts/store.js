@@ -8,8 +8,16 @@ function StoreController($scope, gameService, playerService) {
 	}
 	
 	$scope.getMps = function(id) {
-		return gameService.getItem(id).mps;
+		return gameService.getItem(id).mps + $scope.getUpgradesMps(id);
 	}
+
+	// Get the mps that should be added in from the upgrades for the specified item
+	$scope.getUpgradesMps = function(id) {
+		return playerService.upgrades.reduce(function(prev, cur) {
+			var upgrade = gameService.getUpgrade(cur.id);
+			return prev += upgrade.itemId == id ? upgrade.mps : 0;
+		}, 0);
+	};
 
 	$scope.getCount = function(id) {
 		return playerService.getItem(id).count;

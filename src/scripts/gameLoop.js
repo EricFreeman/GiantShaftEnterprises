@@ -40,9 +40,18 @@ function GameLoopController($scope, $timeout, gameService, playerService) {
 
 	// Your cumulative mps (money per second) is the combination of the 
 	// count of each item multiplied by the item's individual mps
+	// plus all the upgrades for said item
 	$scope.getMps = function() {
 		return playerService.items.reduce(function (prev, cur) {
-			return prev += gameService.getItem(cur.id).mps * cur.count;
+			return prev += (gameService.getItem(cur.id).mps * cur.count) + ($scope.getUpgradesMps(cur.id) * cur.count);
+		}, 0);
+	};
+
+	// Get the mps that should be added in from the upgrades for the specified item
+	$scope.getUpgradesMps = function(id) {
+		return playerService.upgrades.reduce(function(prev, cur) {
+			var upgrade = gameService.getUpgrade(cur.id);
+			return prev += upgrade.itemId == id ? upgrade.mps : 0;
 		}, 0);
 	};
 	

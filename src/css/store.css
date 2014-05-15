@@ -1,5 +1,5 @@
 .item  {
-	height: 64px;
+	min-height: 64px;
 	padding: 15px;
 	border-top: 1px solid;
 	border-color: rgba(0, 0, 0, .25);

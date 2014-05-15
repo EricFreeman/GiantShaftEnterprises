@@ -5,11 +5,13 @@
 	<script src="scripts/idleGame.js"></script>
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/store.js"></script>
+	<script src="scripts/upgrades.js"></script>
 	<script src="scripts/stats.js"></script>
 	<script src="scripts/menu.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
+	<link rel="stylesheet" type="text/css" href="css/upgrades.css" />
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
@@ -22,6 +24,7 @@
 			</div>
 			<div class="links textCenter">
 				<a href="#/store">Store</a> | 
+				<a href="#/upgrades">Upgrades</a> | 
 				<a href="#/stats">Stats</a> | 
 				<a href="#/menu">Menu</a>
 			</div>
@@ -35,7 +38,7 @@
 						 ng-click="buy($event, item.id)"
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
-						 <div class="left">
+						<div class="left">
 							<p>Name: {{item.name}}</p>
 							<p>Adds: {{getMps(item.id) | currency}}</p>
 							<p>Cost: {{currentPrice(item.id) | currency}}</p>
@@ -43,6 +46,19 @@
 						<div class="right">
 							<h1>{{getCount(item.id)}}</h1>
 						</div>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="upgrades.html">
+					<div class="item"
+						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover}" 
+						 ng-repeat="upgrade in upgrades"
+						 ng-click="buy(upgrade.id)"
+						 ng-mouseenter="hover = true"
+						 ng-mouseleave="hover = false">
+						<p>{{upgrade.name}}</p>
+						<p>{{upgrade.price}}</p>
+						<p>{{upgrade.description}}</p>
 					</div>
 				</script>
 				

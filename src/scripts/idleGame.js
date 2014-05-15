@@ -7,6 +7,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'store.html',
 				controller: 'StoreController'
 			}).
+			when('/upgrades', {
+				templateUrl: 'upgrades.html',
+				controller: 'UpgradesController'
+			}).
 			when('/stats', {
 				templateUrl: 'stats.html',
 				controller: 'StatsController'
@@ -40,7 +44,7 @@ idleGame.service('gameService', function() {
 
 	// All upgrades for items
 	this.upgrades = [
-		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", cost: 500, mps: .05 }
+		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", price: 500, mps: .05 }
 	];
 
 	this.getItem = function(id) {
@@ -49,6 +53,14 @@ idleGame.service('gameService', function() {
 				return this.items[item];
 
 		return { id: -1, name: "", mps: 0, price: 0 };
+	};
+
+	this.getUpgrade = function(id) {
+		for(var upgrade in this.upgrades)
+			if(this.upgrades[upgrade].id === id) 
+				return this.upgrades[upgrade];
+
+		return { id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 };
 	};
 });
 
@@ -68,6 +80,14 @@ idleGame.service('playerService', function () {
 		return { id: -1, count: 0 };
 	};
 
+	this.getUpgrade = function(id) {
+		for(var upgrade in this.upgrades)
+			if(this.upgrades[upgrade].id === id) 
+				return this.upgrades[upgrade];
+
+		return { id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 };
+	};
+
 	this.buyItem = function(id) {
 		var item = this.getItem(id);
 
@@ -81,5 +101,9 @@ idleGame.service('playerService', function () {
 			var index = this.items.indexOf(item);
 			this.items[index].count++;
 		}
+	}
+
+	this.buyUpgrade = function(upgrade) {
+		this.upgrades.push(upgrade);
 	}
 });
