@@ -44,10 +44,22 @@ idleGame.service('gameService', function() {
 
 	// All upgrades for items
 	this.upgrades = [
-		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", price: 500, mps: .05 },
-		{ id: 1, itemId: 0, name: "Illegal Aliens", description: "By hiring only illegal aliens, you can make twice as much per worker!", price: 1500, mps: .1 },
-		{ id: 2, itemId: 0, name: "On-Site Housing", description: "Why make your employees waste precious work hours by driving to and from work?  Maximize efficiency with on-site housing!", price: 30000, mps: .1 }
-//		{ id: 0, itemId: 0, name: "", description: "", price: 0, mps: 0 }
+		{ id: 0, itemId: 0, name: "Better Scheduling", price: 500, mps: .05,
+			description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!" },
+		{ id: 1, itemId: 0, name: "Illegal Aliens", price: 1500, mps: .1,
+			description: "By hiring only illegal aliens, you can make twice as much per worker!" },
+		{ id: 2, itemId: 0, name: "On-Site Housing", price: 30000, mps: .1,
+			description: "Why make your employees waste precious work hours by driving to and from work?  Maximize efficiency with on-site housing!" },
+
+		{ id: 3, itemId: 1, name: "Lower walls", price: 1000, mps: .1,
+			description: "Lowering the walls of a cubical will help increase team dynamics and promote synergy!" },
+		{ id: 4, itemId: 1, name: "Better seating", price: 5000, mps: .2,
+			description: "Better seating will reduce stress and improve your employees' quality of life!" },
+		{ id: 5, itemId: 1, name: "Modest Improvements", price: 10000, mps: .3,
+			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" }
+		
+
+//		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" }
 	];
 
 	this.getItem = function(id) {
@@ -60,7 +72,7 @@ idleGame.service('gameService', function() {
 
 	this.getUpgrade = function(id) {
 		for(var upgrade in this.upgrades)
-			if(this.upgrades[upgrade].id === id) 
+			if(this.upgrades[upgrade].id === id)
 				return this.upgrades[upgrade];
 
 		return { id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 };
