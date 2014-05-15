@@ -19,10 +19,15 @@ function StoreController($scope, gameService, playerService) {
 		return $scope.currentPrice(id) > playerService.money;
 	};
 	
-	$scope.buy = function(id) {
-		if(!$scope.cantBuy(id)) {
-			playerService.money -= $scope.currentPrice(id);
-			playerService.buyItem(id);
+	$scope.buy = function($event, id) {
+		var count = 1;
+		if($event.shiftKey) count = 10;
+
+		for(var i = 0; i < count; i++) {
+			if(!$scope.cantBuy(id)) {
+				playerService.money -= $scope.currentPrice(id);
+				playerService.buyItem(id);
+			}
 		}
 	};
 };

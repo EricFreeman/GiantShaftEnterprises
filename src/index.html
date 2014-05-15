@@ -32,7 +32,7 @@
 					<div class="item" 
 						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id), hover: !cantBuy(item.id) && hover}" 
 						 ng-repeat="item in items" 
-						 ng-click="buy(item.id)"
+						 ng-click="buy($event, item.id)"
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						 <div class="left">

@@ -38,6 +38,11 @@ idleGame.service('gameService', function() {
 		{ id: 8, name: "Benefits Package", mps: 20, price: 50000 }
 	];
 
+	// All upgrades for items
+	this.upgrades = [
+		{ id: 0, itemId: 0, name: "Better Scheduling", description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!", cost: 500, mps: .05 }
+	];
+
 	this.getItem = function(id) {
 		for(var item in this.items)
 			if(this.items[item].id === id) 
@@ -50,6 +55,8 @@ idleGame.service('gameService', function() {
 idleGame.service('playerService', function () {
 	// Owned items are defined here as: { id: x, count: y }
 	this.items = [];
+	// Owned upgrades are stored here as: { id: x }
+	this.upgrades = [];
 	this.money = 15;
 	this.companyName = "Default Company";
 
