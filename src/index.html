@@ -54,7 +54,8 @@
 						 ng-repeat="upgrade in upgrades"
 						 ng-click="buy(upgrade.id)"
 						 ng-mouseenter="hover = true"
-						 ng-mouseleave="hover = false">
+						 ng-mouseleave="hover = false"
+						 ng-show="canShow(upgrade.itemId)">
 						<p class="name">{{upgrade.name}}</p>
 						<p class="info">Cost: {{upgrade.price | currency}}</p>
 						<p class="info">Adds: {{upgrade.mps | currency}}</p>
