@@ -35,11 +35,11 @@ idleGame.service('gameService', function() {
 		{ id: 2, name: "Salary Employee", mps: 2, price: 1500 },
 		{ id: 7, name: "Hardware", mps: 1, price: 1500 },
 		{ id: 9, name: "HR Department", mps: .5, price: 2000 },
-		{ id: 3, name: "Upper Management", mps: 1, price: 2250 },
-		{ id: 4, name: "Accounting Department", mps: 3, price: 2500 },
-		{ id: 5, name: "Office Building", mps: 3, price: 2500 },
-		{ id: 6, name: "Executive", mps: 10, price: 5000 },
-		{ id: 8, name: "Benefits Package", mps: 20, price: 50000 }
+		{ id: 4, name: "Accounting Department", mps: 3, price: 5000 },
+		{ id: 5, name: "Benefits Package", mps: 3, price: 25000 },
+		{ id: 3, name: "Upper Management", mps: 1, price: 50000 },
+		{ id: 6, name: "Executive", mps: 10, price: 100000 },
+		{ id: 8, name: "Office Building", mps: 20, price: 500000 }
 	];
 
 	// All upgrades for items
@@ -79,19 +79,26 @@ idleGame.service('gameService', function() {
 		{ id: 14, itemId: 9, name: "Christmas Party", price: 150000, mps: .01, 
 			description: "Your employees will never forget how drunk Jason from Accounting was that night!" },
 		
-		{ id: 15, itemId: 3, name: "Useless Meetings", price: 150000, mps: 0, 
-			description: "None of your employees are suffering from insomnia after that meeting!" },
-		{ id: 16, itemId: 3, name: "Even More #$^&*% Useless Meetings", price: 250000, mps: 0, 
-			description: "None of your employees are suffering from insomnia after *that* meeting!" },
-		{ id: 17, itemId: 3, name: "Micromanagement", price: 350000, mps: 0, 
-			description: "Upper Management does their best to get the most out of them slacking employees!" },
-
-		{ id: 18, itemId: 4, name: "Chasing Nickels Around Dollar Bills", price: 1000000, mps: 1.5, 
+		{ id: 18, itemId: 4, name: "Chasing Nickels Around Dollar Bills", price: 150000, mps: 1.5, 
 			description: "Increase the effectiveness of your business by trimming small expenses.  Your employees are now unhappy your business charges for coffee in the breakroom." },
-		{ id: 19, itemId: 4, name: "Investments", price: 1750000, mps: 2, 
+		{ id: 19, itemId: 4, name: "Investments", price: 250000, mps: 2, 
 			description: "Purchase goods or services to make huge gains in the long run." },
-		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 2500000, mps: 3, 
+		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 350000, mps: 3, 
 			description: "Short term loss will guarentee a winning financial strategy in the long term!" },
+
+		{ id: 21, itemId: 5, name: "Unlimited PTO", price: 500000, mps: 2, 
+			description: "Your workers will be very happy with a more flexible PTO schedule (and some may even take less PTO than normal)." },
+		{ id: 22, itemId: 5, name: "Health, Vision, and Dental Plans", price: 750000, mps: 3, 
+			description: "Lisa needs braces!" },
+		{ id: 23, itemId: 5, name: "Generous Pension", price: 1000000, mps: 4, 
+			description: "Keep employee retention up by offering them a generous pension in exchange for a lifetime of servitude." },
+
+		{ id: 15, itemId: 3, name: "Useless Meetings", price: 1000000, mps: 0, 
+			description: "None of your employees are suffering from insomnia after that meeting!" },
+		{ id: 16, itemId: 3, name: "Even More #$^&*% Useless Meetings", price: 1750000, mps: 0, 
+			description: "None of your employees are suffering from insomnia after *that* meeting!" },
+		{ id: 17, itemId: 3, name: "Micromanagement", price: 2500000, mps: 0, 
+			description: "Upper Management does their best to get the most out of them slacking employees!" },
 
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
