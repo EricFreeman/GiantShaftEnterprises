@@ -66,6 +66,14 @@ idleGame.service('gameService', function() {
 		{ id: 10, itemId: 7, name: "Upgraded Computers", price: 350000, mps: .5, description: "Your employees can get more done when they don't have to wait on technological limitations." },
 		{ id: 11, itemId: 7, name: "Enhanced Servers", price: 5000000, mps: 1, description: "Your clients are happier because of the higher load speeds and reduced down-time." },
 
+		{ id: 12, itemId: 9, name: "Employee Handbook", price: 50000, mps: .01, description: "Make sure you read every page!" },
+		{ id: 13, itemId: 9, name: "Policy Documentation", price: 100000, mps: .01, description: "Your employees will make an extra effort to comply with the company's policies." },
+		{ id: 14, itemId: 9, name: "Christmas Party", price: 150000, mps: .01, description: "Your employees will never forget how drunk Jason from Accounting was that night!" },
+		
+		{ id: 15, itemId: 3, name: "Useless Meetings", price: 150000, mps: 0, description: "None of your employees are suffering from insomnia after that meeting!" },
+		{ id: 16, itemId: 3, name: "Even More #$^&*% Useless Meetings", price: 250000, mps: 0, description: "None of your employees are suffering from insomnia after *that* meeting!" },
+		{ id: 17, itemId: 3, name: "Micromanagement", price: 350000, mps: 0, description: "Upper Management does their best to get the most out of them slacking employees!" },
+
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
 
