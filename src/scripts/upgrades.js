@@ -15,4 +15,8 @@ function UpgradesController($scope, gameService, playerService) {
 			playerService.buyUpgrade(upgrade);
 		}
 	};
+
+	$scope.getItemName = function(id) {
+		return gameService.getItem(id).name;
+	}
 };

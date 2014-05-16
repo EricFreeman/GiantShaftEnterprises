@@ -56,7 +56,9 @@
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						<p class="name">{{upgrade.name}}</p>
-						<p class="info">{{upgrade.price | currency}}</p>
+						<p class="info">Cost: {{upgrade.price | currency}}</p>
+						<p class="info">Adds: {{upgrade.mps | currency}}</p>
+						<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
 						<br />
 						<p class="description">{{upgrade.description}}</p>
 					</div>
