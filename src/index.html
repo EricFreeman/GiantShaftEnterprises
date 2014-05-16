@@ -11,7 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
-	<link rel="stylesheet" type="text/css" href="css/upgrades.css" />
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 </head>
 <body>
@@ -39,9 +38,9 @@
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						<div class="left">
-							<p>Name: {{item.name}}</p>
-							<p>Adds: {{getMps(item.id) | currency}}</p>
-							<p>Cost: {{currentPrice(item.id) | currency}}</p>
+							<p class="name">{{item.name}}</p>
+							<p class="info">Adds: {{getMps(item.id) | currency}}</p>
+							<p class="info">Cost: {{currentPrice(item.id) | currency}}</p>
 						</div>
 						<div class="right">
 							<h1>{{getCount(item.id)}}</h1>
@@ -56,10 +55,10 @@
 						 ng-click="buy(upgrade.id)"
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
-						<p>{{upgrade.name}}</p>
-						<p>{{upgrade.price | currency}}</p>
+						<p class="name">{{upgrade.name}}</p>
+						<p class="info">{{upgrade.price | currency}}</p>
 						<br />
-						<p>{{upgrade.description}}</p>
+						<p class="description">{{upgrade.description}}</p>
 					</div>
 				</script>
 				

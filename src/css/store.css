@@ -30,3 +30,15 @@
 	background-color: rgba(255, 255, 0, .25);
 	cursor: pointer;
 }
+
+.item .name {
+	font-family: Segoe UI;
+}
+
+.item .info {
+	font-size: 14px;
+}
+
+.item .description {
+	font-size: 12px;
+}
