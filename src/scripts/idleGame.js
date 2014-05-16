@@ -33,7 +33,7 @@ idleGame.service('gameService', function() {
 		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
 		{ id: 1, name: "Cubical", mps: .3 , price: 100 },
 		{ id: 2, name: "Salary Employee", mps: 2, price: 1500 },
-		{ id: 7, name: "Ergonomic Keyboards", mps: 1, price: 1500 },
+		{ id: 7, name: "Hardware", mps: 1, price: 1500 },
 		{ id: 9, name: "HR Department", mps: .5, price: 2000 },
 		{ id: 3, name: "Upper Management", mps: 1, price: 2250 },
 		{ id: 4, name: "Standing Desk", mps: 3, price: 2500 },
@@ -61,6 +61,10 @@ idleGame.service('gameService', function() {
 		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, description: "Changing the work schedule to four ten hour days and giving the employees a three day weekened boosts employee retention cutting down on the cost to train new employees!" },
 		{ id: 7, itemId: 2, name: "Free Lunch", price: 60000, mps: 1, description: "I guess there is such a thing." },
 		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2, description: "Letting your employees do whatever they want (within reason) 20% of the day gives them more skills, better attitudes, and extra creativity to get the most out of the remaining 80%!" },
+
+		{ id: 9, itemId: 7, name: "Ergonomic Keyboards", price: 50000, mps: .25, description: "Mitigate work related injuries with smarter keyboards for your employees!" },
+		{ id: 10, itemId: 7, name: "Upgraded Computers", price: 350000, mps: .5, description: "Your employees can get more done when they don't have to wait on technological limitations." },
+		{ id: 11, itemId: 7, name: "Enhanced Servers", price: 5000000, mps: 1, description: "Your clients are happier because of the higher load speeds and reduced down-time." },
 
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
