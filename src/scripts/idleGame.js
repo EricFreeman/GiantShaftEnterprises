@@ -53,12 +53,16 @@ idleGame.service('gameService', function() {
 
 		{ id: 3, itemId: 1, name: "Lower walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubical will help increase team dynamics and promote synergy!" },
-		{ id: 4, itemId: 1, name: "Better seating", price: 5000, mps: .2,
+		{ id: 4, itemId: 1, name: "Better seating", price: 6000, mps: .2,
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
-		{ id: 5, itemId: 1, name: "Modest Improvements", price: 10000, mps: .3,
-			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" }
+		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
+			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
 
-//		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" }
+		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, description: "Changing the work schedule to four ten hour days and giving the employees a three day weekened boosts employee retention cutting down on the cost to train new employees!" },
+		{ id: 7, itemId: 2, name: "Free Lunch", price: 60000, mps: 1, description: "I guess there is such a thing." },
+		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2, description: "Letting your employees do whatever they want (within reason) 20% of the day gives them more skills, better attitudes, and extra creativity to get the most out of the remaining 80%!" },
+
+//		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
 
 	this.getItem = function(id) {
