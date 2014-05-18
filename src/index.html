@@ -50,7 +50,7 @@
 
 				<script type="text/ng-template" id="upgrades.html">
 					<div class="item"
-						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover}" 
+						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover, alreadyBought: alreadyBought(upgrade.id)}" 
 						 ng-repeat="upgrade in upgrades"
 						 ng-click="buy(upgrade.id)"
 						 ng-mouseenter="hover = true"

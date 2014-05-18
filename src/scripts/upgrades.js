@@ -2,10 +2,13 @@ function UpgradesController($scope, gameService, playerService) {
 	$scope.upgrades = gameService.upgrades;
 	$scope.boughtUpgrades = playerService.upgrades;
 
+	$scope.alreadyBought = function(id) {
+		return playerService.getUpgrade(id).id != -1;
+	}
+
 	$scope.cantBuy = function(id) {
 		var notEnoughMoney = gameService.getUpgrade(id).price > playerService.money;
-		var alreadyOwn = playerService.getUpgrade(id).id != -1;
-		return notEnoughMoney || alreadyOwn;
+		return notEnoughMoney || $scope.alreadyBought(id);
 	};
 	
 	$scope.buy = function(id) {

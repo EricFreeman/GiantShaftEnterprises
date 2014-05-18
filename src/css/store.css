@@ -31,6 +31,10 @@
 	cursor: pointer;
 }
 
+.item.alreadyBought {
+	background-color: rgba(0, 128, 0, .25);
+}
+
 .item .name {
 	font-family: Segoe UI;
 }
