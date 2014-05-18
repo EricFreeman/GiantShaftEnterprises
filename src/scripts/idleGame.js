@@ -100,6 +100,14 @@ idleGame.service('gameService', function() {
 		{ id: 17, itemId: 3, name: "Micromanagement", price: 2500000, mps: 0, 
 			description: "Upper Management does their best to get the most out of them slacking employees!" },
 
+		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, description: "The most prized posession of every executive." },
+		{ id: 25, itemId: 6, name: "Goal Oriented Bonuses", price: 20000000, mps: 10, description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
+		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
+
+		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
+		{ id: 28, itemId: 8, name: "Solar Powered Electric Car Charging Stations", price: 100000000, mps: 50, description: "Now your employees can take their Tesla to work." },
+		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
+
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
 
