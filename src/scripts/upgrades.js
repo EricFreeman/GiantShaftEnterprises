@@ -26,7 +26,15 @@ function UpgradesController($scope, gameService, playerService) {
 	}
 
 	// Only show upgrades for items you've actually bought
-	$scope.canShow = function(id) {
-		return playerService.getItem(id).count > 0 || id == "business";
+	$scope.canShow = function(upgrade) {
+		// Make sure you own all pre requisit upgrades for this specific upgrade
+		var haveAllPrereq = true;
+		if(gameService.getUpgrade(upgrade.id).showAfter) {
+			haveAllPrereq = gameService.getUpgrade(upgrade.id).showAfter.reduce(function(prev, cur) {
+				return prev && $scope.alreadyBought(cur);
+			}, true);
+		}
+
+		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || upgrade.itemId == "business");
 	}
 };

@@ -119,11 +119,11 @@ idleGame.service('gameService', function() {
 		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180,
 			description: "Your eat your competition for breakfast."},
 
-		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01,
+		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [30, 31, 32],
 			description: "Opportunity awaits."},
-		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01,
+		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33],
 			description: "Become one with the opportunity."},
-		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01,
+		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34],
 			description: "Kill the non believeres.  You are the only true opportunity."},
 
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
