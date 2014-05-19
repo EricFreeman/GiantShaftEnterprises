@@ -14,6 +14,10 @@ describe("GameLoopController", function() {
         $rootScope.$apply();
     }));
 
+    it("should actually exist", function() {
+		expect($scope).not.toBeNull();
+	});
+
 	it("mps should be 0 with no items", function() {
 		inject(function(playerService) {
 			playerService.items = [];

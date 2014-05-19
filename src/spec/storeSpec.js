@@ -18,7 +18,7 @@ describe("StoreController", function() {
 		expect($scope).not.toBeNull();
 	});
 
-	it("should not be able to buy stuff when broke", function() {
+	it("should not be able to buy stuff you have less money than the item costs", function() {
 		inject(function(playerService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];
@@ -28,7 +28,7 @@ describe("StoreController", function() {
 		});
 	});
 
-	it("should not be able to buy stuff in bulk when you're broke", function() {
+	it("should not be able to buy stuff in bulk when you have less money than the item costs", function() {
 		inject(function(playerService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];
@@ -38,7 +38,7 @@ describe("StoreController", function() {
 		});
 	});
 
-	it("should be able to buy stuff when you're rich", function() {
+	it("should be able to buy stuff when you have as much money as the item costs", function() {
 		inject(function(playerService, gameService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];
@@ -48,7 +48,7 @@ describe("StoreController", function() {
 		});
 	});
 
-	it("should be able to buy stuff in bulk when you're rich", function() {
+	it("should be able to buy stuff in bulk when you have enough money for all of them", function() {
 		inject(function(playerService, gameService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];

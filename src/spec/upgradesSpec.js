@@ -14,7 +14,11 @@ describe("UpgradesController", function() {
         $rootScope.$apply();
     }));
 
-	it("can't buy upgrade if you're broke", function() {
+    it("should actually exist", function() {
+		expect($scope).not.toBeNull();
+	});
+
+	it("can't buy upgrade if you have less money than the item costs", function() {
 		inject(function(playerService) {
 			playerService.items = [{id: 0, count: 1}];
 			playerService.upgrades = [];
@@ -23,7 +27,7 @@ describe("UpgradesController", function() {
 		});
 	});
 
-	it("can buy upgrade if you're rich", function() {
+	it("can buy upgrade if you have as much money as the item costs", function() {
 		inject(function(playerService, gameService) {
 			playerService.items = [{id: 0, count: 1}];
 			playerService.upgrades = [];
