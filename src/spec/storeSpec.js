@@ -39,20 +39,21 @@ describe("StoreController", function() {
 	});
 
 	it("should be able to buy stuff when you're rich", function() {
-		inject(function(playerService) {
+		inject(function(playerService, gameService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];
-			playerService.money = 500;
+			playerService.money = gameService.getItem(0).price;
 		 	$scope.buy({shiftKey: false}, 0);
 		 	expect($scope.getCount(0)).toBe(1);
 		});
 	});
 
 	it("should be able to buy stuff in bulk when you're rich", function() {
-		inject(function(playerService) {
+		inject(function(playerService, gameService) {
 			expect($scope.getCount(0)).toBe(0);
 			playerService.items = [];
-			playerService.money = 500;
+			// multiply by 50 instead of 10 to make up for price increase as you buy more of particular item
+			playerService.money = gameService.getItem(0).price * 50;
 		 	$scope.buy({shiftKey: true}, 0);
 		 	expect($scope.getCount(0)).toBe(10);
 		});

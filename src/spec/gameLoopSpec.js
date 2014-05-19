@@ -27,4 +27,20 @@ describe("GameLoopController", function() {
 		 	expect($scope.getMps()).toBe(gameService.getItem(0).mps);
 		});
 	});
+
+	it("no upgrades doesn't change your mps", function() {
+		inject(function(playerService, gameService) {
+			playerService.items = [{id: 0, count: 1}];
+			playerService.upgrades = [];
+		 	expect($scope.getMps()).toBe(gameService.getItem(0).mps);
+		});
+	});
+
+	it("having upgrades does change your mps", function() {
+		inject(function(playerService, gameService) {
+			playerService.items = [{id: 0, count: 1}];
+			playerService.upgrades = [{id: 0}];
+		 	expect($scope.getMps()).not.toBe(gameService.getItem(0).mps);
+		});
+	});
 });
