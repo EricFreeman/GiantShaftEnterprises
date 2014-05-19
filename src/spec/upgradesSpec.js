@@ -52,7 +52,7 @@ describe("UpgradesController", function() {
 		inject(function(playerService) {
 			playerService.items = [];
 			playerService.upgrades = [];
-		 	expect($scope.canShow(0)).toBe(false);
+		 	expect($scope.canShow({itemId: 0})).toBe(false);
 		});
 	});
 
@@ -60,7 +60,7 @@ describe("UpgradesController", function() {
 		inject(function(playerService) {
 			playerService.items = [{id: 0, count: 1}];
 			playerService.upgrades = [];
-		 	expect($scope.canShow(0)).toBe(true);
+		 	expect($scope.canShow({itemId: 0})).toBe(true);
 		});
 	});
 });
