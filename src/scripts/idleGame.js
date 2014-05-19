@@ -3,9 +3,9 @@ var idleGame = angular.module('idleGame', ['ngRoute']);
 idleGame.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-			when('/menu', {
-				templateUrl: 'menu.html',
-				controller: 'MenuController'
+			when('/business', {
+				templateUrl: 'business.html',
+				controller: 'BusinessController'
 			}).
 			when('/store', {
 				templateUrl: 'store.html',
@@ -15,12 +15,12 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'upgrades.html',
 				controller: 'UpgradesController'
 			}).
-			when('/business', {
-				templateUrl: 'business.html',
-				controller: 'BusinessController'
+			when('/menu', {
+				templateUrl: 'menu.html',
+				controller: 'MenuController'
 			}).
 			otherwise({
-				redirectTo: '/menu'
+				redirectTo: '/business'
 			});
 	}
 ]);
