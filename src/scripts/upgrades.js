@@ -27,6 +27,6 @@ function UpgradesController($scope, gameService, playerService) {
 
 	// Only show upgrades for items you've actually bought
 	$scope.canShow = function(id) {
-		return playerService.getItem(id).count > 0;
+		return playerService.getItem(id).count > 0 || id == "business";
 	}
 };

@@ -114,6 +114,13 @@ idleGame.service('gameService', function() {
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
 
+		{ id: 30, itemId: "business", name: "Business Guru", price: 1000, mps: 0, mpo: 1,
+			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities."},
+		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18,
+			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list."},
+		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180,
+			description: "Your eat your competition for breakfast."},
+
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
 
@@ -135,10 +142,6 @@ idleGame.service('playerService', function () {
 	this.upgrades = [];
 	this.money = 15;
 	this.companyName = "Default Company";
-	
-	this.clickPower = function() {
-		return 1;
-	}
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,

@@ -21,11 +21,24 @@ function BusinessController($scope, gameService, playerService) {
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
 	$scope.doBusiness = function(curr) {
-		playerService.money += playerService.clickPower();
+		playerService.money += $scope.clickPower();
 
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();
 	};
+
+	$scope.clickPower = function() {
+		var basicClickPower = 1;
+
+		return basicClickPower + 
+			playerService.upgrades.
+				filter(function(d) {
+					return d.itemId === "business";
+				}).
+				reduce(function(prev, cur) {
+					return prev += cur.mpo;
+				}, 0);
+	}
 };
 
 Array.prototype.randomElement = function () {
