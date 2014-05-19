@@ -3,6 +3,10 @@ var idleGame = angular.module('idleGame', ['ngRoute']);
 idleGame.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
+			when('/menu', {
+				templateUrl: 'menu.html',
+				controller: 'MenuController'
+			}).
 			when('/store', {
 				templateUrl: 'store.html',
 				controller: 'StoreController'
@@ -15,12 +19,8 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'business.html',
 				controller: 'BusinessController'
 			}).
-			when('/menu', {
-				templateUrl: 'menu.html',
-				controller: 'MenuController'
-			}).
 			otherwise({
-				redirectTo: '/store'
+				redirectTo: '/menu'
 			});
 	}
 ]);
@@ -51,9 +51,9 @@ idleGame.service('gameService', function() {
 		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
 			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
 
-		{ id: 3, itemId: 1, name: "Lower walls", price: 1000, mps: .1,
+		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubical will help increase team dynamics and promote synergy!" },
-		{ id: 4, itemId: 1, name: "Better seating", price: 6000, mps: .2,
+		{ id: 4, itemId: 1, name: "Better Seating", price: 6000, mps: .2,
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
@@ -100,13 +100,19 @@ idleGame.service('gameService', function() {
 		{ id: 17, itemId: 3, name: "Micromanagement", price: 2500000, mps: 0, 
 			description: "Upper Management does their best to get the most out of them slacking employees!" },
 
-		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, description: "The most prized posession of every executive." },
-		{ id: 25, itemId: 6, name: "Goal Oriented Bonuses", price: 20000000, mps: 10, description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
-		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
+		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, 
+			description: "The most prized posession of every executive." },
+		{ id: 25, itemId: 6, name: "Goal Oriented Bonuses", price: 20000000, mps: 10, 
+			description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
+		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, 
+			description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
 
-		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
-		{ id: 28, itemId: 8, name: "Solar Powered Electric Car Charging Stations", price: 100000000, mps: 50, description: "Now your employees can take their Tesla to work." },
-		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
+		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, 
+			description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
+		{ id: 28, itemId: 8, name: "Electric Car Charging Parking Lot", price: 100000000, mps: 50, 
+			description: "Now your employees can take their Tesla to work." },
+		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
+			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
 
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
@@ -129,6 +135,10 @@ idleGame.service('playerService', function () {
 	this.upgrades = [];
 	this.money = 15;
 	this.companyName = "Default Company";
+	
+	this.clickPower = function() {
+		return 1;
+	}
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,

@@ -11,7 +11,7 @@ function BusinessController($scope, gameService, playerService) {
 		"Prioritize objectives.",
 		"Streamline workforce.",
 		"Push the envelope.",
-		"Break your limits",
+		"Break your limits.",
 		"Perform market research.",
 		"Center your chi.",
 		"Attend leadership conference.",
@@ -21,7 +21,7 @@ function BusinessController($scope, gameService, playerService) {
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
 	$scope.doBusiness = function(curr) {
-		playerService.money++;
+		playerService.money += playerService.clickPower();
 
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();
