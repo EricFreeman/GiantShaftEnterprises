@@ -6,7 +6,7 @@
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/store.js"></script>
 	<script src="scripts/upgrades.js"></script>
-	<script src="scripts/stats.js"></script>
+	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -24,7 +24,7 @@
 			<div class="links textCenter">
 				<a href="#/store">Store</a> | 
 				<a href="#/upgrades">Upgrades</a> | 
-				<a href="#/stats">Stats</a> | 
+				<a href="#/business">Business</a> | 
 				<a href="#/menu">Menu</a>
 			</div>
 			<div class="mainContent center">
@@ -64,13 +64,20 @@
 						<p class="description">{{upgrade.description}}</p>
 					</div>
 				</script>
-				
-				<script type="text/ng-template" id="stats.html">
-					Stats
+				 
+				<script type="text/ng-template" id="business.html">
+					<div class="item"
+						 ng-class="{enabled: true, hover: hover}"
+						 ng-init="generateOpportunities()"
+						 ng-click="doBusiness(opportunity)"
+						 ng-mouseenter="hover = true"
+						 ng-mouseleave="hover = false">
+						<p>{{opportunity}}</p>
+					</div>
 				</script>
 				
 				<script type="text/ng-template" id="menu.html">
-					<div class="menu center">
+					<div class="content center">
 						<section>
 							<p>Set the name of your new corporation!</p>
 							<input type="text" ng-model="playerService.companyName" />

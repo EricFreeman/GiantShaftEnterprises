@@ -11,9 +11,9 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'upgrades.html',
 				controller: 'UpgradesController'
 			}).
-			when('/stats', {
-				templateUrl: 'stats.html',
-				controller: 'StatsController'
+			when('/business', {
+				templateUrl: 'business.html',
+				controller: 'BusinessController'
 			}).
 			when('/menu', {
 				templateUrl: 'menu.html',
@@ -44,12 +44,12 @@ idleGame.service('gameService', function() {
 
 	// All upgrades for items
 	this.upgrades = [
-		{ id: 0, itemId: 0, name: "Better Scheduling", price: 500, mps: .05,
-			description: "When all your employees work under 40 hours a week, there's no need to pay them health benefits!" },
-		{ id: 1, itemId: 0, name: "Illegal Aliens", price: 1500, mps: .1,
-			description: "By hiring only illegal aliens, you can make twice as much per worker!" },
-		{ id: 2, itemId: 0, name: "On-Site Housing", price: 30000, mps: .1,
-			description: "Why make your employees waste precious work hours by driving to and from work?  Maximize efficiency with on-site housing!" },
+		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
+			description: "Studies have shown that training employees is the same as training a dog: use lots of positive reinforcement to get them to behave correctly." },
+		{ id: 1, itemId: 0, name: "Mentoring Program", price: 1500, mps: .1,
+			description: "While reading binder upon binder of information is fun for some people, it is easier to learn and retain information from a good teacher." },
+		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
+			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
 
 		{ id: 3, itemId: 1, name: "Lower walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubical will help increase team dynamics and promote synergy!" },

@@ -1,7 +1,0 @@
-.menu {
-	padding: 16px;
-}
-
-.menu section:not(:first-child) {
-	margin-top: 16px;
-}

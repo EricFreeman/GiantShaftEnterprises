@@ -3,7 +3,7 @@ function StoreController($scope, gameService, playerService) {
 	$scope.boughtItems = playerService.items;
 	
 	$scope.currentPrice = function(id) {
-		var priceIncrease = .2; // 15% per item already bought
+		var priceIncrease = .2; // 20% per item already bought
 		return gameService.getItem(id).price + (playerService.getItem(id).count * gameService.getItem(id).price * priceIncrease);
 	}
 	

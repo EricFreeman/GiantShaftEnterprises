@@ -62,3 +62,11 @@ h3 {
 .underline {
 	text-decoration: underline;
 }
+
+.content {
+	padding: 16px;
+}
+
+.content section:not(:first-child) {
+	margin-top: 16px;
+}
