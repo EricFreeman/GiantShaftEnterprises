@@ -1,4 +1,3 @@
-function MenuController($scope, gameService, playerService) {
-	$scope.gameService = gameService;
+function MenuController($scope, playerService) {
 	$scope.playerService = playerService;
 };

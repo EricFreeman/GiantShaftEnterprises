@@ -26,8 +26,6 @@ idleGame.config(['$routeProvider',
 ]);
 
 idleGame.service('gameService', function() {
-	this.fps = 10;
-	
 	// All base items (not upgrades) you can purchase are defined here
 	this.items = [
 		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
@@ -142,6 +140,7 @@ idleGame.service('playerService', function () {
 	this.upgrades = [];
 	this.money = 15;
 	this.companyName = "Default Company";
+	this.fps = 10;
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,

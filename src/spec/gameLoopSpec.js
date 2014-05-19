@@ -28,7 +28,7 @@ describe("GameLoopController", function() {
 	it("mps should be over 0 with no items", function() {
 		inject(function(playerService, gameService) {
 			playerService.items = [{id: 0, count: 1}];
-		 	expect($scope.getMps()).toBe(gameService.getItem(0).mps);
+		 	expect($scope.getMps()).not.toBe(0);
 		});
 	});
 

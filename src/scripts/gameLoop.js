@@ -35,23 +35,23 @@ function GameLoopController($scope, $timeout, gameService, playerService) {
 	// Game Loop
 	$scope.update = function() {
 		// Make sure the FPS is valid, otherwise default it
-		if(!isNumeric(gameService.fps)) gameService.fps = 10;
+		if(!isNumeric(playerService.fps)) playerService.fps = 10;
 
 		// Check if the timeout took longer than usual (this happens when the tab isn't selected in some browsers)
 		now = new Date();
 		var elapsedTime = (now.getTime() - before.getTime());
 
-		if(elapsedTime > 1000 / gameService.fps) {
-			var extra = Math.floor(elapsedTime/(1000/gameService.fps));
+		if(elapsedTime > 1000 / playerService.fps) {
+			var extra = Math.floor(elapsedTime/(1000/playerService.fps));
 
-			playerService.money += (($scope.getMps() / gameService.fps) * extra);
+			playerService.money += (($scope.getMps() / playerService.fps) * extra);
 		}
 		else {
-			playerService.money += ($scope.getMps() / gameService.fps);
+			playerService.money += ($scope.getMps() / playerService.fps);
 		}
 
 		before = new Date();
-		$timeout($scope.update, 1000 / gameService.fps);
+		$timeout($scope.update, 1000 / playerService.fps);
 	};
 
 	// Your cumulative mps (money per second) is the combination of the 
