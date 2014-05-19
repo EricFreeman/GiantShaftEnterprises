@@ -29,12 +29,28 @@ function GameLoopController($scope, $timeout, gameService, playerService) {
 		$timeout($scope.saveGame, 30000); // Recall this method to autosave every 30 seconds
 	}
 	
+	var before = new Date();
+	var now = new Date();
+
 	// Game Loop
 	$scope.update = function() {
 		// Make sure the FPS is valid, otherwise default it
 		if(!isNumeric(gameService.fps)) gameService.fps = 10;
 
-		playerService.money += ($scope.getMps() / gameService.fps);
+		// Check if the timeout took longer than usual (this happens when the tab isn't selected in some browsers)
+		now = new Date();
+		var elapsedTime = (now.getTime() - before.getTime());
+
+		if(elapsedTime > 1000 / gameService.fps) {
+			var extra = Math.floor(elapsedTime/(1000/gameService.fps));
+
+			playerService.money += (($scope.getMps() / gameService.fps) * extra);
+		}
+		else {
+			playerService.money += ($scope.getMps() / gameService.fps);
+		}
+
+		before = new Date();
 		$timeout($scope.update, 1000 / gameService.fps);
 	};
 

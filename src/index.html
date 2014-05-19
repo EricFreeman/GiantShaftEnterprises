@@ -6,12 +6,13 @@
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/store.js"></script>
 	<script src="scripts/upgrades.js"></script>
-	<script src="scripts/stats.js"></script>
+	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<title>Angular Idle Game</title>
 </head>
 <body>
 	<div ng-app="idleGame">
@@ -22,9 +23,9 @@
 				<h3>Money/Second: {{getMps() | currency}}</h3>
 			</div>
 			<div class="links textCenter">
+				<a href="#/business">Business</a> | 
 				<a href="#/store">Store</a> | 
 				<a href="#/upgrades">Upgrades</a> | 
-				<a href="#/stats">Stats</a> | 
 				<a href="#/menu">Menu</a>
 			</div>
 			<div class="mainContent center">
@@ -50,7 +51,7 @@
 
 				<script type="text/ng-template" id="upgrades.html">
 					<div class="item"
-						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover}" 
+						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover, alreadyBought: alreadyBought(upgrade.id)}" 
 						 ng-repeat="upgrade in upgrades"
 						 ng-click="buy(upgrade.id)"
 						 ng-mouseenter="hover = true"
@@ -64,13 +65,20 @@
 						<p class="description">{{upgrade.description}}</p>
 					</div>
 				</script>
-				
-				<script type="text/ng-template" id="stats.html">
-					Stats
+				 
+				<script type="text/ng-template" id="business.html">
+					<div class="item"
+						 ng-class="{enabled: true, hover: hover}"
+						 ng-init="generateOpportunities()"
+						 ng-click="doBusiness(opportunity)"
+						 ng-mouseenter="hover = true"
+						 ng-mouseleave="hover = false">
+						<p>{{opportunity}}</p>
+					</div>
 				</script>
 				
 				<script type="text/ng-template" id="menu.html">
-					<div class="menu center">
+					<div class="content center">
 						<section>
 							<p>Set the name of your new corporation!</p>
 							<input type="text" ng-model="playerService.companyName" />
@@ -80,6 +88,28 @@
 							<input type="number" ng-model="gameService.fps" min="1" max="100" step="any" />
 						</section>
 					</div>
+				</script>
+			</div>
+			<div class="rightAd">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Idle Game Right Side -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:120px;height:600px"
+				     data-ad-client="ca-pub-2046389339559087"
+				     data-ad-slot="2827205531"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+			<div class="bottomAd center">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Idle Game Bottom Skinnier -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:468px;height:60px"
+				     data-ad-client="ca-pub-2046389339559087"
+				     data-ad-slot="1071270732"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
 			</div>
 		</div>
