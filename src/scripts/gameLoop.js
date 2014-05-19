@@ -1,11 +1,14 @@
-function GameLoopController($scope, $timeout, gameService, playerService) {	
-	// Getters to grab values through gameService
+function GameLoopController($scope, $timeout, gameService, playerService, mpsService) {	
+	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
 	};
 	$scope.getMoney = function() {
 		return playerService.money;
 	};
+	$scope.getMps = function() {
+		return mpsService.getMps();
+	}
 
 	$scope.loadGame = function() {
 		// Grab current items.  Will be useful if more items were added after you started game
@@ -44,31 +47,14 @@ function GameLoopController($scope, $timeout, gameService, playerService) {
 		if(elapsedTime > 1000 / playerService.fps) {
 			var extra = Math.floor(elapsedTime/(1000/playerService.fps));
 
-			playerService.money += (($scope.getMps() / playerService.fps) * extra);
+			playerService.money += ((mpsService.getMps() / playerService.fps) * extra);
 		}
 		else {
-			playerService.money += ($scope.getMps() / playerService.fps);
+			playerService.money += (mpsService.getMps() / playerService.fps);
 		}
 
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);
-	};
-
-	// Your cumulative mps (money per second) is the combination of the 
-	// count of each item multiplied by the item's individual mps
-	// plus all the upgrades for said item
-	$scope.getMps = function() {
-		return playerService.items.reduce(function (prev, cur) {
-			return prev += (gameService.getItem(cur.id).mps * cur.count) + ($scope.getUpgradesMps(cur.id) * cur.count);
-		}, 0);
-	};
-
-	// Get the mps that should be added in from the upgrades for the specified item
-	$scope.getUpgradesMps = function(id) {
-		return playerService.upgrades.reduce(function(prev, cur) {
-			var upgrade = gameService.getUpgrade(cur.id);
-			return prev += upgrade.itemId == id ? upgrade.mps : 0;
-		}, 0);
 	};
 	
 	// Load the game if it was previously saved

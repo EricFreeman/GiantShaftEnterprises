@@ -1,4 +1,4 @@
-function BusinessController($scope, gameService, playerService) {
+function BusinessController($scope, gameService, playerService, mpsService) {
 	$scope.possibleOpportunities = [
 		"Meet with clients.",
 		"Meet with investors.",
@@ -29,6 +29,7 @@ function BusinessController($scope, gameService, playerService) {
 
 	$scope.clickPower = function() {
 		var basicClickPower = 1;
+		var mps = mpsService.getMps();
 
 		return basicClickPower + 
 			playerService.upgrades.
@@ -36,7 +37,7 @@ function BusinessController($scope, gameService, playerService) {
 					return d.itemId === "business";
 				}).
 				reduce(function(prev, cur) {
-					return prev += cur.mpo;
+					return prev += (cur.mpo ? cur.mpo : cur.mpop * mps);
 				}, 0);
 	}
 };

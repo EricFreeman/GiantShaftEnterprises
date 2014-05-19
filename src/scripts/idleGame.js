@@ -119,6 +119,13 @@ idleGame.service('gameService', function() {
 		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180,
 			description: "Your eat your competition for breakfast."},
 
+		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01,
+			description: "Opportunity awaits."},
+		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01,
+			description: "Become one with the opportunity."},
+		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01,
+			description: "Kill the non believeres.  You are the only true opportunity."},
+
 //		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
 	];
 
@@ -170,6 +177,26 @@ idleGame.service('playerService', function () {
 	this.buyUpgrade = function(upgrade) {
 		this.upgrades.push(upgrade);
 	}
+});
+
+idleGame.service('mpsService', function(gameService, playerService) {
+	// Your cumulative mps (money per second) is the combination of the 
+	// count of each item multiplied by the item's individual mps
+	// plus all the upgrades for said item
+	this.getMps = function() {
+		var self = this;
+		return playerService.items.reduce(function (prev, cur) {
+			return prev += (gameService.getItem(cur.id).mps * cur.count) + (self.getUpgradesMps(cur.id) * cur.count);
+		}, 0);
+	};
+
+	// Get the mps that should be added in from the upgrades for the specified item
+	this.getUpgradesMps = function(id) {
+		return playerService.upgrades.reduce(function(prev, cur) {
+			var upgrade = gameService.getUpgrade(cur.id);
+			return prev += upgrade.itemId == id ? upgrade.mps : 0;
+		}, 0);
+	};
 });
 
 // A simple search that will go through the passed in list and find
