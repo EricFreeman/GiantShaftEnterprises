@@ -146,6 +146,13 @@ idleGame.service('gameService', function() {
 			description: "Gain a small part of your money even while the game is closed." },
 		{ id: 38, itemId: "business", name: "Night Owl III", price: 25000000, mps: 0, isOnLoad: 1, per: .083, showAfter: [37],
 			description: "Gain a small part of your money even while the game is closed." },
+
+		{ id: 39, itemId: "business", name: "Over Achiever", price: 100000000, isAchievement: 1, per: .0025,
+			description: "Gain a percentage increase of Money/Second for every achievement earned." },
+		{ id: 40, itemId: "business", name: "Butt Kisser", price: 1000000000, isAchievement: 1, per: .005, showAfter: [39],
+			description: "Gain a percentage increase of Money/Second for every achievement earned." },
+		{ id: 41, itemId: "business", name: "Brown Noser", price: 10000000000, isAchievement: 1, per: .01, showAfter: [40],
+			description: "Gain a percentage increase of Money/Second for every achievement earned." },
 	];
 
 	// All in game achievements and how to earn them are defined here
@@ -394,9 +401,26 @@ idleGame.service('moneyService', function(gameService, playerService) {
 	// plus all the upgrades for said item
 	this.getMps = function() {
 		var self = this;
-		return playerService.items.reduce(function (prev, cur) {
+		var baseMps = playerService.items.reduce(function (prev, cur) {
 			return prev += (gameService.getItem(cur.id).mps * cur.count) + (self.getUpgradesMps(cur.id) * cur.count);
 		}, 0);
+
+		// Get upgrades that deal with giving money for each achievement
+		var upgrades = gameService.upgrades.
+			filter(function(d) {
+				return d.isAchievement;
+			}).
+			filter(function(d) {
+				return playerService.getUpgrade(d.id).id >= 0;
+			});
+
+		var additionalMps = 0;
+
+		for(var i = 0; i < upgrades.length; i++) {
+			additionalMps += upgrades[i].per * playerService.achievements.length * baseMps;
+		}
+
+		return baseMps + additionalMps;
 	};
 
 	// Get the mps that should be added in from the upgrades for the specified item

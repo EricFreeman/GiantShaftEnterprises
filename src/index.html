@@ -79,6 +79,10 @@
 						   ng-show="upgrade.isOnLoad">
 							Adds: {{upgrade.per * 100}}% of MPS
 						</p>
+						<p class="info"
+						   ng-show="upgrade.isAchievement">
+							Adds: {{upgrade.per * 100}}%/Achievement
+						</p>
 						<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
 						<br />
 						<p class="description">{{upgrade.description}}</p>
