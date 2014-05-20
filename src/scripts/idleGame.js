@@ -19,6 +19,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'achievements.html',
 				controller: 'AchievementsController'
 			}).
+			when('/stats', {
+				templateUrl: 'stats.html',
+				controller: 'StatsController'
+			}).
 			when('/menu', {
 				templateUrl: 'menu.html',
 				controller: 'MenuController'
@@ -131,6 +135,7 @@ idleGame.service('gameService', function() {
 			description: "Kill the non believeres.  You are the only true opportunity."}
 	];
 
+	// All in game achievements and how to earn them are defined here
 	this.achievements = [
 		{ id: 0, name: "First Steps",
 			description: "Buy something from the store.",
@@ -273,6 +278,11 @@ idleGame.service('playerService', function () {
 	this.money = 15;
 	this.companyName = "Default Company";
 	this.fps = 10;
+
+	// For stats page
+	this.totalMoney = 0;
+	this.totalOpportunities = 0;
+	this.totalMoneyFromOpportunties = 0;
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,

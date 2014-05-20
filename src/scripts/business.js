@@ -21,7 +21,11 @@ function BusinessController($scope, gameService, playerService, mpsService) {
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
 	$scope.doBusiness = function(curr) {
-		playerService.money += $scope.clickPower();
+		var cp = $scope.clickPower();
+		playerService.money += cp;
+		playerService.totalMoney += cp;
+		playerService.totalMoneyFromOpportunties += cp;
+		playerService.totalOpportunities++;
 
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();

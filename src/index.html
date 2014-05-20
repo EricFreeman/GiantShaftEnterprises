@@ -9,6 +9,7 @@
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
 	<script src="scripts/achievements.js"></script>
+	<script src="scripts/stats.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -28,6 +29,7 @@
 				<a href="#/store">Store</a> | 
 				<a href="#/upgrades">Upgrades</a> |
 				<a href="#/achievements">Achievements</a> | 
+				<a href="#/stats">Stats</a> |
 				<a href="#/menu">Menu</a>
 			</div>
 			<div class="mainContent center">
@@ -86,6 +88,20 @@
 							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
 						<p class="name">{{achievement.name}}</p>
 						<p class="info">{{achievement.description}}</p>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="stats.html">
+					<div class="stats" ng-controller="StatsController">
+						<div class="item enabled">
+							<p class="name">Total Money Earned</p>
+							<p class="info">{{playerService.totalMoney | currency}}</p>
+						</div>
+						<div class="item enabled">
+							<p class="name">Total Business Opportunties</p>
+							<p class="info">{{playerService.totalOpportunities}}</p>
+							<p class="info">{{playerService.totalMoneyFromOpportunties | currency}}</p>
+						</div>
 					</div>
 				</script>
 				
