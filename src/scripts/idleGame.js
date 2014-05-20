@@ -51,6 +51,7 @@ idleGame.service('gameService', function() {
 	// All upgrades for items
 	// Optional fields: 
 	//		isOpportunity - used to change what the 'Adds' row displays
+	//		isOnLoad -		only used when the game is loaded
 	//		mpo - 			money per opportunity
 	//		mpop - 			money per opportunity percentage (of MPS)
 	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades was purchased
@@ -127,17 +128,24 @@ idleGame.service('gameService', function() {
 
 		{ id: 30, itemId: "business", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1,
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
-		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1,
+		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1, showAfter: [30],
 			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list." },
-		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1,
+		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1, showAfter: [30, 31],
 			description: "Your eat your competition for breakfast." },
 
-		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [30, 31, 32], isOpportunity: 1,
+		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [32], isOpportunity: 1,
 			description: "Opportunity awaits." },
-		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33], isOpportunity: 1,
+		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [33], isOpportunity: 1,
 			description: "Become one with the opportunity." },
-		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34], isOpportunity: 1,
-			description: "Kill the non believeres.  You are the only true opportunity." }
+		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [34], isOpportunity: 1,
+			description: "Kill the non believeres.  You are the only true opportunity." },
+
+		{ id: 36, itemId: "business", name: "Night Owl", price: 250000, mps: 0, isOnLoad: 1, per: .083,
+			description: "Gain a small part of your money even while the game is closed." },
+		{ id: 37, itemId: "business", name: "Night Owl II", price: 2500000, mps: 0, isOnLoad: 1, per: .083, showAfter: [36],
+			description: "Gain a small part of your money even while the game is closed." },
+		{ id: 38, itemId: "business", name: "Night Owl III", price: 25000000, mps: 0, isOnLoad: 1, per: .083, showAfter: [37],
+			description: "Gain a small part of your money even while the game is closed." },
 	];
 
 	// All in game achievements and how to earn them are defined here
@@ -407,7 +415,7 @@ idleGame.service('moneyService', function(gameService, playerService) {
 		return basicClickPower + 
 			playerService.upgrades.
 				filter(function(d) {
-					return d.itemId === "business";
+					return d.isOpportunity;
 				}).
 				reduce(function(prev, cur) {
 					return prev += (cur.mpo ? cur.mpo : cur.mpop * mps);

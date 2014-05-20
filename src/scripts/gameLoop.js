@@ -20,6 +20,29 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 			if(localStorage[propName] != undefined)
 				playerService[prop] = JSON.parse(localStorage.getItem(propName));
 		}
+
+		// Add in any money you should have received while the game was not playing
+		var lastSave = localStorage.getItem("CompanyGame.lastSaveDate");
+		if(lastSave) {
+			var date = Date.parse(lastSave);
+			var timePassed = (new Date() - date) / 1000;  // Divide by 1000 to get in seconds
+			var missedMoney = timePassed * moneyService.getMps();
+
+			// Get upgrades that deal with giving money when game isn't on
+			var upgrades = gameService.upgrades.
+				filter(function(d) {
+					return d.isOnLoad;
+				}).
+				filter(function(d) {
+					return playerService.getUpgrade(d.id).id >= 0;
+				});
+
+			for(var i = 0; i < upgrades.length; i++) {
+				var missed = upgrades[i].per * missedMoney;
+				playerService.money += missed;
+				playerService.totalMoney += missed;
+			}
+		}
 	};
 
 	$scope.saveGame = function() {
@@ -28,6 +51,8 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 			if(typeof(playerService[prop]) != "function")
 				localStorage.setItem("CompanyGame." + prop, JSON.stringify(playerService[prop]));
 		}
+
+		localStorage.setItem("CompanyGame.lastSaveDate", new Date());
 
 		$timeout($scope.saveGame, 30000); // Recall this method to autosave every 30 seconds
 	}
