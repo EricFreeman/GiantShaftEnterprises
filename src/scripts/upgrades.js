@@ -27,7 +27,7 @@ function UpgradesController($scope, gameService, playerService) {
 	// id is the itemId
 	$scope.getItemName = function(id) {
 		var name = gameService.getItem(id).name
-		return name ? name : 'Business Opportunity';
+		return name ? name : id;
 	}
 
 	// Only show upgrades for items you've actually bought
@@ -40,6 +40,6 @@ function UpgradesController($scope, gameService, playerService) {
 			}, true);
 		}
 
-		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || upgrade.itemId == "business");
+		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || upgrade.isBusiness);
 	}
 };

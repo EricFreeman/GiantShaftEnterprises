@@ -64,7 +64,7 @@
 						<p class="name">{{upgrade.name}}</p>
 						<p class="info">Cost: {{upgrade.price | currency}}</p>
 						<p class="info"
-						   ng-show="!upgrade.isOpportunity && !upgrade.isOnLoad">
+						   ng-show="!upgrade.isBusiness">
 							Adds: {{upgrade.mps | currency}}
 						</p>
 						<p class="info"
