@@ -110,8 +110,9 @@
 						</div>
 						<div class="item enabled">
 							<p class="name">Total Business Opportunties</p>
-							<p class="info">{{playerService.totalOpportunities}}</p>
-							<p class="info">{{playerService.totalMoneyFromOpportunties | currency}}</p>
+							<p class="info">Opportunities: {{playerService.totalOpportunities}}</p>
+							<p class="info">Total Earned: {{playerService.totalMoneyFromOpportunties | currency}}</p>
+							<p class="info">Current Per Opportunity: {{moneyService.clickPower() | currency}}</p>
 						</div>
 						<div class="item enabled">
 							<p class="name">Buildings Bought</p>

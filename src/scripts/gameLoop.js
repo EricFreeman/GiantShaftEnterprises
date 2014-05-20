@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, gameService, playerService, mpsService) {	
+function GameLoopController($scope, $timeout, gameService, playerService, moneyService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -7,7 +7,7 @@ function GameLoopController($scope, $timeout, gameService, playerService, mpsSer
 		return playerService.money;
 	};
 	$scope.getMps = function() {
-		return mpsService.getMps();
+		return moneyService.getMps();
 	}
 
 	$scope.loadGame = function() {
@@ -48,10 +48,10 @@ function GameLoopController($scope, $timeout, gameService, playerService, mpsSer
 		if(elapsedTime > 1000 / playerService.fps) {
 			var extra = Math.floor(elapsedTime/(1000/playerService.fps));
 
-			moneyEarned = ((mpsService.getMps() / playerService.fps) * extra);
+			moneyEarned = ((moneyService.getMps() / playerService.fps) * extra);
 		}
 		else {
-			moneyEarned = (mpsService.getMps() / playerService.fps);
+			moneyEarned = (moneyService.getMps() / playerService.fps);
 		}
 		
 		playerService.money += moneyEarned;
@@ -64,7 +64,7 @@ function GameLoopController($scope, $timeout, gameService, playerService, mpsSer
 	$scope.checkAchievements = function() {
 		for(var a in gameService.achievements) {
 			if(!playerService.hasAchievement(gameService.achievements[a].id)) {
-				if(gameService.achievements[a].earn.call(null, gameService, playerService, mpsService))
+				if(gameService.achievements[a].earn.call(null, gameService, playerService, moneyService))
 					playerService.awardAchievement(gameService.achievements[a].id);
 			}
 		}

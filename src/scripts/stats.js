@@ -1,5 +1,6 @@
-function StatsController($scope, gameService, playerService, mpsService) {
+function StatsController($scope, gameService, playerService, moneyService) {
 	$scope.playerService = playerService;
+	$scope.moneyService = moneyService;
 
 	$scope.totalBuildings = playerService.items.reduce(function(prev, curr) {return prev += curr.count}, 0);
 	

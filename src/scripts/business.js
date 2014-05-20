@@ -1,4 +1,4 @@
-function BusinessController($scope, gameService, playerService, mpsService) {
+function BusinessController($scope, gameService, playerService, moneyService) {
 	$scope.possibleOpportunities = [
 		"Meet with clients.",
 		"Meet with investors.",
@@ -21,7 +21,7 @@ function BusinessController($scope, gameService, playerService, mpsService) {
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
 	$scope.doBusiness = function(curr) {
-		var cp = $scope.clickPower();
+		var cp = moneyService.clickPower();
 		playerService.money += cp;
 		playerService.totalMoney += cp;
 		playerService.totalMoneyFromOpportunties += cp;
@@ -30,20 +30,6 @@ function BusinessController($scope, gameService, playerService, mpsService) {
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();
 	};
-
-	$scope.clickPower = function() {
-		var basicClickPower = 1;
-		var mps = mpsService.getMps();
-
-		return basicClickPower + 
-			playerService.upgrades.
-				filter(function(d) {
-					return d.itemId === "business";
-				}).
-				reduce(function(prev, cur) {
-					return prev += (cur.mpo ? cur.mpo : cur.mpop * mps);
-				}, 0);
-	}
 };
 
 Array.prototype.randomElement = function () {

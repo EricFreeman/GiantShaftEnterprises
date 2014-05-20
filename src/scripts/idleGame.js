@@ -49,7 +49,11 @@ idleGame.service('gameService', function() {
 	];
 
 	// All upgrades for items
-	// Optional fields: mpo - money per opportunity, mpop - money per opportunity percentage (of MPS), isOpportunity - used to change what the 'Adds' row displays, showAfter - only show upgrade after previous upgrade was purchased
+	// Optional fields: 
+	//		isOpportunity - used to change what the 'Adds' row displays
+	//		mpo - 			money per opportunity
+	//		mpop - 			money per opportunity percentage (of MPS)
+	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades was purchased
 	this.upgrades = [
 		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
 			description: "Studies have shown that training employees is the same as training a dog: use lots of positive reinforcement to get them to behave correctly." },
@@ -122,192 +126,192 @@ idleGame.service('gameService', function() {
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
 
 		{ id: 30, itemId: "business", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1,
-			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities."},
+			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
 		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1,
-			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list."},
+			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list." },
 		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1,
-			description: "Your eat your competition for breakfast."},
+			description: "Your eat your competition for breakfast." },
 
 		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [30, 31, 32], isOpportunity: 1,
-			description: "Opportunity awaits."},
+			description: "Opportunity awaits." },
 		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33], isOpportunity: 1,
-			description: "Become one with the opportunity."},
+			description: "Become one with the opportunity." },
 		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34], isOpportunity: 1,
-			description: "Kill the non believeres.  You are the only true opportunity."}
+			description: "Kill the non believeres.  You are the only true opportunity." }
 	];
 
 	// All in game achievements and how to earn them are defined here
 	this.achievements = [
 		{ id: 0, name: "First Steps",
 			description: "Buy something from the store.",
-			earn: function(gameService, playerService, mpsService) { return playerService.items.length > 0; }
+			earn: function(gameService, playerService, moneyService) { return playerService.items.length > 0; }
 		},
 		{ id: 1, name: "Never Stop Improving", 
 			description: "Buy your first upgrade.",
-			earn: function(gameService, playerService, mpsService) { return playerService.upgrades.length > 0; }
+			earn: function(gameService, playerService, moneyService) { return playerService.upgrades.length > 0; }
 		},
 		{ id: 2, name: "Diversity is Key", 
 			description: "Own one of everything.",
-			earn: function(gameService, playerService, mpsService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0; }
+			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0; }
 		},
 		{ id: 9, name: "Make $1,000,000 by EOD", 
 			description: "Earn enough to make $1mil in one day.",
-			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000/24/60/60; }
+			earn: function(gameService, playerService, moneyService) { return moneyService.getMps() > 1000000/24/60/60; }
 		},
 		{ id: 10, name: "Make $1,000,000,000 by EOD", 
 			description: "Earn enough to make $bil in one day.",
-			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000000/24/60/60; }
+			earn: function(gameService, playerService, moneyService) { return moneyService.getMps() > 1000000000/24/60/60; }
 		},
 		{ id: 11, name: "Make $1,000,000,000,000 by EOD", 
 			description: "Earn enough to make $tril in one day.",
-			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000000000/24/60/60; }
+			earn: function(gameService, playerService, moneyService) { return moneyService.getMps() > 1000000000000/24/60/60; }
 		},
 
 		{ id: 36, name: "Opportunist", 
 			description: "Complete 10 business opportunities..",
-			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 10; }
 		},
 		{ id: 37, name: "Mega Opportunist", 
 			description: "Complete 100 business opportunities..",
-			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 100; }
 		},
 		{ id: 38, name: "Ultra Opportunist", 
 			description: "Complete 1000 business opportunities..",
-			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 1000; }
 		},
 		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", 
 			description: "Complete 10000 business opportunities..",
-			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 10000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 10000; }
 		},
 
 		{ id: 3, name: "Hooray, Capitalism!", 
 			description: "Own ten Minimum Wage Workers.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(0).count >= 10; }
 		},
 		{ id: 4, name: "Yummy, Capitalism!", 
 			description: "Own one hundred Minimum Wage Workers.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(0).count >= 100; }
 		},
 		{ id: 5, name: "Okay, Wal-Mart", 
 			description: "Own one thousand Minimum Wage Workers.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(0).count >= 1000; }
 		},
 
 		{ id: 6, name: "Little Boxes", 
 			description: "Own ten Cubicles.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(1).count >= 10; }
 		},
 		{ id: 7, name: "Cubicle Farm", 
 			description: "Own one hundred Cubicles.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(1).count >= 100; }
 		},
 		{ id: 8, name: "Sea of Cubicles", 
 			description: "Own one thousand Cubicles.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(1).count >= 1000; }
 		},
 
 		{ id: 12, name: "9-5", 
 			description: "Own ten Salary Employess.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 10; }
 		},
 		{ id: 13, name: "9-6", 
 			description: "Own one hundred Salary Employess.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 100; }
 		},
 		{ id: 14, name: "9-7 + weekends", 
 			description: "Own one thousand Salary Employess.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 1000; }
 		},
 
 		{ id: 15, name: "Horizontal Scaling is Best Scaling",
 			description: "Own ten Hardwares.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(7).count >= 10; }
 		},
 		{ id: 16, name: "Hardware to Hell", 
 			description: "Own one hundred Hardwares.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(7).count >= 100; }
 		},
 		{ id: 17, name: "Johnny Mnemonic", 
 			description: "Own one thousand Hardwares.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(7).count >= 1000; }
 		},
 
 		{ id: 18, name: "HRotica",
 			description: "Own ten HR Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(9).count >= 10; }
 		},
 		{ id: 19, name: "Human Remains Department", 
 			description: "Own one hundred HR Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(9).count >= 100; }
 		},
 		{ id: 20, name: "HRmy of Darkness", 
 			description: "Own one thousand HR Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(9).count >= 1000; }
 		},
 
 		{ id: 21, name: "Cook the Books",
 			description: "Own ten Accounting Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(4).count >= 10; }
 		},
 		{ id: 22, name: "Burn the Books", 
 			description: "Own one hundred Accounting Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(4).count >= 100; }
 		},
 		{ id: 23, name: "Enron the Books", 
 			description: "Own one thousand Accounting Departments.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(4).count >= 1000; }
 		},
 
 		{ id: 24, name: "Lisa Needs Braces",
 			description: "Own ten Benefits Packages.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(5).count >= 10; }
 		},
 		{ id: 25, name: "DENTAL PLAN", 
 			description: "Own one hundred Benefits Packages.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(5).count >= 100; }
 		},
 		{ id: 26, name: "Lisa Needs Braces", 
 			description: "Own one thousand Benefits Packages.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(5).count >= 1000; }
 		},
 
 		{ id: 27, name: "What Are You Doing?",
 			description: "Own ten Upper Managements.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(3).count >= 10; }
 		},
 		{ id: 28, name: "No, Seriously, Please Stop.", 
 			description: "Own one hundred Upper Managements.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(3).count >= 100; }
 		},
 		{ id: 29, name: ":(", 
 			description: "Own one thousand Upper Managements.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(3).count >= 1000; }
 		},
 
 		{ id: 30, name: "Execute",
 			description: "Own ten Executives.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(6).count >= 10; }
 		},
 		{ id: 31, name: "ExeCute",
 			description: "Own one hundred Executives.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(6).count >= 100; }
 		},
 		{ id: 32, name: "Cute",
 			description: "Own one thousand Executives.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(6).count >= 1000; }
 		},
 
 		{ id: 33, name: "National",
 			description: "Own ten Office Buildings.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 10; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(8).count >= 10; }
 		},
 		{ id: 34, name: "International", 
 			description: "Own one hundred Office Buildings.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 100; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(8).count >= 100; }
 		},
 		{ id: 35, name: "Starbucks", 
 			description: "Own one thousand Office Buildings.",
-			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 1000; }
+			earn: function(gameService, playerService, moneyService) { return playerService.getItem(8).count >= 1000; }
 		},
 	];
 
@@ -376,7 +380,7 @@ idleGame.service('playerService', function () {
 	}
 });
 
-idleGame.service('mpsService', function(gameService, playerService) {
+idleGame.service('moneyService', function(gameService, playerService) {
 	// Your cumulative mps (money per second) is the combination of the 
 	// count of each item multiplied by the item's individual mps
 	// plus all the upgrades for said item
@@ -394,6 +398,21 @@ idleGame.service('mpsService', function(gameService, playerService) {
 			return prev += upgrade.itemId == id ? upgrade.mps : 0;
 		}, 0);
 	};
+
+	// Get the money gained from completing a business opportunity
+	this.clickPower = function() {
+		var basicClickPower = 1;
+		var mps = this.getMps();
+
+		return basicClickPower + 
+			playerService.upgrades.
+				filter(function(d) {
+					return d.itemId === "business";
+				}).
+				reduce(function(prev, cur) {
+					return prev += (cur.mpo ? cur.mpo : cur.mpop * mps);
+				}, 0);
+	}
 });
 
 // A simple search that will go through the passed in list and find
