@@ -141,6 +141,9 @@ idleGame.service('gameService', function() {
 		{ id: 2, name: "Diversity is Key", 
 			description: "Own one of everything.",
 			earn: "gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0" },
+		{ id: 9, name: "Make $1,000,000 by EOD", 
+			description: "Earn enough to make $1mil in one day.",
+			earn: "mpsService.getMps() > 1000000/24/60/60" },
 
 		{ id: 3, name: "Hooray, Capitalism!", 
 			description: "Own ten Minimum Wage Workers.",
