@@ -163,6 +163,23 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000000000/24/60/60; }
 		},
 
+		{ id: 36, name: "Opportunist", 
+			description: "Complete 10 business opportunities..",
+			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 10; }
+		},
+		{ id: 37, name: "Mega Opportunist", 
+			description: "Complete 100 business opportunities..",
+			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 100; }
+		},
+		{ id: 38, name: "Ultra Opportunist", 
+			description: "Complete 1000 business opportunities..",
+			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 1000; }
+		},
+		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", 
+			description: "Complete 10000 business opportunities..",
+			earn: function(gameService, playerService, mpsService) { return playerService.totalOpportunities >= 10000; }
+		},
+
 		{ id: 3, name: "Hooray, Capitalism!", 
 			description: "Own ten Minimum Wage Workers.",
 			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 10; }
