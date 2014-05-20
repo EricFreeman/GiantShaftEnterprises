@@ -200,6 +200,26 @@ idleGame.service('gameService', function() {
 		{ id: 20, name: "HRmy of Darkness", 
 			description: "Own one thousand HR Departments.",
 			earn: "playerService.getItem(9).count >= 1000" },
+
+		{ id: 21, name: "Cook the Books",
+			description: "Own ten Accounting Departments.",
+			earn: "playerService.getItem(4).count >= 10" },
+		{ id: 22, name: "Burn the Books", 
+			description: "Own one hundred Accounting Departments.",
+			earn: "playerService.getItem(4).count >= 100" },
+		{ id: 23, name: "Enron the Books", 
+			description: "Own one thousand Accounting Departments.",
+			earn: "playerService.getItem(4).count >= 1000" },
+
+		{ id: 24, name: "Lisa Needs Braces",
+			description: "Own ten Benefits Package.",
+			earn: "playerService.getItem(5).count >= 10" },
+		{ id: 25, name: "DENTAL PLAN", 
+			description: "Own one hundred Benefits Package.",
+			earn: "playerService.getItem(5).count >= 100" },
+		{ id: 26, name: "Lisa Needs Braces", 
+			description: "Own one thousand Benefits Package.",
+			earn: "playerService.getItem(5).count >= 1000" },
 	];
 
 	this.getItem = function(id) {
