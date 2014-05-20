@@ -33,7 +33,7 @@ idleGame.service('gameService', function() {
 	// All base items (not upgrades) you can purchase are defined here
 	this.items = [
 		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
-		{ id: 1, name: "Cubical", mps: .3 , price: 100 },
+		{ id: 1, name: "Cubicle", mps: .3 , price: 100 },
 		{ id: 2, name: "Salary Employee", mps: 2, price: 1500 },
 		{ id: 7, name: "Hardware", mps: 1, price: 1500 },
 		{ id: 9, name: "HR Department", mps: .5, price: 2000 },
@@ -54,7 +54,7 @@ idleGame.service('gameService', function() {
 			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
 
 		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
-			description: "Lowering the walls of a cubical will help increase team dynamics and promote synergy!" },
+			description: "Lowering the walls of a cubicle will help increase team dynamics and promote synergy!" },
 		{ id: 4, itemId: 1, name: "Better Seating", price: 6000, mps: .2,
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
@@ -138,9 +138,29 @@ idleGame.service('gameService', function() {
 		{ id: 1, name: "Never Stop Improving", 
 			description: "Buy your first upgrade.",
 			earn: "playerService.upgrades.length > 0" },
-		{ id: 2, name: "Diversity is key.", 
+		{ id: 2, name: "Diversity is Key", 
 			description: "Own one of everything.",
 			earn: "gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0" },
+
+		{ id: 3, name: "Hooray, Capitalism!", 
+			description: "Own ten Minimum Wage Workers.",
+			earn: "playerService.getItem(0).count >= 10" },
+		{ id: 4, name: "Yummy, Capitalism!", 
+			description: "Own one hundred Minimum Wage Workers.",
+			earn: "playerService.getItem(0).count >= 100" },
+		{ id: 5, name: "Okay, Wal-Mart", 
+			description: "Own one thousand Minimum Wage Workers.",
+			earn: "playerService.getItem(0).count >= 1000" },
+
+		{ id: 6, name: "Little Boxes", 
+			description: "Own ten Cubicles.",
+			earn: "playerService.getItem(1).count >= 10" },
+		{ id: 7, name: "Cubicle Farm", 
+			description: "Own one hundred Cubicles.",
+			earn: "playerService.getItem(1).count >= 100" },
+		{ id: 8, name: "Sea of Cubicles", 
+			description: "Own one thousand Cubicles.",
+			earn: "playerService.getItem(1).count >= 1000" },
 	];
 
 	this.getItem = function(id) {
