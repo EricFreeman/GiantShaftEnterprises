@@ -1,5 +1,9 @@
 function UpgradesController($scope, gameService, playerService) {
-	$scope.upgrades = gameService.upgrades;
+	$scope.upgrades = gameService.upgrades.sort(function(a, b) {
+		if(a.price > b.price) return 1;
+		if(a.price < b.price) return -1;
+		return 0;
+	});
 	$scope.boughtUpgrades = playerService.upgrades;
 
 	$scope.alreadyBought = function(id) {
@@ -22,7 +26,8 @@ function UpgradesController($scope, gameService, playerService) {
 	// Get the name of the item the upgrade applies to.
 	// id is the itemId
 	$scope.getItemName = function(id) {
-		return gameService.getItem(id).name;
+		var name = gameService.getItem(id).name
+		return name ? name : 'Business Opportunity';
 	}
 
 	// Only show upgrades for items you've actually bought

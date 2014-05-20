@@ -63,7 +63,18 @@
 						 ng-show="canShow(upgrade)">
 						<p class="name">{{upgrade.name}}</p>
 						<p class="info">Cost: {{upgrade.price | currency}}</p>
-						<p class="info">Adds: {{upgrade.mps | currency}}</p>
+						<p class="info"
+						   ng-show="!upgrade.isOpportunity">
+							Adds: {{upgrade.mps | currency}}
+						</p>
+						<p class="info"
+						   ng-show="upgrade.isOpportunity && upgrade.mpo">
+							Adds: {{upgrade.mpo | currency}}/Opportunity
+						</p>
+						<p class="info"
+						   ng-show="upgrade.isOpportunity && upgrade.mpop">
+							Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
+						</p>
 						<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
 						<br />
 						<p class="description">{{upgrade.description}}</p>

@@ -49,6 +49,7 @@ idleGame.service('gameService', function() {
 	];
 
 	// All upgrades for items
+	// Optional fields: mpo - money per opportunity, mpop - money per opportunity percentage (of MPS), isOpportunity - used to change what the 'Adds' row displays, showAfter - only show upgrade after previous upgrade was purchased
 	this.upgrades = [
 		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
 			description: "Studies have shown that training employees is the same as training a dog: use lots of positive reinforcement to get them to behave correctly." },
@@ -120,18 +121,18 @@ idleGame.service('gameService', function() {
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
 
-		{ id: 30, itemId: "business", name: "Business Guru", price: 1000, mps: 0, mpo: 1,
+		{ id: 30, itemId: "business", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1,
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities."},
-		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18,
+		{ id: 31, itemId: "business", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1,
 			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list."},
-		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180,
+		{ id: 32, itemId: "business", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1,
 			description: "Your eat your competition for breakfast."},
 
-		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [30, 31, 32],
+		{ id: 33, itemId: "business", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [30, 31, 32], isOpportunity: 1,
 			description: "Opportunity awaits."},
-		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33],
+		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33], isOpportunity: 1,
 			description: "Become one with the opportunity."},
-		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34],
+		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34], isOpportunity: 1,
 			description: "Kill the non believeres.  You are the only true opportunity."}
 	];
 
