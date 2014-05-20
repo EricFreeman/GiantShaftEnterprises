@@ -140,122 +140,158 @@ idleGame.service('gameService', function() {
 	this.achievements = [
 		{ id: 0, name: "First Steps",
 			description: "Buy something from the store.",
-			earn: "playerService.items.length > 0" },
+			earn: function(gameService, playerService, mpsService) { return playerService.items.length > 0; }
+		},
 		{ id: 1, name: "Never Stop Improving", 
 			description: "Buy your first upgrade.",
-			earn: "playerService.upgrades.length > 0" },
+			earn: function(gameService, playerService, mpsService) { return playerService.upgrades.length > 0; }
+		},
 		{ id: 2, name: "Diversity is Key", 
 			description: "Own one of everything.",
-			earn: "gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0" },
+			earn: function(gameService, playerService, mpsService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0; }
+		},
 		{ id: 9, name: "Make $1,000,000 by EOD", 
 			description: "Earn enough to make $1mil in one day.",
-			earn: "mpsService.getMps() > 1000000/24/60/60" },
+			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000/24/60/60; }
+		},
 		{ id: 10, name: "Make $1,000,000,000 by EOD", 
 			description: "Earn enough to make $bil in one day.",
-			earn: "mpsService.getMps() > 1000000000/24/60/60" },
+			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000000/24/60/60; }
+		},
 		{ id: 11, name: "Make $1,000,000,000,000 by EOD", 
 			description: "Earn enough to make $tril in one day.",
-			earn: "mpsService.getMps() > 1000000000000/24/60/60" },
+			earn: function(gameService, playerService, mpsService) { return mpsService.getMps() > 1000000000000/24/60/60; }
+		},
 
 		{ id: 3, name: "Hooray, Capitalism!", 
 			description: "Own ten Minimum Wage Workers.",
-			earn: "playerService.getItem(0).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 10; }
+		},
 		{ id: 4, name: "Yummy, Capitalism!", 
 			description: "Own one hundred Minimum Wage Workers.",
-			earn: "playerService.getItem(0).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 100; }
+		},
 		{ id: 5, name: "Okay, Wal-Mart", 
 			description: "Own one thousand Minimum Wage Workers.",
-			earn: "playerService.getItem(0).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(0).count >= 1000; }
+		},
 
 		{ id: 6, name: "Little Boxes", 
 			description: "Own ten Cubicles.",
-			earn: "playerService.getItem(1).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 10; }
+		},
 		{ id: 7, name: "Cubicle Farm", 
 			description: "Own one hundred Cubicles.",
-			earn: "playerService.getItem(1).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 100; }
+		},
 		{ id: 8, name: "Sea of Cubicles", 
 			description: "Own one thousand Cubicles.",
-			earn: "playerService.getItem(1).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(1).count >= 1000; }
+		},
 
 		{ id: 12, name: "9-5", 
 			description: "Own ten Salary Employess.",
-			earn: "playerService.getItem(2).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 10; }
+		},
 		{ id: 13, name: "9-6", 
 			description: "Own one hundred Salary Employess.",
-			earn: "playerService.getItem(2).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 100; }
+		},
 		{ id: 14, name: "9-7 + weekends", 
 			description: "Own one thousand Salary Employess.",
-			earn: "playerService.getItem(2).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(2).count >= 1000; }
+		},
 
 		{ id: 15, name: "Horizontal Scaling is Best Scaling",
 			description: "Own ten Hardwares.",
-			earn: "playerService.getItem(7).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 10; }
+		},
 		{ id: 16, name: "Hardware to Hell", 
 			description: "Own one hundred Hardwares.",
-			earn: "playerService.getItem(7).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 100; }
+		},
 		{ id: 17, name: "Johnny Mnemonic", 
 			description: "Own one thousand Hardwares.",
-			earn: "playerService.getItem(7).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(7).count >= 1000; }
+		},
 
 		{ id: 18, name: "HRotica",
 			description: "Own ten HR Departments.",
-			earn: "playerService.getItem(9).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 10; }
+		},
 		{ id: 19, name: "Human Remains Department", 
 			description: "Own one hundred HR Departments.",
-			earn: "playerService.getItem(9).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 100; }
+		},
 		{ id: 20, name: "HRmy of Darkness", 
 			description: "Own one thousand HR Departments.",
-			earn: "playerService.getItem(9).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(9).count >= 1000; }
+		},
 
 		{ id: 21, name: "Cook the Books",
 			description: "Own ten Accounting Departments.",
-			earn: "playerService.getItem(4).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 10; }
+		},
 		{ id: 22, name: "Burn the Books", 
 			description: "Own one hundred Accounting Departments.",
-			earn: "playerService.getItem(4).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 100; }
+		},
 		{ id: 23, name: "Enron the Books", 
 			description: "Own one thousand Accounting Departments.",
-			earn: "playerService.getItem(4).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(4).count >= 1000; }
+		},
 
 		{ id: 24, name: "Lisa Needs Braces",
 			description: "Own ten Benefits Packages.",
-			earn: "playerService.getItem(5).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 10; }
+		},
 		{ id: 25, name: "DENTAL PLAN", 
 			description: "Own one hundred Benefits Packages.",
-			earn: "playerService.getItem(5).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 100; }
+		},
 		{ id: 26, name: "Lisa Needs Braces", 
 			description: "Own one thousand Benefits Packages.",
-			earn: "playerService.getItem(5).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(5).count >= 1000; }
+		},
 
 		{ id: 27, name: "What Are You Doing?",
 			description: "Own ten Upper Managements.",
-			earn: "playerService.getItem(3).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 10; }
+		},
 		{ id: 28, name: "No, Seriously, Please Stop.", 
 			description: "Own one hundred Upper Managements.",
-			earn: "playerService.getItem(3).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 100; }
+		},
 		{ id: 29, name: ":(", 
 			description: "Own one thousand Upper Managements.",
-			earn: "playerService.getItem(3).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(3).count >= 1000; }
+		},
 
 		{ id: 30, name: "Execute",
 			description: "Own ten Executives.",
-			earn: "playerService.getItem(6).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 10; }
+		},
 		{ id: 31, name: "ExeCute",
 			description: "Own one hundred Executives.",
-			earn: "playerService.getItem(6).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 100; }
+		},
 		{ id: 32, name: "Cute",
 			description: "Own one thousand Executives.",
-			earn: "playerService.getItem(6).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(6).count >= 1000; }
+		},
 
 		{ id: 33, name: "National",
 			description: "Own ten Office Buildings.",
-			earn: "playerService.getItem(8).count >= 10" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 10; }
+		},
 		{ id: 34, name: "International", 
 			description: "Own one hundred Office Buildings.",
-			earn: "playerService.getItem(8).count >= 100" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 100; }
+		},
 		{ id: 35, name: "Starbucks", 
 			description: "Own one thousand Office Buildings.",
-			earn: "playerService.getItem(8).count >= 1000" },
+			earn: function(gameService, playerService, mpsService) { return playerService.getItem(8).count >= 1000; }
+		},
 	];
 
 	this.getItem = function(id) {

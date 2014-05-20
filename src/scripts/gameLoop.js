@@ -64,7 +64,7 @@ function GameLoopController($scope, $timeout, gameService, playerService, mpsSer
 	$scope.checkAchievements = function() {
 		for(var a in gameService.achievements) {
 			if(!playerService.hasAchievement(gameService.achievements[a].id)) {
-				if(eval(gameService.achievements[a].earn) === true)
+				if(gameService.achievements[a].earn.call(null, gameService, playerService, mpsService))
 					playerService.awardAchievement(gameService.achievements[a].id);
 			}
 		}
