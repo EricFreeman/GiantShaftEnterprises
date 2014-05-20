@@ -56,6 +56,19 @@ function GameLoopController($scope, $timeout, gameService, playerService, mpsSer
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);
 	};
+
+	$scope.checkAchievements = function() {
+		for(var a in gameService.achievements) {
+			if(!playerService.hasAchievement(gameService.achievements[a].id)) {
+				if(eval(gameService.achievements[a].earn) === true)
+					playerService.awardAchievement(gameService.achievements[a].id);
+			}
+		}
+
+		$timeout($scope.checkAchievements, 1000);
+	};
+
+	$scope.checkAchievements();
 	
 	// Load the game if it was previously saved
 	$scope.loadGame();

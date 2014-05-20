@@ -8,6 +8,7 @@
 	<script src="scripts/upgrades.js"></script>
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
+	<script src="scripts/achievements.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -25,7 +26,8 @@
 			<div class="links textCenter">
 				<a href="#/business">Business</a> | 
 				<a href="#/store">Store</a> | 
-				<a href="#/upgrades">Upgrades</a> | 
+				<a href="#/upgrades">Upgrades</a> |
+				<a href="#/achievements">Achievements</a> | 
 				<a href="#/menu">Menu</a>
 			</div>
 			<div class="mainContent center">
@@ -74,6 +76,16 @@
 						 ng-mouseenter="hover = true"
 						 ng-mouseleave="hover = false">
 						<p>{{opportunity}}</p>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="achievements.html">
+					<div class="achievements" ng-controller="AchievementsController">
+						<div class="item"
+							 ng-repeat="achievement in achievements"
+							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
+						<p class="name">{{achievement.name}}</p>
+						<p class="info">{{achievement.description}}</p>
 					</div>
 				</script>
 				

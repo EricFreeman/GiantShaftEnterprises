@@ -15,6 +15,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'upgrades.html',
 				controller: 'UpgradesController'
 			}).
+			when('/achievements', {
+				templateUrl: 'achievements.html',
+				controller: 'AchievementsController'
+			}).
 			when('/menu', {
 				templateUrl: 'menu.html',
 				controller: 'MenuController'
@@ -124,9 +128,19 @@ idleGame.service('gameService', function() {
 		{ id: 34, itemId: "business", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 33],
 			description: "Become one with the opportunity."},
 		{ id: 35, itemId: "business", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [30, 31, 32, 34],
-			description: "Kill the non believeres.  You are the only true opportunity."},
+			description: "Kill the non believeres.  You are the only true opportunity."}
+	];
 
-//		{ id: 0, itemId: 0, name: "", price: 0, mps: 0, description: "" },
+	this.achievements = [
+		{ id: 0, name: "First Steps",
+			description: "Buy something from the store.",
+			earn: "playerService.items.length > 0" },
+		{ id: 1, name: "Never Stop Improving", 
+			description: "Buy your first upgrade.",
+			earn: "playerService.upgrades.length > 0" },
+		{ id: 2, name: "Diversity is key.", 
+			description: "Own one of everything.",
+			earn: "gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0" },
 	];
 
 	this.getItem = function(id) {
@@ -145,6 +159,8 @@ idleGame.service('playerService', function () {
 	this.items = [];
 	// Owned upgrades are stored here as: { id: x }
 	this.upgrades = [];
+	// Earned achievments are stored here as: { id: x }
+	this.achievements = [];
 	this.money = 15;
 	this.companyName = "Default Company";
 	this.fps = 10;
@@ -157,6 +173,14 @@ idleGame.service('playerService', function () {
 	this.getUpgrade = function(id) {
 		return search(this.upgrades, "id", id,
 			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
+	}
+
+	this.hasAchievement = function(id) {
+		return search(this.achievements, "id", id, false) ? true : false;
+	}
+
+	this.awardAchievement = function(id) {
+		if(!this.hasAchievement(id)) this.achievements.push({id: id});
 	}
 
 	this.buyItem = function(id) {
