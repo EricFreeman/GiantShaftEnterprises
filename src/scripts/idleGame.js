@@ -447,7 +447,7 @@ idleGame.service('moneyService', function(gameService, playerService) {
 	}
 });
 
-idleGame.service('saveService', function(playerService) {
+idleGame.service('saveService', function(playerService, $rootScope) {
 	this.saveGame = function() {
 		// Save everything in the game service that isn't a function as JSON to local storage
 		for(var prop in playerService) {
@@ -456,6 +456,7 @@ idleGame.service('saveService', function(playerService) {
 		}
 
 		localStorage.setItem("CompanyGame.lastSaveDate", new Date());
+		$rootScope.$broadcast('displayMessage', 'Game Saved!');
 	}
 });
 
