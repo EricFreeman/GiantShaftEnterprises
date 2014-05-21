@@ -447,6 +447,18 @@ idleGame.service('moneyService', function(gameService, playerService) {
 	}
 });
 
+idleGame.service('saveService', function(playerService) {
+	this.saveGame = function() {
+		// Save everything in the game service that isn't a function as JSON to local storage
+		for(var prop in playerService) {
+			if(typeof(playerService[prop]) != "function")
+				localStorage.setItem("CompanyGame." + prop, JSON.stringify(playerService[prop]));
+		}
+
+		localStorage.setItem("CompanyGame.lastSaveDate", new Date());
+	}
+});
+
 // A simple search that will go through the passed in list and find
 // the first item that the specified property matches a given value.
 // Otherwise it will return a default value

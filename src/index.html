@@ -147,6 +147,10 @@
 							<p>FPS - Higher numbers will make the game smoother but may lag older systems.</p>
 							<input type="number" ng-model="playerService.fps" min="1" max="1000" step="any" />
 						</section>
+						<section>
+							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
+							<button ng-click="saveGame()">Save Game</button>
+						</section>
 					</div>
 				</script>
 			</div>

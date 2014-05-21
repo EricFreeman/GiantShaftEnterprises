@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, gameService, playerService, moneyService) {	
+function GameLoopController($scope, $timeout, gameService, playerService, moneyService, saveService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -46,15 +46,9 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 	};
 
 	$scope.saveGame = function() {
-		// Save everything in the game service that isn't a function as JSON to local storage
-		for(var prop in playerService) {
-			if(typeof(playerService[prop]) != "function")
-				localStorage.setItem("CompanyGame." + prop, JSON.stringify(playerService[prop]));
-		}
-
-		localStorage.setItem("CompanyGame.lastSaveDate", new Date());
-
-		$timeout($scope.saveGame, 30000); // Recall this method to autosave every 30 seconds
+		saveService.saveGame();
+		// Re-call this method to autosave every 30 seconds
+		$timeout($scope.saveGame, 30000);
 	}
 	
 	var before = new Date();
