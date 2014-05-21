@@ -27,6 +27,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'menu.html',
 				controller: 'MenuController'
 			}).
+			when('/about', {
+				templateUrl: 'about.html',
+				controller: 'AboutController'
+			}).
 			otherwise({
 				redirectTo: '/business'
 			});

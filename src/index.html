@@ -11,6 +11,7 @@
 	<script src="scripts/achievements.js"></script>
 	<script src="scripts/stats.js"></script>
 	<script src="scripts/message.js"></script>
+	<script src="scripts/about.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -29,14 +30,28 @@
 					<h2>NEW VERSION - REFRESH TO GET IT</h2>
 				</div>
 			</div>
-			<div class="links textCenter">
-				<a href="#/business">Business</a> | 
-				<a href="#/store">Store</a> | 
-				<a href="#/upgrades">Upgrades</a> |
-				<a href="#/achievements">Achievements</a> | 
-				<a href="#/stats">Stats</a> |
+			<div class="links textCenter center">
+				<a href="#/business">Business</a>
+				<a href="#/store">Store</a>
+				<a href="#/upgrades">Upgrades</a>
+				<a href="#/achievements">Achievements</a>
+				<a href="#/stats">Stats</a>
 				<a href="#/menu">Menu</a>
+				<a href="#/about">About</a>
 			</div>
+
+			<div class="leftAd">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Idle Game Right Side -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:120px;height:600px"
+				     data-ad-client="ca-pub-2046389339559087"
+				     data-ad-slot="2827205531"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+
 			<div class="mainContent center">
 				<ng-view>Loading...</ng-view>
 				
@@ -155,6 +170,28 @@
 						<section>
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
 							<button ng-click="saveGame()">Save Game</button>
+						</section>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="about.html">
+					<div class="content center" ng-controller="AboutController">
+						<section><h2>About</h2></section>
+						<section>
+							<p class="info">
+								Hi, my name is <a href='https://www.linkedin.com/profile/view?id=150901976' target='_blank'>Eric</a>.  I made this thing.  Hopefully you think it is as cool as I do.
+								It is <a href = 'https://github.com/EricFreeman/AngularIdleGame' target='_blank'>open source</a> so feel free to fork it, submit some pull requests, create issues, or none of the above.
+								If you want to send me fan mail, hate mail, spam mail, or all of the above, use <a href="mailto:eric@giantshaft.com">eric@giantshaft.com</a>.
+							</p>
+						</section>
+						<section><h2>Tips</h2></section>
+						<section>
+							<p class="name">Shift + Click to buy 10 items at once.</p>
+						</section>
+						<section><h2>Updates</h2></section>
+						<section ng-repeat="update in updates">
+							<p class="name">{{update.title}}</p>
+							<p class="info">{{update.description}}</p>
 						</section>
 					</div>
 				</script>

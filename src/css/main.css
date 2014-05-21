@@ -11,12 +11,13 @@ body  {
 .links {
 	margin-top: 32px;
 	text-align: center;
+	line-height: 24px;
+	max-width: 300px;
 }
 
-a {
-	padding: 0 5px;
-	transition: color .25s ease;
-}
+.links a { padding: 0 5px; }
+
+a {	transition: color .25s ease;}
 a:link {color: rgba(0, 0, 0, 1);}
 a:visited {color: rgba(0, 0, 0, 1);} 
 a:hover {color: rgba(0, 0, 0, .75);}
@@ -71,13 +72,22 @@ h3 {
 	margin-top: 16px;
 }
 
+.leftAd {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: -1;
+}
+
 .rightAd {
 	position: absolute;
 	right: 0px;
 	top: 0px;
+	z-index: -1;
 }
 
 .bottomAd {
 	margin-top: 64px;
 	text-align: center;
+	z-index: -1;
 }

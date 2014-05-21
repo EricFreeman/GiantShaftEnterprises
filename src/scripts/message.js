@@ -1,7 +1,6 @@
 function MessageController($scope, $timeout) {
 	$scope.$on('displayMessage', function(event, data) { 
 		$scope.messages.push({ text: data, dateCreated: new Date() });
-		console.log('added ' + $scope.messages);
 
 		$timeout(function() { 
 			$('.messageStart').addClass('messageEnd');
