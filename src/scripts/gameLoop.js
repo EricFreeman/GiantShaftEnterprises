@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, gameService, playerService, moneyService, saveService) {	
+function GameLoopController($scope, $timeout, $rootScope, gameService, playerService, moneyService, saveService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -106,8 +106,10 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 	$scope.checkAchievements = function() {
 		for(var a in gameService.achievements) {
 			if(!playerService.hasAchievement(gameService.achievements[a].id)) {
-				if(gameService.achievements[a].earn.call(null, gameService, playerService, moneyService))
+				if(gameService.achievements[a].earn.call(null, gameService, playerService, moneyService)) {
 					playerService.awardAchievement(gameService.achievements[a].id);
+					$rootScope.$broadcast('displayMessage', 'Earned Achievement: ' + gameService.achievements[a].name);
+				}
 			}
 		}
 

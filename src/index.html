@@ -10,10 +10,12 @@
 	<script src="scripts/menu.js"></script>
 	<script src="scripts/achievements.js"></script>
 	<script src="scripts/stats.js"></script>
+	<script src="scripts/message.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<link rel="stylesheet" type="text/css" href="css/message.css" />
 	<title>Angular Idle Game</title>
 </head>
 <body>
@@ -178,6 +180,12 @@
 				<script>
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
+			</div>
+			<div class="messageBottom center" ng-controller="MessageController">
+				<div ng-repeat="message in messages"
+					 class="messageStart">
+					<p>{{message}}</p>
+				</div>
 			</div>
 		</div>
 	</div>

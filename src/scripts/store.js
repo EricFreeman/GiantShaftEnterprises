@@ -26,7 +26,7 @@ function StoreController($scope, gameService, playerService) {
 	$scope.cantBuy = function(id) {
 		return $scope.currentPrice(id) > playerService.money;
 	};
-	
+
 	$scope.buy = function($event, id) {
 		var count = 1;
 		if($event.shiftKey) count = 10;

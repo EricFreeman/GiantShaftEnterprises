@@ -1,0 +1,16 @@
+.messageBottom {
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 16px;
+	width: 100%;
+	text-align: center;
+}
+
+.messageStart {
+	transition: all 5s ease;
+}
+
+.messageEnd {
+	padding-bottom: 32px;
+	color: rgba(0, 0, 0, 0);
+}
