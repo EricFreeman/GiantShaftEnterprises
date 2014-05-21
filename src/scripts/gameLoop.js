@@ -10,6 +10,9 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 		return moneyService.getMps();
 	}
 
+	$scope.loadedVersion = 1;
+	$scope.currentVersion = 1;
+
 	$scope.loadGame = function() {
 		// Grab current items.  Will be useful if more items were added after you started game
 		var curr = playerService.items;
@@ -74,11 +77,31 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 		}
 		
 		playerService.money += moneyEarned;
-		playerService.totalMoney += moneyEarned;
+		playerService.totalMoney += moneyEarned;		
 
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);
 	};
+
+	$scope.firstTime = true;
+	$scope.checkForUpdate = function() {
+		$.ajax({
+            url: "version.txt",
+            async: false,
+            success: function (data){
+                console.log(data);
+                $scope.currentVersion = parseFloat(data);
+
+                if($scope.firstTime) {
+                	$scope.loadedVersion = $scope.currentVersion;
+                	$scope.firstTime = false;
+                }
+
+                if($scope.currentVersion == $scope.loadedVersion)
+                	$timeout($scope.checkForUpdate, 300000);
+            }
+        });
+	}
 
 	$scope.checkAchievements = function() {
 		for(var a in gameService.achievements) {
@@ -98,6 +121,9 @@ function GameLoopController($scope, $timeout, gameService, playerService, moneyS
 
 	// Start game loop
 	$scope.update();
+
+	// Check for update to game every five minutes
+	$scope.checkForUpdate();
 
 	// Start save loop of every 30 seconds
 	$timeout($scope.saveGame, 30000);

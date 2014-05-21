@@ -23,6 +23,9 @@
 				<h1>{{getCompanyName()}}</h1>
 				<h2>Total Money: {{getMoney() | currency}}</h2>
 				<h3>Money/Second: {{getMps() | currency}}</h3>
+				<div ng-show="loadedVersion < currentVersion">
+					<h2>NEW VERSION - REFRESH TO GET IT</h2>
+				</div>
 			</div>
 			<div class="links textCenter">
 				<a href="#/business">Business</a> | 
