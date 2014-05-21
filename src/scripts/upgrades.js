@@ -40,6 +40,6 @@ function UpgradesController($scope, gameService, playerService) {
 			}, true);
 		}
 
-		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || upgrade.isBusiness);
+		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || !!upgrade.isBusiness);
 	}
 };
