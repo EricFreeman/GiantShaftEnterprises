@@ -173,6 +173,7 @@ idleGame.service('gameService', function() {
 			description: "Own one of everything.",
 			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0; }
 		},
+
 		{ id: 9, name: "Make $1,000,000 by EOD", 
 			description: "Earn enough to make $1mil in one day.",
 			earn: function(gameService, playerService, moneyService) { return moneyService.getMps() > 1000000/24/60/60; }
@@ -187,20 +188,42 @@ idleGame.service('gameService', function() {
 		},
 
 		{ id: 36, name: "Opportunist", 
-			description: "Complete 10 business opportunities..",
+			description: "Complete 10 business opportunities.",
 			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 10; }
 		},
 		{ id: 37, name: "Mega Opportunist", 
-			description: "Complete 100 business opportunities..",
+			description: "Complete 100 business opportunities.",
 			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 100; }
 		},
 		{ id: 38, name: "Ultra Opportunist", 
-			description: "Complete 1000 business opportunities..",
+			description: "Complete 1000 business opportunities.",
 			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 1000; }
 		},
 		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", 
-			description: "Complete 10000 business opportunities..",
+			description: "Complete 10000 business opportunities.",
 			earn: function(gameService, playerService, moneyService) { return playerService.totalOpportunities >= 10000; }
+		},
+
+		{ id: 40, name: "Busy-ness", 
+			description: "Earn $10,000 Total.",
+			earn: function(gameService, playerService, moneyService) { return playerService.totalMoney >= 10000; }
+		},
+		{ id: 41, name: "Business as Usual", 
+			description: "Earn $1,000,000 Total.",
+			earn: function(gameService, playerService, moneyService) { return playerService.totalMoney >= 1000000; }
+		},
+		{ id: 42, name: "Business as Unusual", 
+			description: "Earn $100,000,000 Total.",
+			earn: function(gameService, playerService, moneyService) { return playerService.totalMoney >= 100000000; }
+		},
+		{ id: 43, name: "Timeless Business", 
+			description: "Earn $100,000,000,000 Total.",
+			earn: function(gameService, playerService, moneyService) { return playerService.totalMoney >= 100000000000; }
+		},
+
+		{ id: 44, name: "That Was a Good Business Deal", 
+			description: "Earn over $1,000 per business opportunity.",
+			earn: function(gameService, playerService, moneyService) { return moneyService.clickPower > 1000; }
 		},
 
 		{ id: 3, name: "Hooray, Capitalism!", 
