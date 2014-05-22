@@ -223,7 +223,7 @@ idleGame.service('gameService', function() {
 
 		{ id: 44, name: "That Was a Good Business Deal", 
 			description: "Earn over $1,000 per business opportunity.",
-			earn: function(gameService, playerService, moneyService) { return moneyService.clickPower > 1000; }
+			earn: function(gameService, playerService, moneyService) { return moneyService.clickPower() > 1000; }
 		},
 
 		{ id: 3, name: "Hooray, Capitalism!", 
