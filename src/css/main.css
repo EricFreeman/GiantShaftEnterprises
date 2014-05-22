@@ -25,10 +25,7 @@ a:active {color: rgba(0, 0, 0, .75);}
 
 .mainContent {
 	margin-top: 32px;
-	border: 1px solid;
-	border-color: rgba(0, 0, 0, .25);
-
-	max-width: 300px;
+	max-width: 600px;
 }
 
 .left {

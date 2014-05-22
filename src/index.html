@@ -4,14 +4,11 @@
 	<script src="scripts/angular-route.min.js"></script>
 	<script src="scripts/idleGame.js"></script>
 	<script src="scripts/gameLoop.js"></script>
-	<script src="scripts/store.js"></script>
-	<script src="scripts/upgrades.js"></script>
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
 	<script src="scripts/achievements.js"></script>
 	<script src="scripts/stats.js"></script>
 	<script src="scripts/message.js"></script>
-	<script src="scripts/about.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -32,12 +29,9 @@
 			</div>
 			<div class="links textCenter center">
 				<a href="#/business">Business</a>
-				<a href="#/store">Store</a>
-				<a href="#/upgrades">Upgrades</a>
 				<a href="#/achievements">Achievements</a>
 				<a href="#/stats">Stats</a>
 				<a href="#/menu">Menu</a>
-				<a href="#/about">About</a>
 			</div>
 
 			<div class="leftAd">
@@ -54,60 +48,6 @@
 
 			<div class="mainContent center">
 				<ng-view>Loading...</ng-view>
-				
-				<script type="text/ng-template" id="store.html">
-					<div class="item" 
-						 ng-class="{disabled: cantBuy(item.id), enabled: !cantBuy(item.id), hover: !cantBuy(item.id) && hover}" 
-						 ng-repeat="item in items" 
-						 ng-click="buy($event, item.id)"
-						 ng-mouseenter="hover = true"
-						 ng-mouseleave="hover = false">
-						<div class="left">
-							<p class="name">{{item.name}}</p>
-							<p class="info">Adds: {{getMps(item.id) | currency}}</p>
-							<p class="info">Cost: {{currentPrice(item.id) | currency}}</p>
-						</div>
-						<div class="right">
-							<h1>{{getCount(item.id)}}</h1>
-						</div>
-					</div>
-				</script>
-
-				<script type="text/ng-template" id="upgrades.html">
-					<div class="item"
-						 ng-class="{disabled: cantBuy(upgrade.id), enabled: !cantBuy(upgrade.id), hover: !cantBuy(upgrade.id) && hover, alreadyBought: alreadyBought(upgrade.id)}" 
-						 ng-repeat="upgrade in upgrades"
-						 ng-click="buy(upgrade.id)"
-						 ng-mouseenter="hover = true"
-						 ng-mouseleave="hover = false"
-						 ng-show="canShow(upgrade)">
-						<p class="name">{{upgrade.name}}</p>
-						<p class="info">Cost: {{upgrade.price | currency}}</p>
-						<p class="info"
-						   ng-show="!upgrade.isBusiness">
-							Adds: {{upgrade.mps | currency}}
-						</p>
-						<p class="info"
-						   ng-show="upgrade.isOpportunity && upgrade.mpo">
-							Adds: {{upgrade.mpo | currency}}/Opportunity
-						</p>
-						<p class="info"
-						   ng-show="upgrade.isOpportunity && upgrade.mpop">
-							Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
-						</p>
-						<p class="info"
-						   ng-show="upgrade.isOnLoad">
-							Adds: {{upgrade.per * 100}}% of MPS
-						</p>
-						<p class="info"
-						   ng-show="upgrade.isAchievement">
-							Adds: {{upgrade.per * 100}}%/Achievement
-						</p>
-						<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
-						<br />
-						<p class="description">{{upgrade.description}}</p>
-					</div>
-				</script>
 				 
 				<script type="text/ng-template" id="business.html">
 					<div class="item"
@@ -118,6 +58,61 @@
 						 ng-mouseleave="hover = false">
 						<p>{{opportunity}}</p>
 					</div>
+
+					<div class="store">
+						<div class="item" 
+							 ng-class="{disabled: cantBuyStoreItem(item.id), enabled: !cantBuyStoreItem(item.id), hover: !cantBuyStoreItem(item.id) && hover}" 
+							 ng-repeat="item in items" 
+							 ng-click="buyStoreItem($event, item.id)"
+							 ng-mouseenter="hover = true"
+							 ng-mouseleave="hover = false">
+							<div class="left">
+								<p class="name">{{item.name}}</p>
+								<p class="info">Adds: {{getMps(item.id) | currency}}</p>
+								<p class="info">Cost: {{currentPrice(item.id) | currency}}</p>
+							</div>
+							<div class="right">
+								<h1>{{getCount(item.id)}}</h1>
+							</div>
+						</div>
+					</div>
+
+					<div class="upgrade">
+						<div class="item"
+							 ng-class="{disabled: cantBuyUpgrade(upgrade.id), enabled: !cantBuyUpgrade(upgrade.id), hover: !cantBuyUpgrade(upgrade.id) && hover, alreadyBought: alreadyBoughtUpgrade(upgrade.id)}" 
+							 ng-repeat="upgrade in upgrades"
+							 ng-click="buyUpgrade(upgrade.id)"
+							 ng-mouseenter="hover = true"
+							 ng-mouseleave="hover = false"
+							 ng-show="canShowUpgrade(upgrade)">
+							<p class="name">{{upgrade.name}}</p>
+							<p class="info">Cost: {{upgrade.price | currency}}</p>
+							<p class="info"
+							   ng-show="!upgrade.isBusiness">
+								Adds: {{upgrade.mps | currency}}
+							</p>
+							<p class="info"
+							   ng-show="upgrade.isOpportunity && upgrade.mpo">
+								Adds: {{upgrade.mpo | currency}}/Opportunity
+							</p>
+							<p class="info"
+							   ng-show="upgrade.isOpportunity && upgrade.mpop">
+								Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
+							</p>
+							<p class="info"
+							   ng-show="upgrade.isOnLoad">
+								Adds: {{upgrade.per * 100}}% of MPS
+							</p>
+							<p class="info"
+							   ng-show="upgrade.isAchievement">
+								Adds: {{upgrade.per * 100}}%/Achievement
+							</p>
+							<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
+							<br />
+							<p class="description">{{upgrade.description}}</p>
+						</div>
+					</div>
+
 				</script>
 
 				<script type="text/ng-template" id="achievements.html">
@@ -175,11 +170,7 @@
 							<p>This will hard reset your game (refresh after you press it):</p>
 							<button ng-click="resetGame()">Reset Game</button>
 						</section>
-					</div>
-				</script>
 
-				<script type="text/ng-template" id="about.html">
-					<div class="content center" ng-controller="AboutController">
 						<section><h2 class="underline">About</h2></section>
 						<section>
 							<p class="info">

@@ -1,7 +1,7 @@
 .item  {
 	min-height: 64px;
 	padding: 15px;
-	border-top: 1px solid;
+	border: 1px solid;
 	border-color: rgba(0, 0, 0, .25);
 
 	/* Transition between colors smoothly */
@@ -12,10 +12,6 @@
     -moz-user-select: none; /* mozilla browsers */
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
-}
-
-.item:first-child {
-	border: none;
 }
 
 .item.enabled {
@@ -45,4 +41,14 @@
 
 .item .description {
 	font-size: 12px;
+}
+
+.store {
+	float: left;
+	width: 300px;
+}
+
+.upgrade {
+	float: right;
+	width: 300px;
 }
