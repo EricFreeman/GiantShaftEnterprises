@@ -171,7 +171,19 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 2, name: "Diversity is Key", 
 			description: "Own one of everything.",
-			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count == 0}).length == 0; }
+			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count < 1}).length == 0; }
+		},
+		{ id: 45, name: "Diversity is Paramount", 
+			description: "Own ten of everything.",
+			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count < 10}).length == 0; }
+		},
+		{ id: 46, name: "Diversity is Opportunity", 
+			description: "Own one hundred of everything.",
+			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count < 100}).length == 0; }
+		},
+		{ id: 47, name: "Diversity is You", 
+			description: "Own one thousand of everything.",
+			earn: function(gameService, playerService, moneyService) { return gameService.items.filter(function(d) {return playerService.getItem(d.id).count < 1000}).length == 0; }
 		},
 
 		{ id: 9, name: "Make $1,000,000 by EOD", 
@@ -252,15 +264,15 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, moneyService) { return playerService.getItem(1).count >= 1000; }
 		},
 
-		{ id: 12, name: "9-5", 
+		{ id: 12, name: "9 to 5", 
 			description: "Own ten Salary Employess.",
 			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 10; }
 		},
-		{ id: 13, name: "9-6", 
+		{ id: 13, name: "9 to 6", 
 			description: "Own one hundred Salary Employess.",
 			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 100; }
 		},
-		{ id: 14, name: "9-7 + weekends", 
+		{ id: 14, name: "9 to 7 + Weekends", 
 			description: "Own one thousand Salary Employess.",
 			earn: function(gameService, playerService, moneyService) { return playerService.getItem(2).count >= 1000; }
 		},
