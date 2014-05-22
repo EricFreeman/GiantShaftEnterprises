@@ -4,4 +4,8 @@ function MenuController($scope, playerService, saveService) {
 	$scope.saveGame = function() {
 		saveService.saveGame();
 	}
+
+	$scope.resetGame = function() {
+		localStorage.clear();
+	}
 };
