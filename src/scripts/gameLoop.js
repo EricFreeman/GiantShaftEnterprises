@@ -24,6 +24,9 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 				playerService[prop] = JSON.parse(localStorage.getItem(propName));
 		}
 
+		// Update the chached values for click power and money/second
+		$rootScope.$broadcast('updateCache');
+
 		// Add in any money you should have received while the game was not playing
 		var lastSave = localStorage.getItem("CompanyGame.lastSaveDate");
 		if(lastSave) {

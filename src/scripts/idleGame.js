@@ -437,14 +437,31 @@ idleGame.service('playerService', function () {
 	}
 });
 
-idleGame.service('moneyService', function(gameService, playerService) {
+idleGame.service('moneyService', function($rootScope, gameService, playerService) {
+	this.cachedMps = 0;
+	this.cachedClickPower = 0;
+
+	this.getMps = function() {
+		return this.cachedMps;
+	}
+
+	this.clickPower = function() {
+		return this.cachedClickPower;
+	}
+
+	var self = this;
+	$rootScope.$on('updateCache', function() {
+		self.cachedMps = self.getNewMps();
+		self.cachedClickPower = self.getNewClickPower();
+	});
+
 	// Your cumulative mps (money per second) is the combination of the 
 	// count of each item multiplied by the item's individual mps
 	// plus all the upgrades for said item
-	this.getMps = function() {
+	this.getNewMps = function() {
 		var self = this;
 		var baseMps = playerService.items.reduce(function (prev, cur) {
-			return prev += (gameService.getItem(cur.id).mps * cur.count) + (self.getUpgradesMps(cur.id) * cur.count);
+			return prev += (gameService.getItem(cur.id).mps * cur.count) + (self.getNewUpgradesMps(cur.id) * cur.count);
 		}, 0);
 
 		// Get upgrades that deal with giving money for each achievement
@@ -466,7 +483,7 @@ idleGame.service('moneyService', function(gameService, playerService) {
 	};
 
 	// Get the mps that should be added in from the upgrades for the specified item
-	this.getUpgradesMps = function(id) {
+	this.getNewUpgradesMps = function(id) {
 		return playerService.upgrades.reduce(function(prev, cur) {
 			var upgrade = gameService.getUpgrade(cur.id);
 			return prev += upgrade.itemId == id ? upgrade.mps : 0;
@@ -474,9 +491,9 @@ idleGame.service('moneyService', function(gameService, playerService) {
 	};
 
 	// Get the money gained from completing a business opportunity
-	this.clickPower = function() {
+	this.getNewClickPower = function() {
 		var basicClickPower = 1;
-		var mps = this.getMps();
+		var mps = this.getNewMps();
 
 		return basicClickPower + 
 			playerService.upgrades.

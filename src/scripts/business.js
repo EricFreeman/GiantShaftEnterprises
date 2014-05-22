@@ -1,4 +1,4 @@
-function BusinessController($scope, gameService, playerService, moneyService) {
+function BusinessController($rootScope, $scope, gameService, playerService, moneyService) {
 	// BUSINESS
 	$scope.possibleOpportunities = [
 		"Meet with clients.",
@@ -70,6 +70,7 @@ function BusinessController($scope, gameService, playerService, moneyService) {
 			if(!$scope.cantBuyStoreItem(id)) {
 				playerService.money -= $scope.currentPrice(id);
 				playerService.buyItem(id);
+				$rootScope.$broadcast('updateCache');
 			}
 		}
 	};
@@ -96,6 +97,7 @@ function BusinessController($scope, gameService, playerService, moneyService) {
 			var upgrade = gameService.getUpgrade(id);
 			playerService.money -= upgrade.price;
 			playerService.buyUpgrade(upgrade);
+			$rootScope.$broadcast('updateCache');
 		}
 	};
 
