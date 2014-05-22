@@ -12,7 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
-	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="css/message.css" />
 	<title>Angular Idle Game</title>
 </head>
@@ -50,22 +49,24 @@
 				<ng-view>Loading...</ng-view>
 				 
 				<script type="text/ng-template" id="business.html">
-					<div class="item"
-						 ng-class="{enabled: true, hover: hover}"
-						 ng-init="generateOpportunities()"
-						 ng-click="doBusiness(opportunity)"
-						 ng-mouseenter="hover = true"
-						 ng-mouseleave="hover = false">
-						<p>{{opportunity}}</p>
+					<div class="border">
+						<div class="item"
+							 ng-class="{enabled: true, hover: hoverButton}"
+							 ng-init="generateOpportunities()"
+							 ng-click="doBusiness(opportunity)"
+							 ng-mouseenter="hoverButton = true"
+							 ng-mouseleave="hoverButton = false">
+							<p>{{opportunity}}</p>
+						</div>
 					</div>
 
-					<div class="store">
+					<div class="store border">
 						<div class="item" 
-							 ng-class="{disabled: cantBuyStoreItem(item.id), enabled: !cantBuyStoreItem(item.id), hover: !cantBuyStoreItem(item.id) && hover}" 
+							 ng-class="{disabled: cantBuyStoreItem(item.id), enabled: !cantBuyStoreItem(item.id), hover: !cantBuyStoreItem(item.id) && hoverStore}" 
 							 ng-repeat="item in items" 
 							 ng-click="buyStoreItem($event, item.id)"
-							 ng-mouseenter="hover = true"
-							 ng-mouseleave="hover = false">
+							 ng-mouseenter="hoverStore = true"
+							 ng-mouseleave="hoverStore = false">
 							<div class="left">
 								<p class="name">{{item.name}}</p>
 								<p class="info">Adds: {{getMps(item.id) | currency}}</p>
@@ -77,13 +78,13 @@
 						</div>
 					</div>
 
-					<div class="upgrade">
+					<div class="upgrade border">
 						<div class="item"
-							 ng-class="{disabled: cantBuyUpgrade(upgrade.id), enabled: !cantBuyUpgrade(upgrade.id), hover: !cantBuyUpgrade(upgrade.id) && hover, alreadyBought: alreadyBoughtUpgrade(upgrade.id)}" 
+							 ng-class="{disabled: cantBuyUpgrade(upgrade.id), enabled: !cantBuyUpgrade(upgrade.id), hover: !cantBuyUpgrade(upgrade.id) && hoverUpgrade, alreadyBought: alreadyBought(upgrade.id)}" 
 							 ng-repeat="upgrade in upgrades"
 							 ng-click="buyUpgrade(upgrade.id)"
-							 ng-mouseenter="hover = true"
-							 ng-mouseleave="hover = false"
+							 ng-mouseenter="hoverUpgrade = true"
+							 ng-mouseleave="hoverUpgrade = false"
 							 ng-show="canShowUpgrade(upgrade)">
 							<p class="name">{{upgrade.name}}</p>
 							<p class="info">Cost: {{upgrade.price | currency}}</p>
@@ -161,6 +162,10 @@
 						<section>
 							<p>FPS - Higher numbers will make the game smoother but may lag older systems.</p>
 							<input type="number" ng-model="playerService.fps" min="1" max="1000" step="any" />
+						</section>
+						<section>
+							<p>Hide upgrades you already bought:</p>
+							<input type="checkbox" ng-model="playerService.hideBoughtUpgrades" />
 						</section>
 						<section>
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>

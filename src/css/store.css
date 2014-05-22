@@ -1,7 +1,7 @@
 .item  {
 	min-height: 64px;
 	padding: 15px;
-	border: 1px solid;
+	border-bottom: 1px solid;
 	border-color: rgba(0, 0, 0, .25);
 
 	/* Transition between colors smoothly */
@@ -12,6 +12,10 @@
     -moz-user-select: none; /* mozilla browsers */
     -khtml-user-select: none; /* webkit (konqueror) browsers */
     -ms-user-select: none; /* IE10+ */
+}
+
+.item:last-child {
+	border-bottom: none;
 }
 
 .item.enabled {
@@ -43,12 +47,19 @@
 	font-size: 12px;
 }
 
+.border {
+	border: 1px solid;
+	border-color: rgba(0, 0, 0, .25);
+}
+
 .store {
 	float: left;
 	width: 300px;
+	margin-top: 16px;
 }
 
 .upgrade {
 	float: right;
 	width: 300px;
+	margin-top: 16px;
 }

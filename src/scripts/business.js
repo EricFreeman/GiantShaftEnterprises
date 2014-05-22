@@ -116,7 +116,9 @@ function BusinessController($scope, gameService, playerService, moneyService) {
 			}, true);
 		}
 
-		return haveAllPrereq && (playerService.getItem(upgrade.itemId).count > 0 || !!upgrade.isBusiness);
+		return haveAllPrereq && 
+			(playerService.getItem(upgrade.itemId).count > 0 || !!upgrade.isBusiness) &&
+			(!$scope.alreadyBought(upgrade.id) || !playerService.hideBoughtUpgrades);
 	}
 };
 

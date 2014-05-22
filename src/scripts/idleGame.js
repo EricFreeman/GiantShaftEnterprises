@@ -396,6 +396,9 @@ idleGame.service('playerService', function () {
 	this.totalOpportunities = 0;
 	this.totalMoneyFromOpportunties = 0;
 
+	// Settings
+	this.hideBoughtUpgrades = false;
+
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, count: 0 });
