@@ -117,7 +117,7 @@
 				</script>
 
 				<script type="text/ng-template" id="achievements.html">
-					<div class="achievements" ng-controller="AchievementsController">
+					<div class="achievements border" ng-controller="AchievementsController">
 						<div class="item"
 							 ng-repeat="achievement in achievements"
 							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
@@ -127,7 +127,7 @@
 				</script>
 
 				<script type="text/ng-template" id="stats.html">
-					<div class="stats" ng-controller="StatsController">
+					<div class="stats border" ng-controller="StatsController">
 						<div class="item enabled">
 							<p class="name">Total Money Earned</p>
 							<p class="info">{{playerService.totalMoney | currency}}</p>
@@ -154,7 +154,7 @@
 				</script>
 				
 				<script type="text/ng-template" id="menu.html">
-					<div class="content center">
+					<div class="content center border">
 						<section>
 							<p>Set the name of your new corporation!</p>
 							<input type="text" ng-model="playerService.companyName" />
