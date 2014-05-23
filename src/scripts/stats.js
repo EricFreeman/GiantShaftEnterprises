@@ -9,4 +9,10 @@ function StatsController($scope, gameService, playerService, moneyService) {
 
 	$scope.totalAchievements = playerService.achievements.length;
 	$scope.possibleAchievements = gameService.achievements.length;
+
+	$scope.achievements = gameService.achievements;
+
+	$scope.hasEarned = function(id) {
+		return playerService.hasAchievement(id);
+	}
 };

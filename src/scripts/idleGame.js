@@ -7,18 +7,6 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'business.html',
 				controller: 'BusinessController'
 			}).
-			when('/store', {
-				templateUrl: 'store.html',
-				controller: 'StoreController'
-			}).
-			when('/upgrades', {
-				templateUrl: 'upgrades.html',
-				controller: 'UpgradesController'
-			}).
-			when('/achievements', {
-				templateUrl: 'achievements.html',
-				controller: 'AchievementsController'
-			}).
 			when('/stats', {
 				templateUrl: 'stats.html',
 				controller: 'StatsController'
@@ -26,10 +14,6 @@ idleGame.config(['$routeProvider',
 			when('/menu', {
 				templateUrl: 'menu.html',
 				controller: 'MenuController'
-			}).
-			when('/about', {
-				templateUrl: 'about.html',
-				controller: 'AboutController'
 			}).
 			otherwise({
 				redirectTo: '/business'

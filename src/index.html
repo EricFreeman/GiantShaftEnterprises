@@ -6,7 +6,6 @@
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
-	<script src="scripts/achievements.js"></script>
 	<script src="scripts/stats.js"></script>
 	<script src="scripts/message.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
@@ -32,7 +31,6 @@
 				</div>
 				<div class="links textCenter center">
 					<a href="#/business">Business</a>
-					<a href="#/achievements">Achievements</a>
 					<a href="#/stats">Stats</a>
 					<a href="#/menu">Menu</a>
 				</div>
@@ -124,16 +122,6 @@
 
 				</script>
 
-				<script type="text/ng-template" id="achievements.html">
-					<div class="achievements border" ng-controller="AchievementsController">
-						<div class="item"
-							 ng-repeat="achievement in achievements"
-							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
-						<p class="name">{{achievement.name}}</p>
-						<p class="info">{{achievement.description}}</p>
-					</div>
-				</script>
-
 				<script type="text/ng-template" id="stats.html">
 					<div class="stats border" ng-controller="StatsController">
 						<div class="item enabled">
@@ -157,6 +145,13 @@
 						<div class="item enabled">
 							<p class="name">Achievements Earned</p>
 							<p class="info">{{totalAchievements}} / {{possibleAchievements}}</p>
+						</div>
+
+						<div class="item"
+							 ng-repeat="achievement in achievements"
+							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
+							<p class="name">{{achievement.name}}</p>
+							<p class="info">{{achievement.description}}</p>
 						</div>
 					</div>
 				</script>
