@@ -9,6 +9,9 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 	$scope.getMps = function() {
 		return moneyService.getMps();
 	}
+	$scope.getClickPower = function() {
+		return moneyService.clickPower();
+	}
 
 	$scope.loadedVersion = 1;
 	$scope.currentVersion = 1;

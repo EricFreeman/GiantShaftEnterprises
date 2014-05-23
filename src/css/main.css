@@ -24,7 +24,7 @@ a:hover {color: rgba(0, 0, 0, .75);}
 a:active {color: rgba(0, 0, 0, .75);}
 
 .mainContent {
-	margin-top: 240px;
+	margin-top: 256px;
 	max-width: 616px;
 }
 
@@ -99,4 +99,8 @@ h3 {
 	margin-top: 64px;
 	text-align: center;
 	z-index: -1;
+}
+
+.updateText {
+	height: 0px;
 }
