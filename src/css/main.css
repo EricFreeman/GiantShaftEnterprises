@@ -24,8 +24,12 @@ a:hover {color: rgba(0, 0, 0, .75);}
 a:active {color: rgba(0, 0, 0, .75);}
 
 .mainContent {
-	margin-top: 32px;
+	margin-top: 240px;
 	max-width: 616px;
+}
+
+.opportunity {
+	max-width: 614px;
 }
 
 .left {
@@ -34,6 +38,14 @@ a:active {color: rgba(0, 0, 0, .75);}
 
 .right {
 	float: right;
+}
+
+.top {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	background-color: #C0FFEE;
+	box-shadow: 0 5px 16px #C0FFEE;
 }
 
 .center {

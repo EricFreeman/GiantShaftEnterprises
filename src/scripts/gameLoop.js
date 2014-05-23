@@ -112,6 +112,7 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 				if(gameService.achievements[a].earn.call(null, gameService, playerService, moneyService)) {
 					playerService.awardAchievement(gameService.achievements[a].id);
 					$rootScope.$broadcast('displayMessage', 'Earned Achievement: ' + gameService.achievements[a].name);
+					$rootScope.$broadcast('updateCache');
 				}
 			}
 		}
