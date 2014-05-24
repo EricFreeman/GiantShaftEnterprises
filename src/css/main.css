@@ -85,20 +85,17 @@ h3 {
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	z-index: -1;
 }
 
 .rightAd {
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	z-index: -1;
 }
 
 .bottomAd {
 	margin-top: 64px;
 	text-align: center;
-	z-index: -1;
 }
 
 .updateText {
