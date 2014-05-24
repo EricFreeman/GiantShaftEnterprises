@@ -50,6 +50,8 @@ idleGame.service('gameService', function() {
 			description: "While reading binder upon binder of information is fun for some people, it is easier to learn and retain information from a good teacher." },
 		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
 			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
+		{ id: 45, itemId: 0, name: "Slave Labor", price: 300000, mps: 1.5, showAfter: [43],
+			description: "Pay your employees nothing for they are filth." },
 
 		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubicle will help increase team dynamics and promote synergy!" },
@@ -57,6 +59,8 @@ idleGame.service('gameService', function() {
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
+		{ id: 46, itemId: 1, name: "Steel Bars", price: 1200000, mps: 5, showAfter: [43],
+			description: "Trap your slaves inside.  They have no reason to leave." },
 
 		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, 
 			description: "Changing the work schedule to four ten hour days and giving the employees a three day weekened boosts employee retention cutting down on the cost to train new employees!" },
@@ -64,6 +68,8 @@ idleGame.service('gameService', function() {
 			description: "I guess there is such a thing." },
 		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2,
 			description: "Letting your employees do whatever they want (within reason) 20% of the day gives them more skills, better attitudes, and extra creativity to get the most out of the remaining 80%!" },
+		{ id: 47, itemId: 2, name: "Leashes", price: 12000000, mps: 30, showAfter: [43],
+			description: "Your employees are dogs.  Treat them as such." },
 
 		{ id: 9, itemId: 7, name: "Ergonomic Keyboards", price: 50000, mps: .25, 
 			description: "Mitigate work related injuries with smarter keyboards for your employees!" },
@@ -118,8 +124,10 @@ idleGame.service('gameService', function() {
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
 		{ id: 31, itemId: "Business Opportunity", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1, showAfter: [30], isBusiness: 1,
 			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list." },
-		{ id: 32, itemId: "Business Opportunity", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1, showAfter: [30, 31], isBusiness: 1,
+		{ id: 32, itemId: "Business Opportunity", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1, showAfter: [31], isBusiness: 1,
 			description: "Your eat your competition for breakfast." },
+		{ id: 44, itemId: "Business Opportunity", name: "Business", price: 1000000, mps: 0, mpo: 1800, isOpportunity: 1, showAfter: [32], isBusiness: 1,
+			description: "Absorb the competition." },
 
 		{ id: 33, itemId: "Business Opportunity", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [32], isOpportunity: 1, isBusiness: 1,
 			description: "Opportunity awaits." },
@@ -127,6 +135,8 @@ idleGame.service('gameService', function() {
 			description: "Become one with the opportunity." },
 		{ id: 35, itemId: "Business Opportunity", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [34], isOpportunity: 1, isBusiness: 1,
 			description: "Kill the non believeres.  You are the only true opportunity." },
+		{ id: 43, itemId: "Business Opportunity", name: "Final Business", price: 1000000000, mps: 0, mpop: .02, showAfter: [35], isOpportunity: 1, isBusiness: 1,
+			description: "Transcend." },
 
 		{ id: 36, itemId: "Money/Second", name: "Night Owl", price: 250000, mps: 0, isOnLoad: 1, per: .083, isBusiness: 1,
 			description: "Gain a small part of your money even while the game is closed." },
@@ -140,6 +150,8 @@ idleGame.service('gameService', function() {
 		{ id: 40, itemId: "Money/Second", name: "Butt Kisser", price: 1000000000, isAchievement: 1, per: .005, showAfter: [39], isBusiness: 1,
 			description: "Gain a percentage increase of Money/Second for every achievement earned." },
 		{ id: 41, itemId: "Money/Second", name: "Brown Noser", price: 10000000000, isAchievement: 1, per: .01, showAfter: [40], isBusiness: 1,
+			description: "Gain a percentage increase of Money/Second for every achievement earned." },
+		{ id: 42, itemId: "Money/Second", name: "Final Form", price: 66666666666.66, isAchievement: 1, per: .0666, showAfter: [41, 35], isBusiness: 1,
 			description: "Gain a percentage increase of Money/Second for every achievement earned." },
 	];
 

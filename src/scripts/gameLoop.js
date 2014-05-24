@@ -120,7 +120,7 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 			}
 		}
 
-		$timeout($scope.checkAchievements, 1000);
+		$timeout($scope.checkAchievements, 3000);
 	};
 
 	$scope.checkAchievements();
