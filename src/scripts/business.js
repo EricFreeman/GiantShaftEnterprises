@@ -1,4 +1,4 @@
-function BusinessController($rootScope, $scope, gameService, playerService, moneyService) {
+function BusinessController($rootScope, $scope, gameService, playerService, cacheService) {
 	// BUSINESS
 	$scope.possibleOpportunities = [
 		"Meet with clients.",
@@ -22,7 +22,7 @@ function BusinessController($rootScope, $scope, gameService, playerService, mone
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
 	$scope.doBusiness = function(curr) {
-		var cp = moneyService.clickPower();
+		var cp = cacheService.clickPower();
 		playerService.money += cp;
 		playerService.totalMoney += cp;
 		playerService.totalMoneyFromOpportunties += cp;
@@ -70,9 +70,10 @@ function BusinessController($rootScope, $scope, gameService, playerService, mone
 			if(!$scope.cantBuyStoreItem(id)) {
 				playerService.money -= $scope.currentPrice(id);
 				playerService.buyItem(id);
-				$rootScope.$broadcast('updateCache');
 			}
 		}
+
+		$rootScope.$broadcast('updateCache');
 	};
 
 	// UPGRADES

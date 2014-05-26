@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, $rootScope, gameService, playerService, moneyService, saveService) {	
+function GameLoopController($scope, $timeout, $rootScope, gameService, playerService, cacheService, saveService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -7,10 +7,10 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 		return playerService.money;
 	};
 	$scope.getMps = function() {
-		return moneyService.getMps();
+		return cacheService.getMps();
 	}
 	$scope.getClickPower = function() {
-		return moneyService.clickPower();
+		return cacheService.clickPower();
 	}
 
 	$scope.loadedVersion = 1;
@@ -35,7 +35,7 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 		if(lastSave) {
 			var date = Date.parse(lastSave);
 			var timePassed = (new Date() - date) / 1000;  // Divide by 1000 to get in seconds
-			var missedMoney = timePassed * moneyService.getMps();
+			var missedMoney = timePassed * cacheService.getMps();
 
 			// Get upgrades that deal with giving money when game isn't on
 			var upgrades = gameService.upgrades.
@@ -76,10 +76,10 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 		if(elapsedTime > 1000 / playerService.fps) {
 			var extra = Math.floor(elapsedTime/(1000/playerService.fps));
 
-			moneyEarned = ((moneyService.getMps() / playerService.fps) * extra);
+			moneyEarned = ((cacheService.getMps() / playerService.fps) * extra);
 		}
 		else {
-			moneyEarned = (moneyService.getMps() / playerService.fps);
+			moneyEarned = (cacheService.getMps() / playerService.fps);
 		}
 		
 		playerService.money += moneyEarned;
@@ -112,7 +112,7 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 	$scope.checkAchievements = function() {
 		for(var a in gameService.achievements) {
 			if(!playerService.hasAchievement(gameService.achievements[a].id)) {
-				if(gameService.achievements[a].earn.call(null, gameService, playerService, moneyService)) {
+				if(gameService.achievements[a].earn.call(null, gameService, playerService, cacheService)) {
 					playerService.awardAchievement(gameService.achievements[a].id);
 					$rootScope.$broadcast('displayMessage', 'Earned Achievement: ' + gameService.achievements[a].name);
 					$rootScope.$broadcast('updateCache');
