@@ -50,7 +50,7 @@ idleGame.service('gameService', function() {
 			description: "While reading binder upon binder of information is fun for some people, it is easier to learn and retain information from a good teacher." },
 		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
 			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
-		{ id: 45, itemId: 0, name: "Slave Labor", price: 300000, mps: 1.5, showAfter: [43],
+		{ id: 45, itemId: 0, name: "Slave Labor", price: 400000, mps: 1.5, showAfter: [43],
 			description: "Pay your employees nothing for they are filth." },
 
 		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
@@ -59,7 +59,7 @@ idleGame.service('gameService', function() {
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
-		{ id: 46, itemId: 1, name: "Steel Bars", price: 1200000, mps: 5, showAfter: [43],
+		{ id: 46, itemId: 1, name: "Steel Bars", price: 1500000, mps: 5, showAfter: [43],
 			description: "Trap your slaves inside.  They have no reason to leave." },
 
 		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, 
@@ -68,7 +68,7 @@ idleGame.service('gameService', function() {
 			description: "I guess there is such a thing." },
 		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2,
 			description: "Letting your employees do whatever they want (within reason) 20% of the day gives them more skills, better attitudes, and extra creativity to get the most out of the remaining 80%!" },
-		{ id: 47, itemId: 2, name: "Leashes", price: 12000000, mps: 30, showAfter: [43],
+		{ id: 47, itemId: 2, name: "Leashes", price: 15000000, mps: 30, showAfter: [43],
 			description: "Your employees are dogs.  Treat them as such." },
 
 		{ id: 9, itemId: 7, name: "Ergonomic Keyboards", price: 50000, mps: .25, 
@@ -77,6 +77,8 @@ idleGame.service('gameService', function() {
 			description: "Your employees can get more done when they don't have to wait on technological limitations." },
 		{ id: 11, itemId: 7, name: "Enhanced Servers", price: 5000000, mps: 1, 
 			description: "Your clients are happier because of the higher load speeds and reduced down-time." },
+		{ id: 48, itemId: 7, name: "Bomb Collars", price: 75000000, mps: 100, showAfter: [43],
+			description: "Employees can no longer leave the building.  Otherwise...boom." },
 
 		{ id: 12, itemId: 9, name: "Employee Handbook", price: 50000, mps: .01, 
 			description: "Make sure you read every page!" },
@@ -84,6 +86,8 @@ idleGame.service('gameService', function() {
 			description: "Your employees will make an extra effort to comply with the company's policies." },
 		{ id: 14, itemId: 9, name: "Christmas Party", price: 150000, mps: .01, 
 			description: "Your employees will never forget how drunk Jason from Accounting was that night!" },
+		{ id: 49, itemId: 9, name: "Initiate Human Sacrifice Policy", price: 75000000, mps: 100, showAfter: [43],
+			description: "Your employees will worker harder and be more productive when they see what happens to those who aren't!" },
 		
 		{ id: 18, itemId: 4, name: "Chasing Nickels Around Dollar Bills", price: 150000, mps: 1.5, 
 			description: "Increase the effectiveness of your business by trimming small expenses.  Your employees are now unhappy your business charges for coffee in the breakroom." },
@@ -91,6 +95,8 @@ idleGame.service('gameService', function() {
 			description: "Purchase goods or services to make huge gains in the long run." },
 		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 350000, mps: 3, 
 			description: "Short term loss will guarentee a winning financial strategy in the long term!" },
+		{ id: 50, itemId: 4, name: "Enslavement", price: 250000000, mps: 300, showAfter: [43],
+			description: "Your Accounting Department's latest business strategy." },
 
 		{ id: 21, itemId: 5, name: "Unlimited PTO", price: 500000, mps: 2, 
 			description: "Your workers will be very happy with a more flexible PTO schedule (and some may even take less PTO than normal)." },
@@ -98,6 +104,8 @@ idleGame.service('gameService', function() {
 			description: "Lisa needs braces!" },
 		{ id: 23, itemId: 5, name: "Generous Pension", price: 1000000, mps: 4, 
 			description: "Keep employee retention up by offering them a generous pension in exchange for a lifetime of servitude." },
+		{ id: 51, itemId: 5, name: "Handcuffs", price: 500000000, mps: 550, showAfter: [43],
+			description: "Keep employee retention up by handuffing them to their workstation for a lifetime of slavery." },
 
 		{ id: 15, itemId: 3, name: "Useless Meetings", price: 1000000, mps: 0, 
 			description: "None of your employees are suffering from insomnia after that meeting!" },
@@ -105,6 +113,8 @@ idleGame.service('gameService', function() {
 			description: "None of your employees are suffering from insomnia after *that* meeting!" },
 		{ id: 17, itemId: 3, name: "Micromanagement", price: 2500000, mps: 0, 
 			description: "Upper Management does their best to get the most out of them slacking employees!" },
+		{ id: 52, itemId: 3, name: "Hellspawn", price: 1000000000, mps: 1000, showAfter: [43],
+			description: "Now your employees really can say their boss is Satan!" },
 
 		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, 
 			description: "The most prized posession of every executive." },
@@ -112,6 +122,8 @@ idleGame.service('gameService', function() {
 			description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
 		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, 
 			description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
+		{ id: 53, itemId: 6, name: "Dictatorship", price: 2000000000, mps: 2250, showAfter: [43],
+			description: "Your executives have the power to do whatever they want." },
 
 		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, 
 			description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
@@ -119,6 +131,8 @@ idleGame.service('gameService', function() {
 			description: "Now your employees can take their Tesla to work." },
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
+		{ id: 54, itemId: 8, name: "Treachery", price: 5000000000, mps: 5000, showAfter: [43],
+			description: "Your headquareters is now in the last circle of hell." },
 
 		{ id: 30, itemId: "Business Opportunity", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1, isBusiness: 1,
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
@@ -126,7 +140,7 @@ idleGame.service('gameService', function() {
 			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list." },
 		{ id: 32, itemId: "Business Opportunity", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1, showAfter: [31], isBusiness: 1,
 			description: "Your eat your competition for breakfast." },
-		{ id: 44, itemId: "Business Opportunity", name: "Business", price: 1000000, mps: 0, mpo: 1800, isOpportunity: 1, showAfter: [32], isBusiness: 1,
+		{ id: 44, itemId: "Business Opportunity", name: "Business Epic", price: 1000000, mps: 0, mpo: 1800, isOpportunity: 1, showAfter: [32], isBusiness: 1,
 			description: "Absorb the competition." },
 
 		{ id: 33, itemId: "Business Opportunity", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [32], isOpportunity: 1, isBusiness: 1,
@@ -246,6 +260,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand Minimum Wage Workers.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 1000; }
 		},
+		{ id: 48, name: "Enslavement", 
+			description: "Own ten thousand Minimum Wage Workers.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 10000; }
+		},
 
 		{ id: 6, name: "Little Boxes", 
 			description: "Own ten Cubicles.",
@@ -258,6 +276,10 @@ idleGame.service('gameService', function() {
 		{ id: 8, name: "Sea of Cubicles", 
 			description: "Own one thousand Cubicles.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 1000; }
+		},
+		{ id: 49, name: "Ocean of Cubicles", 
+			description: "Own ten thousand Cubicles.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 10000; }
 		},
 
 		{ id: 12, name: "9 to 5", 
@@ -272,6 +294,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand Salary Employess.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 1000; }
 		},
+		{ id: 50, name: "9 to the Rest of Your Life", 
+			description: "Own ten thousand Salary Employess.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10000; }
+		},
 
 		{ id: 15, name: "Horizontal Scaling is Best Scaling",
 			description: "Own ten Hardwares.",
@@ -284,6 +310,10 @@ idleGame.service('gameService', function() {
 		{ id: 17, name: "Johnny Mnemonic", 
 			description: "Own one thousand Hardwares.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 1000; }
+		},
+		{ id: 51, name: "Unit 01", 
+			description: "Own ten thousand Hardwares.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 10000; }
 		},
 
 		{ id: 18, name: "HRotica",
@@ -298,6 +328,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand HR Departments.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 1000; }
 		},
+		{ id: 52, name: "HRmageddon", 
+			description: "Own ten thousand HR Departments.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 10000; }
+		},
 
 		{ id: 21, name: "Cook the Books",
 			description: "Own ten Accounting Departments.",
@@ -310,6 +344,10 @@ idleGame.service('gameService', function() {
 		{ id: 23, name: "Enron the Books", 
 			description: "Own one thousand Accounting Departments.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 1000; }
+		},
+		{ id: 53, name: "You Are the Books", 
+			description: "Own ten thousand Accounting Departments.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 10000; }
 		},
 
 		{ id: 24, name: "Lisa Needs Braces",
@@ -324,6 +362,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand Benefits Packages.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 1000; }
 		},
+		{ id: 54, name: "DENTAL PLAN", 
+			description: "Own ten thousand Benefits Packages.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 10000; }
+		},
 
 		{ id: 27, name: "What Are You Doing?",
 			description: "Own ten Upper Managements.",
@@ -336,6 +378,10 @@ idleGame.service('gameService', function() {
 		{ id: 29, name: ":(", 
 			description: "Own one thousand Upper Managements.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 1000; }
+		},
+		{ id: 55, name: ":'(", 
+			description: "Own ten thousand Upper Managements.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 10000; }
 		},
 
 		{ id: 30, name: "Execute",
@@ -350,6 +396,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand Executives.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 1000; }
 		},
+		{ id: 56, name: "Cutest",
+			description: "Own ten thousand Executives.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 10000; }
+		},
 
 		{ id: 33, name: "National",
 			description: "Own ten Office Buildings.",
@@ -362,6 +412,10 @@ idleGame.service('gameService', function() {
 		{ id: 35, name: "Starbucks", 
 			description: "Own one thousand Office Buildings.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 1000; }
+		},
+		{ id: 57, name: "Subway", 
+			description: "Own ten thousand Office Buildings.",
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 10000; }
 		},
 	];
 
