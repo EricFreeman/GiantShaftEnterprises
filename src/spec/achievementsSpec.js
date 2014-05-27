@@ -1,4 +1,4 @@
-describe("AchievementsController", function() {
+describe("StatsController", function() {
 	var $scope;
     var $provide;
 

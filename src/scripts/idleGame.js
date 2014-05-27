@@ -612,7 +612,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		var mps = this.getNewMps();
 
 		return basicClickPower + 
-			playerService.upgrades.
+			gameService.upgrades.
 				filter(function(d) {
 					return d.isOpportunity;
 				}).
