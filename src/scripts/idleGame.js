@@ -193,24 +193,32 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 47, name: "Diversity is You", 
 			description: "Own one thousand of everything.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(1000); }
 		},
 		{ id: 58, name: "There is No Diversity...Only You.", 
 			description: "Own ten thousand of everything.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10000); }
 		},
 
 		{ id: 9, name: "Make $1,000,000 by EOD", 
-			description: "Earn enough to make $1mil in one day.",
+			description: "Earn enough to make $1 million in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11.57; }
 		},
 		{ id: 10, name: "Make $1,000,000,000 by EOD", 
-			description: "Earn enough to make $bil in one day.",
+			description: "Earn enough to make $1 billion in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574; }
 		},
 		{ id: 11, name: "Make $1,000,000,000,000 by EOD", 
-			description: "Earn enough to make $tril in one day.",
+			description: "Earn enough to make $1 trillion in one day.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074; }
+		},
+		{ id: 59, name: "Make $1,000,000,000,000,000 by EOD", 
+			description: "Earn enough to make $1 quadrillion in one day.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074000; }
 		},
 
 		{ id: 36, name: "Opportunist", 
@@ -227,6 +235,7 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", 
 			description: "Complete 10000 business opportunities.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 10000; }
 		},
 
@@ -246,10 +255,30 @@ idleGame.service('gameService', function() {
 			description: "Earn $100,000,000,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000; }
 		},
+		{ id: 60, name: "Just Business", 
+			description: "Earn $100,000,000,000,000 Total.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000000; }
+		},
+		{ id: 61, name: "Business", 
+			description: "Earn $100,000,000,000,000,000 Total.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000000000; }
+		},
 
+		{ id: 62, name: "That Was an Okay Business Deal", 
+			description: "Earn over $100 per business opportunity.",
+			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 100; }
+		},
 		{ id: 44, name: "That Was a Good Business Deal", 
 			description: "Earn over $1,000 per business opportunity.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 1000; }
+		},
+		{ id: 63, name: "That Was a Fantastic Business Deal", 
+			description: "Earn over $10,000 per business opportunity.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 10000; }
 		},
 
 		{ id: 3, name: "Hooray, Capitalism!", 
@@ -258,14 +287,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 4, name: "Yummy, Capitalism!", 
 			description: "Own one hundred Minimum Wage Workers.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 100; }
 		},
 		{ id: 5, name: "Okay, Wal-Mart", 
 			description: "Own one thousand Minimum Wage Workers.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 1000; }
 		},
 		{ id: 48, name: "Enslavement", 
 			description: "Own ten thousand Minimum Wage Workers.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 10000; }
 		},
 
@@ -275,14 +307,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 7, name: "Cubicle Farm", 
 			description: "Own one hundred Cubicles.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 100; }
 		},
 		{ id: 8, name: "Sea of Cubicles", 
 			description: "Own one thousand Cubicles.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 1000; }
 		},
 		{ id: 49, name: "Ocean of Cubicles", 
 			description: "Own ten thousand Cubicles.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 10000; }
 		},
 
@@ -292,14 +327,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 13, name: "9 to 6", 
 			description: "Own one hundred Salary Employess.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 100; }
 		},
 		{ id: 14, name: "9 to 7 + Weekends", 
 			description: "Own one thousand Salary Employess.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 1000; }
 		},
 		{ id: 50, name: "9 to the Rest of Your Life", 
 			description: "Own ten thousand Salary Employess.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10000; }
 		},
 
@@ -309,14 +347,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 16, name: "Hardware to Hell", 
 			description: "Own one hundred Hardwares.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 100; }
 		},
 		{ id: 17, name: "Johnny Mnemonic", 
 			description: "Own one thousand Hardwares.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 1000; }
 		},
 		{ id: 51, name: "Unit 01", 
 			description: "Own ten thousand Hardwares.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 10000; }
 		},
 
@@ -326,14 +367,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 19, name: "Human Remains Department", 
 			description: "Own one hundred HR Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 100; }
 		},
 		{ id: 20, name: "HRmy of Darkness", 
 			description: "Own one thousand HR Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 1000; }
 		},
 		{ id: 52, name: "HRmageddon", 
 			description: "Own ten thousand HR Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 10000; }
 		},
 
@@ -343,14 +387,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 22, name: "Burn the Books", 
 			description: "Own one hundred Accounting Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 100; }
 		},
 		{ id: 23, name: "Enron the Books", 
 			description: "Own one thousand Accounting Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 1000; }
 		},
 		{ id: 53, name: "You Are the Books", 
 			description: "Own ten thousand Accounting Departments.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 10000; }
 		},
 
@@ -360,14 +407,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 25, name: "DENTAL PLAN", 
 			description: "Own one hundred Benefits Packages.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 100; }
 		},
 		{ id: 26, name: "Lisa Needs Braces", 
 			description: "Own one thousand Benefits Packages.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 1000; }
 		},
 		{ id: 54, name: "DENTAL PLAN", 
 			description: "Own ten thousand Benefits Packages.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 10000; }
 		},
 
@@ -377,14 +427,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 28, name: "No, Seriously, Please Stop.", 
 			description: "Own one hundred Upper Managements.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 100; }
 		},
 		{ id: 29, name: ":(", 
 			description: "Own one thousand Upper Managements.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 1000; }
 		},
 		{ id: 55, name: ":'(", 
 			description: "Own ten thousand Upper Managements.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 10000; }
 		},
 
@@ -394,14 +447,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 31, name: "ExeCute",
 			description: "Own one hundred Executives.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 100; }
 		},
 		{ id: 32, name: "Cute",
 			description: "Own one thousand Executives.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 1000; }
 		},
 		{ id: 56, name: "Cutest",
 			description: "Own ten thousand Executives.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 10000; }
 		},
 
@@ -411,14 +467,17 @@ idleGame.service('gameService', function() {
 		},
 		{ id: 34, name: "International", 
 			description: "Own one hundred Office Buildings.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 100; }
 		},
 		{ id: 35, name: "Starbucks", 
 			description: "Own one thousand Office Buildings.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 1000; }
 		},
 		{ id: 57, name: "Subway", 
 			description: "Own ten thousand Office Buildings.",
+			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 10000; }
 		},
 	];

@@ -151,8 +151,13 @@
 						<div class="item"
 							 ng-repeat="achievement in achievements"
 							 ng-class="{enabled: hasEarned(achievement.id), disabled: !hasEarned(achievement.id)}">
-							<p class="name">{{achievement.name}}</p>
-							<p class="info">{{achievement.description}}</p>
+							<div ng-show="hasEarned(achievement.id) || !achievement.isHidden">
+								<p class="name">{{achievement.name}}</p>
+								<p class="info">{{achievement.description}}</p>
+							</div>
+							<div ng-show="!hasEarned(achievement.id) && achievement.isHidden">
+								<p class="name">???</p>
+							</div>
 						</div>
 					</div>
 				</script>
