@@ -73,6 +73,10 @@ h3 {
 	text-decoration: underline;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .content {
 	padding: 16px;
 }
