@@ -195,6 +195,10 @@ idleGame.service('gameService', function() {
 			description: "Own one thousand of everything.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(1000); }
 		},
+		{ id: 58, name: "There is No Diversity...Only You.", 
+			description: "Own ten thousand of everything.",
+			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10000); }
+		},
 
 		{ id: 9, name: "Make $1,000,000 by EOD", 
 			description: "Earn enough to make $1mil in one day.",

@@ -63,7 +63,8 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 
 	$scope.buyStoreItem = function($event, id) {
 		var count = 1;
-		if($event.shiftKey) count = 10;
+		if($event.shiftKey && $event.altKey) count = 1000;
+		else if($event.shiftKey) count = 10;
 		else if($event.altKey) count = 100;
 
 		for(var i = 0; i < count; i++) {
