@@ -16,7 +16,7 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 
 		if(id > -1 && $scope.canBuy(id)) {
 			playerService.knowledge -= item.price;
-			playerService.unlockedKnowledgeItems.push(item);
+			playerService.unlockedKnowledgeItems.push({id: item.id});
 
 			if(item.type === 'item') {
 				gameService.items.push(item.item);
