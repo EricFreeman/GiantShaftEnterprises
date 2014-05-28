@@ -3,6 +3,7 @@
 	<script src="scripts/jquery-1.11.1.min.js"></script>
 	<script src="scripts/angular-route.min.js"></script>
 	<script src="scripts/idleGame.js"></script>
+	<script src="scripts/knowledge.js"></script>
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
@@ -31,6 +32,7 @@
 				</div>
 				<div class="links textCenter center">
 					<a href="#/business">Business</a>
+					<a href="#/knowledge">Knowledge</a>
 					<a href="#/stats">Stats</a>
 					<a href="#/menu">Menu</a>
 				</div>
@@ -70,7 +72,7 @@
 					<div class="store border">
 						<div class="item" 
 							 ng-class="{disabled: cantBuyStoreItem(item.id), enabled: !cantBuyStoreItem(item.id), hover: !cantBuyStoreItem(item.id) && hoverStore}" 
-							 ng-repeat="item in items" 
+							 ng-repeat="item in items track by $index" 
 							 ng-click="buyStoreItem($event, item.id)"
 							 ng-mouseenter="hoverStore = true"
 							 ng-mouseleave="hoverStore = false">
@@ -158,6 +160,20 @@
 							<div ng-show="!hasEarned(achievement.id) && achievement.isHidden">
 								<p class="name">???</p>
 							</div>
+						</div>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="knowledge.html">
+					<div class="knowledge border" ng-controller="KnowledgeController">
+						<div class="item"
+							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK}" 
+							 ng-repeat="item in items"
+							 ng-click="buy(item.id)"
+							 ng-mouseenter="hoverK = true"
+							 ng-mouseleave="hoverK = false">
+							<p class="name">{{item.item.name}}</p>
+							<p class="info">{{item.price}} Knowledge</p>
 						</div>
 					</div>
 				</script>

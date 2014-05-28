@@ -11,6 +11,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'stats.html',
 				controller: 'StatsController'
 			}).
+			when('/knowledge', {
+				templateUrl: 'knowledge.html',
+				controller: 'KnowledgeController'
+			}).
 			when('/menu', {
 				templateUrl: 'menu.html',
 				controller: 'MenuController'
@@ -23,6 +27,7 @@ idleGame.config(['$routeProvider',
 
 idleGame.service('gameService', function() {
 	// All base items (not upgrades) you can purchase are defined here
+	// WARNING: When adding new items, it is essntial to check knowledgeItems when determining what the next id for the item should be!
 	this.items = [
 		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
 		{ id: 1, name: "Cubicle", mps: .3 , price: 100 },
@@ -43,6 +48,7 @@ idleGame.service('gameService', function() {
 	//		mpo - 			money per opportunity
 	//		mpop - 			money per opportunity percentage (of MPS)
 	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades was purchased
+	// WARNING: When adding new upgrades, it is essntial to check knowledgeItems when determining what the next id for the upgrade should be!
 	this.upgrades = [
 		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
 			description: "Studies have shown that training employees is the same as training a dog: use lots of positive reinforcement to get them to behave correctly." },
@@ -482,14 +488,28 @@ idleGame.service('gameService', function() {
 		},
 	];
 
+	// All business knowledge items you can buy are here
+	this.knowledgeItems = [
+		{ id: 0, price: 100, type: 'building',
+			item: { id: 10, name: "Office Supplies", mps: .1, price: 10 } },
+		{ id: 1, price: 100, type: 'upgrade',
+			item: { id: 55, itemId: 10, name: "Pens and Paper Galore!", price: 500, mps: .05,
+				description: "Your employees are happy at the amount of office supplies they can sneak home now!" } }
+	];
+
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, name: "", mps: 0, price: 0 });
-	};
+	}
 
 	this.getUpgrade = function(id) {
 		return search(this.upgrades, "id", id,
 			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
+	}
+
+	this.getKnowledgeItem = function(id) {
+		return search(this.knowledgeItems, "id", id,
+			{ id: -1, price: 0 });
 	}
 });
 
@@ -509,17 +529,26 @@ idleGame.service('playerService', function () {
 	this.totalOpportunities = 0;
 	this.totalMoneyFromOpportunties = 0;
 
+	// For newgame plus
+	this.knowledge = 0;
+	this.unlockedKnowledgeItems = [];
+
 	// Settings
 	this.hideBoughtUpgrades = false;
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, count: 0 });
-	};
+	}
 
 	this.getUpgrade = function(id) {
 		return search(this.upgrades, "id", id,
 			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
+	}
+
+	this.getKnowledgeItem = function(id) {
+		return search(this.unlockedKnowledgeItems, "id", id,
+			{ id: -1, price: 0 });
 	}
 
 	this.hasAchievement = function(id) {
@@ -543,11 +572,11 @@ idleGame.service('playerService', function () {
 			var index = this.items.indexOf(item);
 			this.items[index].count++;
 		}
-	}
+	};
 
 	this.buyUpgrade = function(upgrade) {
 		this.upgrades.push(upgrade);
-	}
+	};
 });
 
 idleGame.service('cacheService', function($rootScope, gameService, playerService) {
@@ -569,6 +598,19 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
 		self.items = self.getNewItems();
+	});
+
+	$rootScope.$on('loadKnowledge', function() {
+		var items = playerService.unlockedKnowledgeItems;
+		for(var i = 0; i < items.length; i++) {
+			if(items[i].type === 'building')
+				gameService.items.push(items[i].item);
+			else if(items[i].type === 'upgrade')
+				gameService.upgrades.push(items[i].item);
+		}
+
+		gameService.items.sort(function(a, b) { return a.price-b.price; });
+		gameService.upgrades.sort(function(a, b) { return a.price-b.price; });
 	});
 
 	// Your cumulative mps (money per second) is the combination of the 
