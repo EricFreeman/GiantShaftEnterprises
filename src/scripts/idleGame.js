@@ -490,17 +490,29 @@ idleGame.service('gameService', function() {
 
 	// All business knowledge items you can buy are here
 	this.knowledgeItems = [
-		{ id: 0, price: 10, type: 'building',
+		{ id: 0, price: 15, type: 'item',
 			item: { id: 10, name: "Office Supplies", mps: .1, price: 10 } },
-		{ id: 1, price: 10, type: 'upgrade',
+		{ id: 1, price: 5, type: 'upgrade',
 			item: { id: 55, itemId: 10, name: "Pens and Paper Galore!", price: 250, mps: .05,
 				description: "Your employees are happy at the amount of office supplies they can sneak home now!" } },
-		{ id: 2, price: 10, type: 'upgrade',
+		{ id: 2, price: 5, type: 'upgrade',
 			item: { id: 56, itemId: 10, name: "Red Swingline Staplers", price: 500, mps: .1,
 				description: "I believe you have my stapler." } },
-		{ id: 3, price: 10, type: 'upgrade',
+		{ id: 3, price: 5, type: 'upgrade',
 			item: { id: 57, itemId: 10, name: "Office Copy Machine", price: 1000, mps: .15,
-				description: "Perfect for printing pictures of your butt." } },
+				description: "Perfect for printing pictures of your tucus." } },
+
+		{ id: 4, price: 15, type: 'item',
+			item: { id: 11, name: "Software", mps: 1, price: 750 }},
+		{ id: 5, price: 15, type: 'upgrade',
+			item: { id: 58, itemId: 11, name: "Contoso Office 2014", price: 2000, mps: .4,
+				description: "Your employees are happy that they no longer have to use Notepad." } },
+		{ id: 6, price: 15, type: 'upgrade',
+			item: { id: 59, itemId: 11, name: "Contoso Office 365", price: 4000, mps: .8,
+				description: "Your employees are starting to wish they stuck with Notepad." } },
+		{ id: 7, price: 15, type: 'upgrade',
+			item: { id: 60, itemId: 11, name: "Contoso Office Premium 265 2014 For Business", price: 8000, mps: 1,
+				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
 	];
 
 	this.getItem = function(id) {
@@ -612,10 +624,11 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	$rootScope.$on('loadKnowledge', function() {
 		var items = playerService.unlockedKnowledgeItems;
 		for(var i = 0; i < items.length; i++) {
-			if(items[i].type === 'building')
-				gameService.items.push(items[i].item);
-			else if(items[i].type === 'upgrade')
-				gameService.upgrades.push(items[i].item);
+			var item = gameService.getKnowledgeItem(items[i].id);
+			if(item.type === 'item')
+				gameService.items.push(item.item);
+			else if(item.type === 'upgrade')
+				gameService.upgrades.push(item.item);
 		}
 
 		gameService.items.sort(function(a, b) { return a.price-b.price; });

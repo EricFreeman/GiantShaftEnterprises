@@ -18,7 +18,7 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 			playerService.knowledge -= item.price;
 			playerService.unlockedKnowledgeItems.push(item);
 
-			if(item.type === 'building') {
+			if(item.type === 'item') {
 				gameService.items.push(item.item);
 				gameService.items.sort(function(a, b) { return a.price-b.price; });
 			}
