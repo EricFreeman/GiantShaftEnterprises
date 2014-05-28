@@ -1,5 +1,6 @@
 function KnowledgeController($rootScope, $scope, gameService, playerService, cacheService) {
 	$scope.items = gameService.knowledgeItems;
+	$scope.knowledge = function() { return playerService.knowledge; }
 
 	$scope.canBuy = function(id) {
 		var enoughMoney = gameService.getKnowledgeItem(id).price <= playerService.knowledge;
@@ -14,7 +15,7 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 		var item = gameService.getKnowledgeItem(id);
 
 		if(id > -1 && $scope.canBuy(id)) {
-			playerService.money -= item.price;
+			playerService.knowledge -= item.price;
 			playerService.unlockedKnowledgeItems.push(item);
 
 			if(item.type === 'building') {

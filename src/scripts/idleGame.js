@@ -490,11 +490,17 @@ idleGame.service('gameService', function() {
 
 	// All business knowledge items you can buy are here
 	this.knowledgeItems = [
-		{ id: 0, price: 100, type: 'building',
+		{ id: 0, price: 10, type: 'building',
 			item: { id: 10, name: "Office Supplies", mps: .1, price: 10 } },
-		{ id: 1, price: 100, type: 'upgrade',
-			item: { id: 55, itemId: 10, name: "Pens and Paper Galore!", price: 500, mps: .05,
-				description: "Your employees are happy at the amount of office supplies they can sneak home now!" } }
+		{ id: 1, price: 10, type: 'upgrade',
+			item: { id: 55, itemId: 10, name: "Pens and Paper Galore!", price: 250, mps: .05,
+				description: "Your employees are happy at the amount of office supplies they can sneak home now!" } },
+		{ id: 2, price: 10, type: 'upgrade',
+			item: { id: 56, itemId: 10, name: "Red Swingline Staplers", price: 500, mps: .1,
+				description: "I believe you have my stapler." } },
+		{ id: 3, price: 10, type: 'upgrade',
+			item: { id: 57, itemId: 10, name: "Office Copy Machine", price: 1000, mps: .15,
+				description: "Perfect for printing pictures of your butt." } },
 	];
 
 	this.getItem = function(id) {
@@ -520,21 +526,24 @@ idleGame.service('playerService', function () {
 	this.upgrades = [];
 	// Earned achievments are stored here as: { id: x }
 	this.achievements = [];
-	this.money = 15;
+
+	this.money = 0;
 	this.companyName = "Default Company";
-	this.fps = 10;
 
 	// For stats page
+	this.totalMoneyReset = 0;
 	this.totalMoney = 0;
 	this.totalOpportunities = 0;
 	this.totalMoneyFromOpportunties = 0;
 
 	// For newgame plus
+	this.totalKnowledge = 0;
 	this.knowledge = 0;
 	this.unlockedKnowledgeItems = [];
 
 	// Settings
 	this.hideBoughtUpgrades = false;
+	this.fps = 10;
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
@@ -656,7 +665,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return basicClickPower + 
 			gameService.upgrades.
 				filter(function(d) {
-					return d.isOpportunity;
+					return d.isOpportunity && playerService.getUpgrade(d.id).id != -1;
 				}).
 				reduce(function(prev, cur) {
 					return prev += (cur.mpo ? cur.mpo : cur.mpop * mps);

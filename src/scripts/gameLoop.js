@@ -12,6 +12,9 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 	$scope.getClickPower = function() {
 		return cacheService.clickPower();
 	}
+	$scope.showKnowledge = function() {
+		return playerService.totalKnowledge > 0;
+	}
 
 	$scope.loadedVersion = 1;
 	$scope.currentVersion = 1;
@@ -27,11 +30,11 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 				playerService[prop] = JSON.parse(localStorage.getItem(propName));
 		}
 
-		// Update the chached values for click power and money/second
-		$rootScope.$broadcast('updateCache');
-
 		// Load in any business knowledge items bought for this game
 		$rootScope.$broadcast('loadKnowledge');
+
+		// Update the chached values for click power and money/second
+		$rootScope.$broadcast('updateCache');
 
 		// Add in any money you should have received while the game was not playing
 		var lastSave = localStorage.getItem("CompanyGame.lastSaveDate");

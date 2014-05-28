@@ -29,12 +29,13 @@
 						 ng-show="loadedVersion < currentVersion">
 						<h2>NEW VERSION - REFRESH TO GET IT</h2>
 					</div>
-				</div>
-				<div class="links textCenter center">
-					<a href="#/business">Business</a>
-					<a href="#/knowledge">Knowledge</a>
-					<a href="#/stats">Stats</a>
-					<a href="#/menu">Menu</a>
+
+					<div class="links textCenter center">
+						<a href="#/business">Business</a>
+						<a href="#/knowledge" ng-show="showKnowledge()">Knowledge</a>
+						<a href="#/stats">Stats</a>
+						<a href="#/menu">Menu</a>
+					</div>
 				</div>
 
 				<div ng-controller="BusinessController">
@@ -90,7 +91,7 @@
 					<div class="upgrade border">
 						<div class="item"
 							 ng-class="{disabled: cantBuyUpgrade(upgrade.id), enabled: !cantBuyUpgrade(upgrade.id), hover: !cantBuyUpgrade(upgrade.id) && hoverUpgrade, alreadyBought: alreadyBought(upgrade.id)}" 
-							 ng-repeat="upgrade in upgrades"
+							 ng-repeat="upgrade in upgrades track by $index"
 							 ng-click="buyUpgrade(upgrade.id)"
 							 ng-mouseenter="hoverUpgrade = true"
 							 ng-mouseleave="hoverUpgrade = false"
@@ -165,9 +166,15 @@
 				</script>
 
 				<script type="text/ng-template" id="knowledge.html">
+					<div class="border">
+						<section>
+							<p>Available Knowledge: {{knowledge()}}</p>
+						</section>
+					</div>
+					<br />
 					<div class="knowledge border" ng-controller="KnowledgeController">
 						<div class="item"
-							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK}" 
+							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK, alreadyBought: alreadyBought(item.id)}" 
 							 ng-repeat="item in items"
 							 ng-click="buy(item.id)"
 							 ng-mouseenter="hoverK = true"
@@ -195,6 +202,10 @@
 						<section>
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
 							<button ng-click="saveGame()">Save Game</button>
+						</section>
+						<section>
+							<p>Lose control of your current company, but gain Business Knowledge based on how much total money your current business made.  This can be used to unlock new items and upgrades for your next company!</p>
+							<button ng-click="prestige()">Start New Business</button>
 						</section>
 						<section>
 							<p>This will hard reset your game (refresh after you press it):</p>
