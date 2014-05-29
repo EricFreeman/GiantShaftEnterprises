@@ -500,7 +500,7 @@ idleGame.service('gameService', function() {
 				description: "I believe you have my stapler." } },
 		{ id: 3, price: 5, type: 'upgrade',
 			item: { id: 57, itemId: 10, name: "Office Copy Machine", price: 1000, mps: .15,
-				description: "Perfect for printing pictures of your tucus." } },
+				description: "Perfect for printing pictures of your tuchus." } },
 
 		{ id: 4, price: 15, type: 'item',
 			item: { id: 11, name: "Software", mps: 1, price: 750 }},
@@ -511,7 +511,7 @@ idleGame.service('gameService', function() {
 			item: { id: 59, itemId: 11, name: "Contoso Office 365", price: 4000, mps: .8,
 				description: "Your employees are starting to wish they stuck with Notepad." } },
 		{ id: 7, price: 15, type: 'upgrade',
-			item: { id: 60, itemId: 11, name: "Contoso Office Premium 265 2014 For Business", price: 8000, mps: 1,
+			item: { id: 60, itemId: 11, name: "Contoso Office Premium 365 2014 For Business", price: 8000, mps: 1,
 				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
 	];
 
