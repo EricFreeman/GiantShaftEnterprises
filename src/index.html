@@ -185,7 +185,8 @@
 							 ng-repeat="item in items"
 							 ng-click="buy(item.id)"
 							 ng-mouseenter="hoverK = true"
-							 ng-mouseleave="hoverK = false">
+							 ng-mouseleave="hoverK = false"
+							 ng-show="canShow(item.id)">
 							<p class="name">{{item.item.name}}</p>
 							<p class="info">{{item.price}} Knowledge</p>
 						</div>

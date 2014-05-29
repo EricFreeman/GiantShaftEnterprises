@@ -11,6 +11,11 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 		return playerService.getKnowledgeItem(id).id != -1;
 	}
 
+	$scope.canShow = function(id) {
+		var item = gameService.getKnowledgeItem(id);
+		return item.parent === -1 || playerService.getKnowledgeItem(item.parent).id !== -1;
+	}
+
 	$scope.buy = function(id) {
 		var item = gameService.getKnowledgeItem(id);
 
