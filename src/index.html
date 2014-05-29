@@ -21,33 +21,34 @@
 
 			<div class="top">
 				<div class="stats" ng-controller="GameLoopController">
-					<h1>{{getCompanyName()}}</h1>
-					<h2>Total Money: {{getMoney() | currency}}</h2>
-					<h3>Money/Second: {{getMps() | currency}}</h3>
-					<h3>Money/Opportunity: {{getClickPower() | currency}}</h3>
-					<div class="updateText"
-						 ng-show="loadedVersion < currentVersion">
-						<h2>NEW VERSION - REFRESH TO GET IT</h2>
-					</div>
-
-					<div class="links textCenter center">
+					<div class="links center">
 						<a href="#/business">Business</a>
 						<a href="#/knowledge" ng-show="showKnowledge()">Knowledge</a>
 						<a href="#/stats">Stats</a>
 						<a href="#/menu">Menu</a>
 					</div>
-				</div>
 
-				<div ng-controller="BusinessController">
-					<div class="opportunity center border">
-						<div class="item"
-							 ng-class="{enabled: true, hover: hoverButton}"
-							 ng-init="generateOpportunities()"
-							 ng-click="doBusiness(opportunity)"
-							 ng-mouseenter="hoverButton = true"
-							 ng-mouseleave="hoverButton = false">
-							<p class="bold underline">Business Opportunity</p>
-							<p>{{opportunity}}</p>
+					<div class="hero">
+						<div class="heroContent">
+							<p class="money">{{getMoney() | currency}}</p>
+							<p class="companyName">{{getCompanyName()}}</p>
+							<p class="info">Money/Second: {{getMps() | currency}}</p>
+							<p class="info">Money/Opportunity: {{getClickPower() | currency}}</p>
+							<div class="updateText"
+								 ng-show="loadedVersion < currentVersion">
+								<p>NEW VERSION - REFRESH TO GET IT</p>
+							</div>
+
+							<div ng-controller="BusinessController">
+								<div class="opportunity center noSelect"
+									 ng-class="{enabled: true, opportunityHover: hoverButton}"
+									 ng-init="generateOpportunities()"
+									 ng-click="doBusiness(opportunity)"
+									 ng-mouseenter="hoverButton = true"
+									 ng-mouseleave="hoverButton = false">
+									<p>{{opportunity}}</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 body  {
-	background-color: #C0FFEE;
-	font-family: Segoe UI Light;
+	background-color: #FFFFFF;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 .stats {
@@ -9,13 +9,18 @@ body  {
 }
 
 .links {
-	margin-top: 32px;
-	text-align: center;
-	line-height: 24px;
-	max-width: 300px;
+	text-align: right;
+	line-height: 70px;
+	max-width: 600px;
+	font-size: 27px;
 }
 
-.links a { padding: 0 5px; }
+.links a { 
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: 0 5px; 
+}
 
 a {	transition: color .25s ease;}
 a:link {color: rgba(0, 0, 0, 1);}
@@ -23,13 +28,59 @@ a:visited {color: rgba(0, 0, 0, 1);}
 a:hover {color: rgba(0, 0, 0, .75);}
 a:active {color: rgba(0, 0, 0, .75);}
 
+.hero {
+	background-image: url('../images/skyscraper.jpg');
+	background-size: cover;
+	color: white;
+	font-weight: bold;
+}
+
+.heroContent {
+	background-color:rgba(0, 0, 0, 0.26);
+	padding: 16px;
+}
+
+.hero .money {
+	font-size: 72px;
+}
+
+.hero .companyName {
+	font-size: 27px;
+}
+
+.hero .info {
+	font-size: 18px;
+}
+
 .mainContent {
-	margin-top: 256px;
 	max-width: 616px;
+	margin-top: 16px;
 }
 
 .opportunity {
-	max-width: 616px;
+	margin-top: 16px;
+	padding: 0px 16px;
+
+	min-width: 550px;
+	font-size: 32px;
+	color: black;
+	background-color: white;
+	line-height: 72px;
+	height: 72px;
+	display: inline-block;
+	border-radius: 16px;
+}
+
+.opportunityHover {
+	cursor: pointer;
+}
+
+.noSelect {
+	/* Prevent double clicking the page or items or something from highlighting text */
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
 }
 
 .left {
@@ -41,11 +92,8 @@ a:active {color: rgba(0, 0, 0, .75);}
 }
 
 .top {
-	position: fixed;
-	top: 0px;
 	width: 100%;
-	background-color: #C0FFEE;
-	box-shadow: 0 5px 16px #C0FFEE;
+	background-color: #FFFFFF;
 }
 
 .center {
@@ -74,7 +122,7 @@ h3 {
 }
 
 .bold {
-	font-weight: bold;
+	font-family: Helvetica Bold, Arial Bold, sans-serif;
 }
 
 .content {
