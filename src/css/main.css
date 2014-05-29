@@ -8,10 +8,15 @@ body  {
 	width: 100%;
 }
 
+.logo {
+	float: left;
+	padding-top: 6px;
+}
+
 .links {
 	text-align: right;
 	line-height: 70px;
-	max-width: 600px;
+	max-width: 900px;
 	font-size: 27px;
 }
 
@@ -190,6 +195,12 @@ h3 {
 	text-align:center;
 	text-shadow:1px 1px 0px #ffffff;
 	margin-top: 8px;
+
+	/* Prevent double clicking the page or items or something from highlighting text */
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
 }
 .button:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );

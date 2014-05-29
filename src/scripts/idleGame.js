@@ -505,13 +505,13 @@ idleGame.service('gameService', function() {
 		{ id: 4, price: 15, type: 'item',
 			item: { id: 11, name: "Software", mps: 1, price: 750 }},
 		{ id: 5, price: 15, type: 'upgrade',
-			item: { id: 58, itemId: 11, name: "Contoso Office 2014", price: 2000, mps: .4,
+			item: { id: 58, itemId: 11, name: "Contoso Office", price: 2000, mps: .4,
 				description: "Your employees are happy that they no longer have to use Notepad." } },
 		{ id: 6, price: 15, type: 'upgrade',
 			item: { id: 59, itemId: 11, name: "Contoso Office 365", price: 4000, mps: .8,
 				description: "Your employees are starting to wish they stuck with Notepad." } },
 		{ id: 7, price: 15, type: 'upgrade',
-			item: { id: 60, itemId: 11, name: "Contoso Office Premium 365 2014 For Business", price: 8000, mps: 1,
+			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014 For Business", price: 8000, mps: 1,
 				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
 	];
 

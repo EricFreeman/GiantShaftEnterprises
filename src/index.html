@@ -22,6 +22,7 @@
 			<div class="top">
 				<div class="stats" ng-controller="GameLoopController">
 					<div class="links center">
+						<img class="logo" src="images/logo.jpg" alt="logo" />
 						<a href="#/business">Business</a>
 						<a href="#/knowledge" ng-show="showKnowledge()">Knowledge</a>
 						<a href="#/stats">Stats</a>
@@ -151,6 +152,8 @@
 							<p class="name">Achievements Earned</p>
 							<p class="info">{{totalAchievements}} / {{possibleAchievements}}</p>
 						</div>
+
+						<p>Achievements</p>
 
 						<div class="item"
 							 ng-repeat="achievement in achievements"
