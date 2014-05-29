@@ -1,3 +1,9 @@
+$(function() {
+    $( document ).tooltip({
+      track: true
+    });
+  });
+
 var idleGame = angular.module('idleGame', ['ngRoute']);
 
 idleGame.config(['$routeProvider',
@@ -56,8 +62,6 @@ idleGame.service('gameService', function() {
 			description: "While reading binder upon binder of information is fun for some people, it is easier to learn and retain information from a good teacher." },
 		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
 			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
-		{ id: 45, itemId: 0, name: "Slave Labor", price: 400000, mps: 1.5, showAfter: [43],
-			description: "Pay your employees nothing for they are filth." },
 
 		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubicle will help increase team dynamics and promote synergy!" },
@@ -65,53 +69,41 @@ idleGame.service('gameService', function() {
 			description: "Better seating will reduce stress and improve your employees' quality of life!" },
 		{ id: 5, itemId: 1, name: "Modest Improvements", price: 120000, mps: .3,
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
-		{ id: 46, itemId: 1, name: "Steel Bars", price: 1500000, mps: 5, showAfter: [43],
-			description: "Trap your slaves inside.  They have no reason to leave." },
-
+		
 		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, 
 			description: "Changing the work schedule to four ten hour days and giving the employees a three day weekened boosts employee retention cutting down on the cost to train new employees!" },
 		{ id: 7, itemId: 2, name: "Free Lunch", price: 60000, mps: 1, 
 			description: "I guess there is such a thing." },
 		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2,
 			description: "Letting your employees do whatever they want (within reason) 20% of the day gives them more skills, better attitudes, and extra creativity to get the most out of the remaining 80%!" },
-		{ id: 47, itemId: 2, name: "Leashes", price: 15000000, mps: 30, showAfter: [43],
-			description: "Your employees are dogs.  Treat them as such." },
-
+		
 		{ id: 9, itemId: 7, name: "Ergonomic Keyboards", price: 50000, mps: .25, 
 			description: "Mitigate work related injuries with smarter keyboards for your employees!" },
 		{ id: 10, itemId: 7, name: "Upgraded Computers", price: 350000, mps: .5, 
 			description: "Your employees can get more done when they don't have to wait on technological limitations." },
 		{ id: 11, itemId: 7, name: "Enhanced Servers", price: 5000000, mps: 1, 
 			description: "Your clients are happier because of the higher load speeds and reduced down-time." },
-		{ id: 48, itemId: 7, name: "Bomb Collars", price: 75000000, mps: 100, showAfter: [43],
-			description: "Employees can no longer leave the building.  Otherwise...boom." },
-
+		
 		{ id: 12, itemId: 9, name: "Employee Handbook", price: 50000, mps: .01, 
 			description: "Make sure you read every page!" },
 		{ id: 13, itemId: 9, name: "Policy Documentation", price: 100000, mps: .01, 
 			description: "Your employees will make an extra effort to comply with the company's policies." },
 		{ id: 14, itemId: 9, name: "Christmas Party", price: 150000, mps: .01, 
 			description: "Your employees will never forget how drunk Jason from Accounting was that night!" },
-		{ id: 49, itemId: 9, name: "Initiate Human Sacrifice Policy", price: 75000000, mps: 100, showAfter: [43],
-			description: "Your employees will worker harder and be more productive when they see what happens to those who aren't!" },
-		
+				
 		{ id: 18, itemId: 4, name: "Chasing Nickels Around Dollar Bills", price: 150000, mps: 1.5, 
 			description: "Increase the effectiveness of your business by trimming small expenses.  Your employees are now unhappy your business charges for coffee in the breakroom." },
 		{ id: 19, itemId: 4, name: "Investments", price: 250000, mps: 2, 
 			description: "Purchase goods or services to make huge gains in the long run." },
 		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 350000, mps: 3, 
 			description: "Short term loss will guarentee a winning financial strategy in the long term!" },
-		{ id: 50, itemId: 4, name: "Enslavement", price: 250000000, mps: 300, showAfter: [43],
-			description: "Your Accounting Department's latest business strategy." },
-
+		
 		{ id: 21, itemId: 5, name: "Unlimited PTO", price: 500000, mps: 2, 
 			description: "Your workers will be very happy with a more flexible PTO schedule (and some may even take less PTO than normal)." },
 		{ id: 22, itemId: 5, name: "Health, Vision, and Dental Plans", price: 750000, mps: 3, 
 			description: "Lisa needs braces!" },
 		{ id: 23, itemId: 5, name: "Generous Pension", price: 1000000, mps: 4, 
 			description: "Keep employee retention up by offering them a generous pension in exchange for a lifetime of servitude." },
-		{ id: 51, itemId: 5, name: "Handcuffs", price: 500000000, mps: 550, showAfter: [43],
-			description: "Keep employee retention up by handuffing them to their workstation for a lifetime of slavery." },
 
 		{ id: 15, itemId: 3, name: "Useless Meetings", price: 1000000, mps: 0, 
 			description: "None of your employees are suffering from insomnia after that meeting!" },
@@ -119,27 +111,21 @@ idleGame.service('gameService', function() {
 			description: "None of your employees are suffering from insomnia after *that* meeting!" },
 		{ id: 17, itemId: 3, name: "Micromanagement", price: 2500000, mps: 0, 
 			description: "Upper Management does their best to get the most out of them slacking employees!" },
-		{ id: 52, itemId: 3, name: "Hellspawn", price: 1000000000, mps: 1000, showAfter: [43],
-			description: "Now your employees really can say their boss is Satan!" },
-
+		
 		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, 
 			description: "The most prized posession of every executive." },
 		{ id: 25, itemId: 6, name: "Goal Oriented Bonuses", price: 20000000, mps: 10, 
 			description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
 		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, 
 			description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
-		{ id: 53, itemId: 6, name: "Dictatorship", price: 2000000000, mps: 2250, showAfter: [43],
-			description: "Your executives have the power to do whatever they want." },
-
+		
 		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, 
 			description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
 		{ id: 28, itemId: 8, name: "Electric Car Charging Parking Lot", price: 100000000, mps: 50, 
 			description: "Now your employees can take their Tesla to work." },
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
-		{ id: 54, itemId: 8, name: "Treachery", price: 5000000000, mps: 5000, showAfter: [43],
-			description: "Your headquareters is now in the last circle of hell." },
-
+		
 		{ id: 30, itemId: "Business Opportunity", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1, isBusiness: 1,
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
 		{ id: 31, itemId: "Business Opportunity", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1, showAfter: [30], isBusiness: 1,
@@ -170,8 +156,6 @@ idleGame.service('gameService', function() {
 		{ id: 40, itemId: "Money/Second", name: "Butt Kisser", price: 1000000000, isAchievement: 1, per: .005, showAfter: [39], isBusiness: 1,
 			description: "Gain a percentage increase of Money/Second for every achievement earned." },
 		{ id: 41, itemId: "Money/Second", name: "Brown Noser", price: 10000000000, isAchievement: 1, per: .01, showAfter: [40], isBusiness: 1,
-			description: "Gain a percentage increase of Money/Second for every achievement earned." },
-		{ id: 42, itemId: "Money/Second", name: "Final Form", price: 66666666666.66, isAchievement: 1, per: .0666, showAfter: [41, 35], isBusiness: 1,
 			description: "Gain a percentage increase of Money/Second for every achievement earned." },
 	];
 
@@ -513,6 +497,43 @@ idleGame.service('gameService', function() {
 		{ id: 7, price: 15, type: 'upgrade',
 			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014 For Business", price: 8000, mps: 1,
 				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
+
+		// unlock tier 4
+		{ id: 8, price: 15, type: 'upgrade',
+			item: { id: 42, itemId: "Money/Second", name: "Space Program", price: 50000000000, isAchievement: 1, per: .05, showAfter: [41, 35], isBusiness: 1,
+			description: "Don't just shoot for the moon, mine it for minerals first." }},
+
+		// tier 4
+		{ id: 9, price: 1, type: 'upgrade',
+			item: { id: 45, itemId: 0, name: "Cloning", price: 400000, mps: 1.5, showAfter: [42],
+			description: "Don't hire employess - create them!" } },
+		{ id: 10, price: 2, type: 'upgrade',
+			item: { id: 46, itemId: 1, name: "Condensed Space", price: 1500000, mps: 5, showAfter: [42],
+			description: "By replacing your cubicles with cramped cells, you can fit more employees in your offices." } },
+		{ id: 11, price: 3, type: 'upgrade',
+			item: { id: 48, itemId: 7, name: "Space Tech", price: 75000000, mps: 100, showAfter: [42],
+			description: "Employess can finally get work done when their hardware isn't made out of stone knives and bearskins." } },
+		{ id: 12, price: 4, type: 'upgrade',
+			item: { id: 47, itemId: 2, name: "Shock Collars", price: 15000000, mps: 30, showAfter: [42],
+			description: "Don't let your best employees leave through any means necessary." } },
+		{ id: 13, price: 5, type: 'upgrade',
+			item: { id: 49, itemId: 9, name: "Holding Cells", price: 75000000, mps: 100, showAfter: [42],
+			description: "Put problem employees in the futuristic version of a dungeon." } },
+		{ id: 14, price: 6, type: 'upgrade',
+			item: { id: 50, itemId: 4, name: "Astro Mining", price: 250000000, mps: 300, showAfter: [42],
+			description: "Your Accounting Department's latest business strategy." } },
+		{ id: 15, price: 7, type: 'upgrade',
+			item: { id: 51, itemId: 5, name: "Death in Space Insurance", price: 500000000, mps: 550, showAfter: [42],
+			description: "Your employees are happy that their loved ones will be financially safe in case of loss of life in space." } },
+		{ id: 16, price: 8, type: 'upgrade',
+			item: { id: 52, itemId: 3, name: "Spaceship Captains", price: 1000000000, mps: 1000, showAfter: [42],
+			description: "Finally a real use for upper management!" } },
+		{ id: 17, price: 9, type: 'upgrade',
+			item: { id: 53, itemId: 6, name: "Fleet Admiral", price: 2000000000, mps: 2250, showAfter: [42],
+			description: "Your executives now have a roadmap of what planets to mine for years to come." } },
+		{ id: 18, price: 10, type: 'upgrade',
+			item: { id: 54, itemId: 8, name: "Space Station", price: 5000000000, mps: 5000, showAfter: [42],
+			description: "Land is getting scarce on the planet surface, so expanding your offices to the outer reaches of the galaxy cuts down heavily on expenses." } },
 	];
 
 	this.getItem = function(id) {

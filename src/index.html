@@ -1,6 +1,7 @@
 <head>
 	<script src="scripts/angular.min.js"></script>
 	<script src="scripts/jquery-1.11.1.min.js"></script>
+	<script src="scripts/jquery-ui-1.10.4.min.js"></script>
 	<script src="scripts/angular-route.min.js"></script>
 	<script src="scripts/idleGame.js"></script>
 	<script src="scripts/knowledge.js"></script>
@@ -13,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
 	<link rel="stylesheet" type="text/css" href="css/message.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css" />
 	<title>Angular Idle Game</title>
 </head>
 <body>
@@ -97,7 +99,8 @@
 							 ng-click="buyUpgrade(upgrade.id)"
 							 ng-mouseenter="hoverUpgrade = true"
 							 ng-mouseleave="hoverUpgrade = false"
-							 ng-show="canShowUpgrade(upgrade)">
+							 ng-show="canShowUpgrade(upgrade)"
+							 ng-attr-title="{{upgrade.description}}">
 							<p class="name">{{upgrade.name}}</p>
 							<div class="bottom info">
 								<p class="">Cost: {{upgrade.price | currency}}</p>
