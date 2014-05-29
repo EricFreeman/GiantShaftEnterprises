@@ -74,6 +74,8 @@ a:active {color: rgba(0, 0, 0, .75);}
 	height: 72px;
 	display: inline-block;
 	border-radius: 16px;
+
+	overflow: hidden;
 }
 
 .opportunityHover {

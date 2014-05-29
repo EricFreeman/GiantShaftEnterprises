@@ -70,11 +70,27 @@
 }
 
 .store {
-	float: left;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
 	width: 300px;
 }
 
 .upgrade {
-	float: right;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
 	width: 300px;
+}
+
+@media screen and (min-width:650px) {
+	.store {
+		float: left;
+		width: 300px;
+	}
+
+	.upgrade {
+		float: right;
+		width: 300px;
+	}
 }

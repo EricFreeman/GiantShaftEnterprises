@@ -17,7 +17,7 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 		playerService.money = 0;
 		playerService.items = [];
 		playerService.upgrades = [];
-		playerService.companyName = 'Default Company';
+		playerService.companyName = 'Giant Shaft Enterprises';
 		playerService.totalOpportunities = 0;
 		playerService.totalMoneyFromOpportunties = 0;
 

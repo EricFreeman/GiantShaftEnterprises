@@ -561,7 +561,7 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 
 	this.money = 0;
-	this.companyName = "Default Company";
+	this.companyName = "Giant Shaft Enterprises";
 
 	// For stats page
 	this.totalMoneyReset = 0;
