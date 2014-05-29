@@ -78,13 +78,13 @@
 							 ng-click="buyStoreItem($event, item.id)"
 							 ng-mouseenter="hoverStore = true"
 							 ng-mouseleave="hoverStore = false">
-							<div class="left">
-								<p class="name">{{item.name}}</p>
-								<p class="info">Adds: {{getMps(item.id) | currency}}</p>
-								<p class="info">Cost: {{currentPrice(item.id) | currency}}</p>
-							</div>
-							<div class="right">
-								<h1>{{getCount(item.id)}}</h1>
+							<p class="name">{{item.name}}</p>
+							<div class="bottom">
+								<span class="info">
+									<p>Adds: {{getMps(item.id) | currency}}</p>
+									<p>Cost: {{currentPrice(item.id) | currency}}</p>
+								</span>
+								<p class="count">{{getCount(item.id)}}</p>
 							</div>
 						</div>
 					</div>
@@ -98,30 +98,30 @@
 							 ng-mouseleave="hoverUpgrade = false"
 							 ng-show="canShowUpgrade(upgrade)">
 							<p class="name">{{upgrade.name}}</p>
-							<p class="info">Cost: {{upgrade.price | currency}}</p>
-							<p class="info"
-							   ng-show="!upgrade.isBusiness">
-								Adds: {{upgrade.mps | currency}}
-							</p>
-							<p class="info"
-							   ng-show="upgrade.isOpportunity && upgrade.mpo">
-								Adds: {{upgrade.mpo | currency}}/Opportunity
-							</p>
-							<p class="info"
-							   ng-show="upgrade.isOpportunity && upgrade.mpop">
-								Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
-							</p>
-							<p class="info"
-							   ng-show="upgrade.isOnLoad">
-								Adds: {{upgrade.per * 100}}% of MPS
-							</p>
-							<p class="info"
-							   ng-show="upgrade.isAchievement">
-								Adds: {{upgrade.per * 100 | number:2}}%/Achievement
-							</p>
-							<p class="info">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
-							<br />
-							<p class="description">{{upgrade.description}}</p>
+							<div class="bottom info">
+								<p class="">Cost: {{upgrade.price | currency}}</p>
+								<p class=""
+								   ng-show="!upgrade.isBusiness">
+									Adds: {{upgrade.mps | currency}}
+								</p>
+								<p class=""
+								   ng-show="upgrade.isOpportunity && upgrade.mpo">
+									Adds: {{upgrade.mpo | currency}}/Opportunity
+								</p>
+								<p class=""
+								   ng-show="upgrade.isOpportunity && upgrade.mpop">
+									Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
+								</p>
+								<p class=""
+								   ng-show="upgrade.isOnLoad">
+									Adds: {{upgrade.per * 100}}% of MPS
+								</p>
+								<p class=""
+								   ng-show="upgrade.isAchievement">
+									Adds: {{upgrade.per * 100 | number:2}}%/Achievement
+								</p>
+								<p class="">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
+							</div>
 						</div>
 					</div>
 
@@ -167,13 +167,13 @@
 				</script>
 
 				<script type="text/ng-template" id="knowledge.html">
-					<div class="border">
+					<div>
 						<section>
 							<p>Available Knowledge: {{knowledge()}}</p>
 						</section>
 					</div>
 					<br />
-					<div class="knowledge border" ng-controller="KnowledgeController">
+					<div class="knowledge" ng-controller="KnowledgeController">
 						<div class="item"
 							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK, alreadyBought: alreadyBought(item.id)}" 
 							 ng-repeat="item in items"
@@ -202,15 +202,15 @@
 						</section>
 						<section>
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
-							<button ng-click="saveGame()">Save Game</button>
+							<a class="button" ng-click="saveGame()">Save Game</a>
 						</section>
 						<section>
 							<p>Lose control of your current company, but gain Business Knowledge based on how much total money your current business made.  This can be used to unlock new items and upgrades for your next company!</p>
-							<button ng-click="prestige()">Start New Business</button>
+							<a class="button" ng-click="prestige()">Start New Business</a>
 						</section>
 						<section>
 							<p>This will hard reset your game (refresh after you press it):</p>
-							<button ng-click="resetGame()">Reset Game</button>
+							<a class="button" ng-click="resetGame()">Reset Game</a>
 						</section>
 
 						<section><h2 class="underline">About</h2></section>

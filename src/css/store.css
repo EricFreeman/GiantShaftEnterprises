@@ -1,6 +1,6 @@
 .item  {
+	position: relative;
 	margin-bottom: 8px;
-	min-height: 64px;
 	padding: 15px;
 
 	border: 3px solid;
@@ -35,11 +35,29 @@
 }
 
 .item .name {
-	font-family: Segoe UI;
+	font-weight: bold;
+	font-size: 16px;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .item .info {
 	font-size: 14px;
+	color: #999999;
+	display: inline-block;
+}
+
+.item .count {
+	text-align: right;
+	font-weight: bold;
+	font-size: 32px;
+	float: right;
+}
+
+.item .bottom {
+	width: 100%;
+	margin-top: 8px;
 }
 
 .item .description {
