@@ -12,6 +12,9 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 		playerService.knowledge += knowledgeGained;
 		playerService.totalKnowledge += knowledgeGained;
 
+		playerService.totalCompaniesStarted++;
+		playerService.totalOpportunitiesReset += playerService.totalOpportunities;
+
 		playerService.totalMoneyReset += playerService.totalMoney;
 		playerService.totalMoney = 0;
 		playerService.money = 0;

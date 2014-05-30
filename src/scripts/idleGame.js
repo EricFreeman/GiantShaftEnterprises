@@ -474,64 +474,64 @@ idleGame.service('gameService', function() {
 
 	// All business knowledge items you can buy are here
 	this.knowledgeItems = [
-		{ id: 0, price: 15, type: 'item', parent: -1,
+		{ id: 0, price: 10, type: 'item', parent: -1, description: 'New early game item',
 			item: { id: 10, name: "Office Supplies", mps: .1, price: 10 } },
-		{ id: 1, price: 5, type: 'upgrade', parent: 0,
+		{ id: 1, price: 5, type: 'upgrade', parent: 0, description: 'Upgrade for Office Supplies',
 			item: { id: 55, itemId: 10, name: "Pens and Paper Galore!", price: 250, mps: .05,
 				description: "Your employees are happy at the amount of office supplies they can sneak home now!" } },
-		{ id: 2, price: 5, type: 'upgrade', parent: 0,
+		{ id: 2, price: 5, type: 'upgrade', parent: 0, description: 'Upgrade for Office Supplies',
 			item: { id: 56, itemId: 10, name: "Red Swingline Staplers", price: 500, mps: .1,
 				description: "I believe you have my stapler." } },
-		{ id: 3, price: 5, type: 'upgrade', parent: 0,
+		{ id: 3, price: 5, type: 'upgrade', parent: 0, description: 'Upgrade for Office Supplies',
 			item: { id: 57, itemId: 10, name: "Office Copy Machine", price: 1000, mps: .15,
 				description: "Perfect for printing pictures of your tuchus." } },
 
-		{ id: 4, price: 15, type: 'item', parent: -1,
+		{ id: 4, price: 15, type: 'item', parent: -1, description: 'New mid game item',
 			item: { id: 11, name: "Software", mps: 1, price: 750 }},
-		{ id: 5, price: 15, type: 'upgrade', parent: 4,
+		{ id: 5, price: 10, type: 'upgrade', parent: 4, description: 'Upgrade for Software',
 			item: { id: 58, itemId: 11, name: "Contoso Office", price: 2000, mps: .4,
 				description: "Your employees are happy that they no longer have to use Notepad." } },
-		{ id: 6, price: 15, type: 'upgrade', parent: 4,
+		{ id: 6, price: 10, type: 'upgrade', parent: 4, description: 'Upgrade for Software',
 			item: { id: 59, itemId: 11, name: "Contoso Office 365", price: 4000, mps: .8,
 				description: "Your employees are starting to wish they stuck with Notepad." } },
-		{ id: 7, price: 15, type: 'upgrade', parent: 4,
+		{ id: 7, price: 10, type: 'upgrade', parent: 4, description: 'Upgrade for Software',
 			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014 For Business", price: 8000, mps: 1,
 				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
 
 		// unlock tier 4
-		{ id: 8, price: 15, type: 'upgrade', parent: -1,
+		{ id: 8, price: 15, type: 'upgrade', parent: -1, description: 'Unlock 4th Tier Upgrades For Base Items',
 			item: { id: 42, itemId: "Money/Second", name: "Space Program", price: 50000000000, isAchievement: 1, per: .05, showAfter: [41, 35], isBusiness: 1,
 			description: "Don't just shoot for the moon, mine it for minerals first." }},
 
 		// tier 4
-		{ id: 9, price: 1, type: 'upgrade', parent: 8,
+		{ id: 9, price: 1, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Minimum Wage Workers',
 			item: { id: 45, itemId: 0, name: "Cloning", price: 400000, mps: 1.5, showAfter: [42],
 			description: "Don't hire employess - create them!" } },
-		{ id: 10, price: 2, type: 'upgrade', parent: 8,
+		{ id: 10, price: 2, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Cubicle.',
 			item: { id: 46, itemId: 1, name: "Condensed Space", price: 1500000, mps: 5, showAfter: [42],
 			description: "By replacing your cubicles with cramped cells, you can fit more employees in your offices." } },
-		{ id: 11, price: 3, type: 'upgrade', parent: 8,
+		{ id: 11, price: 3, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Hardware',
 			item: { id: 48, itemId: 7, name: "Space Tech", price: 75000000, mps: 100, showAfter: [42],
 			description: "Employess can finally get work done when their hardware isn't made out of stone knives and bearskins." } },
-		{ id: 12, price: 4, type: 'upgrade', parent: 8,
+		{ id: 12, price: 4, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Salary Employee',
 			item: { id: 47, itemId: 2, name: "Shock Collars", price: 15000000, mps: 30, showAfter: [42],
 			description: "Don't let your best employees leave through any means necessary." } },
-		{ id: 13, price: 5, type: 'upgrade', parent: 8,
+		{ id: 13, price: 5, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for HR Department',
 			item: { id: 49, itemId: 9, name: "Holding Cells", price: 75000000, mps: 100, showAfter: [42],
 			description: "Put problem employees in the futuristic version of a dungeon." } },
-		{ id: 14, price: 6, type: 'upgrade', parent: 8,
+		{ id: 14, price: 6, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Accounting Department',
 			item: { id: 50, itemId: 4, name: "Astro Mining", price: 250000000, mps: 300, showAfter: [42],
 			description: "Your Accounting Department's latest business strategy." } },
-		{ id: 15, price: 7, type: 'upgrade', parent: 8,
+		{ id: 15, price: 7, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Benefits Package',
 			item: { id: 51, itemId: 5, name: "Death in Space Insurance", price: 500000000, mps: 550, showAfter: [42],
 			description: "Your employees are happy that their loved ones will be financially safe in case of loss of life in space." } },
-		{ id: 16, price: 8, type: 'upgrade', parent: 8,
+		{ id: 16, price: 8, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Upper Management',
 			item: { id: 52, itemId: 3, name: "Spaceship Captains", price: 1000000000, mps: 1000, showAfter: [42],
 			description: "Finally a real use for upper management!" } },
-		{ id: 17, price: 9, type: 'upgrade', parent: 8,
+		{ id: 17, price: 9, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Executive',
 			item: { id: 53, itemId: 6, name: "Fleet Admiral", price: 2000000000, mps: 2250, showAfter: [42],
 			description: "Your executives now have a roadmap of what planets to mine for years to come." } },
-		{ id: 18, price: 10, type: 'upgrade', parent: 8,
+		{ id: 18, price: 10, type: 'upgrade', parent: 8, description: '4th Tier Upgrade for Office Building',
 			item: { id: 54, itemId: 8, name: "Space Station", price: 5000000000, mps: 5000, showAfter: [42],
 			description: "Land is getting scarce on the planet surface, so expanding your offices to the outer reaches of the galaxy cuts down heavily on expenses." } },
 	];
@@ -573,6 +573,9 @@ idleGame.service('playerService', function () {
 	this.totalKnowledge = 0;
 	this.knowledge = 0;
 	this.unlockedKnowledgeItems = [];
+
+	this.totalCompaniesStarted = 1;
+	this.totalOpportunitiesReset = 0;
 
 	// Settings
 	this.hideBoughtUpgrades = false;

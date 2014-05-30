@@ -134,14 +134,19 @@
 				<script type="text/ng-template" id="stats.html">
 					<div class="stats" ng-controller="StatsController">
 						<div class="item enabled">
-							<p class="name">Total Money Earned</p>
-							<p class="info">{{playerService.totalMoney | currency}}</p>
+							<p class="name">Money</p>
+							<div class="info">
+								<p>This Company: {{playerService.totalMoney | currency}}</p>
+								<p>Previous: {{playerService.totalMoneyReset | currency}}</p>
+							</div>
 						</div>
 						<div class="item enabled">
 							<p class="name">Total Business Opportunties</p>
-							<p class="info">Opportunities: {{playerService.totalOpportunities}}</p>
-							<p class="info">Total Earned: {{playerService.totalMoneyFromOpportunties | currency}}</p>
-							<p class="info">Current Per Opportunity: {{cacheService.clickPower() | currency}}</p>
+							<div class="info">
+								<p>Opportunities: {{playerService.totalOpportunities}}</p>
+								<p>Total Earned: {{playerService.totalMoneyFromOpportunties | currency}}</p>
+								<p>Current Per Opportunity: {{cacheService.clickPower() | currency}}</p>
+							</div>
 						</div>
 						<div class="item enabled">
 							<p class="name">Buildings Bought</p>
@@ -188,7 +193,10 @@
 							 ng-mouseleave="hoverK = false"
 							 ng-show="canShow(item.id)">
 							<p class="name">{{item.item.name}}</p>
-							<p class="info">{{item.price}} Knowledge</p>
+							<div class="info">
+								<p>{{item.description}}</p>
+								<p>{{item.price}} Knowledge</p>
+							</div>
 						</div>
 					</div>
 				</script>
