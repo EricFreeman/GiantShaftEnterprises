@@ -169,6 +169,11 @@ h3 {
 	height: 0px;
 }
 
+li {
+	list-style-type: disc;
+	margin-left: 16px;
+}
+
 /* Fake Buttons */
 .button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;

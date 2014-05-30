@@ -578,7 +578,7 @@ idleGame.service('playerService', function () {
 	this.totalOpportunitiesReset = 0;
 
 	// Settings
-	this.hideBoughtUpgrades = false;
+	this.hideBoughtUpgrades = true;
 	this.fps = 10;
 
 	this.getItem = function(id) {
