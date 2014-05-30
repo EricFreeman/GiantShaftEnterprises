@@ -137,13 +137,14 @@
 							<p class="name">Money</p>
 							<div class="info">
 								<p>This Company: {{playerService.totalMoney | currency}}</p>
-								<p>Previous: {{playerService.totalMoneyReset | currency}}</p>
+								<p ng-show="playerService.totalMoneyReset > 0">Previous: {{playerService.totalMoneyReset | currency}}</p>
 							</div>
 						</div>
 						<div class="item enabled">
-							<p class="name">Total Business Opportunties</p>
+							<p class="name">Business Opportunties</p>
 							<div class="info">
-								<p>Opportunities: {{playerService.totalOpportunities}}</p>
+								<p>This Company: {{playerService.totalOpportunities}}</p>
+								<p ng-show="playerService.totalOpportunitiesReset > 0">Previous: {{playerService.totalOpportunitiesReset}}</p>
 								<p>Total Earned: {{playerService.totalMoneyFromOpportunties | currency}}</p>
 								<p>Current Per Opportunity: {{cacheService.clickPower() | currency}}</p>
 							</div>
@@ -159,6 +160,13 @@
 						<div class="item enabled">
 							<p class="name">Achievements Earned</p>
 							<p class="info">{{totalAchievements}} / {{possibleAchievements}}</p>
+						</div>
+						<div class="item enabled" ng-show="playerService.knowledge > 0">
+							<p class="name">Business Knowledge</p>
+							<div class="info">
+								<p>Current: {{playerService.knowledge}}</p>
+								<p>Total: {{playerService.totalKnowledge}}</p>
+							</div>
 						</div>
 
 						<p>Achievements</p>
