@@ -143,18 +143,26 @@ h3 {
 .leftAd {
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	bottom: 0px;
+	display: none;
 }
 
 .rightAd {
 	position: absolute;
 	right: 0px;
-	top: 0px;
+	bottom: 0px;
+	display: none;
 }
 
 .bottomAd {
-	margin-top: 64px;
+	margin-top: 16px;
 	text-align: center;
+}
+
+@media screen and (min-width:875px) {
+	.rightAd, .leftAd {
+		display: block;
+	}
 }
 
 .updateText {
