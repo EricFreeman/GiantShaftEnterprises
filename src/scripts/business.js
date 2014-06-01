@@ -61,16 +61,16 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		return $scope.currentPrice(item) > playerService.money;
 	};
 
-	$scope.buyStoreItem = function($event, id) {
+	$scope.buyStoreItem = function($event, item) {
 		var count = 1;
 		if($event.shiftKey && $event.altKey) count = 1000;
 		else if($event.shiftKey) count = 10;
 		else if($event.altKey) count = 100;
 
 		for(var i = 0; i < count; i++) {
-			if(!$scope.cantBuyStoreItem(id)) {
-				playerService.money -= $scope.currentPrice(id);
-				playerService.buyItem(id);
+			if(!$scope.cantBuyStoreItem(item)) {
+				playerService.money -= $scope.currentPrice(item);
+				playerService.buyItem(item.id);
 			}
 		}
 
@@ -94,9 +94,8 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		return notEnoughMoney || $scope.alreadyBought(upgrade.id);
 	};
 	
-	$scope.buyUpgrade = function(id) {
-		if(!$scope.cantBuyUpgrade(id)) {
-			var upgrade = gameService.getUpgrade(id);
+	$scope.buyUpgrade = function(upgrade) {
+		if(!$scope.cantBuyUpgrade(upgrade)) {
 			playerService.money -= upgrade.price;
 			playerService.buyUpgrade(upgrade);
 			$rootScope.$broadcast('updateCache');

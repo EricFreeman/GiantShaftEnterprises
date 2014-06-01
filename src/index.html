@@ -78,7 +78,7 @@
 						<div class="item" 
 							 ng-class="{disabled: cantBuyStoreItem(item), enabled: !cantBuyStoreItem(item), hover: !cantBuyStoreItem(item) && hoverStore}" 
 							 ng-repeat="item in items track by $index" 
-							 ng-click="buyStoreItem($event, item.id)"
+							 ng-click="buyStoreItem($event, item)"
 							 ng-mouseenter="hoverStore = true"
 							 ng-mouseleave="hoverStore = false">
 							<p class="name">{{item.name}}</p>
@@ -96,7 +96,7 @@
 						<div class="item"
 							 ng-class="{disabled: cantBuyUpgrade(upgrade), enabled: !cantBuyUpgrade(upgrade), hover: !cantBuyUpgrade(upgrade) && hoverUpgrade, alreadyBought: alreadyBought(upgrade.id)}" 
 							 ng-repeat="upgrade in upgrades track by $index"
-							 ng-click="buyUpgrade(upgrade.id)"
+							 ng-click="buyUpgrade(upgrade)"
 							 ng-mouseenter="hoverUpgrade = true"
 							 ng-mouseleave="hoverUpgrade = false"
 							 ng-show="canShowUpgrade(upgrade)"

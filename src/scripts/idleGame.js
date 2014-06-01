@@ -615,7 +615,7 @@ idleGame.service('playerService', function () {
 
 	this.buyItem = function(id) {
 		var item = this.getItem(id);
-
+		
 		// Add an entry for it if nobody has bought it yet.
 		if(item.id === -1) {
 			item.id = id;
