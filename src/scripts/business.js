@@ -36,13 +36,13 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	$scope.items = gameService.items;
 	$scope.boughtItems = playerService.items;
 	
-	$scope.currentPrice = function(id) {
+	$scope.currentPrice = function(item) {
 		var priceIncrease = .2; // 20% per item already bought
-		return gameService.getItem(id).price + (playerService.getItem(id).count * gameService.getItem(id).price * priceIncrease);
+		return item.price + (playerService.getItem(item.id).count * item.price * priceIncrease);
 	}
 	
-	$scope.getMps = function(id) {
-		return gameService.getItem(id).mps + $scope.getUpgradesMps(id);
+	$scope.getMps = function(item) {
+		return item.mps + $scope.getUpgradesMps(item.id);
 	}
 
 	// Get the mps that should be added in from the upgrades for the specified item
@@ -57,8 +57,8 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		return playerService.getItem(id).count;
 	}
 
-	$scope.cantBuyStoreItem = function(id) {
-		return $scope.currentPrice(id) > playerService.money;
+	$scope.cantBuyStoreItem = function(item) {
+		return $scope.currentPrice(item) > playerService.money;
 	};
 
 	$scope.buyStoreItem = function($event, id) {
@@ -89,9 +89,9 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		return playerService.getUpgrade(id).id != -1;
 	}
 
-	$scope.cantBuyUpgrade = function(id) {
-		var notEnoughMoney = gameService.getUpgrade(id).price > playerService.money;
-		return notEnoughMoney || $scope.alreadyBought(id);
+	$scope.cantBuyUpgrade = function(upgrade) {
+		var notEnoughMoney = upgrade.price > playerService.money;
+		return notEnoughMoney || $scope.alreadyBought(upgrade.id);
 	};
 	
 	$scope.buyUpgrade = function(id) {
