@@ -114,8 +114,8 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	$scope.canShowUpgrade = function(upgrade) {
 		// Make sure you own all pre requisit upgrades for this specific upgrade
 		var haveAllPrereq = true;
-		if(gameService.getUpgrade(upgrade.id).showAfter) {
-			haveAllPrereq = gameService.getUpgrade(upgrade.id).showAfter.reduce(function(prev, cur) {
+		if(upgrade.showAfter) {
+			haveAllPrereq = upgrade.showAfter.reduce(function(prev, cur) {
 				return prev && $scope.alreadyBought(cur);
 			}, true);
 		}

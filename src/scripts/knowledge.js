@@ -13,7 +13,15 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 
 	$scope.canShow = function(id) {
 		var item = gameService.getKnowledgeItem(id);
-		return item.parent === -1 || playerService.getKnowledgeItem(item.parent).id !== -1;
+		var hasAllParents = true;
+
+		if(item.parent) {
+			for(var i = 0; i < item.parent.length; i++) {
+				hasAllParents &= playerService.getKnowledgeItem(item.parent[i]).id >= 0
+			}
+		}
+
+		return hasAllParents;
 	}
 
 	$scope.buy = function(id) {
