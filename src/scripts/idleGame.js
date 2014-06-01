@@ -470,6 +470,48 @@ idleGame.service('gameService', function() {
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 10000; }
 		},
+
+		{ id: 64, name: "Office 1 Superstore", 
+			description: "Own ten Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 10; }
+		},
+		{ id: 65, name: "Office Depot", 
+			description: "Own one hundred Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 100; }
+		},
+		{ id: 66, name: "OfficeMax", 
+			description: "Own one thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 1000; }
+		},
+		{ id: 67, name: "Staples", 
+			description: "Own ten thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 10000; }
+		},
+
+		{ id: 68, name: "Solidware", 
+			description: "Own ten Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10; }
+		},
+		{ id: 69, name: "Liquidware", 
+			description: "Own one hundred Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 100; }
+		},
+		{ id: 70, name: "Gasware", 
+			description: "Own one thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 1000; }
+		},
+		{ id: 71, name: "Vaporware", 
+			description: "Own ten thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10000; }
+		},
 	];
 
 	// All business knowledge items you can buy are here
@@ -615,7 +657,7 @@ idleGame.service('playerService', function () {
 
 	this.buyItem = function(id) {
 		var item = this.getItem(id);
-		
+
 		// Add an entry for it if nobody has bought it yet.
 		if(item.id === -1) {
 			item.id = id;
