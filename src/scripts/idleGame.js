@@ -512,6 +512,27 @@ idleGame.service('gameService', function() {
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10000; }
 		},
+
+		{ id: 72, name: "Space Station 5", 
+			description: "Own ten Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10; }
+		},
+		{ id: 73, name: "Babylon 5", 
+			description: "Own one hundred Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 100; }
+		},
+		{ id: 74, name: "Deep Space 9", 
+			description: "Own one thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 1000; }
+		},
+		{ id: 75, name: "Death Star", 
+			description: "Own ten thousand Office Supplies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10000; }
+		},
 	];
 
 	// All business knowledge items you can buy are here
