@@ -21,7 +21,7 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 			}
 		}
 
-		return hasAllParents;
+		return hasAllParents && (!$scope.alreadyBought(id) || !playerService.hideBoughtUpgrades);
 	}
 
 	$scope.buy = function(id) {
