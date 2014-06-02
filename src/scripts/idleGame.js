@@ -542,11 +542,27 @@ idleGame.service('gameService', function() {
 			item: { id: 59, itemId: 11, name: "Contoso Office 365", price: 4000, mps: .8,
 				description: "Your employees are starting to wish they stuck with Notepad." } },
 		{ id: 7, price: 10, type: 'upgrade', parent: [4], description: 'Upgrade for Software',
-			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014 For Business", price: 8000, mps: 1,
+			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014", price: 8000, mps: 1,
 				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
 		{ id: 19, price: 15, type: 'upgrade', parent: [4, 8], description: 'Upgrade for Software',
 			item: { id: 61, itemId: 11, name: "Contoso OneOffice PremiumDrive x365Box 2014 For Business Enterprise Edition", price: 1000000, mps: 20, showAfter: [42],
 				description: "Your employees now hate you." } },
+
+		// Space Station and tier 1 - 4 upgrades
+		{ id: 21, price: 100, type: 'item', description: 'New end game item',
+			item: { id: 12, name: "Space Station", mps: 3000, price: 50000000 }},
+		{ id: 22, price: 50, type: 'upgrade', parent: [21], description: 'Upgrade for Space Station',
+			item: { id: 62, itemId: 12, name: "Teleporters", price: 5000000000, mps: 3000,
+				description: "Add easy access to your space stations helps reduce transportation costs." } },
+		{ id: 23, price: 50, type: 'upgrade', parent: [21], description: 'Upgrade for Space Station',
+			item: { id: 63, itemId: 12, name: "Personal Army", price: 10000000000, mps: 8000,
+				description: "Outfitting your station with a highly trained army will reduce the chance of alien attacks." } },
+		{ id: 24, price: 50, type: 'upgrade', parent: [21], description: 'Upgrade for Space Station',
+			item: { id: 64, itemId: 12, name: "Research Lab", price: 15000000000, mps: 20000,
+				description: "Conduct any kind of research and tests you want without being bound to the laws of Earth!" } },
+		{ id: 25, price: 100, type: 'upgrade', parent: [21, 8], description: 'Upgrade for Space Station',
+			item: { id: 65, itemId: 12, name: "Giant Death-Ray", price: 25000000000, mps: 45000, showAfter: [42],
+				description: "Destroy all who oppose you." } },
 
 
 		// unlock tier 4
