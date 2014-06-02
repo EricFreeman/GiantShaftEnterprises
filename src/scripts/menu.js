@@ -1,5 +1,6 @@
 function MenuController($rootScope, $scope, playerService, saveService) {
 	$scope.playerService = playerService;
+	$scope.potentialKp = function() { return Math.round(playerService.totalMoney / 1000000000); } 
 
 	$scope.saveGame = function() {
 		saveService.saveGame();
