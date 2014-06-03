@@ -55,7 +55,7 @@
 								<div class="opportunity center noSelect"
 									 ng-class="{enabled: true, opportunityHover: hoverButton}"
 									 ng-init="generateOpportunities()"
-									 ng-click="doBusiness(opportunity)"
+									 ng-click="doBusiness(opportunity, $event)"
 									 ng-mouseenter="hoverButton = true"
 									 ng-mouseleave="hoverButton = false">
 									<p>{{opportunity}}</p>
@@ -299,6 +299,11 @@
 					 class="messageStart messageBottom center">
 					<p>{{message.text}}</p>
 				</div>
+
+				<p ng-repeat="s in spawn"
+					 class="numberPop">
+					{{s.data.text | currency}}
+				</p>
 			</div>
 		</div>
 	</div>

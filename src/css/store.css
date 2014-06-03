@@ -21,9 +21,15 @@
 	background-color: white;
 }
 
-.item.disabled, .item.alreadyBought {
+.item.disabled {
 	color: #999999;
 	background-color: white;
+	border-color: #999999;
+}
+
+.item.alreadyBought {
+	color: #999999;
+	background-color: rgba(0, 255, 0, .1);
 	border-color: #999999;
 }
 

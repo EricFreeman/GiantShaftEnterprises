@@ -85,9 +85,9 @@ a:active {color: rgba(0, 0, 0, .75);}
 .noSelect {
 	/* Prevent double clicking the page or items or something from highlighting text */
 	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit (konqueror) browsers */
-    -ms-user-select: none; /* IE10+ */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
 }
 
 .left {

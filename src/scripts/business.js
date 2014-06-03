@@ -4,7 +4,7 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		"Meet with clients.",
 		"Meet with investors.",
 		"Conduct business meeting at the golf course.", 
-		"Buy $100 steaks on the company card.", 
+		"Buy expensive steaks on the company card.", 
 		"Power nap during meeting.",
 		"Analyze information.",
 		"Evaluate options.",
@@ -21,12 +21,21 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	];
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 
-	$scope.doBusiness = function(curr) {
-		var cp = cacheService.clickPower();
+	$scope.doBusiness = function(curr, event) {
+		var cp = cacheService.clickPower(),
+			offsetX = 4, offsetY = 16,
+			randomSpead = 32;
 		playerService.money += cp;
 		playerService.totalMoney += cp;
 		playerService.totalMoneyFromOpportunties += cp;
 		playerService.totalOpportunities++;
+
+		$rootScope.$broadcast('spawnText', {
+			text: cp, 
+			x: event.x - offsetX - Math.random() * randomSpead + randomSpead / 2,
+			y: event.y - offsetY - Math.random() * randomSpead + randomSpead / 2,
+			time: new Date()
+		});
 
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();
