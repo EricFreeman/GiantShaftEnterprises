@@ -493,43 +493,64 @@ idleGame.service('gameService', function() {
 		},
 
 		{ id: 68, name: "Solidware", 
-			description: "Own ten Office Supplies.",
+			description: "Own ten Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10; }
 		},
 		{ id: 69, name: "Liquidware", 
-			description: "Own one hundred Office Supplies.",
+			description: "Own one hundred Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 100; }
 		},
 		{ id: 70, name: "Gasware", 
-			description: "Own one thousand Office Supplies.",
+			description: "Own one thousand Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 1000; }
 		},
 		{ id: 71, name: "Vaporware", 
-			description: "Own ten thousand Office Supplies.",
+			description: "Own ten thousand Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10000; }
 		},
 
+		{ id: 76, name: "Ford", 
+			description: "Own ten Company Cars.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 10; }
+		},
+		{ id: 77, name: "Toyota", 
+			description: "Own one hundred Company Cars.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 100; }
+		},
+		{ id: 78, name: "Audi", 
+			description: "Own one thousand Company Cars.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 1000; }
+		},
+		{ id: 79, name: "Tesla", 
+			description: "Own ten thousand Company Cars.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 10000; }
+		},
+
 		{ id: 72, name: "Space Station 5", 
-			description: "Own ten Office Supplies.",
+			description: "Own ten Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10; }
 		},
 		{ id: 73, name: "Babylon 5", 
-			description: "Own one hundred Office Supplies.",
+			description: "Own one hundred Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 100; }
 		},
 		{ id: 74, name: "Deep Space 9", 
-			description: "Own one thousand Office Supplies.",
+			description: "Own one thousand Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 1000; }
 		},
 		{ id: 75, name: "Death Star", 
-			description: "Own ten thousand Office Supplies.",
+			description: "Own ten thousand Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10000; }
 		},
@@ -569,6 +590,22 @@ idleGame.service('gameService', function() {
 			item: { id: 61, itemId: 11, name: "Contoso OneOffice PremiumDrive x365Box 2014 For Business Enterprise Edition", price: 1000000, mps: 20, showAfter: [42],
 				description: "Your employees now hate you." } },
 
+		// Company Car and tier 1 - 4 upgrades
+		{ id: 26, price: 35, type: 'item', description: 'New mid game item',
+			item: { id: 13, name: "Company Car", mps: 6, price: 35000 }},
+		{ id: 27, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
+			item: { id: 66, itemId: 13, name: "Electric Car", price: 500000, mps: 4,
+				description: "Save money on gas when switching to electic cars." } },
+		{ id: 28, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
+			item: { id: 67, itemId: 13, name: "Solar Powered", price: 750000, mps: 8,
+				description: "Save money on electric bill by harnessing energy from the sun." } },
+		{ id: 29, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
+			item: { id: 68, itemId: 13, name: "Self Driving Cars", price: 1000000, mps: 16,
+				description: "Get extra work done while your car drives by itself." } },
+		{ id: 30, price: 35, type: 'upgrade', parent: [26, 8], description: 'Upgrade for Company Car',
+			item: { id: 69, itemId: 13, name: "Flying Cars", price: 500000000, mps: 750, showAfter: [42],
+				description: "Save money on wheels and cut down on transportation time by flying over water instead of driving around it." } },
+
 		// Space Station and tier 1 - 4 upgrades
 		{ id: 21, price: 100, type: 'item', description: 'New end game item',
 			item: { id: 12, name: "Space Station", mps: 3000, price: 50000000 }},
@@ -584,7 +621,6 @@ idleGame.service('gameService', function() {
 		{ id: 25, price: 100, type: 'upgrade', parent: [21, 8], description: 'Upgrade for Space Station',
 			item: { id: 65, itemId: 12, name: "Giant Death-Ray", price: 25000000000, mps: 45000, showAfter: [42],
 				description: "Destroy all who oppose you." } },
-
 
 		// unlock tier 4
 		{ id: 8, price: 15, type: 'upgrade', description: 'Unlock 4th Tier Upgrades For Base Items',
