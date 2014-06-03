@@ -735,7 +735,7 @@ idleGame.service('playerService', function () {
 		if(item.id === -1) {
 			item.id = id;
 			item.count++;
-			this.items.push(item);
+			this.items.push({id: id, count: item.count});
 		}
 		else {
 			var index = this.items.indexOf(item);
@@ -744,7 +744,7 @@ idleGame.service('playerService', function () {
 	};
 
 	this.buyUpgrade = function(upgrade) {
-		this.upgrades.push(upgrade);
+		this.upgrades.push({id: upgrade.id});
 	};
 });
 

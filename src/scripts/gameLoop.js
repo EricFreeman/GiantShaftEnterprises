@@ -93,6 +93,8 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);
+
+		document.title = playerService.companyName;
 	};
 
 	$scope.firstTime = true;
