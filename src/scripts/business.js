@@ -30,12 +30,14 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		playerService.totalMoneyFromOpportunties += cp;
 		playerService.totalOpportunities++;
 
-		$rootScope.$broadcast('spawnText', {
-			text: cp, 
-			x: event.x - offsetX - Math.random() * randomSpead + randomSpead / 2,
-			y: event.y - offsetY - Math.random() * randomSpead + randomSpead / 2,
-			time: new Date()
-		});
+		if(!playerService.hideNumberPops) {
+			$rootScope.$broadcast('spawnText', {
+				text: cp, 
+				x: event.x - offsetX - Math.random() * randomSpead + randomSpead / 2,
+				y: event.y - offsetY - Math.random() * randomSpead + randomSpead / 2,
+				time: new Date()
+			});
+		}
 
 		while($scope.opportunity == curr)
 			$scope.opportunity = $scope.possibleOpportunities.randomElement();

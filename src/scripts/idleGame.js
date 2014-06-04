@@ -53,7 +53,7 @@ idleGame.service('gameService', function() {
 	//		isOnLoad -		only used when the game is loaded
 	//		mpo - 			money per opportunity
 	//		mpop - 			money per opportunity percentage (of MPS)
-	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades was purchased
+	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades were purchased
 	// WARNING: When adding new upgrades, it is essntial to check knowledgeItems when determining what the next id for the upgrade should be!
 	this.upgrades = [
 		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
@@ -716,6 +716,7 @@ idleGame.service('playerService', function () {
 
 	// Settings
 	this.hideBoughtUpgrades = true;
+	this.hideNumberPops = false;
 	this.fps = 10;
 
 	this.getItem = function(id) {
