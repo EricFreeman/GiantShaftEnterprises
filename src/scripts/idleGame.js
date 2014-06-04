@@ -721,6 +721,8 @@ idleGame.service('playerService', function () {
 	// Settings
 	this.hideBoughtUpgrades = true;
 	this.hideNumberPops = false;
+	this.showTutorial = true;
+	this.tutorialStep = 0;
 	this.fps = 10;
 
 	this.getItem = function(id) {

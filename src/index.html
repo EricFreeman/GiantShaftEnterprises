@@ -9,11 +9,11 @@
 	<script src="scripts/business.js"></script>
 	<script src="scripts/menu.js"></script>
 	<script src="scripts/stats.js"></script>
-	<script src="scripts/message.js"></script>
+	<script src="scripts/overlay.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
-	<link rel="stylesheet" type="text/css" href="css/message.css" />
+	<link rel="stylesheet" type="text/css" href="css/overlay.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css" />
 	<title>Giant Shaft Enterprises</title>
 	<script>
@@ -298,7 +298,7 @@
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
 			</div>
-			<div ng-controller="MessageController">
+			<div ng-controller="OverlayController">
 				<div ng-repeat="message in messages"
 					 class="messageStart messageBottom center">
 					<p>{{message.text}}</p>
@@ -308,6 +308,13 @@
 					 class="numberPop">
 					{{s.data.text | currency}}
 				</p>
+
+				<div ng-show="showTutorial()"
+					 ng-class="{ step1: tutorialStep() === 0, step2: tutorialStep() === 1 }"
+					 class="tutorial">
+					<span>{{tutorial.text}}</span>
+					<img src="images/arrow.png" />
+				</div>
 			</div>
 		</div>
 	</div>
