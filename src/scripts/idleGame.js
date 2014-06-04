@@ -126,13 +126,15 @@ idleGame.service('gameService', function() {
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, 
 			description: "Better lighting, comfier furniture, and the use of plants goes a long way to reducing stress and increasing productivity of your employees!" },
 		
-		{ id: 30, itemId: "Business Opportunity", name: "Business Guru", price: 1000, mps: 0, mpo: 1, isOpportunity: 1, isBusiness: 1,
+		{ id: 71, itemId: "Business Opportunity", name: "Starting Business", price: 5, mps: 0, mpo: 1, isOpportunity: 1, isBusiness: 1,
+			description: "Starting a new business makes you feel young and alive again!" },
+		{ id: 30, itemId: "Business Opportunity", name: "Business Guru", price: 1000, mps: 0, mpo: 8, isOpportunity: 1, showAfter: [71], isBusiness: 1,
 			description: "Your increase in business savvy skills lead to doubling the profit gained from completing business opportunities." },
-		{ id: 31, itemId: "Business Opportunity", name: "Business Expert", price: 10000, mps: 0, mpo: 18, isOpportunity: 1, showAfter: [30], isBusiness: 1,
+		{ id: 31, itemId: "Business Opportunity", name: "Business Expert", price: 10000, mps: 0, mpo: 20, isOpportunity: 1, showAfter: [30], isBusiness: 1,
 			description: "Your expertise in everything business just put you on Glassdoor.com's Top CEO list." },
-		{ id: 32, itemId: "Business Opportunity", name: "Business Savant", price: 100000, mps: 0, mpo: 180, isOpportunity: 1, showAfter: [31], isBusiness: 1,
+		{ id: 32, itemId: "Business Opportunity", name: "Business Savant", price: 100000, mps: 0, mpo: 200, isOpportunity: 1, showAfter: [31], isBusiness: 1,
 			description: "Your eat your competition for breakfast." },
-		{ id: 44, itemId: "Business Opportunity", name: "Business Epic", price: 1000000, mps: 0, mpo: 1800, isOpportunity: 1, showAfter: [32], isBusiness: 1,
+		{ id: 44, itemId: "Business Opportunity", name: "Business Epic", price: 1000000, mps: 0, mpo: 2000, isOpportunity: 1, showAfter: [32], isBusiness: 1,
 			description: "Absorb the competition." },
 
 		{ id: 33, itemId: "Business Opportunity", name: "Business Demigod", price: 1000000, mps: 0, mpop: .01, showAfter: [32], isOpportunity: 1, isBusiness: 1,
@@ -558,6 +560,17 @@ idleGame.service('gameService', function() {
 
 	// All business knowledge items you can buy are here
 	this.knowledgeItems = [
+		// Click Buffs
+		{ id: 31, price: 1, type: 'upgrade', description: 'New early game click buff',
+			item: { id: 72, itemId: "Business Opportunity", name: "Leadership Training", price: 5, mps: 0, mpo: .5, isOpportunity: 1, isBusiness: 1,
+				description: "Showing your true leadership will help you earn more respect and clients." } },
+		{ id: 32, price: 2, type: 'upgrade', description: 'New early game click buff',
+			item: { id: 73, itemId: "Business Opportunity", name: "Reserved Parking Space", price: 10, mps: 0, mpo: 1, isOpportunity: 1, isBusiness: 1,
+				description: "Feel important with your very own personal parking space." } },
+		{ id: 33, price: 3, type: 'upgrade', description: 'New early game click buff',
+			item: { id: 74, itemId: "Business Opportunity", name: "Private Secretary", price: 100, mps: 0, mpo: 2, isOpportunity: 1, isBusiness: 1,
+				description: "Having a secretary frees you up to focus more on your work." } },
+
 		// Office Supplies and tier 1 - 4 upgrades
 		{ id: 0, price: 10, type: 'item', description: 'New early game item',
 			item: { id: 10, name: "Office Supplies", mps: .1, price: 10 } },
@@ -571,7 +584,7 @@ idleGame.service('gameService', function() {
 			item: { id: 57, itemId: 10, name: "Office Copy Machine", price: 1000, mps: .15,
 				description: "Perfect for printing pictures of your tuchus." } },
 		{ id: 20, price: 10, type: 'upgrade', parent: [0, 8], description: 'Upgrade for Office Supplies',
-			item: { id: 57, itemId: 10, name: "Zero Gravity Space Pens", price: 350000, mps: 1.75, showAfter: [42],
+			item: { id: 70, itemId: 10, name: "Zero Gravity Space Pens", price: 350000, mps: 1.75, showAfter: [42],
 				description: "Your employess are happy they can use pens in zero gravity situations again." } },
 
 		// Software and tier 1 - 4 upgrades
