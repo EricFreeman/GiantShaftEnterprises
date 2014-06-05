@@ -6,17 +6,41 @@ function OverlayController($scope, $timeout, playerService) {
 		return playerService.showTutorial;
 	}
 
-	$scope.tutorialStep = function() {
+	$scope.tutorialInit = function() {
+		if(playerService.money >= 15) playerService.tutorialStep = 1;
+		if(playerService.tutorialStep == 1 && playerService.items.length > 0) playerService.tutorialStep = 2;
+		if(playerService.tutorialStep == 2 && playerService.upgrades.length > 0) playerService.tutorialStep = 3;
+
 		if(playerService.tutorialStep == 0) {
 			var pos = $('.opportunity').position();
 			$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
 		}
 		else if(playerService.tutorialStep == 1) {
 			var pos = $('.store').children().first().position();
-			$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+			if(pos != undefined) {
+				$('.tutorial').show();
+				$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+			}
+			else {
+				$('.tutorial').hide();
+			}
+		}
+		else if(playerService.tutorialStep == 2) {
+			var pos = $('.upgrade').position();
+			if(pos != undefined) {
+				$('.tutorial').show();
+				$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+			}
+			else {
+				$('.tutorial').hide();
+			}
+		}
+		else {
+			$('.tutorial').remove();
 		}
 
-		return playerService.tutorialStep;
+		if(playerService.tutorialStep < 3)
+			$timeout($scope.tutorialInit, 50);
 	}
 
 	$scope.$on('displayMessage', function(event, data) { 

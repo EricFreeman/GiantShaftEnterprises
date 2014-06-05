@@ -310,7 +310,7 @@
 				</p>
 
 				<div ng-show="showTutorial()"
-					 ng-class="{ step1: tutorialStep() === 0, step2: tutorialStep() === 1 }"
+					 ng-init="tutorialInit()"
 					 class="tutorial">
 					<span>{{tutorial.text}}</span>
 					<img src="images/arrow.png" />
