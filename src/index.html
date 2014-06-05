@@ -256,13 +256,13 @@
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
 							<a class="button" ng-click="saveGame()">Save Game</a>
 						</section>
-						<section>
+						<section ng-show="potentialKp() > 0">
 							<p>Lose control of your current company, but gain Business Knowledge based on how much total money your current business made.  This can be used to unlock new items and upgrades for your next company!</p>
 							<p>You will earn {{potentialKp()}} BK by starting a new business.</p>
 							<a class="button" ng-click="prestige()">Start New Business</a>
 						</section>
 						<section>
-							<p>This will hard reset your game (refresh after you press it):</p>
+							<p>This will hard reset your game so you will lose your current save file (refresh after you press it):</p>
 							<a class="button" ng-click="resetGame()">Reset Game</a>
 						</section>
 
