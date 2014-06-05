@@ -14,6 +14,8 @@ function StatsController($scope, gameService, playerService, cacheService) {
 
 	$scope.vcFunding = playerService.vcFunding;
 
+	$scope.businessConnections = playerService.businessConnections;
+
 	$scope.hasEarned = function(id) {
 		return playerService.hasAchievement(id);
 	}

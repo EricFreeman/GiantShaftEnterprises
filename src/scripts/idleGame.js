@@ -705,6 +705,7 @@ idleGame.service('playerService', function () {
 	this.companyName = "Giant Shaft Enterprises";
 
 	this.vcFunding = 0;
+	this.businessConnections = 0;
 
 	// For stats page
 	this.totalMoneyReset = 0;
@@ -728,8 +729,12 @@ idleGame.service('playerService', function () {
 	this.fps = 10;
 
 	this.vcPointsToMoney = function(pts) {
-		// 1 pt = $100, but maybe make this value upgradeable in the future?
-		return pts * 100;
+		// 1 pt = $1000, but maybe make this value upgradeable in the future?
+		return pts * 1000;
+	}
+
+	this.bcToPercentBoost = function() {
+		return .01 * this.businessConnections;
 	}
 
 	this.getItem = function(id) {
@@ -830,9 +835,13 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 		var additionalMps = 0;
 
+		// Add in amount gained from upgrades that give you a base % boost
 		for(var i = 0; i < upgrades.length; i++) {
 			additionalMps += upgrades[i].per * playerService.achievements.length * baseMps;
 		}
+
+		// Add in amount gained from business connections
+		additionalMps += baseMps * playerService.bcToPercentBoost();
 
 		return baseMps + additionalMps;
 	};

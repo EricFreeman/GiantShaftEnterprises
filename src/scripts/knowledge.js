@@ -1,6 +1,7 @@
 function KnowledgeController($rootScope, $scope, gameService, playerService, cacheService) {
 	$scope.items = gameService.knowledgeItems;
 	$scope.knowledge = function() { return playerService.knowledge; }
+	$scope.playerService = playerService;
 
 	$scope.canBuy = function(id) {
 		var enoughMoney = gameService.getKnowledgeItem(id).price <= playerService.knowledge;
@@ -47,6 +48,14 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 			playerService.knowledge -= amount;
 			playerService.vcFunding += amount;
 			playerService.money += playerService.vcPointsToMoney(amount);
+		}
+	}
+
+	$scope.buyBusinessConnections = function(amount) {
+		if(amount <= playerService.knowledge) {
+			playerService.knowledge -= amount;
+			playerService.businessConnections += amount;
+			$rootScope.$broadcast('updateCache');
 		}
 	}
 };

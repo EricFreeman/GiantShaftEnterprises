@@ -34,6 +34,7 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 	}
 
 	$scope.updates = [
+		{ title: '6/5/2014', description: 'Added a tutorial and VC Funding as an item you can buy an unlimited amount of times in the knowledge store.' },
 		{ title: '5/29/2014 - 6/4/2014', description: 'Added tons of new prestige items and upgrades.  Also added floating numbers when you complete business opportunities (you can turn it off in the menu) and some new early and end game items for clicking to make it still a useful thing besides just when using an autoclicker.' },
 		{ title: '5/27/2014 - 5/28/2014', description: 'Prestige!  You can now create a new company from the menu tab.  This effectively starts you over from square one, but you gain "Business Knowledge" that can be spent to unlock new, powerful upgrades and items!' },
 		{ title: '5/23/2014 - 5/26/2014', description: 'Trying to cache several of the bigger calculations to increase performance on lower systems.  Also added new achievements and upgrades!' },
