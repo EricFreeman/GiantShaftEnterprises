@@ -177,6 +177,12 @@
 								<p>Total: {{playerService.totalKnowledge}}</p>
 							</div>
 						</div>
+						<div class="item enabled" ng-show="playerService.vcFunding > 0">
+							<p class="name">VC Funding</p>
+							<div class="info">
+								<p>{{playerService.vcFunding | currency}}</p>
+							</div>
+						</div>
 
 						<p>Achievements</p>
 
@@ -200,8 +206,18 @@
 							<p>Available Knowledge: {{knowledge()}}</p>
 						</section>
 					</div>
-					<br />
-					<div class="knowledge" ng-controller="KnowledgeController">
+					
+					<div class="item">
+						<p class="name">VC Funding</p>
+						<div class="info">
+							<p>Every BK spent on VC Funding will provide your next (and current) company with $100.</P>
+							<a class="button" ng-click="buyVcFunding(1)">1 BK</a>
+							<a class="button" ng-click="buyVcFunding(10)">10 BK</a>					
+							<a class="button" ng-click="buyVcFunding(knowledge())">{{knowledge()}} BK</a>
+						</div>
+					</div>
+
+					<div class="knowledgeItems">
 						<div class="item"
 							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK, alreadyBought: alreadyBought(item.id)}" 
 							 ng-repeat="item in items"

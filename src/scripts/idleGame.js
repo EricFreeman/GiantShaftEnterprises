@@ -704,6 +704,8 @@ idleGame.service('playerService', function () {
 	this.money = 0;
 	this.companyName = "Giant Shaft Enterprises";
 
+	this.vcFunding = 0;
+
 	// For stats page
 	this.totalMoneyReset = 0;
 	this.totalMoney = 0;
@@ -724,6 +726,11 @@ idleGame.service('playerService', function () {
 	this.showTutorial = true;
 	this.tutorialStep = 0;
 	this.fps = 10;
+
+	this.vcPointsToMoney = function(pts) {
+		// 1 pt = $100, but maybe make this value upgradeable in the future?
+		return pts * 100;
+	}
 
 	this.getItem = function(id) {
 		return search(this.items, "id", id,

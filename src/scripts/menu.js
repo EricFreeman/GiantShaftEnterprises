@@ -17,8 +17,8 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 		playerService.totalOpportunitiesReset += playerService.totalOpportunities;
 
 		playerService.totalMoneyReset += playerService.totalMoney;
-		playerService.totalMoney = 0;
-		playerService.money = 0;
+		playerService.totalMoney = playerService.vcPointsToMoney(playerService.vcFunding);
+		playerService.money = playerService.vcPointsToMoney(playerService.vcFunding);
 		playerService.items = [];
 		playerService.upgrades = [];
 		playerService.companyName = 'Giant Shaft Enterprises';

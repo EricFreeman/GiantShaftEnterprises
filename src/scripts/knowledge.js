@@ -41,4 +41,12 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 			}
 		}
 	}
+
+	$scope.buyVcFunding = function(amount) {
+		if(amount <= playerService.knowledge) {
+			playerService.knowledge -= amount;
+			playerService.vcFunding += amount;
+			playerService.money += playerService.vcPointsToMoney(amount);
+		}
+	}
 };
