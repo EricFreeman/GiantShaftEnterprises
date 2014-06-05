@@ -61,7 +61,7 @@ idleGame.service('gameService', function() {
 		{ id: 1, itemId: 0, name: "Mentoring Program", price: 1500, mps: .1,
 			description: "While reading binder upon binder of information is fun for some people, it is easier to learn and retain information from a good teacher." },
 		{ id: 2, itemId: 0, name: "Better Scheduling", price: 30000, mps: .1,
-			description: "When all of your minimum wage employees work under 40 hours a week, there's no need to pay them health benefits!" },
+			description: "When all of your minimum wage employees work under 35 hours a week, there's no need to pay them health benefits!" },
 
 		{ id: 3, itemId: 1, name: "Lower Walls", price: 1000, mps: .1,
 			description: "Lowering the walls of a cubicle will help increase team dynamics and promote synergy!" },
