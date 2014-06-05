@@ -1,6 +1,7 @@
 function OverlayController($scope, $timeout, playerService) {
 	$scope.messages = [];
 	$scope.spawn = [];
+	$scope.tutorialText = "";
 	
 	$scope.showTutorial = function() {
 		return playerService.showTutorial;
@@ -13,13 +14,15 @@ function OverlayController($scope, $timeout, playerService) {
 
 		if(playerService.tutorialStep == 0) {
 			var pos = $('.opportunity').position();
-			$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+			$('.tutorial').css({left: pos.left - 330, top: pos.top + 24});
+			$scope.tutorialText = "Do BUSINESS OPPORTUNITIES to earn money.";
 		}
 		else if(playerService.tutorialStep == 1) {
 			var pos = $('.store').children().first().position();
 			if(pos != undefined) {
 				$('.tutorial').show();
-				$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+				$('.tutorial').css({left: pos.left - 330, top: pos.top});
+				$scope.tutorialText = "Purchase items to earn money for you automatically.";
 			}
 			else {
 				$('.tutorial').hide();
@@ -29,7 +32,8 @@ function OverlayController($scope, $timeout, playerService) {
 			var pos = $('.upgrade').position();
 			if(pos != undefined) {
 				$('.tutorial').show();
-				$('.tutorial').css({left: pos.left - 100, top: pos.top + 24});
+				$('.tutorial').css({left: pos.left - 330, top: pos.top});
+				$scope.tutorialText = "Purchase upgrades to increase the power of your items, business opportunities, and passive bonuses!";
 			}
 			else {
 				$('.tutorial').hide();

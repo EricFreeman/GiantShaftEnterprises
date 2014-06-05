@@ -34,15 +34,21 @@
 }
 
 .tutorial {
-	position: fixed;
+	position: absolute;
 	left: 0px;
 	top: 0px;
 }
 
-.step1 {
-	left: 300px;
+.tutorial img {
+	vertical-align: top;
 }
 
-.step2 {
-	left: 400px;
+.tutorial span {
+	color: white;
+	width: 200px;
+	background-color: #333;
+	border-radius: 16px;
+	padding: 16px;
+	word-wrap: break-word;
+	display: inline-block;
 }
