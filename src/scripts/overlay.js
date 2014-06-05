@@ -20,23 +20,25 @@ function OverlayController($scope, $timeout, playerService) {
 		else if(playerService.tutorialStep == 1) {
 			var pos = $('.store').children().first().position();
 			if(pos != undefined) {
-				$('.tutorial').show();
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
 				$scope.tutorialText = "Purchase items to earn money for you automatically.";
 			}
 			else {
-				$('.tutorial').hide();
+				pos = $('.links').children('a').first().position();
+				$('.tutorial').css({left: pos.left - 360, top: pos.top - 16});
+				$scope.tutorialText = "Go back to the Business tab!";
 			}
 		}
 		else if(playerService.tutorialStep == 2) {
 			var pos = $('.upgrade').position();
 			if(pos != undefined) {
-				$('.tutorial').show();
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
 				$scope.tutorialText = "Purchase upgrades to increase the power of your items, business opportunities, and passive bonuses!";
 			}
 			else {
-				$('.tutorial').hide();
+				pos = $('.links').children('a').first().position();
+				$('.tutorial').css({left: pos.left - 360, top: pos.top - 16});
+				$scope.tutorialText = "Go back to the Business tab!";
 			}
 		}
 		else {
