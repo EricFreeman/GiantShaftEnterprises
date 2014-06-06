@@ -11,13 +11,20 @@ function OverlayController($scope, $timeout, playerService) {
 		if(playerService.money >= 15) playerService.tutorialStep = 1;
 		if(playerService.tutorialStep == 1 && playerService.items.length > 0) playerService.tutorialStep = 2;
 		if(playerService.tutorialStep == 2 && playerService.upgrades.length > 0) playerService.tutorialStep = 3;
+		if(playerService.tutorialStep == 3 && playerService.achievements.length > 3) playerService.tutorialStep = 4;
 
 		if(playerService.tutorialStep == 0) {
+			$('.mainContent').hide();
+
 			var pos = $('.opportunity').position();
 			$('.tutorial').css({left: pos.left - 330, top: pos.top + 24});
 			$scope.tutorialText = "Do BUSINESS OPPORTUNITIES to earn money.";
 		}
 		else if(playerService.tutorialStep == 1) {
+			$('.mainContent').show();
+			$('.upgrade').hide();
+			$('.achievementsContainer').hide();
+
 			var pos = $('.store').children().first().position();
 			if(pos != undefined) {
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
@@ -30,6 +37,8 @@ function OverlayController($scope, $timeout, playerService) {
 			}
 		}
 		else if(playerService.tutorialStep == 2) {
+			$('.upgrade').show();
+
 			var pos = $('.upgrade').position();
 			if(pos != undefined) {
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
@@ -41,11 +50,25 @@ function OverlayController($scope, $timeout, playerService) {
 				$scope.tutorialText = "Go back to the Business tab!";
 			}
 		}
+		else if(playerService.tutorialStep == 3) {
+			$('.achievementsContainer').show();
+
+			var pos = $('.achievementsContainer').position();
+			if(pos != undefined) {
+				$('.tutorial').css({left: pos.left - 330, top: pos.top});
+				$scope.tutorialText = "These are the achievements you've earned thus far.  You can get them in a variety of ways.  The next easy one for you to earn is by owning 10 Minimum Wage Workers, or doing BUSINESS OPPORTUNITIES 100 times.  Earn one more achievement to complete this tutorial.";
+			}
+			else {
+				pos = $('.links').children('a').first().position();
+				$('.tutorial').css({left: pos.left - 360, top: pos.top - 16});
+				$scope.tutorialText = "Go back to the Business tab!";
+			}
+		}
 		else {
 			$('.tutorial').remove();
 		}
 
-		if(playerService.tutorialStep < 3)
+		if(playerService.tutorialStep < 4)
 			$timeout($scope.tutorialInit, 50);
 	}
 
