@@ -1,6 +1,6 @@
 function MenuController($rootScope, $scope, playerService, saveService) {
 	$scope.playerService = playerService;
-	$scope.potentialKp = function() { return Math.round(playerService.totalMoney / 1000000000); } 
+	$scope.potentialKp = function() { return Math.floor(playerService.totalMoney / 1000000000); } 
 
 	$scope.saveGame = function() {
 		saveService.saveGame();
@@ -9,7 +9,7 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 	$scope.prestige = function() {
 		playerService.totalMoneyReset += playerService.totalMoney;
 
-		var knowledgeGained = Math.round(playerService.totalMoney / 1000000000); // every $1 billion you make = 1 Business Knowledge 
+		var knowledgeGained = Math.floor(playerService.totalMoney / 1000000000); // every $1 billion you make = 1 Business Knowledge 
 		playerService.knowledge += knowledgeGained;
 		playerService.totalKnowledge += knowledgeGained;
 
