@@ -112,29 +112,33 @@
 							 ng-attr-title="{{upgrade.description}}">
 							<p class="name">{{upgrade.name}}</p>
 							<div class="bottom info">
-								<p class="">Cost: {{upgrade.price | currency}}</p>
-								<p class=""
-								   ng-show="!upgrade.isBusiness">
+								<p>Cost: {{upgrade.price | currency}}</p>
+								<p ng-show="!upgrade.isBusiness">
 									Adds: {{upgrade.mps | currency}}
 								</p>
-								<p class=""
-								   ng-show="upgrade.isOpportunity && upgrade.mpo">
+								<p ng-show="upgrade.isOpportunity && upgrade.mpo">
 									Adds: {{upgrade.mpo | currency}}/Opportunity
 								</p>
-								<p class=""
-								   ng-show="upgrade.isOpportunity && upgrade.mpop">
+								<p ng-show="upgrade.isOpportunity && upgrade.mpop">
 									Adds: {{upgrade.mpop * 100}}% of MPS/Opportunity
 								</p>
-								<p class=""
-								   ng-show="upgrade.isOnLoad">
+								<p ng-show="upgrade.isOnLoad">
 									Adds: {{upgrade.per * 100}}% of MPS
 								</p>
-								<p class=""
-								   ng-show="upgrade.isAchievement">
+								<p ng-show="upgrade.isAchievement">
 									Adds: {{upgrade.per * 100 | number:2}}%/Achievement
 								</p>
-								<p class="">For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
+								<p>For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
 							</div>
+						</div>
+					</div>
+
+					<div class="achievementsContainer"
+						 ng-init="updateCache()">
+						<div class="achievement"
+							 ng-attr-title="{{achievement.name}}"
+							 ng-repeat="achievement in cachedAchievements">
+							<img ng-src="images/achievements/{{achievement.image ? achievement.image : 'noImage'}}.png" />
 						</div>
 					</div>
 

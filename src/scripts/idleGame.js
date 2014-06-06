@@ -167,27 +167,27 @@ idleGame.service('gameService', function() {
 
 	// All in game achievements and how to earn them are defined here
 	this.achievements = [
-		{ id: 0, name: "First Steps",
+		{ id: 0, name: "First Steps", image: 'firstSteps',
 			description: "Buy something from the store.",
 			earn: function(gameService, playerService, cacheService) { return playerService.items.length > 0; }
 		},
-		{ id: 1, name: "Never Stop Improving", 
+		{ id: 1, name: "Never Stop Improving",
 			description: "Buy your first upgrade.",
 			earn: function(gameService, playerService, cacheService) { return playerService.upgrades.length > 0; }
 		},
-		{ id: 2, name: "Diversity is Key", 
+		{ id: 2, name: "Diversity is Key", image: 'diversity1',
 			description: "Own one of everything.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(1); }
 		},
-		{ id: 45, name: "Diversity is Paramount", 
+		{ id: 45, name: "Diversity is Paramount", image: 'diversity2',
 			description: "Own ten of everything.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10); }
 		},
-		{ id: 46, name: "Diversity is Opportunity", 
+		{ id: 46, name: "Diversity is Opportunity", image: 'diversity3',
 			description: "Own one hundred of everything.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(100); }
 		},
-		{ id: 47, name: "Diversity is You", 
+		{ id: 47, name: "Diversity is You", image: 'diversity4',
 			description: "Own one thousand of everything.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(1000); }
@@ -198,15 +198,15 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10000); }
 		},
 
-		{ id: 9, name: "Make $1,000,000 by EOD", 
+		{ id: 9, name: "Make $1,000,000 by EOD", image: 'money1',
 			description: "Earn enough to make $1 million in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11.57; }
 		},
-		{ id: 10, name: "Make $1,000,000,000 by EOD", 
+		{ id: 10, name: "Make $1,000,000,000 by EOD", image: 'money2',
 			description: "Earn enough to make $1 billion in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574; }
 		},
-		{ id: 11, name: "Make $1,000,000,000,000 by EOD", 
+		{ id: 11, name: "Make $1,000,000,000,000 by EOD", image: 'money3',
 			description: "Earn enough to make $1 trillion in one day.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074; }
@@ -217,15 +217,15 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074000; }
 		},
 
-		{ id: 36, name: "Opportunist", 
+		{ id: 36, name: "Opportunist", image: 'bo1',
 			description: "Complete 10 business opportunities.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 10; }
 		},
-		{ id: 37, name: "Mega Opportunist", 
+		{ id: 37, name: "Mega Opportunist", image: 'bo2',
 			description: "Complete 100 business opportunities.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 100; }
 		},
-		{ id: 38, name: "Ultra Opportunist", 
+		{ id: 38, name: "Ultra Opportunist", image: 'bo3',
 			description: "Complete 1000 business opportunities.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 1000; }
 		},
@@ -609,7 +609,7 @@ idleGame.service('gameService', function() {
 
 		// Company Car and tier 1 - 4 upgrades
 		{ id: 26, price: 35, type: 'item', description: 'New mid game item',
-			item: { id: 13, name: "Company Car", mps: 6, price: 35000 }},
+			item: { id: 13, name: "Company Car", mps: 6, price: 35000 } },
 		{ id: 27, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
 			item: { id: 66, itemId: 13, name: "Electric Car", price: 500000, mps: 4,
 				description: "Save money on gas when switching to electic cars." } },
@@ -734,7 +734,7 @@ idleGame.service('playerService', function () {
 	}
 
 	this.bcToPercentBoost = function() {
-		return .01 * this.businessConnections;
+		return .005 * this.businessConnections;
 	}
 
 	this.getItem = function(id) {

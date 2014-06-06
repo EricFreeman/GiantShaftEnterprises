@@ -134,6 +134,18 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 			(playerService.getItem(upgrade.itemId).count > 0 || !!upgrade.isBusiness) &&
 			(!$scope.alreadyBought(upgrade.id) || !playerService.hideBoughtUpgrades);
 	}
+
+	// ACHIEVEMENTS
+	$scope.cachedAchievements = [];
+
+	$scope.updateCache = function() {
+		$scope.cachedAchievements = gameService.achievements.filter(function(d) {
+			return playerService.hasAchievement(d.id);
+		});
+	}
+
+	var self = $scope;
+	$rootScope.$on('updateCache', self.updateCache);
 };
 
 Array.prototype.randomElement = function () {
