@@ -221,18 +221,18 @@
 						<p class="name">VC Funding - {{playerService.vcFunding | currency}}</p>
 						<div class="info">
 							<p>Every BK spent on VC Funding will provide your next (and current) company with $100.</P>
-							<a class="button" ng-click="buyVcFunding(1)">1 BK</a>
-							<a class="button" ng-click="buyVcFunding(10)">10 BK</a>					
-							<a class="button" ng-click="buyVcFunding(knowledge())" ng-show="knowledge() > 10">{{knowledge()}} BK</a>
+							<a class="button" ng-click="buyVcFunding(1)">1 VC</a>
+							<a class="button" ng-click="buyVcFunding(10)">10 VC</a>					
+							<a class="button" ng-click="buyVcFunding(knowledge())" ng-show="knowledge() > 10">{{knowledge()}} VC</a>
 						</div>
 					</div>
 					<div class="item">
 						<p class="name">Business Connections - {{playerService.businessConnections | number}}</p>
 						<div class="info">
-							<p>Every BK spent on Business Connections will provide you with a permanent 1% boost on your MPS.</P>
-							<a class="button" ng-click="buyBusinessConnections(1)">1 BK</a>
-							<a class="button" ng-click="buyBusinessConnections(10)">10 BK</a>					
-							<a class="button" ng-click="buyBusinessConnections(knowledge())" ng-show="knowledge() > 10">{{knowledge()}} BK</a>
+							<p>Every Business Connections will provide you with a permanent .25% boost on your MPS.  Business Connections cost 2 BK.</P>
+							<a class="button" ng-click="buyBusinessConnections(1)">1 BC</a>
+							<a class="button" ng-click="buyBusinessConnections(10)">10 BC</a>					
+							<a class="button" ng-click="buyBusinessConnections(knowledge())" ng-show="knowledge() > 20">{{knowledge()}} BC</a>
 						</div>
 					</div>
 

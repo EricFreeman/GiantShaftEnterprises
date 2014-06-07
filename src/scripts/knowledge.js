@@ -52,8 +52,11 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 	}
 
 	$scope.buyBusinessConnections = function(amount) {
-		if(amount <= playerService.knowledge) {
-			playerService.knowledge -= amount;
+		var bcPice = 2;
+		var cost = amount * bcPrice;
+
+		if(cost <= playerService.knowledge) {
+			playerService.knowledge -= cost;
 			playerService.businessConnections += amount;
 			$rootScope.$broadcast('updateCache');
 		}

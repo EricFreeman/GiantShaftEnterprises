@@ -734,7 +734,7 @@ idleGame.service('playerService', function () {
 	}
 
 	this.bcToPercentBoost = function() {
-		return .005 * this.businessConnections;
+		return .0025 * this.businessConnections;
 	}
 
 	this.getItem = function(id) {
