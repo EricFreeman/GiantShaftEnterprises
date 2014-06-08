@@ -733,8 +733,18 @@ idleGame.service('playerService', function () {
 		return pts * 1000;
 	}
 
+	// Using the current setup, 794 BC will give you the maximum boost of 100% of your base MPS
 	this.bcToPercentBoost = function() {
-		return .0025 * this.businessConnections;
+		var baseBoost = .0025,			// % boost from each BC
+			depreciation = .000003121,	// Amount the boost goes down by per BC
+			bcBoost = 0;
+
+		for(var i = 1; i <= this.businessConnections; i++) {
+			var tempBoost = baseBoost - (depreciation * i);
+			if(tempBoost > 0) bcBoost += tempBoost;
+		}
+
+		return bcBoost;
 	}
 
 	this.getItem = function(id) {

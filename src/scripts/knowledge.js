@@ -52,7 +52,7 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 	}
 
 	$scope.buyBusinessConnections = function(amount) {
-		var bcPice = 2;
+		var bcPrice = 2;
 		var cost = amount * bcPrice;
 
 		if(cost <= playerService.knowledge) {
