@@ -145,7 +145,7 @@
 				</script>
 
 				<script type="text/ng-template" id="stats.html">
-					<div class="stats" ng-controller="StatsController">
+					<div class="stats content center" ng-controller="StatsController">
 						<div class="item enabled">
 							<p class="name">Money</p>
 							<div class="info">
@@ -211,43 +211,45 @@
 				</script>
 
 				<script type="text/ng-template" id="knowledge.html">
-					<div>
-						<section>
-							<p>Available Knowledge: {{knowledge()}}</p>
-						</section>
-					</div>
-					
-					<div class="item">
-						<p class="name">VC Funding - {{playerService.vcFunding | currency}}</p>
-						<div class="info">
-							<p>Every BK spent on VC Funding will provide your next (and current) company with $100.</P>
-							<a class="button" ng-click="buyVcFunding(1)">1 VC - 1 BK</a>
-							<a class="button" ng-click="buyVcFunding(10)">10 VC - 10 BK</a>					
-							<a class="button" ng-click="buyVcFunding(knowledge())" ng-show="knowledge() > 10">{{knowledge()}} VC - {{knowledge()}} BK</a>
+					<div class="content center">
+						<div>
+							<section>
+								<p>Available Knowledge: {{knowledge()}}</p>
+							</section>
 						</div>
-					</div>
-					<div class="item">
-						<p class="name">Business Connections - {{playerService.businessConnections | number}} - {{playerService.bcToPercentBoost() * 100 | number:2}}%</p>
-						<div class="info">
-							<p>Every Business Connections will provide you with a permanent .25% boost on your MPS.  Business Connections cost 2 BK.</P>
-							<a class="button" ng-click="buyBusinessConnections(1)">1 BC - 2 BK</a>
-							<a class="button" ng-click="buyBusinessConnections(10)">10 BC - 20 BK</a>					
-							<a class="button" ng-click="buyBusinessConnections(knowledge() / 2)" ng-show="knowledge() > 20">{{knowledge() / 2}} BC - {{knowledge()}} BK</a>
-						</div>
-					</div>
-
-					<div class="knowledgeItems">
-						<div class="item"
-							 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK, alreadyBought: alreadyBought(item.id)}" 
-							 ng-repeat="item in items"
-							 ng-click="buy(item.id)"
-							 ng-mouseenter="hoverK = true"
-							 ng-mouseleave="hoverK = false"
-							 ng-show="canShow(item.id)">
-							<p class="name">{{item.item.name}}</p>
+						
+						<div class="item">
+							<p class="name">VC Funding - {{playerService.vcFunding | currency}}</p>
 							<div class="info">
-								<p>{{item.description}}</p>
-								<p>{{item.price}} Knowledge</p>
+								<p>Every BK spent on VC Funding will provide your next (and current) company with $100.</P>
+								<a class="button" ng-click="buyVcFunding(1)">1 VC - 1 BK</a>
+								<a class="button" ng-click="buyVcFunding(10)">10 VC - 10 BK</a>					
+								<a class="button" ng-click="buyVcFunding(knowledge())" ng-show="knowledge() > 10">{{knowledge()}} VC - {{knowledge()}} BK</a>
+							</div>
+						</div>
+						<div class="item">
+							<p class="name">Business Connections - {{playerService.businessConnections | number}} - {{playerService.bcToPercentBoost() * 100 | number:2}}%</p>
+							<div class="info">
+								<p>Every Business Connections will provide you with a permanent boost to your MPS.  The boost % degrades with each new connection for a max MPS boost of 100%.  Business Connections cost 2 BK.</P>
+								<a class="button" ng-click="buyBusinessConnections(1)">1 BC - 2 BK</a>
+								<a class="button" ng-click="buyBusinessConnections(10)">10 BC - 20 BK</a>					
+								<a class="button" ng-click="buyBusinessConnections(knowledge() / 2)" ng-show="knowledge() > 20">{{knowledge() / 2}} BC - {{knowledge()}} BK</a>
+							</div>
+						</div>
+
+						<div class="knowledgeItems">
+							<div class="item"
+								 ng-class="{disabled: !canBuy(item.id), enabled: canBuy(item.id), hover: canBuy(item.id) && hoverK, alreadyBought: alreadyBought(item.id)}" 
+								 ng-repeat="item in items"
+								 ng-click="buy(item.id)"
+								 ng-mouseenter="hoverK = true"
+								 ng-mouseleave="hoverK = false"
+								 ng-show="canShow(item.id)">
+								<p class="name">{{item.item.name}}</p>
+								<div class="info">
+									<p>{{item.description}}</p>
+									<p>{{item.price}} Knowledge</p>
+								</div>
 							</div>
 						</div>
 					</div>

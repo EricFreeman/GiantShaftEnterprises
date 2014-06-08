@@ -134,6 +134,7 @@ h3 {
 
 .content {
 	padding: 16px;
+	max-width: 600px;
 }
 
 .content section:not(:first-child) {
