@@ -737,14 +737,22 @@ idleGame.service('playerService', function () {
 	this.bcToPercentBoost = function() {
 		var baseBoost = .0025,			// % boost from each BC
 			depreciation = .000003121,	// Amount the boost goes down by per BC
-			bcBoost = 0;
+			bcBoost = 0,
+			maxBoost = this.getMaxBcBoost();
 
 		for(var i = 1; i <= this.businessConnections; i++) {
 			var tempBoost = baseBoost - (depreciation * i);
 			if(tempBoost > 0) bcBoost += tempBoost;
+			if(bcBoost >= maxBCBoost) break;
 		}
 
 		return bcBoost;
+	}
+
+	// Get the maximum boost from business connections
+	// TODO: Make this value upgradeable
+	this.getMaxBcBoost = function() {
+		return  1;
 	}
 
 	this.getItem = function(id) {
