@@ -733,28 +733,6 @@ idleGame.service('playerService', function () {
 		return pts * 1000;
 	}
 
-	// Using the current setup, 794 BC will give you the maximum boost of 100% of your base MPS
-	this.bcToPercentBoost = function() {
-		var baseBoost = .0025,			// % boost from each BC
-			depreciation = .000003121,	// Amount the boost goes down by per BC
-			bcBoost = 0,
-			maxBoost = this.getMaxBcBoost();
-
-		for(var i = 1; i <= this.businessConnections; i++) {
-			var tempBoost = baseBoost - (depreciation * i);
-			if(tempBoost > 0) bcBoost += tempBoost;
-			if(bcBoost >= maxBCBoost) break;
-		}
-
-		return bcBoost;
-	}
-
-	// Get the maximum boost from business connections
-	// TODO: Make this value upgradeable
-	this.getMaxBcBoost = function() {
-		return  1;
-	}
-
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, count: 0 });
@@ -802,6 +780,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedMps = 0;
 	this.cachedClickPower = 0;
 	this.lowestAmountCache = 0;
+	this.cachedBcBoost = 0;
 	this.items = [];
 
 	this.getMps = function() {
@@ -814,6 +793,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	var self = this;
 	$rootScope.$on('updateCache', function() {
+		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
 		self.items = self.getNewItems();
@@ -859,7 +839,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		}
 
 		// Add in amount gained from business connections
-		additionalMps += baseMps * playerService.bcToPercentBoost();
+		additionalMps += baseMps * this.cachedBcBoost;
 
 		return baseMps + additionalMps;
 	};
@@ -901,6 +881,28 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		}
 
 		return rtn;
+	}
+
+	// Using the current setup, 794 BC will give you the maximum boost of 100% of your base MPS
+	this.getNewBcBoost = function() {
+		var baseBoost = .0025,			// % boost from each BC
+			depreciation = .000003121,	// Amount the boost goes down by per BC
+			bcBoost = 0,
+			maxBoost = this.getMaxBcBoost();
+
+		for(var i = 1; i <= playerService.businessConnections; i++) {
+			var tempBoost = baseBoost - (depreciation * i);
+			if(tempBoost > 0) bcBoost += tempBoost;
+			if(bcBoost >= maxBoost) break;
+		}
+
+		return bcBoost;
+	}
+
+	// Get the maximum boost from business connections
+	// TODO: Make this value upgradeable
+	this.getMaxBcBoost = function() {
+		return  1;
 	}
 
 	this.hasDiversity = function(amount) {

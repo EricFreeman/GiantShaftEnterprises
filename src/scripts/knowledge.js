@@ -61,4 +61,8 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 			$rootScope.$broadcast('updateCache');
 		}
 	}
+
+	$scope.getBcBoost = function() {
+		return cacheService.cachedBcBoost;
+	}
 };
