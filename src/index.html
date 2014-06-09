@@ -128,6 +128,9 @@
 								<p ng-show="upgrade.isAchievement">
 									Adds: {{upgrade.per * 100 | number:2}}%/Achievement
 								</p>
+								<p ng-show="upgrade.isBcBoost">
+									Increase: {{upgrade.bcBoost * 100 | number:2}}%
+								</p>
 								<p>For: <span class="underline">{{getItemName(upgrade.itemId)}}</span></p>
 							</div>
 						</div>

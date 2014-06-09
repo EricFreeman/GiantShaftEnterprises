@@ -675,6 +675,11 @@ idleGame.service('gameService', function() {
 		{ id: 18, price: 10, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Office Building',
 			item: { id: 54, itemId: 8, name: "Space Station", price: 5000000000, mps: 5000, showAfter: [42],
 			description: "Land is getting scarce on the planet surface, so expanding your offices to the outer reaches of the galaxy cuts down heavily on expenses." } },
+		
+		// Business Connections Upgrade
+		{ id: 34, price: 100, type: 'upgrade', description: 'Increase the max boost from Business Connections',
+			item: { id: 77, itemId: "Business Connections", name: "Networking 101", price: 10000000, isBusiness: 1, isBcBoost: true, bcBoost: .25,
+			description: "Learning basic networking concepts will help increase the strenght of your business connections." }},
 	];
 
 	this.getItem = function(id) {
@@ -883,26 +888,37 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return rtn;
 	}
 
-	// Using the current setup, 794 BC will give you the maximum boost of 100% of your base MPS
+	// Using the current setup, 784 BC will give you the maximum boost of 100% of your base MPS
 	this.getNewBcBoost = function() {
 		var baseBoost = .0025,			// % boost from each BC
 			depreciation = .000003121,	// Amount the boost goes down by per BC
 			bcBoost = 0,
-			maxBoost = this.getMaxBcBoost();
+			maxBoost = this.getMaxBcBoost(),
+			minDepreciatedBoost = .0001;
 
 		for(var i = 1; i <= playerService.businessConnections; i++) {
 			var tempBoost = baseBoost - (depreciation * i);
-			if(tempBoost > 0) bcBoost += tempBoost;
-			if(bcBoost >= maxBoost) break;
+			if(tempBoost < minDepreciatedBoost) tempBoost = minDepreciatedBoost;
+			bcBoost += tempBoost;
+			
+			if(bcBoost >= maxBoost) {
+				bcBoost = maxBoost;
+				break;
+			}
 		}
 
 		return bcBoost;
 	}
 
 	// Get the maximum boost from business connections
-	// TODO: Make this value upgradeable
 	this.getMaxBcBoost = function() {
-		return  1;
+		var baseMaxBoost = 1;
+
+		var extraBoost = gameService.upgrades
+									.filter(function(d) { return d.isBcBoost; })
+									.reduce(function(prev, cur) { return prev += cur.bcBoost; }, 0);
+		
+		return  baseMaxBoost + extraBoost;
 	}
 
 	this.hasDiversity = function(amount) {
