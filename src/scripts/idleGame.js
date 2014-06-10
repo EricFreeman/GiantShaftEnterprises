@@ -923,9 +923,10 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.getMaxBcBoost = function() {
 		var baseMaxBoost = 1;
 
-		var extraBoost = gameService.upgrades
-									.filter(function(d) { return d.isBcBoost; })
-									.reduce(function(prev, cur) { return prev += cur.bcBoost; }, 0);
+		var extraBoost = playerService.upgrades.reduce(function(prev, cur) {
+							var upgrade = gameService.getUpgrade(cur.id);
+							return prev += upgrade.isBcBoost ? upgrade.bcBoost : 0;
+						}, 0);
 		
 		return  baseMaxBoost + extraBoost;
 	}

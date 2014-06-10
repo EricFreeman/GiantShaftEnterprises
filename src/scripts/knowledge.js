@@ -40,6 +40,8 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 				gameService.upgrades.push(item.item);
 				gameService.upgrades.sort(function(a, b) { return a.price-b.price; });
 			}
+
+			$rootScope.$broadcast('updateCache');
 		}
 	}
 
