@@ -679,7 +679,16 @@ idleGame.service('gameService', function() {
 		// Business Connections Upgrade
 		{ id: 34, price: 100, type: 'upgrade', description: 'Increase the max boost from Business Connections',
 			item: { id: 77, itemId: "Business Connections", name: "Networking 101", price: 10000000, isBusiness: 1, isBcBoost: true, bcBoost: .25,
-			description: "Learning basic networking concepts will help increase the strenght of your business connections." }},
+			description: "Learn basic networking concepts to help increase the strength of your business connections." }},
+		{ id: 35, price: 100, type: 'upgrade', parent: [34], description: 'Increase the max boost from Business Connections',
+			item: { id: 78, itemId: "Business Connections", name: "Update LinkedIn", price: 50000000, isBusiness: 1, isBcBoost: true, bcBoost: .25, showAfter: [77],
+			description: "Keep your LinkedIn profile up to date to find more connections and achieve maximum exposure." }},
+		{ id: 36, price: 100, type: 'upgrade', parent: [35], description: 'Increase the max boost from Business Connections',
+			item: { id: 79, itemId: "Business Connections", name: "Business Cards", price: 200000000, isBusiness: 1, isBcBoost: true, bcBoost: .25, showAfter: [78],
+			description: "Look at that subtle off-white coloring. The tasteful thickness of it. Oh, my God. It even has a watermark." }},
+		{ id: 37, price: 100, type: 'upgrade', parent: [36], description: 'Increase the max boost from Business Connections',
+			item: { id: 80, itemId: "Business Connections", name: "Sleep with Marissa Mayer", price: 250000000, isBusiness: 1, isBcBoost: true, bcBoost: .25, showAfter: [79],
+			description: "Maximize your business connections by making her scream 'Yahoo!'" }},
 	];
 
 	this.getItem = function(id) {
