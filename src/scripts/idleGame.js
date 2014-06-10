@@ -172,7 +172,7 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return playerService.items.length > 0; }
 		},
 		{ id: 1, name: "Never Stop Improving",
-			description: "Buy your first upgrade.",
+			description: "Buy your first upgrade.", image: 'improve',
 			earn: function(gameService, playerService, cacheService) { return playerService.upgrades.length > 0; }
 		},
 		{ id: 2, name: "Diversity is Key", image: 'diversity1',
@@ -235,15 +235,15 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 10000; }
 		},
 
-		{ id: 40, name: "Busy-ness", 
+		{ id: 40, name: "Busy-ness", image: 'money1',
 			description: "Earn $10,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 10000; }
 		},
-		{ id: 41, name: "Business as Usual", 
+		{ id: 41, name: "Business as Usual", image: 'money2',
 			description: "Earn $1,000,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 1000000; }
 		},
-		{ id: 42, name: "Business as Unusual", 
+		{ id: 42, name: "Business as Unusual", image: 'money3',
 			description: "Earn $100,000,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000; }
 		},
@@ -262,136 +262,136 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000000000; }
 		},
 
-		{ id: 62, name: "That Was an Okay Business Deal", 
+		{ id: 62, name: "That Was an Okay Business Deal", image: 'handshake',
 			description: "Earn over $100 per business opportunity.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 100; }
 		},
-		{ id: 44, name: "That Was a Good Business Deal", 
+		{ id: 44, name: "That Was a Good Business Deal", image: 'handshake',
 			description: "Earn over $1,000 per business opportunity.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 1000; }
 		},
-		{ id: 63, name: "That Was a Fantastic Business Deal", 
+		{ id: 63, name: "That Was a Fantastic Business Deal", image: 'handshake',
 			description: "Earn over $10,000 per business opportunity.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.clickPower() > 10000; }
 		},
 
-		{ id: 3, name: "Hooray, Capitalism!", 
+		{ id: 3, name: "Hooray, Capitalism!", image: 'worker1',
 			description: "Own ten Minimum Wage Workers.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 10; }
 		},
-		{ id: 4, name: "Yummy, Capitalism!", 
+		{ id: 4, name: "Yummy, Capitalism!", image: 'worker1',
 			description: "Own one hundred Minimum Wage Workers.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 100; }
 		},
-		{ id: 5, name: "Okay, Wal-Mart", 
+		{ id: 5, name: "Okay, Wal-Mart", image: 'worker2',
 			description: "Own one thousand Minimum Wage Workers.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 1000; }
 		},
-		{ id: 48, name: "Enslavement", 
+		{ id: 48, name: "Enslavement", image: 'worker2',
 			description: "Own ten thousand Minimum Wage Workers.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(0).count >= 10000; }
 		},
 
-		{ id: 6, name: "Little Boxes", 
+		{ id: 6, name: "Little Boxes", image: 'cubicle1',
 			description: "Own ten Cubicles.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 10; }
 		},
-		{ id: 7, name: "Cubicle Farm", 
+		{ id: 7, name: "Cubicle Farm", image: 'cubicle2',
 			description: "Own one hundred Cubicles.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 100; }
 		},
-		{ id: 8, name: "Sea of Cubicles", 
+		{ id: 8, name: "Sea of Cubicles", image: 'cubicle3',
 			description: "Own one thousand Cubicles.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 1000; }
 		},
-		{ id: 49, name: "Ocean of Cubicles", 
+		{ id: 49, name: "Ocean of Cubicles", image: 'cubicle3',
 			description: "Own ten thousand Cubicles.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(1).count >= 10000; }
 		},
 
-		{ id: 12, name: "9 to 5", 
+		{ id: 12, name: "9 to 5", image: 'salary1',
 			description: "Own ten Salary Employess.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10; }
 		},
-		{ id: 13, name: "9 to 6", 
+		{ id: 13, name: "9 to 6", image: 'salary1',
 			description: "Own one hundred Salary Employess.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 100; }
 		},
-		{ id: 14, name: "9 to 7 + Weekends", 
+		{ id: 14, name: "9 to 7 + Weekends", image: 'salary1',
 			description: "Own one thousand Salary Employess.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 1000; }
 		},
-		{ id: 50, name: "9 to the Rest of Your Life", 
+		{ id: 50, name: "9 to the Rest of Your Life", image: 'salary1',
 			description: "Own ten thousand Salary Employess.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10000; }
 		},
 
-		{ id: 15, name: "Horizontal Scaling is Best Scaling",
+		{ id: 15, name: "Horizontal Scaling is Best Scaling", image: 'hardware1',
 			description: "Own ten Hardwares.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 10; }
 		},
-		{ id: 16, name: "Hardware to Hell", 
+		{ id: 16, name: "Hardware to Hell", image: 'hardware2',
 			description: "Own one hundred Hardwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 100; }
 		},
-		{ id: 17, name: "Johnny Mnemonic", 
+		{ id: 17, name: "Johnny Mnemonic", image: 'hardware3',
 			description: "Own one thousand Hardwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 1000; }
 		},
-		{ id: 51, name: "Unit 01", 
+		{ id: 51, name: "Unit 01", image: 'hardware4',
 			description: "Own ten thousand Hardwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(7).count >= 10000; }
 		},
 
-		{ id: 18, name: "HRotica",
+		{ id: 18, name: "HRotica", image: 'hr1',
 			description: "Own ten HR Departments.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 10; }
 		},
-		{ id: 19, name: "Human Remains Department", 
+		{ id: 19, name: "Human Remains Department", image: 'hr1',
 			description: "Own one hundred HR Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 100; }
 		},
-		{ id: 20, name: "HRmy of Darkness", 
+		{ id: 20, name: "HRmy of Darkness", image: 'hr1',
 			description: "Own one thousand HR Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 1000; }
 		},
-		{ id: 52, name: "HRmageddon", 
+		{ id: 52, name: "HRmageddon", image: 'hr1',
 			description: "Own ten thousand HR Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(9).count >= 10000; }
 		},
 
-		{ id: 21, name: "Cook the Books",
+		{ id: 21, name: "Cook the Books", image: 'accounting1',
 			description: "Own ten Accounting Departments.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 10; }
 		},
-		{ id: 22, name: "Burn the Books", 
+		{ id: 22, name: "Burn the Books", image: 'accounting2',
 			description: "Own one hundred Accounting Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 100; }
 		},
-		{ id: 23, name: "Enron the Books", 
+		{ id: 23, name: "Enron the Books", image: 'accounting3',
 			description: "Own one thousand Accounting Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 1000; }
 		},
-		{ id: 53, name: "You Are the Books", 
+		{ id: 53, name: "You Are the Books", image: 'accounting4',
 			description: "Own ten thousand Accounting Departments.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 10000; }
