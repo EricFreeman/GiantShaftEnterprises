@@ -192,7 +192,7 @@ idleGame.service('gameService', function() {
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(1000); }
 		},
-		{ id: 58, name: "There is No Diversity...Only You.", 
+		{ id: 58, name: "There is No Diversity...Only You.", image: 'diversity4',
 			description: "Own ten thousand of everything.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10000); }
@@ -211,7 +211,7 @@ idleGame.service('gameService', function() {
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074; }
 		},
-		{ id: 59, name: "Make $1,000,000,000,000,000 by EOD", 
+		{ id: 59, name: "Make $1,000,000,000,000,000 by EOD", image: 'money3',
 			description: "Earn enough to make $1 quadrillion in one day.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11574074000; }
@@ -229,7 +229,7 @@ idleGame.service('gameService', function() {
 			description: "Complete 1000 business opportunities.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 1000; }
 		},
-		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", 
+		{ id: 39, name: "You Need to Calm Down and Re-Evaluate Life Opportunist", image: 'bo3',
 			description: "Complete 10000 business opportunities.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.totalOpportunities >= 10000; }
@@ -247,16 +247,16 @@ idleGame.service('gameService', function() {
 			description: "Earn $100,000,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000; }
 		},
-		{ id: 43, name: "Timeless Business", 
+		{ id: 43, name: "Timeless Business", image: 'money3',
 			description: "Earn $100,000,000,000 Total.",
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000; }
 		},
-		{ id: 60, name: "Just Business", 
+		{ id: 60, name: "Just Business", image: 'money3',
 			description: "Earn $100,000,000,000,000 Total.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000000; }
 		},
-		{ id: 61, name: "Business", 
+		{ id: 61, name: "Business", image: 'money3',
 			description: "Earn $100,000,000,000,000,000 Total.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.totalMoney >= 100000000000000000; }
@@ -397,165 +397,165 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(4).count >= 10000; }
 		},
 
-		{ id: 24, name: "Lisa Needs Braces",
+		{ id: 24, name: "Lisa Needs Braces", image: 'benefits1',
 			description: "Own ten Benefits Packages.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 10; }
 		},
-		{ id: 25, name: "DENTAL PLAN", 
+		{ id: 25, name: "DENTAL PLAN", image: 'benefits2',
 			description: "Own one hundred Benefits Packages.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 100; }
 		},
-		{ id: 26, name: "Lisa Needs Braces", 
+		{ id: 26, name: "Lisa Needs Braces", image: 'benefits1',
 			description: "Own one thousand Benefits Packages.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 1000; }
 		},
-		{ id: 54, name: "DENTAL PLAN", 
+		{ id: 54, name: "DENTAL PLAN", image: 'benefits2',
 			description: "Own ten thousand Benefits Packages.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(5).count >= 10000; }
 		},
 
-		{ id: 27, name: "What Are You Doing?",
+		{ id: 27, name: "What Are You Doing?", image: 'management1',
 			description: "Own ten Upper Managements.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 10; }
 		},
-		{ id: 28, name: "No, Seriously, Please Stop.", 
+		{ id: 28, name: "No, Seriously, Please Stop.", image: 'management2',
 			description: "Own one hundred Upper Managements.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 100; }
 		},
-		{ id: 29, name: ":(", 
+		{ id: 29, name: ":(", image: 'management3',
 			description: "Own one thousand Upper Managements.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 1000; }
 		},
-		{ id: 55, name: ":'(", 
+		{ id: 55, name: ":'(", image: 'management4',
 			description: "Own ten thousand Upper Managements.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(3).count >= 10000; }
 		},
 
-		{ id: 30, name: "Execute",
+		{ id: 30, name: "Execute", image: 'executive1',
 			description: "Own ten Executives.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 10; }
 		},
-		{ id: 31, name: "ExeCute",
+		{ id: 31, name: "ExeCute", image: 'executive1',
 			description: "Own one hundred Executives.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 100; }
 		},
-		{ id: 32, name: "Cute",
+		{ id: 32, name: "Cute", image: 'executive1',
 			description: "Own one thousand Executives.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 1000; }
 		},
-		{ id: 56, name: "Cutest",
+		{ id: 56, name: "Cutest", image: 'executive1',
 			description: "Own ten thousand Executives.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(6).count >= 10000; }
 		},
 
-		{ id: 33, name: "National",
+		{ id: 33, name: "National", image: 'office1',
 			description: "Own ten Office Buildings.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 10; }
 		},
-		{ id: 34, name: "International", 
+		{ id: 34, name: "International", image: 'office2',
 			description: "Own one hundred Office Buildings.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 100; }
 		},
-		{ id: 35, name: "Starbucks", 
+		{ id: 35, name: "Starbucks", image: 'office3',
 			description: "Own one thousand Office Buildings.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 1000; }
 		},
-		{ id: 57, name: "Subway", 
+		{ id: 57, name: "Subway", image: 'office4',
 			description: "Own ten thousand Office Buildings.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(8).count >= 10000; }
 		},
 
-		{ id: 64, name: "Office 1 Superstore", 
+		{ id: 64, name: "Office 1 Superstore", image: 'supply1',
 			description: "Own ten Office Supplies.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 10; }
 		},
-		{ id: 65, name: "Office Depot", 
+		{ id: 65, name: "Office Depot", image: 'supply2',
 			description: "Own one hundred Office Supplies.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 100; }
 		},
-		{ id: 66, name: "OfficeMax", 
+		{ id: 66, name: "OfficeMax", image: 'supply3',
 			description: "Own one thousand Office Supplies.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 1000; }
 		},
-		{ id: 67, name: "Staples", 
+		{ id: 67, name: "Staples", image: 'supply4',
 			description: "Own ten thousand Office Supplies.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(10).count >= 10000; }
 		},
 
-		{ id: 68, name: "Solidware", 
+		{ id: 68, name: "Solidware", image: 'software1',
 			description: "Own ten Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10; }
 		},
-		{ id: 69, name: "Liquidware", 
+		{ id: 69, name: "Liquidware", image: 'software2',
 			description: "Own one hundred Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 100; }
 		},
-		{ id: 70, name: "Gasware", 
+		{ id: 70, name: "Gasware", image: 'software3',
 			description: "Own one thousand Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 1000; }
 		},
-		{ id: 71, name: "Vaporware", 
+		{ id: 71, name: "Vaporware", image: 'software4',
 			description: "Own ten thousand Softwares.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(11).count >= 10000; }
 		},
 
-		{ id: 76, name: "Ford", 
+		{ id: 76, name: "Ford", image: 'car1',
 			description: "Own ten Company Cars.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 10; }
 		},
-		{ id: 77, name: "Toyota", 
+		{ id: 77, name: "Toyota", image: 'car2',
 			description: "Own one hundred Company Cars.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 100; }
 		},
-		{ id: 78, name: "Audi", 
+		{ id: 78, name: "Audi", image: 'car3',
 			description: "Own one thousand Company Cars.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 1000; }
 		},
-		{ id: 79, name: "Tesla", 
+		{ id: 79, name: "Tesla", image: 'car4',
 			description: "Own ten thousand Company Cars.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(13).count >= 10000; }
 		},
 
-		{ id: 72, name: "Space Station 5", 
+		{ id: 72, name: "Space Station 5", image: 'spacestation1',
 			description: "Own ten Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10; }
 		},
-		{ id: 73, name: "Babylon 5", 
+		{ id: 73, name: "Babylon 5", image: 'spacestation1',
 			description: "Own one hundred Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 100; }
 		},
-		{ id: 74, name: "Deep Space 9", 
+		{ id: 74, name: "Deep Space 9", image: 'spacestation1',
 			description: "Own one thousand Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 1000; }
 		},
-		{ id: 75, name: "Death Star", 
+		{ id: 75, name: "Death Star", image: 'spacestation1',
 			description: "Own ten thousand Space Stations.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(12).count >= 10000; }
