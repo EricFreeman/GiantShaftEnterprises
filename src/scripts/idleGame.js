@@ -96,7 +96,7 @@ idleGame.service('gameService', function() {
 		{ id: 19, itemId: 4, name: "Investments", price: 250000, mps: 2, 
 			description: "Purchase goods or services to make huge gains in the long run." },
 		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 350000, mps: 3, 
-			description: "Short term loss will guarentee a winning financial strategy in the long term!" },
+			description: "Short term loss will guarantee a winning financial strategy in the long term!" },
 		
 		{ id: 21, itemId: 5, name: "Unlimited PTO", price: 500000, mps: 2, 
 			description: "Your workers will be very happy with a more flexible PTO schedule (and some may even take less PTO than normal)." },
@@ -113,7 +113,7 @@ idleGame.service('gameService', function() {
 			description: "Upper Management does their best to get the most out of them slacking employees!" },
 		
 		{ id: 24, itemId: 6, name: "Executive Bathroom", price: 10000000, mps: 5, 
-			description: "The most prized posession of every executive." },
+			description: "The most prized possession of every executive." },
 		{ id: 25, itemId: 6, name: "Goal Oriented Bonuses", price: 20000000, mps: 10, 
 			description: "Giving an executive a healthy bonus when their department doesn't go over budget will ensure your company stays fiscally responsible!" },
 		{ id: 26, itemId: 6, name: "Golden Handcuffs", price: 30000000, mps: 15, 
@@ -146,7 +146,7 @@ idleGame.service('gameService', function() {
 		{ id: 34, itemId: "Business Opportunity", name: "Business God", price: 10000000, mps: 0, mpop: .01, showAfter: [33], isOpportunity: 1, isBusiness: 1,
 			description: "Become one with the opportunity." },
 		{ id: 35, itemId: "Business Opportunity", name: "Business Elder God", price: 100000000, mps: 0, mpop: .01, showAfter: [34], isOpportunity: 1, isBusiness: 1,
-			description: "Kill the non believeres.  You are the only true opportunity." },
+			description: "Kill the non believers.  You are the only true opportunity." },
 		{ id: 43, itemId: "Business Opportunity", name: "Final Business", price: 1000000000, mps: 0, mpop: .02, showAfter: [35], isOpportunity: 1, isBusiness: 1,
 			description: "Transcend." },
 
@@ -318,21 +318,21 @@ idleGame.service('gameService', function() {
 		},
 
 		{ id: 12, name: "9 to 5", image: 'salary1',
-			description: "Own ten Salary Employess.",
+			description: "Own ten Salary Employees.",
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10; }
 		},
 		{ id: 13, name: "9 to 6", image: 'salary1',
-			description: "Own one hundred Salary Employess.",
+			description: "Own one hundred Salary Employees.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 100; }
 		},
 		{ id: 14, name: "9 to 7 + Weekends", image: 'salary1',
-			description: "Own one thousand Salary Employess.",
+			description: "Own one thousand Salary Employees.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 1000; }
 		},
 		{ id: 50, name: "9 to the Rest of Your Life", image: 'salary1',
-			description: "Own ten thousand Salary Employess.",
+			description: "Own ten thousand Salary Employees.",
 			isHidden: true,
 			earn: function(gameService, playerService, cacheService) { return playerService.getItem(2).count >= 10000; }
 		},
@@ -589,7 +589,7 @@ idleGame.service('gameService', function() {
 				description: "Perfect for printing pictures of your tuchus." } },
 		{ id: 20, price: 10, type: 'upgrade', parent: [0, 8], description: 'Upgrade for Office Supplies',
 			item: { id: 70, itemId: 10, name: "Zero Gravity Space Pens", price: 350000, mps: 1.75, showAfter: [42],
-				description: "Your employess are happy they can use pens in zero gravity situations again." } },
+				description: "Your employees are happy they can use pens in zero gravity situations again." } },
 
 		// Software and tier 1 - 4 upgrades
 		{ id: 4, price: 15, type: 'item', description: 'New mid game item',
@@ -602,7 +602,7 @@ idleGame.service('gameService', function() {
 				description: "Your employees are starting to wish they stuck with Notepad." } },
 		{ id: 7, price: 10, type: 'upgrade', parent: [4], description: 'Upgrade for Software',
 			item: { id: 60, itemId: 11, name: "Contoso OneOffice Premium 365 2014", price: 8000, mps: 1,
-				description: "Your employees see no value in the lastest edition when the version from ten years ago still works fine 99.8% of the time." } },
+				description: "Your employees see no value in the latest edition when the version from ten years ago still works fine 99.8% of the time." } },
 		{ id: 19, price: 15, type: 'upgrade', parent: [4, 8], description: 'Upgrade for Software',
 			item: { id: 61, itemId: 11, name: "Contoso OneOffice PremiumDrive x365Box 2014 For Business Enterprise Edition", price: 1000000, mps: 20, showAfter: [42],
 				description: "Your employees now hate you." } },
@@ -612,7 +612,7 @@ idleGame.service('gameService', function() {
 			item: { id: 13, name: "Company Car", mps: 6, price: 35000 } },
 		{ id: 27, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
 			item: { id: 66, itemId: 13, name: "Electric Car", price: 500000, mps: 4,
-				description: "Save money on gas when switching to electic cars." } },
+				description: "Save money on gas when switching to electric cars." } },
 		{ id: 28, price: 20, type: 'upgrade', parent: [26], description: 'Upgrade for Company Car',
 			item: { id: 67, itemId: 13, name: "Solar Powered", price: 750000, mps: 8,
 				description: "Save money on electric bill by harnessing energy from the sun." } },
@@ -647,13 +647,13 @@ idleGame.service('gameService', function() {
 		// tier 4
 		{ id: 9, price: 1, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Minimum Wage Workers',
 			item: { id: 45, itemId: 0, name: "Cloning", price: 400000, mps: 1.5, showAfter: [42],
-			description: "Don't hire employess - create them!" } },
+			description: "Don't hire employees - create them!" } },
 		{ id: 10, price: 2, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Cubicle.',
 			item: { id: 46, itemId: 1, name: "Condensed Space", price: 1500000, mps: 5, showAfter: [42],
 			description: "By replacing your cubicles with cramped cells, you can fit more employees in your offices." } },
 		{ id: 11, price: 3, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Hardware',
 			item: { id: 48, itemId: 7, name: "Space Tech", price: 75000000, mps: 100, showAfter: [42],
-			description: "Employess can finally get work done when their hardware isn't made out of stone knives and bearskins." } },
+			description: "Employees can finally get work done when their hardware isn't made out of stone knives and bearskins." } },
 		{ id: 12, price: 4, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Salary Employee',
 			item: { id: 47, itemId: 2, name: "Shock Collars", price: 15000000, mps: 30, showAfter: [42],
 			description: "Don't let your best employees leave through any means necessary." } },
