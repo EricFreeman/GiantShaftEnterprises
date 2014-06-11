@@ -17,7 +17,7 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 		playerService.totalOpportunitiesReset += playerService.totalOpportunities;
 
 		playerService.totalMoneyReset += playerService.totalMoney;
-		playerService.totalMoney = playerService.vcPointsToMoney(playerService.vcFunding);
+		playerService.totalMoney = 0;
 		playerService.money = playerService.vcPointsToMoney(playerService.vcFunding);
 		playerService.items = [];
 		playerService.upgrades = [];
