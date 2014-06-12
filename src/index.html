@@ -356,7 +356,10 @@
 				<div ng-show="showTutorial()"
 					 ng-init="tutorialInit()"
 					 class="tutorial">
-					<span>{{tutorialText}}</span>
+					<div>
+						<p>{{tutorialText}}</p>
+						<p>{{progress}}</p>
+					</div>
 					<img src="images/arrow.png" />
 				</div>
 			</div>

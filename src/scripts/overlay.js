@@ -2,15 +2,10 @@ function OverlayController($scope, $timeout, playerService) {
 	$scope.messages = [];
 	$scope.spawn = [];
 	$scope.tutorialText = "";
+	$scope.progress = '';
 	
 	$scope.showTutorial = function() {
 		return playerService.showTutorial;
-	}
-
-	$scope.goBackToBusiness = function() {
-		pos = $('.links').children('a').first().position();
-		$('.tutorial').css({left: pos.left - 360, top: pos.top - 16});
-		$scope.tutorialText = "Go back to the Business tab!";
 	}
 
 	$scope.tutorialInit = function() {
@@ -25,6 +20,7 @@ function OverlayController($scope, $timeout, playerService) {
 			var pos = $('.opportunity').position();
 			$('.tutorial').css({left: pos.left - 330, top: pos.top + 24});
 			$scope.tutorialText = "Do BUSINESS OPPORTUNITIES to earn money.";
+			$scope.progress = playerService.money + '/15';
 		}
 		else if(playerService.tutorialStep == 1) {
 			$('.mainContent').show();
@@ -36,6 +32,7 @@ function OverlayController($scope, $timeout, playerService) {
 			if(pos != undefined) {
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
 				$scope.tutorialText = "Purchase items to earn money for you automatically.";
+				$scope.progress = playerService.items.length + '/1';
 			}
 			else
 				$scope.goBackToBusiness();
@@ -48,6 +45,7 @@ function OverlayController($scope, $timeout, playerService) {
 			if(pos != undefined) {
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
 				$scope.tutorialText = "Purchase upgrades to increase the power of your items, BUSINESS OPPORTUNITIES, and passive bonuses!";
+				$scope.progress = playerService.upgrades.length + '/1';
 			}
 			else
 				$scope.goBackToBusiness();
@@ -60,6 +58,7 @@ function OverlayController($scope, $timeout, playerService) {
 			if(pos != undefined) {
 				$('.tutorial').css({left: pos.left - 330, top: pos.top});
 				$scope.tutorialText = "These are the achievements you've earned thus far.  You can get them in a variety of ways.  The next easy one for you to earn is by owning 10 Minimum Wage Workers or doing BUSINESS OPPORTUNITIES 100 times.  Earn one more achievement to complete this tutorial.";
+				$scope.progress = playerService.achievements.length + '/4';
 			}
 			else
 				$scope.goBackToBusiness();
@@ -70,6 +69,13 @@ function OverlayController($scope, $timeout, playerService) {
 
 		if(playerService.tutorialStep < 4)
 			$timeout($scope.tutorialInit, 50);
+	}
+
+	$scope.goBackToBusiness = function() {
+		pos = $('.links').children('a').first().position();
+		$('.tutorial').css({left: pos.left - 360, top: pos.top - 16});
+		$scope.tutorialText = "Go back to the Business tab!";
+		$scope.progress = '';
 	}
 
 	$scope.$on('displayMessage', function(event, data) { 
