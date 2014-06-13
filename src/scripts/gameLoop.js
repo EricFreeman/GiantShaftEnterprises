@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, $rootScope, gameService, playerService, cacheService, saveService) {	
+function GameLoopController($scope, $timeout, $rootScope, $location, $window, gameService, playerService, cacheService, saveService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -131,6 +131,19 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 		$timeout($scope.checkAchievements, 3000);
 	};
 
+	// Google Analytics page tracking
+	$scope.$on('$viewContentLoaded', function(event) {
+		$window.ga('send', 'pageview', { page: $location.path() });
+	});
+
+	// Keep the session alive on GA since it times out quickly
+	$scope.heartbeat = function() {
+		$window.ga('send', 'heartbeat', { page: $location.path() });
+		$timeout($scope.heartBeat, 300000);
+	}
+
+	
+	// Check if player won any achievements
 	$scope.checkAchievements();
 	
 	// Load the game if it was previously saved
@@ -141,6 +154,9 @@ function GameLoopController($scope, $timeout, $rootScope, gameService, playerSer
 
 	// Check for update to game every five minutes
 	$scope.checkForUpdate();
+
+	// Start up the heartbeat
+	$scope.heartbeat();
 
 	// Start save loop of every 30 seconds
 	$timeout($scope.saveGame, 30000);
