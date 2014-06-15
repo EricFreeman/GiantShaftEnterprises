@@ -187,7 +187,7 @@
 						<div class="item enabled" ng-show="playerService.vcFunding > 0">
 							<p class="name">VC Funding</p>
 							<div class="info">
-								<p>{{playerService.vcFunding | currency}}</p>
+								<p>{{playerService.vcFunding * 1000 | currency}}</p>
 							</div>
 						</div>
 						<div class="item enabled" ng-show="playerService.businessConnections > 0">
@@ -222,7 +222,7 @@
 						</div>
 						
 						<div class="item">
-							<p class="name">VC Funding - {{playerService.vcFunding | currency}}</p>
+							<p class="name">VC Funding - {{playerService.vcFunding * 1000 | currency}}</p>
 							<div class="info">
 								<p>Every BK spent on VC Funding will provide your next (and current) company with $1,000.</P>
 								<a class="button" ng-click="buyVcFunding(1)">1 VC - 1 BK</a>

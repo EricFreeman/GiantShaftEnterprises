@@ -198,6 +198,38 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return cacheService.hasDiversity(10000); }
 		},
 
+		{ id: 80, name: "Starting Over", image: 'handshake',
+			description: "Start a second company.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalCompaniesStarted > 1; }
+		},
+		{ id: 81, name: "True Entrepreneur", image: 'handshake',
+			description: "Start ten new companies.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalCompaniesStarted > 10; }
+		},
+
+		{ id: 82, name: "Galileo Galilei", image: 'management2',
+			description: "Earn 10 BK",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalKnowledge >= 10; }
+		},
+		{ id: 83, name: "Isaac Newton", image: 'management2',
+			description: "Earn 100 BK",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalKnowledge >= 100; }
+		},
+		{ id: 84, name: "Albert Einstein", image: 'management2',
+			description: "Earn 1000 BK",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalKnowledge >= 1000; }
+		},
+		{ id: 85, name: "Eric Freeman", image: 'management2',
+			description: "Earn 10000 BK",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.totalKnowledge >= 10000; }
+		},
+
 		{ id: 9, name: "Make $1,000,000 by EOD", image: 'money1',
 			description: "Earn enough to make $1 million in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11.57; }

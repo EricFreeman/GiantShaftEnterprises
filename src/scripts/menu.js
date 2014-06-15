@@ -34,6 +34,7 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 	}
 
 	$scope.updates = [
+		{ title: '6/11/2014 - 6/14/2014', description: 'Fixed a bunch of typos in the game, updated tutorial to show progress, updated Google Analytics code to help with tracking (hopefully) and added a few more achievements.' },
 		{ title: '6/5/2014 - 6/10/2014', description: 'Added achievements to home page (with temporary icons), limited max BC boost, updated tutorial, did some css updates, more BK items, and probably some other stuff.' },
 		{ title: '6/5/2014', description: 'Added a tutorial and VC Funding and Business Connections as items you can buy an unlimited amount of times in the knowledge store.' },
 		{ title: '5/29/2014 - 6/4/2014', description: 'Added tons of new prestige items and upgrades.  Also added floating numbers when you complete business opportunities (you can turn it off in the menu) and some new early and end game items for clicking to make it still a useful thing besides just when using an autoclicker.' },
