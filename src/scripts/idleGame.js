@@ -230,6 +230,12 @@ idleGame.service('gameService', function() {
 			earn: function(gameService, playerService, cacheService) { return playerService.totalKnowledge >= 10000; }
 		},
 
+		{ id: 86, name: "Smart Move", image: 'firstSteps',
+			description: "Buy your first BK item.",
+			isHidden: true,
+			earn: function(gameService, playerService, cacheService) { return playerService.knowledge < playerService.totalKnowledge; }
+		},
+
 		{ id: 9, name: "Make $1,000,000 by EOD", image: 'money1',
 			description: "Earn enough to make $1 million in one day.",
 			earn: function(gameService, playerService, cacheService) { return cacheService.getMps() > 11.57; }
