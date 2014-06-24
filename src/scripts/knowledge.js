@@ -67,4 +67,8 @@ function KnowledgeController($rootScope, $scope, gameService, playerService, cac
 	$scope.getBcBoost = function() {
 		return cacheService.cachedBcBoost;
 	}
+
+	$scope.getMaxBcBoost = function() {
+		return cacheService.cachedMaxBcBoost;
+	}
 };

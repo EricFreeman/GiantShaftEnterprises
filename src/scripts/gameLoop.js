@@ -112,7 +112,7 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
                 }
 
                 if($scope.currentVersion == $scope.loadedVersion)
-                	$timeout($scope.checkForUpdate, 300000);
+					$timeout($scope.checkForUpdate, 300000);
             }
         });
 	}

@@ -833,6 +833,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedClickPower = 0;
 	this.lowestAmountCache = 0;
 	this.cachedBcBoost = 0;
+	this.cachedMaxBcBoost = 0;
 	this.items = [];
 
 	this.getMps = function() {
@@ -849,6 +850,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
 		self.items = self.getNewItems();
+		self.cachedMaxBcBoost = self.getPossibleBcBoost();
 	});
 
 	$rootScope.$on('loadKnowledge', function() {
@@ -967,6 +969,16 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 						}, 0);
 		
 		return  baseMaxBoost + extraBoost;
+	}
+
+	this.getPossibleBcBoost = function() {
+		var baseMax = 1;
+
+		var extraBoost = gameService.upgrades.reduce(function(prev, cur) {
+							return prev += cur.isBcBoost ? cur.bcBoost : 0;
+						}, 0);
+
+		return baseMax + extraBoost;
 	}
 
 	this.hasDiversity = function(amount) {

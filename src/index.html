@@ -231,7 +231,10 @@
 							</div>
 						</div>
 						<div class="item">
-							<p class="name">Business Connections - {{playerService.businessConnections | number}} - {{getBcBoost() * 100 | number:2}}%</p>
+							<p class="name">Business Connections</p>
+							<p class="name">Current: {{playerService.businessConnections | number}} - {{getBcBoost() * 100 | number:2}}%</p>
+							<p class="name">Current Max: {{getMaxBcBoost() * 100 | number:2}}%</p>
+							<br />
 							<div class="info">
 								<p>Every Business Connections will provide you with a permanent boost to your MPS.  The boost % degrades with each new connection for a max MPS boost of 100%.  Business Connections cost 2 BK.</P>
 								<a class="button" ng-click="buyBusinessConnections(1)">1 BC - 2 BK</a>
