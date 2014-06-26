@@ -17,6 +17,10 @@ idleGame.config(['$routeProvider',
 				templateUrl: 'stats.html',
 				controller: 'StatsController'
 			}).
+			when('/space', {
+				templateUrl: 'space.html',
+				controller: 'SpaceController'
+			}).
 			when('/knowledge', {
 				templateUrl: 'knowledge.html',
 				controller: 'KnowledgeController'

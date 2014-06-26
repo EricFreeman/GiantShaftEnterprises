@@ -10,6 +10,7 @@
 	<script src="scripts/menu.js"></script>
 	<script src="scripts/stats.js"></script>
 	<script src="scripts/overlay.js"></script>
+	<script src="scripts/space.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -35,6 +36,7 @@
 					<div class="links center">
 						<img class="logo" src="images/logo.jpg" alt="logo" />
 						<a href="#/business">Business</a>
+						<a href="#/space" ng-show="showSpace()">Space</a>
 						<a href="#/knowledge" ng-show="showKnowledge()">Knowledge</a>
 						<a href="#/stats">Stats</a>
 						<a href="#/menu">Menu</a>
@@ -210,6 +212,12 @@
 								<p class="name">???</p>
 							</div>
 						</div>
+					</div>
+				</script>
+
+				<script type="text/ng-template" id="space.html">
+					<div class="content center border">
+						SPACE
 					</div>
 				</script>
 
