@@ -5,7 +5,15 @@ function StatsController($scope, gameService, playerService, cacheService) {
 	$scope.totalBuildings = playerService.items.reduce(function(prev, curr) {return prev += curr.count}, 0);
 	
 	$scope.totalUpgrades = playerService.upgrades.length;
-	$scope.possibleUpgrades = gameService.upgrades.length;
+	$scope.possibleUpgrades = function()
+	{
+		var base = gameService.upgrades.length;
+		var bk = gameService.knowledgeItems.filter(function(d) {
+			return d.type === 'upgrade';
+		}).length;
+
+		return base + bk;
+	}
 
 	$scope.totalAchievements = playerService.achievements.length;
 	$scope.possibleAchievements = gameService.achievements.length;
