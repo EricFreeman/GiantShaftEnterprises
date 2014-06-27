@@ -217,7 +217,18 @@
 
 				<script type="text/ng-template" id="space.html">
 					<div class="content center border">
-						SPACE
+						<a class="button" ng-show="current == null" ng-click="scanForAsteroid(0)">Scan</a>
+
+						<div class="asteroid" ng-show="current != null">
+							<p class="info">Mining Cost - {{current.miningCost | currency}}</p>
+							<p class="info">Chance - {{current.chance | number:0}}%</p>
+							<div ng-repeat="resource in current.resources">
+								<p>{{resource.name}} - {{resource.remaining}}</p>
+							</div>
+
+							<a class="button" ng-click="mine()">Mine</a>
+							<a class="button" ng-click="abandon()">Abandon</a>
+						</div>
 					</div>
 				</script>
 
