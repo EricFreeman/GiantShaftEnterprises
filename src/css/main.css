@@ -175,6 +175,16 @@ li {
 	margin-left: 16px;
 }
 
+.bottomLinks {
+	position: fixed;
+	bottom: 4px;
+	left: 4px;
+}
+
+.bottomLinks a {
+	text-decoration: none;
+}
+
 /* Fake Buttons */
 .button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
