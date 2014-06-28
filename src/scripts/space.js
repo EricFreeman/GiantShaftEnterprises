@@ -32,10 +32,10 @@ function SpaceController($scope, playerService) {
 			if(as.resources[mineral].remaining <= 0)
 				as.resources.splice(mineral, 1);
 
-			// mined.push({ as.resources[mineral]: 1 });
+			mined.push({ name: as.resources[mineral].name });
 		}
 
-		return mined;
+		playerService.mine(mined);
 	}
 
 	$scope.abandon = function() {

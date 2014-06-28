@@ -754,6 +754,8 @@ idleGame.service('playerService', function () {
 	this.items = [];
 	// Owned upgrades are stored here as: { id: x }
 	this.upgrades = [];
+	// Resources mined are stored here as { name: x, count: y }
+	this.resources = [];
 	// Earned achievments are stored here as: { id: x }
 	this.achievements = [];
 
@@ -799,6 +801,11 @@ idleGame.service('playerService', function () {
 			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
 	}
 
+	this.getResource = function(name) {
+		return search(this.resources, "name", name,
+			{ name: '', count: 0 });
+	}
+
 	this.getKnowledgeItem = function(id) {
 		return search(this.unlockedKnowledgeItems, "id", id,
 			{ id: -1, price: 0 });
@@ -826,6 +833,23 @@ idleGame.service('playerService', function () {
 			this.items[index].count++;
 		}
 	};
+
+	this.mine = function(items) {
+		for(var i = 0; i < items.length; i++) {
+			var item = this.getResource(items[i].name);
+
+			// Add an entry for it if nobody has bought it yet.
+			if(item.name === '') {
+				item.name = items[i].name;
+				item.count++;
+				this.resources.push({name: item.name, count: item.count});
+			}
+			else {
+				var index = this.resources.indexOf(item);
+				this.resources[index].count++;
+			}
+		}
+	}
 
 	this.buyUpgrade = function(upgrade) {
 		this.upgrades.push({id: upgrade.id});
