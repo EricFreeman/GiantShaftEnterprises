@@ -615,7 +615,17 @@ idleGame.service('gameService', function() {
 				description: "Feel important with your very own personal parking space." } },
 		{ id: 33, price: 3, type: 'upgrade', description: 'New early game click buff',
 			item: { id: 74, itemId: "Business Opportunity", name: "Private Secretary", price: 100, mps: 0, mpo: 2, isOpportunity: 1, isBusiness: 1,
-				description: "Having a secretary frees you up to focus more on your work." } },
+			description: "Having a secretary frees you up to focus more on your work." } },
+		
+		{ id: 38, price: 15, type: 'upgrade', description: 'New mid/late game click buff',
+			item: { id: 81, itemId: "Business Opportunity", name: "Chauffer", price: 1000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
+			description: "Get where you're going faster with a private driver." }, },
+		{ id: 38, price: 20, type: 'upgrade', description: 'New mid/late game click buff',
+			item: { id: 82, itemId: "Business Opportunity", name: "Private Jet", price: 100000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
+			description: "Why drive when you can fly?" }, },
+		{ id: 38, price: 25, type: 'upgrade', description: 'New mid/late game click buff',
+			item: { id: 83, itemId: "Business Opportunity", name: "Security Forces", price: 10000000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
+			description: "You have made a lot of enemies.  Protect yourself." }, },
 
 		// Office Supplies and tier 1 - 4 upgrades
 		{ id: 0, price: 10, type: 'item', description: 'New early game item',

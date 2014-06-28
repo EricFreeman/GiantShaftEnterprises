@@ -9,7 +9,7 @@ function StatsController($scope, gameService, playerService, cacheService) {
 	{
 		var base = gameService.upgrades.length;
 		var bk = gameService.knowledgeItems.filter(function(d) {
-			return d.type === 'upgrade';
+			return d.type === 'upgrade' && gameService.upgrades.indexOf(d.item) < 0;
 		}).length;
 
 		return base + bk;
