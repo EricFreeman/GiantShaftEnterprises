@@ -741,6 +741,13 @@ idleGame.service('gameService', function() {
 		{ id: 37, price: 100, type: 'upgrade', parent: [36], description: 'Increase the max boost from Business Connections',
 			item: { id: 80, itemId: "Business Connections", name: "Sleep with Marissa Mayer", price: 250000000, isBusiness: 1, isBcBoost: true, bcBoost: .25, showAfter: [79],
 			description: "Maximize your business connections by making her scream 'Yahoo!'" }},
+	];	
+
+	this.ships = [
+		{ id: 0, name: "Drone", attack: 0, defense: 1, cost: [ { money: 30000, titanium: 1, diamonds: 1 } ]},
+		{ id: 1, name: "Scout", attack: 1, defense: 2, cost: [ { money: 150000, titanium: 2, diamonds: 1 } ]},
+		{ id: 2, name: "Fighter", attack: 5, defense: 5, cost: [ { money: 500000, titanium: 10, diamonds: 5 } ]},
+		{ id: 3, name: "Bomber", attack: 15, defense: 2, cost: [ { money: 1500000, titanium: 15, diamonds: 8 } ]},
 	];
 
 	this.getItem = function(id) {
@@ -756,49 +763,6 @@ idleGame.service('gameService', function() {
 	this.getKnowledgeItem = function(id) {
 		return search(this.knowledgeItems, "id", id,
 			{ id: -1, price: 0 });
-	}
-});
-
-idleGame.service('importExportService', function($rootScope, cacheService, playerService, gameService) {
-	this.loadGame = function(file) {
-		// Grab current items.  Will be useful if more items were added after you started game
-		var curr = playerService.items;
-
-		// Go through each property of playerService, and if it exists, load it
-		for(var prop in playerService) {
-			var propName = "CompanyGame." + prop;
-			if(file[propName] != undefined)
-				playerService[prop] = JSON.parse(file[propName]);
-		}
-
-		// Load in any business knowledge items bought for this game
-		$rootScope.$broadcast('loadKnowledge');
-
-		// Update the chached values for click power and money/second
-		$rootScope.$broadcast('updateCache');
-
-		// Add in any money you should have received while the game was not playing
-		var lastSave = file["CompanyGame.lastSaveDate"];
-		if(lastSave) {
-			var date = Date.parse(lastSave);
-			var timePassed = (new Date() - date) / 1000;  // Divide by 1000 to get in seconds
-			var missedMoney = timePassed * cacheService.getMps();
-
-			// Get upgrades that deal with giving money when game isn't on
-			var upgrades = gameService.upgrades.
-				filter(function(d) {
-					return d.isOnLoad;
-				}).
-				filter(function(d) {
-					return playerService.getUpgrade(d.id).id >= 0;
-				});
-
-			for(var i = 0; i < upgrades.length; i++) {
-				var missed = upgrades[i].per * missedMoney;
-				playerService.money += missed;
-				playerService.totalMoney += missed;
-			}
-		}
 	}
 });
 
@@ -1064,6 +1028,49 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.hasDiversity = function(amount) {
 		return amount <= this.lowestAmountCache;
+	}
+});
+
+idleGame.service('importExportService', function($rootScope, cacheService, playerService, gameService) {
+	this.loadGame = function(file) {
+		// Grab current items.  Will be useful if more items were added after you started game
+		var curr = playerService.items;
+
+		// Go through each property of playerService, and if it exists, load it
+		for(var prop in playerService) {
+			var propName = "CompanyGame." + prop;
+			if(file[propName] != undefined)
+				playerService[prop] = JSON.parse(file[propName]);
+		}
+
+		// Load in any business knowledge items bought for this game
+		$rootScope.$broadcast('loadKnowledge');
+
+		// Update the chached values for click power and money/second
+		$rootScope.$broadcast('updateCache');
+
+		// Add in any money you should have received while the game was not playing
+		var lastSave = file["CompanyGame.lastSaveDate"];
+		if(lastSave) {
+			var date = Date.parse(lastSave);
+			var timePassed = (new Date() - date) / 1000;  // Divide by 1000 to get in seconds
+			var missedMoney = timePassed * cacheService.getMps();
+
+			// Get upgrades that deal with giving money when game isn't on
+			var upgrades = gameService.upgrades.
+				filter(function(d) {
+					return d.isOnLoad;
+				}).
+				filter(function(d) {
+					return playerService.getUpgrade(d.id).id >= 0;
+				});
+
+			for(var i = 0; i < upgrades.length; i++) {
+				var missed = upgrades[i].per * missedMoney;
+				playerService.money += missed;
+				playerService.totalMoney += missed;
+			}
+		}
 	}
 });
 

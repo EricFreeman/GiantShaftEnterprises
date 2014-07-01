@@ -1,8 +1,9 @@
-function SpaceController($scope, playerService) {
+function SpaceController($scope, playerService, gameService) {
 	// The current asteroid you scanned for that you can potentially mine
 	$scope.current = null;
 
 	$scope.playerService = playerService;
+	$scope.gameService = gameService;
 
 	// Returns a random asteroid that fits the difficulty
 	// 		miningCost 	- How much it costs every time you mine the asteroid
