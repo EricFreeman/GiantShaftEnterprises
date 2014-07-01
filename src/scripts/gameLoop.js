@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, $rootScope, $location, $window, gameService, playerService, cacheService, saveService) {	
+function GameLoopController($scope, $timeout, $rootScope, $location, $window, gameService, playerService, cacheService, saveService, importExportService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -20,44 +20,7 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 	$scope.currentVersion = 1;
 
 	$scope.loadGame = function() {
-		// Grab current items.  Will be useful if more items were added after you started game
-		var curr = playerService.items;
-
-		// Go through each property of playerService, and if it exists, load it
-		for(var prop in playerService) {
-			var propName = "CompanyGame." + prop;
-			if(localStorage[propName] != undefined)
-				playerService[prop] = JSON.parse(localStorage.getItem(propName));
-		}
-
-		// Load in any business knowledge items bought for this game
-		$rootScope.$broadcast('loadKnowledge');
-
-		// Update the chached values for click power and money/second
-		$rootScope.$broadcast('updateCache');
-
-		// Add in any money you should have received while the game was not playing
-		var lastSave = localStorage.getItem("CompanyGame.lastSaveDate");
-		if(lastSave) {
-			var date = Date.parse(lastSave);
-			var timePassed = (new Date() - date) / 1000;  // Divide by 1000 to get in seconds
-			var missedMoney = timePassed * cacheService.getMps();
-
-			// Get upgrades that deal with giving money when game isn't on
-			var upgrades = gameService.upgrades.
-				filter(function(d) {
-					return d.isOnLoad;
-				}).
-				filter(function(d) {
-					return playerService.getUpgrade(d.id).id >= 0;
-				});
-
-			for(var i = 0; i < upgrades.length; i++) {
-				var missed = upgrades[i].per * missedMoney;
-				playerService.money += missed;
-				playerService.totalMoney += missed;
-			}
-		}
+		importExportService.loadGame(localStorage);
 	};
 
 	$scope.saveGame = function() {
