@@ -2,6 +2,8 @@ function SpaceController($scope, playerService) {
 	// The current asteroid you scanned for that you can potentially mine
 	$scope.current = null;
 
+	$scope.playerService = playerService;
+
 	// Returns a random asteroid that fits the difficulty
 	// 		miningCost 	- How much it costs every time you mine the asteroid
 	//		chance		- % chance that mining will return any valuables
@@ -11,7 +13,7 @@ function SpaceController($scope, playerService) {
 	{
 		// TODO: Change this from temporary spiked out test data to the real deal!
 		if(difficulty == 0)
-			$scope.current = { miningCost: 100000, chance: 10, maxPerMine: 2, resources: [ {name: 'titanium', remaining: 100}, {name: 'diamond', remaining: 25} ]};
+			$scope.current = { miningCost: 100000, chance: 10, maxPerMine: 2, resources: [ {name: 'Titanium', remaining: 100}, {name: 'Diamond', remaining: 25} ]};
 		else
 			$scope.current = null;
 	}
