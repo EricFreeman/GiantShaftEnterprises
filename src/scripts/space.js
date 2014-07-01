@@ -24,6 +24,7 @@ function SpaceController($scope, playerService) {
 				 successfulMine = Math.random() * 100 < as.chance,
 				 mined = [], mineralsToMine;
 
+		playerService.money -= $scope.current.miningCost;
 		if(!successfulMine) return;
 
 		mineralsToMine = Math.floor((Math.random() * as.maxPerMine) + 1);

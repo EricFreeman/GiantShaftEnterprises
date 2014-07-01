@@ -233,7 +233,10 @@
 									<p>{{resource.name}} - {{resource.remaining}}</p>
 								</div>
 
-								<a class="button" ng-click="mine()" ng-show="current.resources.length > 0">Mine</a>
+								<a class="button" ng-click="mine()" 
+												  ng-show="current.resources.length > 0 && current.miningCost <= playerService.money">
+												  	Mine
+								</a>
 								<a class="button" ng-click="abandon()">Abandon</a>
 							</div>
 						</div>
