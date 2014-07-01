@@ -1,0 +1,12 @@
+.fleetRow {
+	margin-bottom: 16px;
+}
+
+.fleetRow .shipName {
+	font-weight: bold;
+	color: #333333;
+}
+
+.fleetRow .price {
+	color: #999999;
+}

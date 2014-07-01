@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
 	<link rel="stylesheet" type="text/css" href="css/overlay.css" />
+	<link rel="stylesheet" type="text/css" href="css/space.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.min.css" />
 	<title>Giant Shaft Enterprises</title>
 	<script>
@@ -244,7 +245,12 @@
 						<div class="item">
 							<p class="name">Fleet</p>
 							<div class="fleetRow" ng-repeat="ship in gameService.ships">
-								<p>{{ship.name}}</p>
+								<p class="shipName">{{ship.name}}</p>
+								<p class="price" ng-repeat="item in ship.cost">
+									{{item.name}} - 
+									<span ng-show="item.name != 'Money'">{{item.price}}</span>
+									<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
+								</p>
 							</div>
 						</div>
 					</div>
