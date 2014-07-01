@@ -3,6 +3,7 @@
 	<script src="scripts/jquery-1.11.1.min.js"></script>
 	<script src="scripts/jquery-ui-1.10.4.min.js"></script>
 	<script src="scripts/angular-route.min.js"></script>
+	<script src="scripts/aes.js"></script>
 	<script src="scripts/idleGame.js"></script>
 	<script src="scripts/knowledge.js"></script>
 	<script src="scripts/gameLoop.js"></script>
@@ -301,6 +302,11 @@
 						<section>
 							<p>The game auto-saves every 30 seconds, but in case you are in a hurry, use this:</p>
 							<a class="button" ng-click="saveGame()">Save Game</a>
+						</section>
+						<section>
+							<p>Backup your save or transfer it to a new computer (THIS FEATURE IS STILL IN BETA):</p>
+							<a class="button" ng-click="import()">Import</a>
+							<a class="button" ng-click="export()">Export</a>
 						</section>
 						<section>
 							<p>Lose control of your current company, but gain Business Knowledge based on how much total money your current business made.  This can be used to unlock new items and upgrades for your next company!</p>

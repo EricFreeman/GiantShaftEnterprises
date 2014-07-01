@@ -1,4 +1,4 @@
-function MenuController($rootScope, $scope, playerService, saveService) {
+function MenuController($rootScope, $scope, playerService, saveService, importExportService) {
 	$scope.playerService = playerService;
 	$scope.potentialKp = function() { return Math.floor(playerService.totalMoney / 1000000000); } 
 
@@ -27,6 +27,28 @@ function MenuController($rootScope, $scope, playerService, saveService) {
 
 		$rootScope.$broadcast('updateCache');
 		$rootScope.$broadcast('displayMessage', 'Starting Over!  Business Knowledge Gained: ' + knowledgeGained);
+	}
+
+	$scope.import = function() {
+		var save = window.prompt("Paste your exported save string here:", "");
+		if(save != null) {
+			var file = JSON.parse(CryptoJS.AES.decrypt(save, "SuperSecretPassphrase").toString(CryptoJS.enc.Utf8));
+			importExportService.loadGame(file);
+		}
+	}
+
+	$scope.export = function() {
+		var saveData = {}, encrypted;
+
+		for(var prop in playerService) {
+			if(typeof(playerService[prop]) != "function")
+				saveData["CompanyGame." + prop] = JSON.stringify(playerService[prop]);
+		}
+
+		saveData["CompanyGame.lastSaveDate"] = new Date();
+
+		var encrypted = CryptoJS.AES.encrypt(JSON.stringify(saveData), "SuperSecretPassphrase").toString();
+		window.prompt("Save this string somewhere:", encrypted);
 	}
 
 	$scope.resetGame = function() {
