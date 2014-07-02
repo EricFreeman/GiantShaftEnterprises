@@ -745,13 +745,13 @@ idleGame.service('gameService', function() {
 
 	this.ships = [
 		{ id: 0, name: "Drone", attack: 0, defense: 1, 
-			cost: [ { name: 'Money', price: 30000 }, { name: 'Titanium', price: 1 }, { name: 'Diamonds', price: 1 } ]},
+			cost: [ { name: 'Money', price: 30000 }, { name: 'Titanium', price: 1 }, { name: 'Diamond', price: 1 } ]},
 		{ id: 1, name: "Scout", attack: 1, defense: 2, 
-			cost: [ { name: 'Money', price: 150000 }, { name: 'Titanium', price: 2 }, { name: 'Diamonds', price: 1 } ]},
+			cost: [ { name: 'Money', price: 150000 }, { name: 'Titanium', price: 2 }, { name: 'Diamond', price: 1 } ]},
 		{ id: 2, name: "Fighter", attack: 5, defense: 5, 
-			cost: [ { name: 'Money', price: 500000 }, { name: 'Titanium', price: 10 }, { name: 'Diamonds', price: 5 } ]},
+			cost: [ { name: 'Money', price: 500000 }, { name: 'Titanium', price: 10 }, { name: 'Diamond', price: 5 } ]},
 		{ id: 3, name: "Bomber", attack: 15, defense: 2, 
-			cost: [ { name: 'Money', price: 1500000 }, { name: 'Titanium', price: 15 }, { name: 'Diamonds', price: 8 } ]},
+			cost: [ { name: 'Money', price: 1500000 }, { name: 'Titanium', price: 15 }, { name: 'Diamond', price: 8 } ]},
 	];
 
 	this.getItem = function(id) {

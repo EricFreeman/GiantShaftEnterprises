@@ -50,4 +50,30 @@ function SpaceController($scope, playerService, gameService) {
 		var ship = playerService.ships.filter(function(d) {return d.id == id;});
 		return ship.length == 1 ? ship[0].count : 0;
 	}
+
+	$scope.buy = function(id, amount) {
+		if($scope.canBuy(id, amount)) {
+
+		}
+	}
+
+	$scope.canBuy = function(id, amount) {
+		var ship = gameService.ships.filter(function(d) {return d.id == id;})[0];
+
+		var buyable = true;
+
+		for(var i = 0; i < ship.cost.length; i++) {
+			if(ship.cost[i].name == 'Money')
+				buyable &= playerService.money >= ship.cost[i].price * amount;
+			else {
+				var resource = playerService.resources.filter(function(d) {return d.name == ship.cost[i].name});
+				if(resource.length > 0) resource = resource[0];
+				else resource = {};
+
+				buyable &= resource.count >= ship.cost[i].price * amount;
+			}
+		}
+
+		return buyable;
+	}
 }
