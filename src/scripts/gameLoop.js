@@ -16,7 +16,7 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 		return playerService.totalKnowledge > 0;
 	}
 	$scope.showSpace = function() {
-		return true;
+		return false;
 	}
 
 	$scope.loadedVersion = 1;
