@@ -52,25 +52,40 @@ function SpaceController($scope, playerService, gameService) {
 	}
 
 	$scope.buy = function(id, amount) {
-		if($scope.canBuy(id, amount)) {
+		if($scope.canBuy(id, amount, false)) {
+			$scope.canBuy(id, amount, true);
 
+			var ship = playerService.ships.filter(function(d) {return d.id == id;});
+			if(ship.length > 0) {
+				//over 0 means the ship was already bought at least once, meaning we just need to increment the counter
+				ship = ship[0];
+				ship.count++;
+			}
+			else {
+				playerService.ships.push({id: id, count: amount});
+			}
 		}
 	}
 
-	$scope.canBuy = function(id, amount) {
+	// Returns if player can buy a specific ship.  Passing in true for the 'buy' 
+	// value will also remove the resources when checking if you have enough
+	$scope.canBuy = function(id, amount, buy) {
 		var ship = gameService.ships.filter(function(d) {return d.id == id;})[0];
 
 		var buyable = true;
 
 		for(var i = 0; i < ship.cost.length; i++) {
-			if(ship.cost[i].name == 'Money')
+			if(ship.cost[i].name == 'Money'){
 				buyable &= playerService.money >= ship.cost[i].price * amount;
+				if(buy) playerService.money -= ship.cost[i].price * amount;
+			}
 			else {
 				var resource = playerService.resources.filter(function(d) {return d.name == ship.cost[i].name});
 				if(resource.length > 0) resource = resource[0];
 				else resource = {};
 
 				buyable &= resource.count >= ship.cost[i].price * amount;
+				if(buy) resource.count -= ship.cost[i].price * amount;
 			}
 		}
 
