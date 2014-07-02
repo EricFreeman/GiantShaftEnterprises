@@ -239,3 +239,7 @@ li {
 	position:relative;
 	top:1px;
 }
+
+.button.small {
+	max-width: 40px;
+}

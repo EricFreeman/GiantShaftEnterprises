@@ -45,4 +45,9 @@ function SpaceController($scope, playerService, gameService) {
 	$scope.abandon = function() {
 		$scope.current = null;
 	}
+
+	$scope.getCount = function(id) {
+		var ship = playerService.ships.filter(function(d) {return d.id == id;});
+		return ship.length == 1 ? ship[0].count : 0;
+	}
 }

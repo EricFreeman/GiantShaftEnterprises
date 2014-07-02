@@ -1,5 +1,7 @@
 .fleetRow {
+	display: inline-flex;
 	margin-bottom: 16px;
+	width: 100%;
 }
 
 .fleetRow .shipName {
@@ -9,4 +11,16 @@
 
 .fleetRow .price {
 	color: #999999;
+}
+
+.columnBuy {
+	text-align: center;
+}
+
+.columnCount {
+	text-align: center;
+}
+
+.triColumn {
+	width: 33%;
 }

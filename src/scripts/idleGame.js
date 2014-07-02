@@ -779,6 +779,8 @@ idleGame.service('playerService', function () {
 	this.resources = [];
 	// Earned achievments are stored here as: { id: x }
 	this.achievements = [];
+	// Owned space ships are stored here as { id: x, count: y }
+	this.ships = [];
 
 	this.money = 0;
 	this.companyName = "Giant Shaft Enterprises";
