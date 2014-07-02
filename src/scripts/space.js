@@ -59,7 +59,7 @@ function SpaceController($scope, playerService, gameService) {
 			if(ship.length > 0) {
 				//over 0 means the ship was already bought at least once, meaning we just need to increment the counter
 				ship = ship[0];
-				ship.count++;
+				ship.count+=amount;
 			}
 			else {
 				playerService.ships.push({id: id, count: amount});
