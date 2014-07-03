@@ -12,11 +12,28 @@ function SpaceController($scope, playerService, gameService) {
 	//		resources	- array of what resources and how many of each are on the specific asteroid
 	$scope.scanForAsteroid = function(difficulty)
 	{
-		// TODO: Change this from temporary spiked out test data to the real deal!
-		if(difficulty == 0)
-			$scope.current = { miningCost: 100000, chance: 10, maxPerMine: 2, resources: [ {name: 'Titanium', remaining: 100}, {name: 'Diamond', remaining: 25} ]};
-		else
-			$scope.current = null;
+		$scope.current = { 
+			miningCost: $scope.getMiningCost(difficulty), 
+			chance: $scope.getChance(difficulty), 
+			maxPerMine: $scope.getMaxPerMine(difficulty),
+			resources: [ 
+				{name: 'Titanium', remaining: 100}, 
+				{name: 'Diamond', remaining: 25} 
+			]
+		};
+	}
+	}
+
+	$scope.getMiningCost = function(difficulty) {
+		return 100000 * difficulty - (Math.random() * difficulty * 1000);
+	}
+
+	$scope.getChance = function(difficulty) {
+		return Math.random() * (100 - difficulty * 5) / 2;
+	}
+
+	$scope.getMaxPerMine = function(difficulty) {
+		return Math.floor(Math.pow(2, difficulty) + Math.random() * (2 + Math.pow(difficulty, 2)));
 	}
 
 	// Return array of the minerals from the mine (or nothing if mining failed)
@@ -59,7 +76,7 @@ function SpaceController($scope, playerService, gameService) {
 			if(ship.length > 0) {
 				//over 0 means the ship was already bought at least once, meaning we just need to increment the counter
 				ship = ship[0];
-				ship.count+=amount;
+				ship.count += amount;
 			}
 			else {
 				playerService.ships.push({id: id, count: amount});
