@@ -249,7 +249,7 @@
 								<div class="triColumn">
 									<p class="shipName">{{ship.name}}</p>
 									<p class="price" ng-repeat="item in ship.cost">
-										{{item.name}} - 
+										{{getName(item.id)}} - 
 										<span ng-show="item.name != 'Money'">{{item.price}}</span>
 										<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
 									</p>

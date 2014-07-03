@@ -78,7 +78,12 @@ function SpaceController($scope, playerService, gameService) {
 	}
 
 	$scope.getName = function(id) {
-		return gameService.resources.filter(function(d) {return d.id == id;})[0].name;
+		// money isn't a mineable resource so it won't be in the resources list
+		var name = gameService.resources.filter(function(d) {return d.id == id;});
+		if (name.length == 0) name = 'Money';
+		else name = name[0].name;
+
+		return name;
 	}
 
 	// Return array of the minerals from the mine (or nothing if mining failed)
@@ -143,7 +148,7 @@ function SpaceController($scope, playerService, gameService) {
 				if(buy) playerService.money -= ship.cost[i].price * amount;
 			}
 			else {
-				var resource = playerService.resources.filter(function(d) {return d.name == ship.cost[i].name});
+				var resource = playerService.resources.filter(function(d) {return d.id == ship.cost[i].id});
 				if(resource.length > 0) resource = resource[0];
 				else resource = {};
 
