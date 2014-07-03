@@ -98,6 +98,8 @@ function SpaceController($scope, playerService, gameService) {
 			as.resources[mineral].remaining--;
 			if(as.resources[mineral].remaining <= 0)
 				as.resources.splice(mineral, 1);
+			if(as.resources.length === 0)
+				break;
 		}
 
 		playerService.mine(mined);
