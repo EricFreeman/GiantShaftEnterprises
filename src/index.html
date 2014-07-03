@@ -221,7 +221,7 @@
 					<div class="content center">
 						<div class="item" ng-show="playerService.resources.length > 0">
 							<p class="name">Resources</p>
-							<p ng-repeat="resource in playerService.resources">{{resource.name}} - {{resource.count}}</p>
+							<p ng-repeat="resource in playerService.resources">{{getName(resource.id)}} - {{resource.count}}</p>
 						</div>
 
 						<div class="item">
@@ -256,14 +256,14 @@
 								</div>
 
 								<div class="columnBuy triColumn">
-									<a class="button small">1</a>
-									<a class="button small">10</a>
-									<a class="button small">100</a>
-									<a class="button small">1000</a>
+									<a class="button small" ng-click="buy(ship.id, 1)">1</a>
+									<a class="button small" ng-click="buy(ship.id, 10)">10</a>
+									<a class="button small" ng-click="buy(ship.id, 100)">100</a>
+									<a class="button small" ng-click="buy(ship.id, 1000)">1000</a>
 								</div>
 
 								<div class="columnCount triColumn">
-									<p>{{getCount(item.id) | number}}</p>
+									<p>{{getCount(ship.id) | number}}</p>
 								</div>
 
 							</div>

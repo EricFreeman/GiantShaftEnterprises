@@ -745,13 +745,20 @@ idleGame.service('gameService', function() {
 
 	this.ships = [
 		{ id: 0, name: "Drone", attack: 0, defense: 1, 
-			cost: [ { name: 'Money', price: 30000 }, { name: 'Titanium', price: 1 }, { name: 'Diamonds', price: 1 } ]},
+			cost: [ { name: 'Money', price: 30000 }, { name: 'Titanium', price: 1 }, { name: 'Diamond', price: 1 } ]},
 		{ id: 1, name: "Scout", attack: 1, defense: 2, 
-			cost: [ { name: 'Money', price: 150000 }, { name: 'Titanium', price: 2 }, { name: 'Diamonds', price: 1 } ]},
+			cost: [ { name: 'Money', price: 150000 }, { name: 'Titanium', price: 2 }, { name: 'Diamond', price: 1 } ]},
 		{ id: 2, name: "Fighter", attack: 5, defense: 5, 
-			cost: [ { name: 'Money', price: 500000 }, { name: 'Titanium', price: 10 }, { name: 'Diamonds', price: 5 } ]},
+			cost: [ { name: 'Money', price: 500000 }, { name: 'Titanium', price: 10 }, { name: 'Diamond', price: 5 } ]},
 		{ id: 3, name: "Bomber", attack: 15, defense: 2, 
-			cost: [ { name: 'Money', price: 1500000 }, { name: 'Titanium', price: 15 }, { name: 'Diamonds', price: 8 } ]},
+			cost: [ { name: 'Money', price: 1500000 }, { name: 'Titanium', price: 15 }, { name: 'Diamond', price: 8 } ]},
+	];
+
+	this.resources = [
+		{ id: 0, name: 'Titanium', proportion: 100 },
+		{ id: 1, name: 'Diamond', proportion: 33 },
+		{ id: 2, name: 'Super Rare Test Resource', proportion: 1 },
+		{ id: 3, name: 'Platinum', proportion: 66 },
 	];
 
 	this.getItem = function(id) {
@@ -775,7 +782,7 @@ idleGame.service('playerService', function () {
 	this.items = [];
 	// Owned upgrades are stored here as: { id: x }
 	this.upgrades = [];
-	// Resources mined are stored here as { name: x, count: y }
+	// Resources mined are stored here as { id: x, count: y }
 	this.resources = [];
 	// Earned achievments are stored here as: { id: x }
 	this.achievements = [];
@@ -824,9 +831,9 @@ idleGame.service('playerService', function () {
 			{ id: -1, itemId: -1, name: "", description: "", price: 0, mps: 0 });
 	}
 
-	this.getResource = function(name) {
-		return search(this.resources, "name", name,
-			{ name: '', count: 0 });
+	this.getResource = function(id) {
+		return search(this.resources, "id", id,
+			{ id: -1, name: '', count: 0 });
 	}
 
 	this.getKnowledgeItem = function(id) {
@@ -859,13 +866,11 @@ idleGame.service('playerService', function () {
 
 	this.mine = function(items) {
 		for(var i = 0; i < items.length; i++) {
-			var item = this.getResource(items[i].name);
+			var item = this.getResource(items[i].id);
 
 			// Add an entry for it if nobody has bought it yet.
 			if(item.name === '') {
-				item.name = items[i].name;
-				item.count++;
-				this.resources.push({name: item.name, count: item.count});
+				this.resources.push({id: items[0].id, count: 1});
 			}
 			else {
 				var index = this.resources.indexOf(item);
