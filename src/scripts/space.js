@@ -22,7 +22,6 @@ function SpaceController($scope, playerService, gameService) {
 			]
 		};
 	}
-	}
 
 	$scope.getMiningCost = function(difficulty) {
 		return 100000 * difficulty - (Math.random() * difficulty * 1000);
