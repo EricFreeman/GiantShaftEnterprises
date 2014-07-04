@@ -46,6 +46,7 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	// STORE
 	$scope.items = gameService.items;
 	$scope.boughtItems = playerService.items;
+	$scope.playerService = playerService;
 	
 	$scope.currentPrice = function(item) {
 		var priceIncrease = .2; // 20% per item already bought
@@ -73,15 +74,16 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	};
 
 	$scope.buyStoreItem = function($event, item) {
-		var count = 1;
-		if($event.shiftKey && $event.altKey) count = 1000;
-		else if($event.shiftKey) count = 10;
-		else if($event.altKey) count = 100;
+		var count = playerService.customIncrement;
+		if (count == 0) count = 9999999999; 
 
 		for(var i = 0; i < count; i++) {
 			if(!$scope.cantBuyStoreItem(item)) {
 				playerService.money -= $scope.currentPrice(item);
 				playerService.buyItem(item.id);
+			}
+			else {
+				break;
 			}
 		}
 

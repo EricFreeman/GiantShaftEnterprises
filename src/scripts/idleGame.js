@@ -757,7 +757,7 @@ idleGame.service('gameService', function() {
 	this.resources = [
 		{ id: 0, name: 'Titanium', proportion: 100 },
 		{ id: 1, name: 'Diamond', proportion: 33 },
-		{ id: 2, name: 'Super Rare Test Resource', proportion: 1 },
+		{ id: 2, name: 'Rhodium', proportion: 1 },
 		{ id: 3, name: 'Platinum', proportion: 66 },
 	];
 
@@ -815,6 +815,7 @@ idleGame.service('playerService', function () {
 	this.showTutorial = true;
 	this.tutorialStep = 0;
 	this.fps = 10;
+	this.customIncrement = 1;
 
 	this.vcPointsToMoney = function(pts) {
 		// 1 pt = $1000, but maybe make this value upgradeable in the future?
@@ -869,7 +870,7 @@ idleGame.service('playerService', function () {
 			var item = this.getResource(items[i].id);
 
 			// Add an entry for it if nobody has bought it yet.
-			if(item.name === '') {
+			if(item.id === -1) {
 				this.resources.push({id: items[0].id, count: 1});
 			}
 			else {
