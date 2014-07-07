@@ -159,4 +159,24 @@ function SpaceController($scope, playerService, gameService) {
 
 		return buyable;
 	}
+
+	/////////////
+	// PLANETS //
+	/////////////
+
+	$scope.planets = [];
+
+	$scope.initPlanets = function() {
+		// Add every discovered planet to the array
+		for(var i = 0; i < gameService.planets.length; i++) {
+			if($scope.getPlanet(gameService.planets[i].id).id >= 0)
+				$scope.planets.push(gameService.planets[i]);
+		}
+	}
+
+	$scope.getPlanet = function(id) {
+		var planet = playerService.planets.filter(function(d) { return d.id === id; });
+		if (planet.length > 0) return planet[0];
+		else return { id: -1, name: '' };
+	}
 }
