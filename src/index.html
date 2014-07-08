@@ -277,11 +277,20 @@
 						<div class="item">
 							<p class="name">The Final Frontier</p>
 							<div class="spaceScroller" ng-init="initPlanets()">
-								<div class="planet" id="{{planet.id}}" ng-repeat="planet in planets">
+								<div class="planet" id="{{planet.id}}"
+									 ng-repeat="planet in planets"
+									 ng-class="{hover: hoverPlanet}"
+									 ng-mouseenter="hoverPlanet = true"
+									 ng-mouseleave="hoverPlanet = false"
+									 ng-click="selectPlanet(planet)">
 									<p class="name">{{getPlanet(planet.id).name}}</p>
 									<img src="images/space/planet1.png" />
 								</div>
 							</div>
+						</div>
+
+						<div class="item">
+							<p class="name">{{selectedPlanet.name}}</p>
 						</div>
 					</div>
 				</script>

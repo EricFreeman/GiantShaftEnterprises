@@ -173,6 +173,7 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 	/////////////
 
 	$scope.planets = [];
+	$scope.selectedPlanet;
 	$scope.scale = 100;
 
 	$scope.initPlanets = function() {
@@ -199,5 +200,14 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 		
 		if (planet.length > 0) return planet[0];
 		else return { id: -1, name: '' };
+	}
+
+	$scope.selectPlanet = function(planet) {
+		// Buildings are persisted, thus stored on the playerService, so you need to combine both 
+		// versions of the planet to get all the properties for it (names, ids, locations, etc aren't 
+		// persisted in case I ever change them - I want the player's version to update, not overwrite)
+		var savedPlanet = playerService.planets.filter(function(d) {return d.id == planet.id;})[0];
+		planet['buildings'] = savedPlanet.buildings;
+		$scope.selectedPlanet = planet;
 	}
 }

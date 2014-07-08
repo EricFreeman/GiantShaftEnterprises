@@ -36,3 +36,7 @@
 	height: 64px;
 	position: absolute;
 }
+
+.planet.hover {
+	/* Add glow around planet or something here! */
+}
