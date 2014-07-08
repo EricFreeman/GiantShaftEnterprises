@@ -1,4 +1,8 @@
 function SpaceController($scope, playerService, gameService) {
+	////////////
+	// Mining //
+	////////////
+
 	// The current asteroid you scanned for that you can potentially mine
 	$scope.current = null;
 
@@ -114,6 +118,10 @@ function SpaceController($scope, playerService, gameService) {
 		$scope.current = null;
 	}
 
+	///////////
+	// FLEET //
+	///////////
+
 	$scope.getCount = function(id) {
 		var ship = playerService.ships.filter(function(d) {return d.id == id;});
 		return ship.length == 1 ? ship[0].count : 0;
@@ -169,13 +177,15 @@ function SpaceController($scope, playerService, gameService) {
 	$scope.initPlanets = function() {
 		// Add every discovered planet to the array
 		for(var i = 0; i < gameService.planets.length; i++) {
-			if($scope.getPlanet(gameService.planets[i].id).id >= 0)
+			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0)
 				$scope.planets.push(gameService.planets[i]);
 		}
 	}
 
-	$scope.getPlanet = function(id) {
-		var planet = playerService.planets.filter(function(d) { return d.id === id; });
+	$scope.getPlanet = function(id, onlyDiscovered) {
+		var toSearch = onlyDiscovered ? playerService.planets : gameService.planets,
+			planet = toSearch.filter(function(d) { return d.id === id; });
+		
 		if (planet.length > 0) return planet[0];
 		else return { id: -1, name: '' };
 	}
