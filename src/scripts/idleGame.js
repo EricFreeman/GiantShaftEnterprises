@@ -761,6 +761,13 @@ idleGame.service('gameService', function() {
 		{ id: 3, name: 'Platinum', proportion: 66 },
 	];
 
+	this.planets = [
+		{ id: 0, name: 'Earth', x: 0, y: 0 },
+		{ id: 1, name: 'Mercury', x: -2, y: 0 },
+		{ id: 2, name: 'Venus', x: -1, y: 0 },
+		{ id: 3, name: 'Mars', x: 1, y: 0 }
+	];
+
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, name: "", mps: 0, price: 0 });
@@ -788,6 +795,8 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
+	//Discovered planets are stored here as { id: 0, buildings: [] }
+	this.planets = [];
 
 	this.money = 0;
 	this.companyName = "Giant Shaft Enterprises";

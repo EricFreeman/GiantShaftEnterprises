@@ -24,3 +24,13 @@
 .triColumn {
 	width: 33%;
 }
+
+.spaceScroller {
+	height: 500px;
+	overflow: auto;
+}
+
+.planet {
+	width: 64px;
+	height: 64px;
+}

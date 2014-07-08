@@ -273,6 +273,16 @@
 
 							</div>
 						</div>
+
+						<div class="item">
+							<p class="name">The Final Frontier</p>
+							<div class="spaceScroller" ng-init="initPlanets()">
+								<div class="planet" ng-repeat="planet in planets">
+									<p class="name">{{getPlanet(planet.id).name}}</p>
+									<img src="images/space/planet1.png" />
+								</div>
+							</div>
+						</div>
 					</div>
 				</script>
 
