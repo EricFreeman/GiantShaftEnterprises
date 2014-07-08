@@ -1,4 +1,4 @@
-function SpaceController($scope, playerService, gameService) {
+function SpaceController($scope, $timeout, playerService, gameService) {
 	////////////
 	// Mining //
 	////////////
@@ -173,13 +173,24 @@ function SpaceController($scope, playerService, gameService) {
 	/////////////
 
 	$scope.planets = [];
+	$scope.scale = 100;
 
 	$scope.initPlanets = function() {
 		// Add every discovered planet to the array
 		for(var i = 0; i < gameService.planets.length; i++) {
-			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0)
-				$scope.planets.push(gameService.planets[i]);
+			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0) {
+				var p = gameService.planets[i];
+				$scope.planets.push(p);
+				$scope.updatePlanet(p);				
+			}
 		}
+	}
+
+	$scope.updatePlanet = function(p) {
+		// Make sure DOM is updated
+		$timeout(function() { 
+			$('#' + p.id).css({'left': p.x * $scope.scale, 'top': p.y * $scope.scale});
+		}, 50);
 	}
 
 	$scope.getPlanet = function(id, onlyDiscovered) {
