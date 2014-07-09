@@ -759,6 +759,7 @@ idleGame.service('gameService', function() {
 		{ id: 1, name: 'Diamond', proportion: 33 },
 		{ id: 2, name: 'Rhodium', proportion: 1 },
 		{ id: 3, name: 'Platinum', proportion: 66 },
+		{ id: 4, name: 'Gold', proportion: 50 }
 	];
 
 	this.planets = [
@@ -766,6 +767,12 @@ idleGame.service('gameService', function() {
 		{ id: 1, name: 'Mercury', x: -2, y: 0 },
 		{ id: 2, name: 'Venus', x: -1, y: 0 },
 		{ id: 3, name: 'Mars', x: 1, y: 0 }
+	];
+
+	this.buildings = [
+		{ id: 0, name: 'Colony', cost: [ { name: 'Money', price: 500000 }, { id: 0, price: 10 }, { id: 3, price: 8 } ] },
+		{ id: 1, name: 'Giant Shaft Mine', cost: [ { name: 'Money', price: 100000000 } ] },
+		{ id: 2, name: 'Trade Route', cost: [ { name: 'Money', price: 250000000 }, { id: 0, price: 100 }, { id: 3, price: 100 } ] }
 	];
 
 	this.getItem = function(id) {
@@ -795,7 +802,7 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
-	//Discovered planets are stored here as { id: 0, buildings: [] }
+	// Discovered planets are stored here as { id: 0, buildings: [] }
 	this.planets = [];
 
 	this.money = 0;

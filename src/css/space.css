@@ -1,15 +1,15 @@
-.fleetRow {
+.row {
 	display: inline-flex;
 	margin-bottom: 16px;
 	width: 100%;
 }
 
-.fleetRow .shipName {
+.row .shipName {
 	font-weight: bold;
 	color: #333333;
 }
 
-.fleetRow .price {
+.row .price {
 	color: #999999;
 }
 

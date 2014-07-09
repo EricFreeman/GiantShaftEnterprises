@@ -210,4 +210,12 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 		planet['buildings'] = savedPlanet.buildings;
 		$scope.selectedPlanet = planet;
 	}
+
+	$scope.getLevel = function(building) {
+		return building.level != undefined ? building.level : 0;
+	}
+
+	$scope.buyBuilding = function(building) {
+		
+	}
 }
