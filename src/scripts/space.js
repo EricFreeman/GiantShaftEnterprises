@@ -215,6 +215,7 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 	}
 
 	$scope.getLevel = function(building) {
+		if($scope.selectedPlanet == null) return;
 		var b = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
 		return b.length > 0 ? b[0].level : 0;
 	}
@@ -229,5 +230,15 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 			else
 				$scope.selectedPlanet.buildings.push({ id: building.id, level: 1 });
 		}
+	}
+
+	$scope.getShipName = function(id) {
+		var ship = gameService.ships.filter(function(d) { return d.id == id });
+		if(ship.length > 0) return ship[0].name;
+		else return 'Error - Ship not found';
+	}
+
+	$scope.attack = function() {
+
 	}
 }
