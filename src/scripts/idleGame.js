@@ -766,7 +766,7 @@ idleGame.service('gameService', function() {
 		{ id: 0, name: 'Earth', x: 0, y: 0 },
 		{ id: 1, name: 'Mercury', x: -2, y: 0 },
 		{ id: 2, name: 'Venus', x: -1, y: 0 },
-		{ id: 3, name: 'Mars', x: 1, y: 0 }
+		{ id: 3, name: 'Mars', x: 1, y: 0, enemies: [ { id: 2, count: 15 } ] }
 	];
 
 	this.buildings = [

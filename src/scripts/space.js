@@ -128,8 +128,8 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 	}
 
 	$scope.buy = function(id, amount) {
-		if($scope.canBuy(id, amount, false)) {
-			$scope.canBuy(id, amount, true);
+		if($scope.canBuyShip(id, amount, false)) {
+			$scope.canBuyShip(id, amount, true);
 
 			var ship = playerService.ships.filter(function(d) {return d.id == id;});
 			if(ship.length > 0) {
@@ -143,25 +143,28 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 		}
 	}
 
-	// Returns if player can buy a specific ship.  Passing in true for the 'buy' 
-	// value will also remove the resources when checking if you have enough
-	$scope.canBuy = function(id, amount, buy) {
+	$scope.canBuyShip = function(id, amount, buy) {
 		var ship = gameService.ships.filter(function(d) {return d.id == id;})[0];
+		return $scope.canBuy(ship, amount, buy);
+	}
 
+	// Returns if player can buy a specific item.  Passing in true for the 'buy' 
+	// value will also remove the resources when checking if you have enough
+	$scope.canBuy = function(item, amount, buy) {
 		var buyable = true;
 
-		for(var i = 0; i < ship.cost.length; i++) {
-			if(ship.cost[i].name == 'Money'){
-				buyable &= playerService.money >= ship.cost[i].price * amount;
-				if(buy) playerService.money -= ship.cost[i].price * amount;
+		for(var i = 0; i < item.cost.length; i++) {
+			if(item.cost[i].name == 'Money'){
+				buyable &= playerService.money >= item.cost[i].price * amount;
+				if(buy) playerService.money -= item.cost[i].price * amount;
 			}
 			else {
-				var resource = playerService.resources.filter(function(d) {return d.id == ship.cost[i].id});
+				var resource = playerService.resources.filter(function(d) {return d.id == item.cost[i].id});
 				if(resource.length > 0) resource = resource[0];
 				else resource = {};
 
-				buyable &= resource.count >= ship.cost[i].price * amount;
-				if(buy) resource.count -= ship.cost[i].price * amount;
+				buyable &= resource.count >= item.cost[i].price * amount;
+				if(buy) resource.count -= item.cost[i].price * amount;
 			}
 		}
 
@@ -212,10 +215,30 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 	}
 
 	$scope.getLevel = function(building) {
-		return building.level != undefined ? building.level : 0;
+		if($scope.selectedPlanet == null) return;
+		var b = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
+		return b.length > 0 ? b[0].level : 0;
 	}
 
 	$scope.buyBuilding = function(building) {
-		
+		if($scope.canBuy(building, 1, false)) {
+			$scope.canBuy(building, 1, true);
+
+			var b = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
+			if(b.length > 0) 
+				b[0].level++;
+			else
+				$scope.selectedPlanet.buildings.push({ id: building.id, level: 1 });
+		}
+	}
+
+	$scope.getShipName = function(id) {
+		var ship = gameService.ships.filter(function(d) { return d.id == id });
+		if(ship.length > 0) return ship[0].name;
+		else return 'Error - Ship not found';
+	}
+
+	$scope.attack = function() {
+
 	}
 }

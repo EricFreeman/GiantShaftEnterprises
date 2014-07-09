@@ -295,7 +295,8 @@
 							<br /><br />
 
 							<div class="row"
-								 ng-repeat="building in gameService.buildings">
+								 ng-repeat="building in gameService.buildings"
+								 ng-show="selectedPlanet.enemies.length == 0">
 								<div class="triColumn">
 									<p>{{building.name}}</p>
 								</div>
@@ -313,6 +314,15 @@
 									   	Buy
 									   </a>
 								</div>
+							</div>
+
+							<div class="battleOverview"
+								 ng-show="selectedPlanet.enemies.length > 0">
+								<div class="row"
+									 ng-repeat="enemy in selectedPlanet.enemies">
+									 {{getShipName(enemy.id)}} - {{enemy.count}}
+								</div>
+								<a class="button" ng-click="attack">Attack</a>
 							</div>
 						</div>
 					</div>
