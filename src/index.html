@@ -249,7 +249,7 @@
 
 						<div class="item">
 							<p class="name">Fleet</p>
-							<div class="fleetRow" ng-repeat="ship in gameService.ships">
+							<div class="row" ng-repeat="ship in gameService.ships">
 								
 								<div class="triColumn">
 									<p class="shipName">{{ship.name}}</p>
@@ -277,9 +277,41 @@
 						<div class="item">
 							<p class="name">The Final Frontier</p>
 							<div class="spaceScroller" ng-init="initPlanets()">
-								<div class="planet" ng-repeat="planet in planets">
+								<div class="planet" id="{{planet.id}}"
+									 ng-repeat="planet in planets"
+									 ng-class="{hover: hoverPlanet}"
+									 ng-mouseenter="hoverPlanet = true"
+									 ng-mouseleave="hoverPlanet = false"
+									 ng-click="selectPlanet(planet)">
 									<p class="name">{{getPlanet(planet.id).name}}</p>
 									<img src="images/space/planet1.png" />
+								</div>
+							</div>
+						</div>
+
+						<div class="item"
+							 ng-show="selectedPlanet != null">
+							<p class="name">{{selectedPlanet.name}}</p>
+							<br /><br />
+
+							<div class="row"
+								 ng-repeat="building in gameService.buildings">
+								<div class="triColumn">
+									<p>{{building.name}}</p>
+								</div>
+								<div class="triColumn">
+									<p class="price" ng-repeat="item in building.cost">
+										{{getName(item.id)}} - 
+										<span ng-show="item.name != 'Money'">{{item.price}}</span>
+										<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
+									</p>
+								</div>
+								<div class="triColumn columnCount">
+									<p class="info">{{getLevel(building)}}<p>
+									<a class="button small"
+									   ng-click="buyBuilding(building)">
+									   	Buy
+									   </a>
 								</div>
 							</div>
 						</div>

@@ -1,4 +1,4 @@
-function SpaceController($scope, playerService, gameService) {
+function SpaceController($scope, $timeout, playerService, gameService) {
 	////////////
 	// Mining //
 	////////////
@@ -173,13 +173,25 @@ function SpaceController($scope, playerService, gameService) {
 	/////////////
 
 	$scope.planets = [];
+	$scope.selectedPlanet;
+	$scope.scale = 100;
 
 	$scope.initPlanets = function() {
 		// Add every discovered planet to the array
 		for(var i = 0; i < gameService.planets.length; i++) {
-			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0)
-				$scope.planets.push(gameService.planets[i]);
+			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0) {
+				var p = gameService.planets[i];
+				$scope.planets.push(p);
+				$scope.updatePlanet(p);				
+			}
 		}
+	}
+
+	$scope.updatePlanet = function(p) {
+		// Make sure DOM is updated
+		$timeout(function() { 
+			$('#' + p.id).css({'left': p.x * $scope.scale, 'top': p.y * $scope.scale});
+		}, 50);
 	}
 
 	$scope.getPlanet = function(id, onlyDiscovered) {
@@ -188,5 +200,22 @@ function SpaceController($scope, playerService, gameService) {
 		
 		if (planet.length > 0) return planet[0];
 		else return { id: -1, name: '' };
+	}
+
+	$scope.selectPlanet = function(planet) {
+		// Buildings are persisted, thus stored on the playerService, so you need to combine both 
+		// versions of the planet to get all the properties for it (names, ids, locations, etc aren't 
+		// persisted in case I ever change them - I want the player's version to update, not overwrite)
+		var savedPlanet = playerService.planets.filter(function(d) {return d.id == planet.id;})[0];
+		planet['buildings'] = savedPlanet.buildings;
+		$scope.selectedPlanet = planet;
+	}
+
+	$scope.getLevel = function(building) {
+		return building.level != undefined ? building.level : 0;
+	}
+
+	$scope.buyBuilding = function(building) {
+		
 	}
 }
