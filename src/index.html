@@ -296,7 +296,7 @@
 
 							<div class="row"
 								 ng-repeat="building in gameService.buildings"
-								 ng-show="selectedPlanet.enemies.length == 0">
+								 ng-show="hasConquered()">
 								<div class="triColumn">
 									<p>{{building.name}}</p>
 								</div>
@@ -317,7 +317,7 @@
 							</div>
 
 							<div class="battleOverview"
-								 ng-show="selectedPlanet.enemies.length > 0">
+								 ng-show="!hasConquered()">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count}}
