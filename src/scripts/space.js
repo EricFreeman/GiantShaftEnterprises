@@ -239,6 +239,77 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 	}
 
 	$scope.attack = function() {
+		var battleOver = false,
+			battleLog = [],
+			shipReduce = $scope.shipReduce,
+			getTurnStat = $scope.getTurnStat;
 
+		while(!battleOver) {
+			var maxPlayerAtk = shipReduce(playerService.ships, 'attack');
+			var turnPlayerAtk = getTurnStat(maxPlayerAtk);
+
+			var maxEnemyDef = shipReduce($scope.selectedPlanet.enemies, 'defense');
+			var turnEnemyDef = getTurnStat(maxEnemyDef);
+
+			var playerDamage = turnPlayerAtk - turnEnemyDef;
+
+			$scope.removeEnemies($scope.selectedPlanet.enemies, playerDamage);
+
+			if($scope.selectedPlanet.enemies.length > 0) {
+				var maxEnemyAtk = shipReduce($scope.selectedPlanet.enemies, 'attack');
+				var turnEnemyAtk = getTurnStat(maxPlayerAtk);
+
+				var maxPlayerDef = shipReduce(playerService.ships, 'defense');
+				var turnPlayerDef = getTurnStat(maxPlayerDef);
+
+				var enemyDamage = turnEnemyAtk - turnPlayerDef;
+
+				$scope.removeEnemies($scope.selectedPlanet.enemies, enemyDamage);
+			}
+
+			battleOver = playerService.ships.length == 0 || $scope.selectedPlanet.enemies.length == 0;
+		}
+	}
+
+	// TODO: This sucks - please make it not suck
+	$scope.removeEnemies = function(ships, attack) {
+		var shipsToDestroy = Math.floor(attack / 10);
+
+		for(var i = 0; i < shipsToDestroy; i++) {
+			// random number between 0 and total of all ships in fleet
+			var shipIndex = Math.floor(Math.random() * ships.reduce(function(prev, cur) { return prev += cur.count; }, 0));
+			
+			// get which ship in the array it is
+			var arrayIndex = 0;
+			for(var q = 0; q < ships.length; q++) {
+				shipIndex -= ships[q].count;
+				if(shipIndex <= 0) arrayIndex = q;
+			}
+
+			// remove 1 ship from the remaining pool
+			ships[arrayIndex].count--;
+
+			// if the remaining is 0, remove from ship array
+			if(ships[arrayIndex].count <= 0)
+				ships.splice(arrayIndex, 1);
+
+			// break early if all enemies are dead
+			if(ships.length == 0)
+				break;
+		}
+	}
+
+	$scope.getShip = function(id) {
+		var ship = gameService.ships.filter(function(d) { return d.id == id });
+		if(ship.length > 0) return ship[0];
+		else return { id: -1 };
+	}
+
+	$scope.getTurnStat = function(stat) {
+		return (Math.random() * stat / 2) + (stat / 2);
+	}
+
+	$scope.shipReduce = function(ships, field) {
+		return ships.reduce(function(prev, cur) { return prev += $scope.getShip(cur.id)[field] * cur.count; }, 0)
 	}
 }
