@@ -802,7 +802,7 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
-	// Discovered planets are stored here as { id: 0, buildings: [] }
+	// Discovered planets are stored here as { id: 0, buildings: [], isConquered: t/f }
 	this.planets = [];
 
 	this.money = 0;

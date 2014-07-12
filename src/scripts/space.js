@@ -269,6 +269,9 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 
 			battleOver = playerService.ships.length == 0 || $scope.selectedPlanet.enemies.length == 0;
 		}
+
+		// you conquered the planet if all the enemies are gone
+		playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered = $scope.selectedPlanet.enemies.length == 0;
 	}
 
 	// TODO: This sucks - please make it not suck
@@ -311,5 +314,11 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 
 	$scope.shipReduce = function(ships, field) {
 		return ships.reduce(function(prev, cur) { return prev += $scope.getShip(cur.id)[field] * cur.count; }, 0)
+	}
+
+	$scope.hasConquered = function() {
+		if($scope.selectedPlanet == null) return;
+		return (!$scope.selectedPlanet.enemies || $scope.selectedPlanet.enemies.length == 0) || 
+				!!playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered;
 	}
 }
