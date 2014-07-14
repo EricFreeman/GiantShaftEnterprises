@@ -1,4 +1,4 @@
-function SpaceController($scope, $timeout, playerService, gameService) {
+function SpaceController($rootScope, $scope, $timeout, playerService, gameService, cacheService) {
 	////////////
 	// Mining //
 	////////////
@@ -8,6 +8,7 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 
 	$scope.playerService = playerService;
 	$scope.gameService = gameService;
+	$scope.cacheService = cacheService;
 
 	// Returns a random asteroid that fits the difficulty
 	// 		miningCost 	- How much it costs every time you mine the asteroid
@@ -229,6 +230,8 @@ function SpaceController($scope, $timeout, playerService, gameService) {
 				b[0].level++;
 			else
 				$scope.selectedPlanet.buildings.push({ id: building.id, level: 1 });
+
+			$rootScope.$broadcast('updateCache');
 		}
 	}
 

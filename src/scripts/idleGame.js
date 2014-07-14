@@ -908,6 +908,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedBcBoost = 0;
 	this.cachedMaxBcBoost = 0;
 	this.items = [];
+	this.cachedPlanetMps = [];
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -917,8 +918,15 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return this.cachedClickPower;
 	}
 
+	this.planetBoost = function(id) {
+		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
+		if(planet.length > 0) return planet[0].mps;
+		else return 0;
+	}
+
 	var self = this;
 	$rootScope.$on('updateCache', function() {
+		self.cachedPlanetMps = self.getPlanetMps();
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
@@ -964,6 +972,9 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		for(var i = 0; i < upgrades.length; i++) {
 			additionalMps += upgrades[i].per * playerService.achievements.length * baseMps;
 		}
+
+		// Add in space colonies
+		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.mps; }, 0);
 
 		// Add in amount gained from business connections
 		additionalMps += baseMps * this.cachedBcBoost;
@@ -1056,6 +1067,24 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.hasDiversity = function(amount) {
 		return amount <= this.lowestAmountCache;
+	}
+
+	// fill up the array for each planet of how much mps they provide
+	this.getPlanetMps = function() {
+		var rtn = [];
+
+		for(var i = 0; i < playerService.planets.length; i++) {
+			rtn.push({ id: i, mps: this.calculatePlanetMps(playerService.planets[i].buildings) });
+		}
+
+		return rtn;
+	}
+
+	// TODO: figure out a real way to calculate this
+	this.calculatePlanetMps = function(buildings) {
+		return 100000 * buildings.reduce(function(prev, cur) { 
+			return prev += cur.level 
+		}, 0);
 	}
 });
 
