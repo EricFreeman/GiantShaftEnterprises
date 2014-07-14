@@ -294,6 +294,9 @@
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
 
+							<p>Adds: {{cacheService.planetBoost(selectedPlanet.id) | currency}}</p>
+							<br /><br />
+
 							<div class="row"
 								 ng-repeat="building in gameService.buildings"
 								 ng-show="hasConquered()">
