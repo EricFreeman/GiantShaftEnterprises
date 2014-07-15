@@ -267,7 +267,12 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 
 				var enemyDamage = turnEnemyAtk - turnPlayerDef;
 
-				$scope.removeEnemies($scope.selectedPlanet.enemies, enemyDamage);
+				$scope.removeEnemies(playerService.ships, enemyDamage);
+
+				// if it's a stalemate, then whichever one hit for the most wins the turn
+				if(playerDamage <= 0 && enemyDamage <= 0) {
+					$scope.removeEnemies(playerDamage >= enemyDamage ? $scope.selectedPlanet.enemies : playerService.ships, 10);
+				}
 			}
 
 			battleOver = playerService.ships.length == 0 || $scope.selectedPlanet.enemies.length == 0;
