@@ -280,6 +280,9 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 
 		// you conquered the planet if all the enemies are gone
 		playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered = $scope.selectedPlanet.enemies.length == 0;
+	
+		// update cache because if you reconquered a planet with buildings then you need to recalculate the planet's MPS
+		$rootScope.$broadcast('updateCache');
 	}
 
 	// TODO: This sucks - please make it not suck

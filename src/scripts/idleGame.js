@@ -1079,15 +1079,16 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		var rtn = [];
 
 		for(var i = 0; i < playerService.planets.length; i++) {
-			rtn.push({ id: i, mps: this.calculatePlanetMps(playerService.planets[i].buildings) });
+			rtn.push({ id: i, mps: this.calculatePlanetMps(playerService.planets[i]) });
 		}
 
 		return rtn;
 	}
 
 	// TODO: figure out a real way to calculate this
-	this.calculatePlanetMps = function(buildings) {
-		return 100000 * buildings.reduce(function(prev, cur) { 
+	this.calculatePlanetMps = function(planet) {
+		if(!planet.isConquered) return 0;
+		return 100000 * planet.buildings.reduce(function(prev, cur) { 
 			return prev += cur.level 
 		}, 0);
 	}
