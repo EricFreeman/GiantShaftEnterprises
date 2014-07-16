@@ -294,8 +294,10 @@
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
 
-							<p>Adds: {{cacheService.planetBoost(selectedPlanet.id) | currency}}</p>
-							<br /><br />
+							<div ng-show="hasConquered()">
+								<p>Adds: {{cacheService.planetBoost(selectedPlanet.id) | currency}}</p>
+								<br /><br />
+							</div>
 
 							<div class="row"
 								 ng-repeat="building in gameService.buildings"
@@ -327,6 +329,16 @@
 								</div>
 								<a class="button" ng-click="attack()">Attack</a>
 							</div>
+						</div>
+
+						<div class="item"
+							 ng-show="battleLog.length > 0">
+							<p class="name" ng-show="playerService.ships.length > 0">Victory</p>
+							<p class="name" ng-show="playerService.ships.length == 0">Defeat</p>
+							<p class="battleRow info"
+							   ng-repeat="log in battleLog track by $index">
+								{{log}}
+							</p>
 						</div>
 					</div>
 				</script>

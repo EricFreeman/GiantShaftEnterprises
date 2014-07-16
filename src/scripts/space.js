@@ -241,11 +241,14 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		else return 'Error - Ship not found';
 	}
 
+	$scope.battleLog = [];
+
 	$scope.attack = function() {
 		var battleOver = false,
-			battleLog = [],
 			shipReduce = $scope.shipReduce,
 			getTurnStat = $scope.getTurnStat;
+
+		$scope.battleLog = [];
 
 		while(!battleOver) {
 			var maxPlayerAtk = shipReduce(playerService.ships, 'attack');
@@ -257,6 +260,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 			var playerDamage = turnPlayerAtk - turnEnemyDef;
 
 			$scope.removeEnemies($scope.selectedPlanet.enemies, playerDamage);
+			$scope.battleLog.push($scope.writeLog(playerService.companyName, playerDamage, $scope.selectedPlanet.enemies));
 
 			if($scope.selectedPlanet.enemies.length > 0) {
 				var maxEnemyAtk = shipReduce($scope.selectedPlanet.enemies, 'attack');
@@ -268,6 +272,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 				var enemyDamage = turnEnemyAtk - turnPlayerDef;
 
 				$scope.removeEnemies(playerService.ships, enemyDamage);
+				$scope.battleLog.push($scope.writeLog($scope.selectedPlanet.name, enemyDamage, playerService.ships));
 
 				// if it's a stalemate, then whichever one hit for the most wins the turn
 				if(playerDamage <= 0 && enemyDamage <= 0) {
@@ -283,6 +288,14 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	
 		// update cache because if you reconquered a planet with buildings then you need to recalculate the planet's MPS
 		$rootScope.$broadcast('updateCache');
+	}
+
+	$scope.writeLog = function(name, damage, remaining) {
+		if(remaining.length == 0) return name + ' destroyed remaining forces.';
+		var rtn = name + ' destroyed ' + (damage > 0 ? Math.floor(damage/10) : 0) + ' ships.  Fleet remaining: ' + 
+			remaining.reduce(function(prev, cur) { return prev += $scope.getShip(cur.id).name + ': ' + cur.count + ', ' }, '');
+
+		return rtn.substring(0, rtn.length - 2);
 	}
 
 	// TODO: This sucks - please make it not suck
