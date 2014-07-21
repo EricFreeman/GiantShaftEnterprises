@@ -186,6 +186,9 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 			var p = gameService.planets[i];
 			$scope.planets.push(p);
 			$scope.updatePlanet(p);
+
+			if(!playerService.planets.filter(function(d) {return d.id == p.id;}).length > 0)
+				playerService.planets.push({id: p.id, buildings: [], isConquered: false})
 		}
 	}
 
