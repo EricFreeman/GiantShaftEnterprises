@@ -181,13 +181,11 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	$scope.scale = 100;
 
 	$scope.initPlanets = function() {
-		// Add every discovered planet to the array
+		// Add every planet to the array
 		for(var i = 0; i < gameService.planets.length; i++) {
-			if($scope.getPlanet(gameService.planets[i].id, true).id >= 0) {
-				var p = gameService.planets[i];
-				$scope.planets.push(p);
-				$scope.updatePlanet(p);				
-			}
+			var p = gameService.planets[i];
+			$scope.planets.push(p);
+			$scope.updatePlanet(p);
 		}
 	}
 
@@ -211,7 +209,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		// versions of the planet to get all the properties for it (names, ids, locations, etc aren't 
 		// persisted in case I ever change them - I want the player's version to update, not overwrite)
 		var savedPlanet = playerService.planets.filter(function(d) {return d.id == planet.id;})[0];
-		planet['buildings'] = savedPlanet.buildings;
+		planet['buildings'] = savedPlanet != null ? savedPlanet.buildings : [];
 		$scope.selectedPlanet = planet;
 	}
 
