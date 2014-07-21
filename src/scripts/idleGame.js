@@ -768,10 +768,10 @@ idleGame.service('gameService', function() {
 		{ id: 2, name: 'Venus', x: -1, y: 0 },
 		{ id: 3, name: 'Mars', x: 1, y: 0, enemies: [ { id: 2, count: 150 } ] },
 		{ id: 4, name: 'Jupiter', x: 2, y: 0, enemies: [ { id: 2, count: 500 }, { id: 3, count: 25 } ] },
-		{ id: 4, name: 'Saturn', x: 3, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Uranus', x: 5, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Pluto', x: 6, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 5, name: 'Saturn', x: 3, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 7, name: 'Uranus', x: 5, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 8, name: 'Pluto', x: 6, y: 0, enemies: [ { id: 2, count: 150 } ] },
 	];
 
 	this.buildings = [
