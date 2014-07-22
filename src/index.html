@@ -333,6 +333,7 @@
 
 						<div class="item"
 							 ng-show="battleLog.length > 0">
+							<a class="battleLogCloseButton" ng-click="battleLog = []">X</a>
 							<p class="name" ng-show="playerService.ships.length > 0">Victory</p>
 							<p class="name" ng-show="playerService.ships.length == 0">Defeat</p>
 							<p class="battleRow info"
