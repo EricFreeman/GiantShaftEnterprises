@@ -763,15 +763,15 @@ idleGame.service('gameService', function() {
 	];
 
 	this.planets = [
-		{ id: 0, name: 'Earth', x: 0, y: 0 },
-		{ id: 1, name: 'Mercury', x: -2, y: 0 },
-		{ id: 2, name: 'Venus', x: -1, y: 0 },
-		{ id: 3, name: 'Mars', x: 1, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Jupiter', x: 2, y: 0, enemies: [ { id: 2, count: 500 }, { id: 3, count: 25 } ] },
-		{ id: 5, name: 'Saturn', x: 3, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 0, name: 'Earth', x: 2.5, y: 3 },
+		{ id: 1, name: 'Mercury', x: 2.5, y: 1 },
+		{ id: 2, name: 'Venus', x: 2, y: 2.5 },
+		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 500 }, { id: 3, count: 25 } ] },
+		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 } ] },
 		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 7, name: 'Uranus', x: 5, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 8, name: 'Pluto', x: 6, y: 0, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 2, count: 150 } ] },
 	];
 
 	this.buildings = [

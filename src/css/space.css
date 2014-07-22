@@ -41,3 +41,8 @@
 .planet.hover {
 	/* Add glow around planet or something here! */
 }
+
+.battleLogCloseButton {
+	float: right;
+	cursor: pointer;
+}
