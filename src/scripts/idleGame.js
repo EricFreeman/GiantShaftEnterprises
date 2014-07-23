@@ -1087,7 +1087,8 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	// TODO: figure out a real way to calculate this
 	this.calculatePlanetMps = function(planet) {
-		if(!planet.isConquered) return 0;
+		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
+		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return 0;
 		return 100000 * planet.buildings.reduce(function(prev, cur) { 
 			return prev += cur.level 
 		}, 0);
