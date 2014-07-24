@@ -224,53 +224,75 @@
 
 				<script type="text/ng-template" id="space.html">
 					<div class="content center">
-						<div class="item" ng-show="playerService.resources.length > 0">
-							<p class="name">Resources</p>
-							<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count}}</p>
-						</div>
-
 						<div class="item">
-							<a class="button" ng-show="current == null" ng-click="scanForAsteroid(0)">Scan</a>
+							<div ng-show="hideResources">
+								<a class="battleLogCloseButton" ng-click="hideResources = false">+</a>
+								<p class="name">Resources</p>
+							</div>
+							<div ng-show="!hideResources">
+								<a class="battleLogCloseButton" ng-click="hideResources = true">-</a>
+							</div>
+							
+							<div ng-show="!hideResources">
 
-							<div class="asteroid" ng-show="current != null">
-								<p>Mining Cost - {{current.miningCost | currency}}</p>
-								<p>Chance - {{current.chance | number:0}}%</p>
-								<div ng-repeat="resource in current.resources">
-									<p>{{resource.name}} - {{resource.remaining}}</p>
+								<div ng-show="playerService.resources.length > 0">
+									<p class="name">Resources</p>
+									<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count}}</p>
 								</div>
 
-								<a class="button" ng-click="mine()" 
-												  ng-show="current.resources.length > 0 && current.miningCost <= playerService.money">
-												  	Mine
-								</a>
-								<a class="button" ng-click="abandon()">Abandon</a>
+								<br /><br />
+								
+								<p class="name">Shaft Mining</p>
+								<a class="button" ng-show="current == null" ng-click="scanForAsteroid(0)">Scan For Asteroid</a>
+								<div class="asteroid" ng-show="current != null">
+									<p>Mining Cost - {{current.miningCost | currency}}</p>
+									<p>Chance - {{current.chance | number:0}}%</p>
+									<div ng-repeat="resource in current.resources">
+										<p>{{resource.name}} - {{resource.remaining}}</p>
+									</div>
+
+									<a class="button" ng-click="mine()" 
+													  ng-show="current.resources.length > 0 && current.miningCost <= playerService.money">
+													  	Mine
+									</a>
+									<a class="button" ng-click="abandon()">Abandon</a>
+								</div>
 							</div>
 						</div>
 
 						<div class="item">
+							<div ng-show="hideFleet">
+								<a class="battleLogCloseButton" ng-click="hideFleet = false">+</a>
+							</div>
+							<div ng-show="!hideFleet">
+								<a class="battleLogCloseButton" ng-click="hideFleet = true">-</a>
+							</div>
+							
 							<p class="name">Fleet</p>
-							<div class="row" ng-repeat="ship in gameService.ships">
-								
-								<div class="triColumn">
-									<p class="shipName">{{ship.name}}</p>
-									<p class="price" ng-repeat="item in ship.cost">
-										{{getName(item.id)}} - 
-										<span ng-show="item.name != 'Money'">{{item.price}}</span>
-										<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
-									</p>
-								</div>
+							<div ng-show="!hideFleet">
+								<div class="row" ng-repeat="ship in gameService.ships">
+									
+									<div class="triColumn">
+										<p class="shipName">{{ship.name}}</p>
+										<p class="price" ng-repeat="item in ship.cost">
+											{{getName(item.id)}} - 
+											<span ng-show="item.name != 'Money'">{{item.price}}</span>
+											<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
+										</p>
+									</div>
 
-								<div class="columnBuy triColumn">
-									<a class="button small" ng-click="buy(ship.id, 1)">1</a>
-									<a class="button small" ng-click="buy(ship.id, 10)">10</a>
-									<a class="button small" ng-click="buy(ship.id, 100)">100</a>
-									<a class="button small" ng-click="buy(ship.id, 1000)">1000</a>
-								</div>
+									<div class="columnBuy triColumn">
+										<a class="button small" ng-click="buy(ship.id, 1)">1</a>
+										<a class="button small" ng-click="buy(ship.id, 10)">10</a>
+										<a class="button small" ng-click="buy(ship.id, 100)">100</a>
+										<a class="button small" ng-click="buy(ship.id, 1000)">1000</a>
+									</div>
 
-								<div class="columnCount triColumn">
-									<p>{{getCount(ship.id) | number}}</p>
-								</div>
+									<div class="columnCount triColumn">
+										<p>{{getCount(ship.id) | number}}</p>
+									</div>
 
+								</div>
 							</div>
 						</div>
 
@@ -290,7 +312,8 @@
 						</div>
 
 						<div class="item"
-							 ng-show="selectedPlanet != null">
+							 ng-show="selectedPlanet != null && selectedPlanet.id != 0">
+							 <a class="battleLogCloseButton" ng-click="selectedPlanet = null">X</a>
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
 
@@ -343,7 +366,7 @@
 							   	</div>
 							   	<div ng-show="log.remaining.length > 0">
 							   		<p class="info">{{log.name}} destroyed {{log.damage}} ships.</p><br />
-							   		<p class="info">Fleet remaining: {{log.remaining}}</p>
+							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining}}</p>
 							   	</div>
 							</div>
 						</div>
