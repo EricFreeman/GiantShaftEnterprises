@@ -245,45 +245,23 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	$scope.battleLog = [];
 
 	$scope.attack = function() {
-		var battleOver = false,
-			shipReduce = $scope.shipReduce,
-			getTurnStat = $scope.getTurnStat;
-
+		var battleOver = false;
 		$scope.battleLog = [];
 
 		while(!battleOver) {
-			var maxPlayerAtk = shipReduce(playerService.ships, 'attack');
-			var turnPlayerAtk = getTurnStat(maxPlayerAtk);
+			var beforeCount = $scope.battleCount();
 
-			var maxEnemyDef = shipReduce($scope.selectedPlanet.enemies, 'defense');
-			var turnEnemyDef = getTurnStat(maxEnemyDef);
+			// take player's turn
+			$scope.takeTurn(playerService.ships, $scope.selectedPlanet.enemies, playerService.companyName, $scope.selectedPlanet.name, true);
 
-			var playerDamage = $scope.getAttack(turnPlayerAtk, turnEnemyDef);
-
-			$scope.removeEnemies($scope.selectedPlanet.enemies, playerDamage);
-			$scope.battleLog.push({ name: playerService.companyName, 
-									damage: playerDamage, 
-									remaining: $scope.fleetRemaining($scope.selectedPlanet.enemies),
-									isPlayer: true });
-
+			// if there's still enemies, take their turn
 			if($scope.selectedPlanet.enemies.length > 0) {
-				var maxEnemyAtk = shipReduce($scope.selectedPlanet.enemies, 'attack');
-				var turnEnemyAtk = getTurnStat(maxPlayerAtk);
+				$scope.takeTurn($scope.selectedPlanet.enemies, playerService.ships, $scope.selectedPlanet.name, playerService.companyName, false);
 
-				var maxPlayerDef = shipReduce(playerService.ships, 'defense');
-				var turnPlayerDef = getTurnStat(maxPlayerDef);
-
-				var enemyDamage = $scope.getAttack(turnEnemyAtk, turnPlayerDef);
-
-				$scope.removeEnemies(playerService.ships, enemyDamage);
-				$scope.battleLog.push({ name: $scope.selectedPlanet.name, 
-										damage: enemyDamage, 
-										remaining: $scope.fleetRemaining(playerService.ships),
-										isPlayer: false });
-
-				// if it's a stalemate, then whichever one hit for the most wins the turn
-				if(playerDamage <= 0 && enemyDamage <= 0) {
-					$scope.removeEnemies(playerDamage >= enemyDamage ? $scope.selectedPlanet.enemies : playerService.ships, 10);
+				// if it's a stalemate, then hit random one
+				if(beforeCount == $scope.battleCount()) {
+					var hit = Math.floor(Math.random * 2);
+					$scope.removeEnemies(hit == 0 ? $scope.selectedPlanet.enemies : playerService.ships, 1);
 				}
 			}
 
@@ -297,9 +275,34 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		$rootScope.$broadcast('updateCache');
 	}
 
+	$scope.takeTurn = function(attackerShips, defnderShips, attackerName, defenderName, isPlayer) {
+		var maxTurnAtk = $scope.shipReduce(attackerShips, 'attack');
+		var turnAtk = $scope.getTurnStat(maxTurnAtk);
+
+		var maxTurnDef = $scope.shipReduce(defnderShips, 'defense');
+		var turnDef = $scope.getTurnStat(maxTurnDef);
+
+		var turnDamage = $scope.getAttack(turnAtk, turnDef);
+
+		$scope.removeEnemies(defnderShips, turnDamage);
+		$scope.battleLog.push({ name: attackerName, 
+								against: defenderName,
+								damage: turnDamage, 
+								remaining: $scope.fleetRemaining(defnderShips),
+								isPlayer: isPlayer });
+	}
+
 	$scope.getAttack = function(atk, def) {
 		var damage = atk - def;
 		return damage > 0 ? Math.floor(damage/10) : 0;
+	}
+
+	$scope.battleCount = function() {
+		return $scope.countShips(playerService.ships) + $scope.countShips($scope.selectedPlanet.enemies)
+	}
+
+	$scope.countShips = function(ships) {
+		return ships.reduce(function(prev, cur) {return prev += cur.count }, 0);
 	}
 
 	$scope.writeLog = function(name, damage, remaining) {
