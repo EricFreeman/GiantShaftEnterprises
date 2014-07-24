@@ -46,3 +46,11 @@
 	float: right;
 	cursor: pointer;
 }
+
+.battleRow {
+	width: 50%;
+}
+
+.enemyAttack {
+	margin-left: 50%;
+}
