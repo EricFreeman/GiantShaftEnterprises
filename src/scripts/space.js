@@ -258,10 +258,13 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 			var maxEnemyDef = shipReduce($scope.selectedPlanet.enemies, 'defense');
 			var turnEnemyDef = getTurnStat(maxEnemyDef);
 
-			var playerDamage = turnPlayerAtk - turnEnemyDef;
+			var playerDamage = $scope.getAttack(turnPlayerAtk, turnEnemyDef);
 
 			$scope.removeEnemies($scope.selectedPlanet.enemies, playerDamage);
-			$scope.battleLog.push($scope.writeLog(playerService.companyName, playerDamage, $scope.selectedPlanet.enemies));
+			$scope.battleLog.push({ name: playerService.companyName, 
+									damage: playerDamage, 
+									remaining: $scope.fleetRemaining($scope.selectedPlanet.enemies),
+									isPlayer: true });
 
 			if($scope.selectedPlanet.enemies.length > 0) {
 				var maxEnemyAtk = shipReduce($scope.selectedPlanet.enemies, 'attack');
@@ -270,10 +273,13 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 				var maxPlayerDef = shipReduce(playerService.ships, 'defense');
 				var turnPlayerDef = getTurnStat(maxPlayerDef);
 
-				var enemyDamage = turnEnemyAtk - turnPlayerDef;
+				var enemyDamage = $scope.getAttack(turnEnemyAtk, turnPlayerDef);
 
 				$scope.removeEnemies(playerService.ships, enemyDamage);
-				$scope.battleLog.push($scope.writeLog($scope.selectedPlanet.name, enemyDamage, playerService.ships));
+				$scope.battleLog.push({ name: $scope.selectedPlanet.name, 
+										damage: enemyDamage, 
+										remaining: $scope.fleetRemaining(playerService.ships),
+										isPlayer: false });
 
 				// if it's a stalemate, then whichever one hit for the most wins the turn
 				if(playerDamage <= 0 && enemyDamage <= 0) {
@@ -291,6 +297,11 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		$rootScope.$broadcast('updateCache');
 	}
 
+	$scope.getAttack = function(atk, def) {
+		var damage = atk - def;
+		return damage > 0 ? Math.floor(damage/10) : 0;
+	}
+
 	$scope.writeLog = function(name, damage, remaining) {
 		if(remaining.length == 0) return name + ' destroyed remaining forces.';
 		var rtn = name + ' destroyed ' + (damage > 0 ? Math.floor(damage/10) : 0) + ' ships.  Fleet remaining: ' + 
@@ -299,11 +310,14 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		return rtn.substring(0, rtn.length - 2);
 	}
 
+	$scope.fleetRemaining = function(fleet) {
+		var rtn = fleet.reduce(function(prev, cur) { return prev += $scope.getShip(cur.id).name + ': ' + cur.count + ', ' }, '');
+		return rtn.substring(0, rtn.length - 2);
+	}
+
 	// TODO: This sucks - please make it not suck
 	$scope.removeEnemies = function(ships, attack) {
-		var shipsToDestroy = Math.floor(attack / 10);
-
-		for(var i = 0; i < shipsToDestroy; i++) {
+		for(var i = 0; i < attack; i++) {
 			// random number between 0 and total of all ships in fleet
 			var shipIndex = Math.floor(Math.random() * ships.reduce(function(prev, cur) { return prev += cur.count; }, 0));
 			

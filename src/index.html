@@ -336,10 +336,16 @@
 							<a class="battleLogCloseButton" ng-click="battleLog = []">X</a>
 							<p class="name" ng-show="playerService.ships.length > 0">Victory</p>
 							<p class="name" ng-show="playerService.ships.length == 0">Defeat</p>
-							<p class="battleRow info"
+							<div class="battleRow"
 							   ng-repeat="log in battleLog track by $index">
-								{{log}}
-							</p>
+							   	<div ng-show="log.remaining.length == 0">
+							   		<p class="info">{{log.name}} destroyed remaining forces.</p>
+							   	</div>
+							   	<div ng-show="log.remaining.length > 0">
+							   		<p class="info">{{log.name}} destroyed {{log.damage}} ships.</p><br />
+							   		<p class="info">Fleet remaining: {{log.remaining}}</p>
+							   	</div>
+							</div>
 						</div>
 					</div>
 				</script>
