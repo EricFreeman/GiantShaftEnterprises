@@ -261,29 +261,38 @@
 						</div>
 
 						<div class="item">
+							<div ng-show="hideFleet">
+								<a class="battleLogCloseButton" ng-click="hideFleet = false">+</a>
+							</div>
+							<div ng-show="!hideFleet">
+								<a class="battleLogCloseButton" ng-click="hideFleet = true">-</a>
+							</div>
+							
 							<p class="name">Fleet</p>
-							<div class="row" ng-repeat="ship in gameService.ships">
-								
-								<div class="triColumn">
-									<p class="shipName">{{ship.name}}</p>
-									<p class="price" ng-repeat="item in ship.cost">
-										{{getName(item.id)}} - 
-										<span ng-show="item.name != 'Money'">{{item.price}}</span>
-										<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
-									</p>
-								</div>
+							<div ng-show="!hideFleet">
+								<div class="row" ng-repeat="ship in gameService.ships">
+									
+									<div class="triColumn">
+										<p class="shipName">{{ship.name}}</p>
+										<p class="price" ng-repeat="item in ship.cost">
+											{{getName(item.id)}} - 
+											<span ng-show="item.name != 'Money'">{{item.price}}</span>
+											<span ng-show="item.name == 'Money'">{{item.price | currency}}</span>
+										</p>
+									</div>
 
-								<div class="columnBuy triColumn">
-									<a class="button small" ng-click="buy(ship.id, 1)">1</a>
-									<a class="button small" ng-click="buy(ship.id, 10)">10</a>
-									<a class="button small" ng-click="buy(ship.id, 100)">100</a>
-									<a class="button small" ng-click="buy(ship.id, 1000)">1000</a>
-								</div>
+									<div class="columnBuy triColumn">
+										<a class="button small" ng-click="buy(ship.id, 1)">1</a>
+										<a class="button small" ng-click="buy(ship.id, 10)">10</a>
+										<a class="button small" ng-click="buy(ship.id, 100)">100</a>
+										<a class="button small" ng-click="buy(ship.id, 1000)">1000</a>
+									</div>
 
-								<div class="columnCount triColumn">
-									<p>{{getCount(ship.id) | number}}</p>
-								</div>
+									<div class="columnCount triColumn">
+										<p>{{getCount(ship.id) | number}}</p>
+									</div>
 
+								</div>
 							</div>
 						</div>
 
@@ -304,6 +313,7 @@
 
 						<div class="item"
 							 ng-show="selectedPlanet != null && selectedPlanet.id != 0">
+							 <a class="battleLogCloseButton" ng-click="selectedPlanet = null">X</a>
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
 
