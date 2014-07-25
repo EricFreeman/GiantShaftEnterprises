@@ -262,6 +262,11 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 				if(beforeCount == $scope.battleCount()) {
 					var hit = Math.floor(Math.random * 2);
 					$scope.removeEnemies(hit == 0 ? $scope.selectedPlanet.enemies : playerService.ships, 1);
+					$scope.battleLog.push({ name: hit == 0 ? playerService.companyName : $scope.selectedPlanet.name, 
+											against: hit == 0 ? $scope.selectedPlanet.name : playerService.companyName,
+											damage: 1, 
+											remaining: $scope.fleetRemaining(hit == 1 ? $scope.selectedPlanet.enemies : playerService.ships),
+											isPlayer: hit == 0 });
 				}
 			}
 
