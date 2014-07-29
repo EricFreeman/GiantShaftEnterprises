@@ -784,7 +784,7 @@ idleGame.service('gameService', function() {
 				{ name: 'Money', price: 500000 }, 
 				{ id: 0, price: 10 }, 
 				{ id: 3, price: 8 } ],
-			returns: [],
+			returns: '',
 			amount: function(planet, building) { 
 				return 0;
 			},
@@ -796,7 +796,7 @@ idleGame.service('gameService', function() {
 			description: 'Shaft mine the planet for resources.',
 			cost: [ 
 				{ name: 'Money', price: 100000000 } ],
-			returns: ['resources'],
+			returns: 'resources',
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
@@ -814,7 +814,7 @@ idleGame.service('gameService', function() {
 				{ name: 'Money', price: 250000000 }, 
 				{ id: 0, price: 100 }, 
 				{ id: 3, price: 100 } ],
-			returns: ['money'],
+			returns: 'money',
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
@@ -971,7 +971,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.planetBoost = function(id) {
 		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
-		if(planet.length > 0) return planet[0].mps;
+		if(planet.length > 0) return planet[0].resources.mps;
 		else return 0;
 	}
 
@@ -1120,12 +1120,12 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return amount <= this.lowestAmountCache;
 	}
 
-	// fill up the array for each planet of how much mps they provide
+	// fill up the array for each planet of how much resources they provide
 	this.getPlanetMps = function() {
 		var rtn = [];
 
 		for(var i = 0; i < playerService.planets.length; i++) {
-			rtn.push({ id: i, mps: this.calculatePlanetMps(playerService.planets[i]) });
+			rtn.push({ id: i, resources: this.calculatePlanetMps(playerService.planets[i]) });
 		}
 
 		return rtn;
@@ -1135,15 +1135,21 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
 		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return 0;
 
-		return planet.buildings.reduce(function(prev, cur) { 
-			var building = gameService.buildings.filter(function(d) {return d.id == cur.id});
-			if(building.length == 0) return prev;
-			else building = building[0];
+		var mps = 0, resources = 0;
 
-			if(building.returns.indexOf('money') >= 0)
-				return prev += building.amount(planet, cur);
-			else return prev;
-		}, 0);
+		for(var i = 0; i < planet.buildings.length; i++) {
+			var cur = planet.buildings[i];
+			var building = gameService.buildings.filter(function(d) {return d.id == cur.id});
+			if(building.length > 0) building = building[0];
+			else continue;
+
+			if(building.returns === 'money')
+				mps += building.amount(planet, cur);
+			else
+				resources += building.amount(planet, cur);
+		}
+
+		return { mps: mps, resources: resources };
 	}
 });
 
