@@ -960,6 +960,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedMaxBcBoost = 0;
 	this.items = [];
 	this.cachedPlanetMps = [];
+	this.cachedResourcesPerSecond = 0;
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -978,6 +979,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	var self = this;
 	$rootScope.$on('updateCache', function() {
 		self.cachedPlanetMps = self.getPlanetMps();
+		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
