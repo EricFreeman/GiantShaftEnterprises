@@ -774,10 +774,53 @@ idleGame.service('gameService', function() {
 		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 2, count: 150 } ] },
 	];
 
+	// returns: what type the building returns (money adds to mps, resources gains that number of resources per second)
 	this.buildings = [
-		{ id: 0, name: 'Colony', cost: [ { name: 'Money', price: 500000 }, { id: 0, price: 10 }, { id: 3, price: 8 } ] },
-		{ id: 1, name: 'Giant Shaft Mine', cost: [ { name: 'Money', price: 100000000 } ] },
-		{ id: 2, name: 'Trade Route', cost: [ { name: 'Money', price: 250000000 }, { id: 0, price: 100 }, { id: 3, price: 100 } ] }
+		{ 
+			id: 0, 
+			name: 'Colony',
+			cost: [ 
+				{ name: 'Money', price: 500000 }, 
+				{ id: 0, price: 10 }, 
+				{ id: 3, price: 8 } ],
+			returns: [],
+			amount: function(planet, building, playerService, gameService) { 
+				return 0;
+			},
+			maxLevel: 5
+		},
+		{ 
+			id: 1, 
+			name: 'Giant Shaft Mine',
+			cost: [ 
+				{ name: 'Money', price: 100000000 } ],
+			returns: ['resources'],
+			amount: function(planet, building, playerService, gameService) {
+				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
+				if(colony.length > 0) colony = colony[0];
+				else return;
+
+				return building.level + colony.level;
+			},
+			maxLevel: 5
+		},
+		{ 
+			id: 2, 
+			name: 'Trade Route',
+			cost: [ 
+				{ name: 'Money', price: 250000000 }, 
+				{ id: 0, price: 100 }, 
+				{ id: 3, price: 100 } ],
+			returns: ['money'],
+			amount: function(planet, building, playerService, gameService) {
+				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
+				if(colony.length > 0) colony = colony[0];
+				else return;
+
+				return 10000 * (building.level + colony.level);
+			},
+			maxLevel: 5
+	 	}
 	];
 
 	this.getItem = function(id) {
