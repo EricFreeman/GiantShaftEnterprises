@@ -779,12 +779,13 @@ idleGame.service('gameService', function() {
 		{ 
 			id: 0, 
 			name: 'Colony',
+			description: 'Supplies people for your colony.  Increases efficiency of other items.',
 			cost: [ 
 				{ name: 'Money', price: 500000 }, 
 				{ id: 0, price: 10 }, 
 				{ id: 3, price: 8 } ],
 			returns: [],
-			amount: function(planet, building, playerService, gameService) { 
+			amount: function(planet, building) { 
 				return 0;
 			},
 			maxLevel: 5
@@ -792,32 +793,34 @@ idleGame.service('gameService', function() {
 		{ 
 			id: 1, 
 			name: 'Giant Shaft Mine',
+			description: 'Shaft mine the planet for resources.',
 			cost: [ 
 				{ name: 'Money', price: 100000000 } ],
 			returns: ['resources'],
-			amount: function(planet, building, playerService, gameService) {
+			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
 				else return;
 
-				return building.level + colony.level;
+				return Math.min(building.level, colony.level);
 			},
 			maxLevel: 5
 		},
 		{ 
 			id: 2, 
 			name: 'Trade Route',
+			description: 'Earn more Money/Sec.',
 			cost: [ 
 				{ name: 'Money', price: 250000000 }, 
 				{ id: 0, price: 100 }, 
 				{ id: 3, price: 100 } ],
 			returns: ['money'],
-			amount: function(planet, building, playerService, gameService) {
+			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
 				else return;
 
-				return 10000 * (building.level + colony.level);
+				return 10000 * (Math.min(building.level, colony.level));
 			},
 			maxLevel: 5
 	 	}
@@ -1128,12 +1131,18 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return rtn;
 	}
 
-	// TODO: figure out a real way to calculate this
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
 		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return 0;
-		return 100000 * planet.buildings.reduce(function(prev, cur) { 
-			return prev += cur.level 
+
+		return planet.buildings.reduce(function(prev, cur) { 
+			var building = gameService.buildings.filter(function(d) {return d.id == cur.id});
+			if(building.length == 0) return prev;
+			else building = building[0];
+
+			if(building.returns.indexOf('money') >= 0)
+				return prev += building.amount(planet, cur);
+			else return prev;
 		}, 0);
 	}
 });
