@@ -1025,7 +1025,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		}
 
 		// Add in space colonies
-		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.mps; }, 0);
+		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.mps; }, 0);
 
 		// Add in amount gained from business connections
 		additionalMps += baseMps * this.cachedBcBoost;
@@ -1133,7 +1133,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
-		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return 0;
+		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0 };
 
 		var mps = 0, resources = 0;
 
