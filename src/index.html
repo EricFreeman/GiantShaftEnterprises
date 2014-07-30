@@ -50,6 +50,7 @@
 							<p class="companyName">{{getCompanyName()}}</p>
 							<p class="info">Money/Second: {{getMps() | currency}}</p>
 							<p class="info">Money/Opportunity: {{getClickPower() | currency}}</p>
+							<p class="info" ng-show="getResourcesPerSecond() > 0">Resources/Second: {{getResourcesPerSecond()}}</p>
 							<div class="updateText"
 								 ng-show="loadedVersion < currentVersion">
 								<p>NEW VERSION - REFRESH TO GET IT</p>

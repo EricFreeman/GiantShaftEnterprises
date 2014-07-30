@@ -12,6 +12,9 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 	$scope.getClickPower = function() {
 		return cacheService.clickPower();
 	}
+	$scope.getResourcesPerSecond = function() {
+		return cacheService.cachedResourcesPerSecond;
+	}
 	$scope.showKnowledge = function() {
 		return playerService.totalKnowledge > 0;
 	}
