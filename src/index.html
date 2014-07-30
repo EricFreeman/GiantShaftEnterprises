@@ -334,7 +334,7 @@
 								 ng-repeat="building in gameService.buildings"
 								 ng-show="hasConquered()">
 								<div class="triColumn">
-									<p>{{building.name}}</p>
+									<p title="{{building.description}}">{{building.name}}</p>
 								</div>
 								<div class="triColumn">
 									<p class="price" ng-repeat="item in building.cost">
