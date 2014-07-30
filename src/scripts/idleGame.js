@@ -1020,8 +1020,8 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.planetBoost = function(id) {
 		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
-		if(planet.length > 0) return planet[0].resources.mps;
-		else return 0;
+		if(planet.length > 0) return planet[0].resources;
+		else return {mps: 0, resources: 0};
 	}
 
 	var self = this;

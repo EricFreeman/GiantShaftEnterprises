@@ -321,7 +321,12 @@
 							<br /><br />
 
 							<div ng-show="hasConquered()">
-								<p>Adds: {{cacheService.planetBoost(selectedPlanet.id) | currency}}</p>
+								<p ng-show="cacheService.planetBoost(selectedPlanet.id).mps > 0">
+									Adds: {{cacheService.planetBoost(selectedPlanet.id).mps | currency}}/sec
+								</p>
+								<p ng-show="cacheService.planetBoost(selectedPlanet.id).resources > 0">
+									Adds: {{cacheService.planetBoost(selectedPlanet.id).resources}} resources/sec
+								</p>
 								<br /><br />
 							</div>
 
