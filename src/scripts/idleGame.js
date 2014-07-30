@@ -952,6 +952,54 @@ idleGame.service('playerService', function () {
 	};
 });
 
+idleGame.service('miningService', function(gameService) {
+	// return a list of resources of the amount specified.
+	// used for creating an asteroid of a certain size and 
+	// for mining a certain amount of minterals
+	this.getResources = function(amount) {
+		var resources = gameService.resources,
+			maxProp = resources.reduce(function(prev, cur){return prev + cur.proportion}, 0),
+			rtn = [];
+
+		for(var i = 0; i < amount; i++) {
+			var choice = Math.random() * maxProp, self = this;
+			var selection = resources.reduce(function(prev, cur) {
+				// if it's numeric, keep iterating until proportion is over random number
+				// once it's over, just return that item.  now the reduce function will return the random resource
+				if(self.isNumber(prev)) {
+					prev += cur.proportion;
+					if (prev >= choice) {
+						return cur;
+					}
+					return prev;
+				}
+				return prev;
+			}, 0);
+
+			// find the item in existing return data
+			var item = rtn.filter(function(d) {return d.id == selection.id});
+			if(item.length > 0) item = item[0];
+			else item = {};
+
+			// Add an entry for it if not on asteroid yet
+			if(item.id === undefined) {
+				rtn.push({id: selection.id, remaining: 1, name: selection.name});
+			}
+			//otherwise increment existing item
+			else {
+				var index = rtn.indexOf(item);
+				rtn[index].remaining++;
+			}
+		}
+
+		return rtn;
+	}
+
+	this.isNumber = function(n) {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+});
+
 idleGame.service('cacheService', function($rootScope, gameService, playerService) {
 	this.cachedMps = 0;
 	this.cachedClickPower = 0;
