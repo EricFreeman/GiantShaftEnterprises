@@ -1,4 +1,4 @@
-function GameLoopController($scope, $timeout, $rootScope, $location, $window, gameService, playerService, cacheService, saveService, importExportService) {	
+function GameLoopController($scope, $timeout, $rootScope, $location, $window, gameService, playerService, cacheService, saveService, importExportService, miningService) {	
 	// Getters to grab values through services
 	$scope.getCompanyName = function() {
 		return playerService.companyName;
@@ -11,6 +11,9 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 	}
 	$scope.getClickPower = function() {
 		return cacheService.clickPower();
+	}
+	$scope.getResourcesPerSecond = function() {
+		return cacheService.cachedResourcesPerSecond;
 	}
 	$scope.showKnowledge = function() {
 		return playerService.totalKnowledge > 0;
@@ -62,6 +65,14 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 
 		document.title = playerService.companyName;
 	};
+
+	// Mine minerals every second
+	$scope.mine = function() {
+		var resources = miningService.getResources(cacheService.cachedResourcesPerSecond);
+		playerService.mine(resources);
+
+		$timeout($scope.mine, 1000);
+	}
 
 	$scope.firstTime = true;
 	$scope.checkForUpdate = function() {
@@ -117,6 +128,9 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 
 	// Start game loop
 	$scope.update();
+
+	// Start mining minerals
+	$scope.mine();
 
 	// Check for update to game every five minutes
 	$scope.checkForUpdate();

@@ -779,12 +779,13 @@ idleGame.service('gameService', function() {
 		{ 
 			id: 0, 
 			name: 'Colony',
+			description: 'Supplies people for your colony.  Increases efficiency of other items.',
 			cost: [ 
 				{ name: 'Money', price: 500000 }, 
 				{ id: 0, price: 10 }, 
 				{ id: 3, price: 8 } ],
-			returns: [],
-			amount: function(planet, building, playerService, gameService) { 
+			returns: '',
+			amount: function(planet, building) { 
 				return 0;
 			},
 			maxLevel: 5
@@ -792,32 +793,34 @@ idleGame.service('gameService', function() {
 		{ 
 			id: 1, 
 			name: 'Giant Shaft Mine',
+			description: 'Shaft mine the planet for resources.',
 			cost: [ 
 				{ name: 'Money', price: 100000000 } ],
-			returns: ['resources'],
-			amount: function(planet, building, playerService, gameService) {
+			returns: 'resources',
+			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
 				else return;
 
-				return building.level + colony.level;
+				return Math.min(building.level, colony.level);
 			},
 			maxLevel: 5
 		},
 		{ 
 			id: 2, 
 			name: 'Trade Route',
+			description: 'Earn more Money/Sec.',
 			cost: [ 
 				{ name: 'Money', price: 250000000 }, 
 				{ id: 0, price: 100 }, 
 				{ id: 3, price: 100 } ],
-			returns: ['money'],
-			amount: function(planet, building, playerService, gameService) {
+			returns: 'money',
+			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
 				else return;
 
-				return 10000 * (building.level + colony.level);
+				return 10000 * (Math.min(building.level, colony.level));
 			},
 			maxLevel: 5
 	 	}
@@ -949,6 +952,54 @@ idleGame.service('playerService', function () {
 	};
 });
 
+idleGame.service('miningService', function(gameService) {
+	// return a list of resources of the amount specified.
+	// used for creating an asteroid of a certain size and 
+	// for mining a certain amount of minterals
+	this.getResources = function(amount) {
+		var resources = gameService.resources,
+			maxProp = resources.reduce(function(prev, cur){return prev + cur.proportion}, 0),
+			rtn = [];
+
+		for(var i = 0; i < amount; i++) {
+			var choice = Math.random() * maxProp, self = this;
+			var selection = resources.reduce(function(prev, cur) {
+				// if it's numeric, keep iterating until proportion is over random number
+				// once it's over, just return that item.  now the reduce function will return the random resource
+				if(self.isNumber(prev)) {
+					prev += cur.proportion;
+					if (prev >= choice) {
+						return cur;
+					}
+					return prev;
+				}
+				return prev;
+			}, 0);
+
+			// find the item in existing return data
+			var item = rtn.filter(function(d) {return d.id == selection.id});
+			if(item.length > 0) item = item[0];
+			else item = {};
+
+			// Add an entry for it if not on asteroid yet
+			if(item.id === undefined) {
+				rtn.push({id: selection.id, remaining: 1, name: selection.name});
+			}
+			//otherwise increment existing item
+			else {
+				var index = rtn.indexOf(item);
+				rtn[index].remaining++;
+			}
+		}
+
+		return rtn;
+	}
+
+	this.isNumber = function(n) {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+});
+
 idleGame.service('cacheService', function($rootScope, gameService, playerService) {
 	this.cachedMps = 0;
 	this.cachedClickPower = 0;
@@ -957,6 +1008,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedMaxBcBoost = 0;
 	this.items = [];
 	this.cachedPlanetMps = [];
+	this.cachedResourcesPerSecond = 0;
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -968,13 +1020,14 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.planetBoost = function(id) {
 		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
-		if(planet.length > 0) return planet[0].mps;
-		else return 0;
+		if(planet.length > 0) return planet[0].resources;
+		else return {mps: 0, resources: 0};
 	}
 
 	var self = this;
 	$rootScope.$on('updateCache', function() {
 		self.cachedPlanetMps = self.getPlanetMps();
+		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
@@ -1022,7 +1075,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		}
 
 		// Add in space colonies
-		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.mps; }, 0);
+		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.mps; }, 0);
 
 		// Add in amount gained from business connections
 		additionalMps += baseMps * this.cachedBcBoost;
@@ -1117,24 +1170,36 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		return amount <= this.lowestAmountCache;
 	}
 
-	// fill up the array for each planet of how much mps they provide
+	// fill up the array for each planet of how much resources they provide
 	this.getPlanetMps = function() {
 		var rtn = [];
 
 		for(var i = 0; i < playerService.planets.length; i++) {
-			rtn.push({ id: i, mps: this.calculatePlanetMps(playerService.planets[i]) });
+			rtn.push({ id: i, resources: this.calculatePlanetMps(playerService.planets[i]) });
 		}
 
 		return rtn;
 	}
 
-	// TODO: figure out a real way to calculate this
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
-		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return 0;
-		return 100000 * planet.buildings.reduce(function(prev, cur) { 
-			return prev += cur.level 
-		}, 0);
+		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0 };
+
+		var mps = 0, resources = 0;
+
+		for(var i = 0; i < planet.buildings.length; i++) {
+			var cur = planet.buildings[i];
+			var building = gameService.buildings.filter(function(d) {return d.id == cur.id});
+			if(building.length > 0) building = building[0];
+			else continue;
+
+			if(building.returns === 'money')
+				mps += building.amount(planet, cur);
+			else
+				resources += building.amount(planet, cur);
+		}
+
+		return { mps: mps, resources: resources };
 	}
 });
 
