@@ -693,7 +693,7 @@ idleGame.service('gameService', function() {
 
 		// unlock tier 4
 		{ id: 8, price: 15, type: 'upgrade', description: 'Unlock 4th Tier Upgrades For Base Items',
-			item: { id: 42, itemId: "Money/Second", name: "Space Program", price: 50000000000, isAchievement: 1, per: .05, showAfter: [41, 35], isBusiness: 1,
+			item: { id: 42, itemId: "Money/Second", name: "Space Program", price: 50000000000, isAchievement: 1, per: .05, isBusiness: 1,
 			description: "Don't just shoot for the moon, mine it for minerals first." }},
 
 		// tier 4
