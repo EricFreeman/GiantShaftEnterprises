@@ -19,7 +19,8 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 		return playerService.totalKnowledge > 0;
 	}
 	$scope.showSpace = function() {
-		return true;
+		// 42 = id for Space Program upgrade
+		return playerService.getUpgrade(42).id >= 0;
 	}
 
 	$scope.loadedVersion = 1;
