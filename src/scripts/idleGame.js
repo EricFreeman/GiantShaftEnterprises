@@ -765,14 +765,14 @@ idleGame.service('gameService', function() {
 
 	this.planets = [
 		{ id: 0, name: 'Earth', x: 2.5, y: 3 },
-		{ id: 1, name: 'Mercury', x: 2.5, y: 1 },
-		{ id: 2, name: 'Venus', x: 2, y: 2.5 },
-		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 500 }, { id: 3, count: 25 } ] },
-		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 1, name: 'Mercury', x: 2.5, y: 1, enemies: [ { id: 0, count: 5 } ] },
+		{ id: 2, name: 'Venus', x: 2, y: 2.5, enemies: [ { id: 0, count: 15 }, { id: 1, count: 10 } ] },
+		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 0, count: 50 }, { id: 1, count: 50 } ] },
+		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 100 } ] },
+		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 }, { id: 3, count: 3 } ] },
+		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 1, count: 150 }, { id: 2, count: 150 }, { id: 3, count: 50 } ] },
+		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 1, count: 250 }, { id: 2, count: 250 }, { id: 3, count: 100 } ] },
+		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 150 } ] },
 	];
 
 	// returns: what type the building returns (money adds to mps, resources gains that number of resources per second)
