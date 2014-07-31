@@ -328,4 +328,12 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		return (!$scope.selectedPlanet.enemies || $scope.selectedPlanet.enemies.length == 0) || 
 				!!playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered;
 	}
+
+	//////////////
+	// RESEARCH //
+	//////////////
+
+	$scope.getResearch = function() {
+		return Math.floor(playerService.research);
+	}
 }

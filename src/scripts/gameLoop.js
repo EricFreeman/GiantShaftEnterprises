@@ -65,6 +65,7 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 		playerService.totalMoney += moneyEarned;
 
 		playerService.research += researchEarned;
+		playerService.totalResearch += researchEarned;
 
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);

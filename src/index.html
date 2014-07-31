@@ -299,6 +299,21 @@
 							</div>
 						</div>
 
+						<div class="item"
+							 ng-show="playerService.totalResearch > 0">
+							<div ng-show="hideResearch">
+								<a class="battleLogCloseButton" ng-click="hideResearch = false">+</a>
+							</div>
+							<div ng-show="!hideResearch">
+								<a class="battleLogCloseButton" ng-click="hideResearch = true">-</a>
+							</div>
+							
+							<p class="name">Research</p>
+							<div ng-show="!hideResearch">
+								<p>Research Remaining: {{ getResearch() }}</p>
+							</div>
+						</div>
+
 						<div class="item">
 							<p class="name">The Final Frontier</p>
 							<div class="spaceScroller" ng-init="initPlanets()">

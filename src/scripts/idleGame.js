@@ -848,6 +848,69 @@ idleGame.service('gameService', function() {
 	 	}
 	];
 
+	this.perks = [
+		{
+			id: 0, 
+			name: 'Cybornetic Implants',
+			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
+			property: 'mps',
+			effect: function(baseMps) {
+				return baseMps + baseMps * 1.15;
+			},
+			price: 1500
+		},
+		{
+			id: 1, 
+			name: 'Artificial Intelligence',
+			description: 'Why hire employees when you can just create them?',
+			property: 'mps',
+			effect: function(baseMps) {
+				return baseMps + baseMps * 1.15;
+			},
+			price: 3000
+		},
+		{
+			id: 2, 
+			name: 'Hive Mind',
+			description: 'Business meetings become irrelevant when every employee is already on the same page.',
+			property: 'mps',
+			effect: function(baseMps) {
+				return baseMps + baseMps * 1.15;
+			},
+			price: 5000
+		},
+		{
+			id: 3, 
+			name: 'Alien Biology',
+			description: 'Studying the remains of dead aliens will help you understand how to hit them where it hurts.',
+			property: 'attack',
+			effect: function(baseAttack) {
+				return baseAttack + baseAttack * 1.15;
+			},
+			price: 10000
+		},
+		{
+			id: 4, 
+			name: 'Alien Weapons',
+			description: 'Recreating high-tech alien weapons will improve the attack of your fleet.',
+			property: 'attack',
+			effect: function(baseAttack) {
+				return baseAttack + baseAttack * 1.15;
+			},
+			price: 10000
+		},
+		{
+			id: 5, 
+			name: 'Alien Defenses',
+			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
+			property: 'defense',
+			effect: function(baseDefense) {
+				return baseDefense + baseDefense * 1.15;
+			},
+			price: 10000
+		},
+	];
+
 	this.getItem = function(id) {
 		return search(this.items, "id", id,
 			{ id: -1, name: "", mps: 0, price: 0 });
@@ -875,9 +938,9 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
-	// Discovered planets are stored here as { id: 0, buildings: [], isConquered: t/f }
+	// Discovered planets are stored here as { id: x, buildings: [], isConquered: t/f }
 	this.planets = [];
-	// Unlocked perks from research stations on planets
+	// Unlocked perks from research stations on planets are stored as { id: x }
 	this.perks = [];
 
 	this.money = 0;
@@ -887,6 +950,7 @@ idleGame.service('playerService', function () {
 	this.businessConnections = 0;
 
 	this.research = 0;
+	this.totalResearch = 0;
 
 	// For stats page
 	this.totalMoneyReset = 0;
