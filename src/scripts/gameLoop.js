@@ -19,7 +19,8 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 		return playerService.totalKnowledge > 0;
 	}
 	$scope.showSpace = function() {
-		return false;
+		// 42 = id for Space Program upgrade
+		return playerService.getUpgrade(42).id >= 0;
 	}
 
 	$scope.loadedVersion = 1;
@@ -69,9 +70,22 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 	// Mine minerals every second
 	$scope.mine = function() {
 		var resources = miningService.getResources(cacheService.cachedResourcesPerSecond);
-		playerService.mine(resources);
+		playerService.mine($scope.translateResource(resources));
 
 		$timeout($scope.mine, 1000);
+	}
+
+	// Translates a resource list from asteroid generation to the form mining takes in
+	$scope.translateResource = function(resources) {
+		var rtn = [];
+
+		for(var res = 0; res < resources.length; res++) {
+			for(var am = 0; am < resources[res].remaining; am++) {
+				rtn.push({id: resources[res].id});
+			}
+		}
+
+		return rtn;
 	}
 
 	$scope.firstTime = true;

@@ -103,9 +103,24 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 	}
 
 	$scope.cantBuyUpgrade = function(upgrade) {
-		var notEnoughMoney = upgrade.price > playerService.money;
-		return notEnoughMoney || $scope.alreadyBought(upgrade.id);
+		
+		return $scope.notEnoughMoney(upgrade) ||
+			   $scope.notEnoughCount(upgrade) ||
+			   $scope.alreadyBought(upgrade.id);
 	};
+
+	$scope.notEnoughMoney = function(upgrade) {
+		return upgrade.price > playerService.money;
+	}
+
+	$scope.notEnoughCount = function(upgrade) {
+		var notEnoughCount = false;
+		if(!!upgrade.count) {
+			var item = playerService.getItem(upgrade.itemId);
+			notEnoughCount = upgrade.count > item.count;
+		}
+		return notEnoughCount;
+	}
 	
 	$scope.buyUpgrade = function(upgrade) {
 		if(!$scope.cantBuyUpgrade(upgrade)) {
@@ -134,7 +149,8 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 
 		return haveAllPrereq && 
 			(playerService.getItem(upgrade.itemId).count > 0 || !!upgrade.isBusiness) &&
-			(!$scope.alreadyBought(upgrade.id) || !playerService.hideBoughtUpgrades);
+			(!$scope.alreadyBought(upgrade.id) || !playerService.hideBoughtUpgrades) &&
+			!$scope.notEnoughCount(upgrade);
 	}
 
 	// ACHIEVEMENTS

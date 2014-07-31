@@ -183,7 +183,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	}
 
 	$scope.buyBuilding = function(building) {
-		if($scope.canBuy(building, 1, false)) {
+		if($scope.canBuy(building, 1, false) && $scope.getLevel(building) < building.maxLevel) {
 			$scope.canBuy(building, 1, true);
 
 			var b = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
