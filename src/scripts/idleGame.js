@@ -801,7 +801,7 @@ idleGame.service('gameService', function() {
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
-				else return;
+				else return 0;
 
 				return Math.min(building.level, colony.level);
 			},
@@ -812,18 +812,39 @@ idleGame.service('gameService', function() {
 			name: 'Trade Route',
 			description: 'Earn more Money/Sec.',
 			cost: [ 
-				{ name: 'Money', price: 250000000 }, 
+				{ name: 'Money', price: 250000000 },
 				{ id: 0, price: 100 }, 
 				{ id: 3, price: 100 } ],
 			returns: 'money',
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
-				else return;
+				else return 0;
 
-				return 10000 * (Math.min(building.level, colony.level));
+				return 100000 * (Math.min(building.level, colony.level));
 			},
 			maxLevel: 5
+	 	},
+	 	{ 
+			id: 3, 
+			name: 'Research Station',
+			description: 'Earn more Money/Sec.',
+			cost: [ 
+				{ name: 'Money', price: 100000000 }, 
+				{ id: 0, price: 100 }, 
+				{ id: 1, price: 25 }, 
+				{ id: 2, price: 5 }, 
+				{ id: 3, price: 150 }, 
+				{ id: 4, price: 50 } ],
+			returns: 'research',
+			amount: function(planet, building) {
+				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
+				if(colony.length > 0) colony = colony[0];
+				else return 0;
+
+				return (Math.min(building.level, colony.level));
+			},
+			maxLevel: 2
 	 	}
 	];
 
@@ -856,12 +877,16 @@ idleGame.service('playerService', function () {
 	this.ships = [];
 	// Discovered planets are stored here as { id: 0, buildings: [], isConquered: t/f }
 	this.planets = [];
+	// Unlocked perks from research stations on planets
+	this.perks = [];
 
 	this.money = 0;
 	this.companyName = "Giant Shaft Enterprises";
 
 	this.vcFunding = 0;
 	this.businessConnections = 0;
+
+	this.research = 0;
 
 	// For stats page
 	this.totalMoneyReset = 0;
@@ -1010,6 +1035,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.items = [];
 	this.cachedPlanetMps = [];
 	this.cachedResourcesPerSecond = 0;
+	this.cachedResearchPerSecond = 0;
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -1029,6 +1055,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	$rootScope.$on('updateCache', function() {
 		self.cachedPlanetMps = self.getPlanetMps();
 		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
+		self.cachedResearchPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.research }, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
@@ -1184,9 +1211,9 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
-		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0 };
+		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0, research: 0 };
 
-		var mps = 0, resources = 0;
+		var mps = 0, resources = 0, research = 0;
 
 		for(var i = 0; i < planet.buildings.length; i++) {
 			var cur = planet.buildings[i];
@@ -1196,11 +1223,13 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 			if(building.returns === 'money')
 				mps += building.amount(planet, cur);
-			else
+			else if(building.returns === 'resources')
 				resources += building.amount(planet, cur);
+			else if(building.returns === 'research')
+				research += building.amount(planet, cur);
 		}
 
-		return { mps: mps, resources: resources };
+		return { mps: mps, resources: resources, research: research };
 	}
 });
 

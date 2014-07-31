@@ -46,20 +46,25 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 
 		// Check if the timeout took longer than usual (this happens when the tab isn't selected in some browsers)
 		now = new Date();
-		var elapsedTime = (now.getTime() - before.getTime());
-		var moneyEarned = 0;
+		var elapsedTime = (now.getTime() - before.getTime()),
+			moneyEarned = 0,
+			researchEarned = 0;
 
 		if(elapsedTime > 1000 / playerService.fps) {
 			var extra = Math.floor(elapsedTime/(1000/playerService.fps));
 
 			moneyEarned = ((cacheService.getMps() / playerService.fps) * extra);
+			researchEarned = ((cacheService.cachedResearchPerSecond / playerService.fps) * extra);
 		}
 		else {
 			moneyEarned = (cacheService.getMps() / playerService.fps);
+			researchEarned = ((cacheService.cachedResearchPerSecond / playerService.fps));
 		}
 		
 		playerService.money += moneyEarned;
-		playerService.totalMoney += moneyEarned;		
+		playerService.totalMoney += moneyEarned;
+
+		playerService.research += researchEarned;
 
 		before = new Date();
 		$timeout($scope.update, 1000 / playerService.fps);
