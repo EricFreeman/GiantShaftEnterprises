@@ -247,6 +247,9 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		var maxTurnDef = $scope.shipReduce(defnderShips, 'defense');
 		var turnDef = $scope.getTurnStat(maxTurnDef);
 
+		if(isPlayer) maxTurnAtk += maxTurnAtk * cacheService.cachedPerks.attack;
+		else maxTurnDef += maxTurnDef * cacheService.cachedPerks.defense;
+
 		var turnDamage = $scope.getAttack(turnAtk, turnDef);
 
 		$scope.removeEnemies(defnderShips, turnDamage);
@@ -327,5 +330,34 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if($scope.selectedPlanet == null) return;
 		return (!$scope.selectedPlanet.enemies || $scope.selectedPlanet.enemies.length == 0) || 
 				!!playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered;
+	}
+
+	//////////////
+	// RESEARCH //
+	//////////////
+
+	$scope.getResearch = function() {
+		return Math.floor(playerService.research);
+	}
+
+	$scope.availablePerks = function() {
+		return gameService.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
+	}
+
+	$scope.canBuyPerk = function(perk) {
+		return playerService.research >= perk.price;
+	}
+
+	$scope.alreadyBought = function(id) {
+		return playerService.perks.map(function(d) { return d.id }).indexOf(id) >= 0;
+	}
+
+	$scope.buyPerk = function(perk) {
+		if($scope.canBuyPerk(perk) && !$scope.alreadyBought(perk.id)) {
+			playerService.research -= perk.price;
+			playerService.perks.push({id: perk.id});
+
+			$rootScope.$broadcast('updateCache');
+		}
 	}
 }

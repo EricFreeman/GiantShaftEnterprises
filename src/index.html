@@ -299,6 +299,35 @@
 							</div>
 						</div>
 
+						<div class="item"
+							 ng-show="playerService.totalResearch > 0">
+							<div ng-show="hideResearch">
+								<a class="battleLogCloseButton" ng-click="hideResearch = false">+</a>
+							</div>
+							<div ng-show="!hideResearch">
+								<a class="battleLogCloseButton" ng-click="hideResearch = true">-</a>
+							</div>
+							
+							<p class="name">Research</p>
+							<div ng-show="!hideResearch">
+								<p>Research Remaining: {{ getResearch() }}</p>
+								<br /><br />
+
+								<div class="item"
+									 ng-repeat="perk in availablePerks()"
+									 ng-class="{disabled: !canBuyPerk(perk), enabled: canBuyPerk(perk), hover: canBuyPerk(perk) && hoverPerk, alreadyBought: alreadyBought(perk.id)}"
+									 ng-click="buyPerk(perk)"
+									 ng-mouseenter="hoverPerk = true"
+									 ng-mouseleave="hoverPerk = false">
+									<p class="name">{{perk.name}}</p>
+									<br/ >
+									<p class="info">Research: {{perk.price | number}}</p>
+									<br /><br />
+									<p class="info">{{perk.description}}</p>
+								</div>
+							</div>
+						</div>
+
 						<div class="item">
 							<p class="name">The Final Frontier</p>
 							<div class="spaceScroller" ng-init="initPlanets()">
@@ -326,6 +355,9 @@
 								</p>
 								<p ng-show="cacheService.planetBoost(selectedPlanet.id).resources > 0">
 									Adds: {{cacheService.planetBoost(selectedPlanet.id).resources}} resources/sec
+								</p>
+								<p ng-show="cacheService.planetBoost(selectedPlanet.id).research > 0">
+									Adds: {{cacheService.planetBoost(selectedPlanet.id).research}} research/sec
 								</p>
 								<br /><br />
 							</div>

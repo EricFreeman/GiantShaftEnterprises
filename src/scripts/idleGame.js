@@ -765,14 +765,14 @@ idleGame.service('gameService', function() {
 
 	this.planets = [
 		{ id: 0, name: 'Earth', x: 2.5, y: 3 },
-		{ id: 1, name: 'Mercury', x: 2.5, y: 1 },
-		{ id: 2, name: 'Venus', x: 2, y: 2.5 },
-		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 500 }, { id: 3, count: 25 } ] },
-		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 2, count: 150 } ] },
-		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 2, count: 150 } ] },
+		{ id: 1, name: 'Mercury', x: 2.5, y: 1, enemies: [ { id: 0, count: 5 } ] },
+		{ id: 2, name: 'Venus', x: 2, y: 2.5, enemies: [ { id: 0, count: 15 }, { id: 1, count: 10 } ] },
+		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 0, count: 50 }, { id: 1, count: 50 } ] },
+		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 100 } ] },
+		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 }, { id: 3, count: 3 } ] },
+		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 1, count: 150 }, { id: 2, count: 150 }, { id: 3, count: 50 } ] },
+		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 1, count: 250 }, { id: 2, count: 250 }, { id: 3, count: 100 } ] },
+		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 150 } ] },
 	];
 
 	// returns: what type the building returns (money adds to mps, resources gains that number of resources per second)
@@ -801,7 +801,7 @@ idleGame.service('gameService', function() {
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
-				else return;
+				else return 0;
 
 				return Math.min(building.level, colony.level);
 			},
@@ -812,19 +812,91 @@ idleGame.service('gameService', function() {
 			name: 'Trade Route',
 			description: 'Earn more Money/Sec.',
 			cost: [ 
-				{ name: 'Money', price: 250000000 }, 
+				{ name: 'Money', price: 250000000 },
 				{ id: 0, price: 100 }, 
 				{ id: 3, price: 100 } ],
 			returns: 'money',
 			amount: function(planet, building) {
 				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
 				if(colony.length > 0) colony = colony[0];
-				else return;
+				else return 0;
 
-				return 10000 * (Math.min(building.level, colony.level));
+				return 100000 * (Math.min(building.level, colony.level));
 			},
 			maxLevel: 5
+	 	},
+	 	{ 
+			id: 3, 
+			name: 'Research Station',
+			description: 'Earn more Money/Sec.',
+			cost: [ 
+				{ name: 'Money', price: 100000000 }, 
+				{ id: 0, price: 100 }, 
+				{ id: 1, price: 25 }, 
+				{ id: 2, price: 5 }, 
+				{ id: 3, price: 150 }, 
+				{ id: 4, price: 50 } ],
+			returns: 'research',
+			amount: function(planet, building) {
+				var colony = planet.buildings.filter(function(d) { return d.id == 0 });
+				if(colony.length > 0) colony = colony[0];
+				else return 0;
+
+				return (Math.min(building.level, colony.level));
+			},
+			maxLevel: 2
 	 	}
+	];
+
+	this.perks = [
+		{
+			id: 0, 
+			name: 'Cybornetic Implants',
+			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
+			property: 'mps',
+			effect: .15,
+			price: 1500
+		},
+		{
+			id: 1, 
+			name: 'Artificial Intelligence',
+			description: 'Why hire employees when you can just create them?',
+			property: 'mps',
+			effect: .15,
+			price: 3000
+		},
+		{
+			id: 2, 
+			name: 'Hive Mind',
+			description: 'Business meetings become irrelevant when every employee is already on the same page.',
+			property: 'mps',
+			effect: .15,
+			price: 5000
+		},
+		{
+			id: 3, 
+			name: 'Alien Biology',
+			description: 'Studying the remains of dead aliens will help you understand how to hit them where it hurts.',
+			property: 'attack',
+			effect: .15,
+			price: 10000
+		},
+		{
+			id: 4, 
+			name: 'Alien Weapons',
+			description: 'Recreating high-tech alien weapons will improve the attack of your fleet.',
+			property: 'attack',
+			effect: .15,
+			price: 10000
+		},
+		{
+			id: 5, 
+			name: 'Alien Defenses',
+			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
+			property: 'defense',
+			effect: .15,
+			price: 10000
+		},
 	];
 
 	this.getItem = function(id) {
@@ -854,14 +926,19 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
-	// Discovered planets are stored here as { id: 0, buildings: [], isConquered: t/f }
+	// Discovered planets are stored here as { id: x, buildings: [], isConquered: t/f }
 	this.planets = [];
+	// Unlocked perks from research stations on planets are stored as { id: x }
+	this.perks = [];
 
 	this.money = 0;
 	this.companyName = "Giant Shaft Enterprises";
 
 	this.vcFunding = 0;
 	this.businessConnections = 0;
+
+	this.research = 0;
+	this.totalResearch = 0;
 
 	// For stats page
 	this.totalMoneyReset = 0;
@@ -1010,6 +1087,8 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.items = [];
 	this.cachedPlanetMps = [];
 	this.cachedResourcesPerSecond = 0;
+	this.cachedResearchPerSecond = 0;
+	this.cachedPerks = {};
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -1022,13 +1101,15 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.planetBoost = function(id) {
 		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
 		if(planet.length > 0) return planet[0].resources;
-		else return {mps: 0, resources: 0};
+		else return {mps: 0, resources: 0, research: 0};
 	}
 
 	var self = this;
 	$rootScope.$on('updateCache', function() {
+		self.cachedPerks = self.getPerks();
 		self.cachedPlanetMps = self.getPlanetMps();
 		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
+		self.cachedResearchPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.research }, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
@@ -1049,6 +1130,22 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		gameService.items.sort(function(a, b) { return a.price-b.price; });
 		gameService.upgrades.sort(function(a, b) { return a.price-b.price; });
 	});
+
+	// The perks you have from research stations on planets
+	this.getPerks = function() {
+		var perkTypes = ['mps', 'resources', 'attack', 'defense'],
+			rtn = {};
+
+		for(var i = 0; i < perkTypes.length; i++) {
+			var perks = gameService.perks.filter(function(d) { 
+				return d.property == perkTypes[i] && 
+					   playerService.perks.map(function(p) { return p.id }).indexOf(d.id) >= 0; 
+			});
+			rtn[perkTypes[i]] = perks.reduce(function(prev, cur) { return prev += cur.effect; }, 0);
+		}
+
+		return rtn;
+	}
 
 	// Your cumulative mps (money per second) is the combination of the 
 	// count of each item multiplied by the item's individual mps
@@ -1077,6 +1174,9 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 		// Add in space colonies
 		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.mps; }, 0);
+
+		// Add in perks from space research
+		additionalMps += baseMps * this.cachedPerks.mps;
 
 		// Add in amount gained from business connections
 		additionalMps += baseMps * this.cachedBcBoost;
@@ -1184,9 +1284,9 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
-		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0 };
+		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0, research: 0 };
 
-		var mps = 0, resources = 0;
+		var mps = 0, resources = 0, research = 0;
 
 		for(var i = 0; i < planet.buildings.length; i++) {
 			var cur = planet.buildings[i];
@@ -1196,11 +1296,17 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 			if(building.returns === 'money')
 				mps += building.amount(planet, cur);
-			else
+			else if(building.returns === 'resources')
 				resources += building.amount(planet, cur);
+			else if(building.returns === 'research')
+				research += building.amount(planet, cur);
 		}
 
-		return { mps: mps, resources: resources };
+		// Add in extra stuff from perks
+		mps += mps * this.cachedPerks.mps;
+		resources += resources * this.cachedPerks.resources;
+
+		return { mps: mps, resources: resources, research: research };
 	}
 });
 
