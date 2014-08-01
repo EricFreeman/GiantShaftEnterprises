@@ -346,6 +346,13 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	}
 
 	$scope.alreadyBought = function(id) {
-		return playerService.perks.indexOf({ id: id }) >= 0;
+		return playerService.perks.map(function(d) { return d.id }).indexOf(id) >= 0;
+	}
+
+	$scope.buyPerk = function(perk) {
+		if($scope.canBuyPerk(perk) && !$scope.alreadyBought(perk.id)) {
+			playerService.research -= perk.price;
+			playerService.perks.push({id: perk.id});
+		}
 	}
 }

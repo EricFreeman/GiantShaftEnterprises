@@ -316,7 +316,7 @@
 								<div class="item"
 									 ng-repeat="perk in availablePerks()"
 									 ng-class="{disabled: !canBuyPerk(perk), enabled: canBuyPerk(perk), hover: canBuyPerk(perk) && hoverPerk, alreadyBought: alreadyBought(perk.id)}"
-									 ng-click="buyPerk(perk.id)"
+									 ng-click="buyPerk(perk)"
 									 ng-mouseenter="hoverPerk = true"
 									 ng-mouseleave="hoverPerk = false">
 									<p class="name">{{perk.name}}</p>
