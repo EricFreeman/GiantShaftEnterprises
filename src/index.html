@@ -311,6 +311,20 @@
 							<p class="name">Research</p>
 							<div ng-show="!hideResearch">
 								<p>Research Remaining: {{ getResearch() }}</p>
+								<br /><br />
+
+								<div class="item"
+									 ng-repeat="perk in availablePerks()"
+									 ng-class="{disabled: !canBuyPerk(perk), enabled: canBuyPerk(perk), hover: canBuyPerk(perk) && hoverPerk, alreadyBought: alreadyBought(perk.id)}"
+									 ng-click="buyPerk(perk.id)"
+									 ng-mouseenter="hoverPerk = true"
+									 ng-mouseleave="hoverPerk = false">
+									<p class="name">{{perk.name}}</p>
+									<br/ >
+									<p class="info">Research: {{perk.price | number}}</p>
+									<br /><br />
+									<p class="info">{{perk.description}}</p>
+								</div>
 							</div>
 						</div>
 
