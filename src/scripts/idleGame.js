@@ -1101,7 +1101,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.planetBoost = function(id) {
 		var planet = this.cachedPlanetMps.filter(function(d) { return d.id == id; });
 		if(planet.length > 0) return planet[0].resources;
-		else return {mps: 0, resources: 0};
+		else return {mps: 0, resources: 0, research: 0};
 	}
 
 	var self = this;
@@ -1174,6 +1174,9 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 		// Add in space colonies
 		additionalMps += this.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.mps; }, 0);
+
+		// Add in perks from space research
+		additionalMps += baseMps * this.cachedPerks.mps;
 
 		// Add in amount gained from business connections
 		additionalMps += baseMps * this.cachedBcBoost;
@@ -1298,6 +1301,10 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 			else if(building.returns === 'research')
 				research += building.amount(planet, cur);
 		}
+
+		// Add in extra stuff from perks
+		mps += mps * this.cachedPerks.mps;
+		resources += resources * this.cachedPerks.resources;
 
 		return { mps: mps, resources: resources, research: research };
 	}

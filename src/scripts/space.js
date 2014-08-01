@@ -247,6 +247,9 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		var maxTurnDef = $scope.shipReduce(defnderShips, 'defense');
 		var turnDef = $scope.getTurnStat(maxTurnDef);
 
+		if(isPlayer) maxTurnAtk += maxTurnAtk * cacheService.cachedPerks.attack;
+		else maxTurnDef += maxTurnDef * cacheService.cachedPerks.defense;
+
 		var turnDamage = $scope.getAttack(turnAtk, turnDef);
 
 		$scope.removeEnemies(defnderShips, turnDamage);
@@ -353,7 +356,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if($scope.canBuyPerk(perk) && !$scope.alreadyBought(perk.id)) {
 			playerService.research -= perk.price;
 			playerService.perks.push({id: perk.id});
-			
+
 			$rootScope.$broadcast('updateCache');
 		}
 	}
