@@ -378,7 +378,8 @@
 								<div class="triColumn columnCount">
 									<p class="info">{{getLevel(building)}}<p>
 									<a class="button small"
-									   ng-click="buyBuilding(building)">
+									   ng-click="buyBuilding(building)"
+									   ng-show="!isMaxLevel(building)">
 									   	Buy
 									   </a>
 								</div>

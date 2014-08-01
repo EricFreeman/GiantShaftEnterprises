@@ -196,6 +196,16 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		}
 	}
 
+	$scope.isMaxLevel = function(building) {
+		if($scope.selectedPlanet == null) return false;
+
+		var pb = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
+		if(pb.length >= 0) pb = pb[0];
+		else return false;
+
+		return pb.level >= building.maxLevel;
+	}
+
 	$scope.getShipName = function(id) {
 		var ship = gameService.ships.filter(function(d) { return d.id == id });
 		if(ship.length > 0) return ship[0].name;

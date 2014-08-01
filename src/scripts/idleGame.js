@@ -828,7 +828,7 @@ idleGame.service('gameService', function() {
 	 	{ 
 			id: 3, 
 			name: 'Research Station',
-			description: 'Earn more Money/Sec.',
+			description: 'Earn Research/Sec.',
 			cost: [ 
 				{ name: 'Money', price: 100000000 }, 
 				{ id: 0, price: 100 }, 
