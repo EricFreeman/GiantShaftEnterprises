@@ -86,7 +86,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	$rootScope.$on('updateCache', function() {
 		self.cachedPerks = self.getPerks();
 		self.cachedPlanetMps = self.getPlanetMps();
-		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
+		self.cachedResourcesPerSecond = Math.floor(self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0));
 		self.cachedResearchPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.research }, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();

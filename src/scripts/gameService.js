@@ -863,6 +863,22 @@ idleGame.service('gameService', function() {
 			effect: .15,
 			price: 10000
 		},
+		{
+			id: 6, 
+			name: 'Shaft Expansion',
+			description: 'Study alien explosive technology to increase rate at which your Giant Shaft mines can be dug.',
+			property: 'resources',
+			effect: .15,
+			price: 20000
+		},
+		{
+			id: 7, 
+			name: 'Alien Planet Scanners',
+			description: 'Discover how to use alien scanning technology to help locate resources beneath the surface of the planet.',
+			property: 'resources',
+			effect: .15,
+			price: 25000
+		},
 	];
 
 	this.getItem = function(id) {
