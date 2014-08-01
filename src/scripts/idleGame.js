@@ -854,9 +854,7 @@ idleGame.service('gameService', function() {
 			name: 'Cybornetic Implants',
 			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
 			property: 'mps',
-			effect: function(baseMps) {
-				return baseMps + baseMps * 1.15;
-			},
+			effect: .15,
 			price: 1500
 		},
 		{
@@ -864,9 +862,7 @@ idleGame.service('gameService', function() {
 			name: 'Artificial Intelligence',
 			description: 'Why hire employees when you can just create them?',
 			property: 'mps',
-			effect: function(baseMps) {
-				return baseMps + baseMps * 1.15;
-			},
+			effect: .15,
 			price: 3000
 		},
 		{
@@ -874,9 +870,7 @@ idleGame.service('gameService', function() {
 			name: 'Hive Mind',
 			description: 'Business meetings become irrelevant when every employee is already on the same page.',
 			property: 'mps',
-			effect: function(baseMps) {
-				return baseMps + baseMps * 1.15;
-			},
+			effect: .15,
 			price: 5000
 		},
 		{
@@ -884,9 +878,7 @@ idleGame.service('gameService', function() {
 			name: 'Alien Biology',
 			description: 'Studying the remains of dead aliens will help you understand how to hit them where it hurts.',
 			property: 'attack',
-			effect: function(baseAttack) {
-				return baseAttack + baseAttack * 1.15;
-			},
+			effect: .15,
 			price: 10000
 		},
 		{
@@ -894,9 +886,7 @@ idleGame.service('gameService', function() {
 			name: 'Alien Weapons',
 			description: 'Recreating high-tech alien weapons will improve the attack of your fleet.',
 			property: 'attack',
-			effect: function(baseAttack) {
-				return baseAttack + baseAttack * 1.15;
-			},
+			effect: .15,
 			price: 10000
 		},
 		{
@@ -904,9 +894,7 @@ idleGame.service('gameService', function() {
 			name: 'Alien Defenses',
 			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
 			property: 'defense',
-			effect: function(baseDefense) {
-				return baseDefense + baseDefense * 1.15;
-			},
+			effect: .15,
 			price: 10000
 		},
 	];
@@ -1100,6 +1088,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedPlanetMps = [];
 	this.cachedResourcesPerSecond = 0;
 	this.cachedResearchPerSecond = 0;
+	this.cachedPerks = {};
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -1117,6 +1106,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	var self = this;
 	$rootScope.$on('updateCache', function() {
+		self.cachedPerks = self.getPerks();
 		self.cachedPlanetMps = self.getPlanetMps();
 		self.cachedResourcesPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0);
 		self.cachedResearchPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.research }, 0);
@@ -1140,6 +1130,22 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		gameService.items.sort(function(a, b) { return a.price-b.price; });
 		gameService.upgrades.sort(function(a, b) { return a.price-b.price; });
 	});
+
+	// The perks you have from research stations on planets
+	this.getPerks = function() {
+		var perkTypes = ['mps', 'resources', 'attack', 'defense'],
+			rtn = {};
+
+		for(var i = 0; i < perkTypes.length; i++) {
+			var perks = gameService.perks.filter(function(d) { 
+				return d.property == perkTypes[i] && 
+					   playerService.perks.map(function(p) { return p.id }).indexOf(d.id) >= 0; 
+			});
+			rtn[perkTypes[i]] = perks.reduce(function(prev, cur) { return prev += cur.effect; }, 0);
+		}
+
+		return rtn;
+	}
 
 	// Your cumulative mps (money per second) is the combination of the 
 	// count of each item multiplied by the item's individual mps

@@ -353,6 +353,8 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if($scope.canBuyPerk(perk) && !$scope.alreadyBought(perk.id)) {
 			playerService.research -= perk.price;
 			playerService.perks.push({id: perk.id});
+			
+			$rootScope.$broadcast('updateCache');
 		}
 	}
 }
