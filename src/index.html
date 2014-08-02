@@ -314,6 +314,7 @@
 							<p class="name">Research</p>
 							<div ng-show="!playerService.hideResearch">
 								<p>Research Remaining: {{ getResearch() | number}}</p>
+								<p>Rate: {{ getResearchPerSec() | number}}/sec</p>
 								<br /><br />
 
 								<div class="item"
