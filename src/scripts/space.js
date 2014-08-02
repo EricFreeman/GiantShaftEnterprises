@@ -350,6 +350,10 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		return Math.floor(playerService.research);
 	}
 
+	$scope.getResearchPerSec = function() {
+		return cacheService.cachedResearchPerSecond;
+	}
+
 	$scope.availablePerks = function() {
 		return gameService.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
 	}
