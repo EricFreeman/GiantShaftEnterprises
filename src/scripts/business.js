@@ -17,7 +17,31 @@ function BusinessController($rootScope, $scope, gameService, playerService, cach
 		"Center your chi.",
 		"Attend leadership conference.",
 		"Host leadership conference.",
-		"Network with business leaders."
+		"Network with business leaders.",
+		"Develop an MVP.",
+		"Conduct AB testing.",
+		"Play a game of Solitaire.",
+		"Sit in bathroom on phone for 30 minutes.",
+		"Pivot.",
+		"Implement SCRUM.",
+		"Implement Waterfall.",
+		"Implement Kanban.",
+		"Implement ScrumKanFall.",
+		"Make daring escape from office at 4:30pm.",
+		"Read Business Insider.",
+		"Discuss Fantasy Football strategies.",
+		"Admire business cards.",
+		"Get drunk at company picnic.",
+		"Get a haircut during lunch.",
+		"Buy a new watch.",
+		"Let your employees off early.",
+		"Stay up all night for a deployment.",
+		"Interview potential candidates.",
+		"Take a much needed vacation.",
+		"Take part in office politics.",
+		"Win company weight-loss competition.",
+		"Photocopy pictures of your buttocks.",
+		"Daydream about your hero Eric Ries."
 	];
 	$scope.opportunity = $scope.possibleOpportunities.randomElement();
 

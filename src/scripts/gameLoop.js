@@ -161,7 +161,3 @@ function GameLoopController($scope, $timeout, $rootScope, $location, $window, ga
 	// Start save loop of every 30 seconds
 	$timeout($scope.saveGame, 30000);
 }
-
-function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-}

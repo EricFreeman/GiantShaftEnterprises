@@ -5,6 +5,9 @@
 	<script src="scripts/angular-route.min.js"></script>
 	<script src="scripts/aes.js"></script>
 	<script src="scripts/idleGame.js"></script>
+	<script src="scripts/gameService.js"></script>
+	<script src="scripts/playerService.js"></script>
+	<script src="scripts/cacheService.js"></script>
 	<script src="scripts/knowledge.js"></script>
 	<script src="scripts/gameLoop.js"></script>
 	<script src="scripts/business.js"></script>
@@ -226,19 +229,19 @@
 				<script type="text/ng-template" id="space.html">
 					<div class="content center">
 						<div class="item">
-							<div ng-show="hideResources">
-								<a class="battleLogCloseButton" ng-click="hideResources = false">+</a>
+							<div ng-show="playerService.hideResources">
+								<a class="battleLogCloseButton" ng-click="playerService.hideResources = false">+</a>
 								<p class="name">Resources</p>
 							</div>
-							<div ng-show="!hideResources">
-								<a class="battleLogCloseButton" ng-click="hideResources = true">-</a>
+							<div ng-show="!playerService.hideResources">
+								<a class="battleLogCloseButton" ng-click="playerService.hideResources = true">-</a>
 							</div>
 							
-							<div ng-show="!hideResources">
+							<div ng-show="!playerService.hideResources">
 
 								<div ng-show="playerService.resources.length > 0">
 									<p class="name">Resources</p>
-									<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count}}</p>
+									<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count | number}}</p>
 								</div>
 
 								<br /><br />
@@ -262,15 +265,15 @@
 						</div>
 
 						<div class="item">
-							<div ng-show="hideFleet">
-								<a class="battleLogCloseButton" ng-click="hideFleet = false">+</a>
+							<div ng-show="playerService.hideFleet">
+								<a class="battleLogCloseButton" ng-click="playerService.hideFleet = false">+</a>
 							</div>
-							<div ng-show="!hideFleet">
-								<a class="battleLogCloseButton" ng-click="hideFleet = true">-</a>
+							<div ng-show="!playerService.hideFleet">
+								<a class="battleLogCloseButton" ng-click="playerService.hideFleet = true">-</a>
 							</div>
 							
 							<p class="name">Fleet</p>
-							<div ng-show="!hideFleet">
+							<div ng-show="!playerService.hideFleet">
 								<div class="row" ng-repeat="ship in gameService.ships">
 									
 									<div class="triColumn">
@@ -301,16 +304,16 @@
 
 						<div class="item"
 							 ng-show="playerService.totalResearch > 0">
-							<div ng-show="hideResearch">
-								<a class="battleLogCloseButton" ng-click="hideResearch = false">+</a>
+							<div ng-show="playerService.hideResearch">
+								<a class="battleLogCloseButton" ng-click="playerService.hideResearch = false">+</a>
 							</div>
-							<div ng-show="!hideResearch">
-								<a class="battleLogCloseButton" ng-click="hideResearch = true">-</a>
+							<div ng-show="!playerService.hideResearch">
+								<a class="battleLogCloseButton" ng-click="playerService.hideResearch = true">-</a>
 							</div>
 							
 							<p class="name">Research</p>
-							<div ng-show="!hideResearch">
-								<p>Research Remaining: {{ getResearch() }}</p>
+							<div ng-show="!playerService.hideResearch">
+								<p>Research Remaining: {{ getResearch() | number}}</p>
 								<br /><br />
 
 								<div class="item"
