@@ -205,7 +205,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if($scope.selectedPlanet == null) return false;
 
 		var pb = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
-		if(pb.length >= 0) pb = pb[0];
+		if(pb.length > 0) pb = pb[0];
 		else return false;
 
 		return pb.level >= building.maxLevel;
