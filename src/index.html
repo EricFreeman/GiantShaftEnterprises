@@ -342,7 +342,7 @@
 									 ng-mouseleave="hoverPlanet = false"
 									 ng-click="selectPlanet(planet)">
 									<p class="name white">{{getPlanet(planet.id).name}}</p>
-									<img src="images/space/{{getPlanetImage(planet)}}" />
+									<img ng-src="images/space/{{getPlanetImage(planet)}}" />
 								</div>
 							</div>
 						</div>
