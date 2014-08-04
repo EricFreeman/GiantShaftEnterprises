@@ -167,6 +167,11 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		else return { id: -1, name: '' };
 	}
 
+	$scope.getPlanetImage = function(planet) {
+		var defaultImage = 'planet1.png';
+		return !!planet.image ? planet.image : defaultImage;
+	}
+
 	$scope.selectPlanet = function(planet) {
 		// Buildings are persisted, thus stored on the playerService, so you need to combine both 
 		// versions of the planet to get all the properties for it (names, ids, locations, etc aren't 
@@ -296,7 +301,6 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		return rtn.substring(0, rtn.length - 2);
 	}
 
-	// TODO: This sucks - please make it not suck
 	$scope.removeEnemies = function(ships, attack) {
 		for(var i = 0; i < attack; i++) {
 			// random number between 0 and total of all ships in fleet
