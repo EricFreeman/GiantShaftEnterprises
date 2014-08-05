@@ -358,8 +358,8 @@
 							   		<p class="info">{{log.name}} destroyed remaining forces.</p>
 							   	</div>
 							   	<div ng-show="log.remaining.length > 0">
-							   		<p class="info">{{log.name}} destroyed {{log.damage}} ships.</p><br />
-							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining}}</p>
+							   		<p class="info">{{log.name}} destroyed {{log.damage | number}} ships.</p><br />
+							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining | number}}</p>
 							   	</div>
 							</div>
 						</div>
@@ -410,7 +410,7 @@
 								 ng-show="!hasConquered()">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
-									 {{getShipName(enemy.id)}} - {{enemy.count}}
+									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
 								</div>
 								<a class="button" ng-click="attack()">Attack</a>
 							</div>
