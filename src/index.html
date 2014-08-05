@@ -348,6 +348,23 @@
 						</div>
 
 						<div class="item"
+							 ng-show="battleLog.length > 0">
+							<a class="battleLogCloseButton" ng-click="battleLog = []">X</a>
+							<p class="name" ng-show="playerService.ships.length > 0">Victory</p>
+							<p class="name" ng-show="playerService.ships.length == 0">Defeat</p>
+							<div class="battleRow" ng-class="{ enemyAttack: !log.isPlayer }"
+							   ng-repeat="log in battleLog track by $index">
+							   	<div ng-show="log.remaining.length == 0">
+							   		<p class="info">{{log.name}} destroyed remaining forces.</p>
+							   	</div>
+							   	<div ng-show="log.remaining.length > 0">
+							   		<p class="info">{{log.name}} destroyed {{log.damage | number}} ships.</p><br />
+							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining | number}}</p>
+							   	</div>
+							</div>
+						</div>
+
+						<div class="item"
 							 ng-show="selectedPlanet != null && !selectedPlanet.cannotSelect">
 							 <a class="battleLogCloseButton" ng-click="selectedPlanet = null">X</a>
 							<p class="name">{{selectedPlanet.name}}</p>
@@ -393,26 +410,9 @@
 								 ng-show="!hasConquered()">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
-									 {{getShipName(enemy.id)}} - {{enemy.count}}
+									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
 								</div>
 								<a class="button" ng-click="attack()">Attack</a>
-							</div>
-						</div>
-
-						<div class="item"
-							 ng-show="battleLog.length > 0">
-							<a class="battleLogCloseButton" ng-click="battleLog = []">X</a>
-							<p class="name" ng-show="playerService.ships.length > 0">Victory</p>
-							<p class="name" ng-show="playerService.ships.length == 0">Defeat</p>
-							<div class="battleRow" ng-class="{ enemyAttack: !log.isPlayer }"
-							   ng-repeat="log in battleLog track by $index">
-							   	<div ng-show="log.remaining.length == 0">
-							   		<p class="info">{{log.name}} destroyed remaining forces.</p>
-							   	</div>
-							   	<div ng-show="log.remaining.length > 0">
-							   		<p class="info">{{log.name}} destroyed {{log.damage}} ships.</p><br />
-							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining}}</p>
-							   	</div>
 							</div>
 						</div>
 					</div>

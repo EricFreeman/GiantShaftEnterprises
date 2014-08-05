@@ -46,6 +46,9 @@ idleGame.service('playerService', function () {
 	this.tutorialStep = 0;
 	this.fps = 10;
 	this.customIncrement = 1;
+	this.hideResources = false;
+	this.hideFleet = false;
+	this.hideResearch = false;
 
 	this.vcPointsToMoney = function(pts) {
 		// 1 pt = $1000, but maybe make this value upgradeable in the future?
@@ -101,7 +104,7 @@ idleGame.service('playerService', function () {
 
 			// Add an entry for it if nobody has bought it yet.
 			if(item.id === -1) {
-				this.resources.push({id: items[0].id, count: 1});
+				this.resources.push({id: items[i].id, count: 1});
 			}
 			else {
 				var index = this.resources.indexOf(item);
