@@ -730,15 +730,16 @@ idleGame.service('gameService', function() {
 	];
 
 	this.planets = [
-		{ id: 0, name: 'Earth', x: 2.5, y: 3, image: 'earth.png' },
-		{ id: 1, name: 'Mercury', x: 2.5, y: 1, enemies: [ { id: 0, count: 5 } ], image: 'planet1.png' },
-		{ id: 2, name: 'Venus', x: 2, y: 2.5, enemies: [ { id: 0, count: 15 }, { id: 1, count: 10 } ], image: 'planet3.png' },
-		{ id: 3, name: 'Mars', x: 4, y: 3.25, enemies: [ { id: 0, count: 50 }, { id: 1, count: 50 } ], image: 'planet6.png' },
-		{ id: 4, name: 'Jupiter', x: 2.75, y: 3.75, enemies: [ { id: 2, count: 100 } ], image: 'planet2.png' },
-		{ id: 5, name: 'Saturn', x: 4.75, y: 2.25, enemies: [ { id: 2, count: 150 }, { id: 3, count: 3 } ] },
-		{ id: 6, name: 'Neptune', x: 4, y: 0, enemies: [ { id: 1, count: 150 }, { id: 2, count: 150 }, { id: 3, count: 50 } ], image: 'planet14.png' },
-		{ id: 7, name: 'Uranus', x: .5, y: .25, enemies: [ { id: 1, count: 250 }, { id: 2, count: 250 }, { id: 3, count: 100 } ], image: 'planet7.png' },
-		{ id: 8, name: 'Pluto', x: 0, y: 4.25, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 150 } ], image: 'planet8.png' },
+		{ id: 0, name: 'Earth', x: .8, y: 1.3, image: 'earth.png', cannotSelect: true },
+		{ id: 1, name: 'Mercury', x: .4, y: -.33, enemies: [ { id: 0, count: 5 } ], image: 'planet1.png' },
+		{ id: 2, name: 'Venus', x: .5, y: .75, enemies: [ { id: 0, count: 15 }, { id: 1, count: 10 } ], image: 'planet3.png' },
+		{ id: 3, name: 'Mars', x: -.8, y: -1.2, enemies: [ { id: 0, count: 50 }, { id: 1, count: 50 } ], image: 'planet6.png' },
+		{ id: 4, name: 'Jupiter', x: -.9, y: 1.4, enemies: [ { id: 2, count: 100 } ], image: 'planet2.png' },
+		{ id: 5, name: 'Saturn', x: 2, y: 1.2, enemies: [ { id: 2, count: 150 }, { id: 3, count: 3 } ] },
+		{ id: 6, name: 'Uranus', x: 1.8, y: -1.5, enemies: [ { id: 1, count: 150 }, { id: 2, count: 150 }, { id: 3, count: 50 } ], image: 'planet14.png' },
+		{ id: 7, name: 'Neptune', x: 2.25, y: -1, enemies: [ { id: 1, count: 250 }, { id: 2, count: 250 }, { id: 3, count: 100 } ], image: 'planet7.png' },
+		{ id: 8, name: 'Pluto', x: -2.2, y: -2.1, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 150 } ], image: 'planet8.png' },
+		{ id: 9, name: 'Sun', x: 0, y: 0, image: 'sun.png', cannotSelect: true },
 	];
 
 	// returns: what type the building returns (money adds to mps, resources gains that number of resources per second)

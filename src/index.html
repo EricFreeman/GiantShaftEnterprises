@@ -348,7 +348,7 @@
 						</div>
 
 						<div class="item"
-							 ng-show="selectedPlanet != null && selectedPlanet.id != 0">
+							 ng-show="selectedPlanet != null && !selectedPlanet.cannotSelect">
 							 <a class="battleLogCloseButton" ng-click="selectedPlanet = null">X</a>
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
