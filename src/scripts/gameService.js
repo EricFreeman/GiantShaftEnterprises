@@ -716,9 +716,9 @@ idleGame.service('gameService', function() {
 		{ id: 1, name: "Scout", attack: 1, defense: 2, 
 			cost: [ { name: 'Money', price: 150000 }, { id: 0, price: 2 }, { id: 1, price: 1 } ]},
 		{ id: 2, name: "Fighter", attack: 5, defense: 5, 
-			cost: [ { name: 'Money', price: 500000 }, { id: 0, price: 10 }, { id: 1, price: 5 } ]},
+			cost: [ { name: 'Money', price: 500000 }, { id: 0, price: 10 }, { id: 1, price: 5 }, { id: 3, price: 8 } ]},
 		{ id: 3, name: "Bomber", attack: 15, defense: 2, 
-			cost: [ { name: 'Money', price: 1500000 }, { id: 0, price: 15 }, { id: 1, price: 8 } ]},
+			cost: [ { name: 'Money', price: 1500000 }, { id: 0, price: 15 }, { id: 1, price: 8 }, { id: 3, price: 10 }, { id: 4, price: 3 } ]},
 	];
 
 	this.resources = [
@@ -735,10 +735,10 @@ idleGame.service('gameService', function() {
 		{ id: 2, name: 'Venus', x: .5, y: .75, enemies: [ { id: 0, count: 15 }, { id: 1, count: 10 } ], image: 'planet3.png' },
 		{ id: 3, name: 'Mars', x: -.8, y: -1.2, enemies: [ { id: 0, count: 50 }, { id: 1, count: 50 } ], image: 'planet6.png' },
 		{ id: 4, name: 'Jupiter', x: -.9, y: 1.4, enemies: [ { id: 2, count: 100 } ], image: 'planet2.png' },
-		{ id: 5, name: 'Saturn', x: 2, y: 1.2, enemies: [ { id: 2, count: 150 }, { id: 3, count: 3 } ] },
-		{ id: 6, name: 'Uranus', x: 1.8, y: -1.5, enemies: [ { id: 1, count: 150 }, { id: 2, count: 150 }, { id: 3, count: 50 } ], image: 'planet14.png' },
-		{ id: 7, name: 'Neptune', x: 2.25, y: -1, enemies: [ { id: 1, count: 250 }, { id: 2, count: 250 }, { id: 3, count: 100 } ], image: 'planet7.png' },
-		{ id: 8, name: 'Pluto', x: -2.2, y: -2.1, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 150 } ], image: 'planet8.png' },
+		{ id: 5, name: 'Saturn', x: 2, y: 1.2, enemies: [ { id: 2, count: 250 }, { id: 3, count: 15 } ] },
+		{ id: 6, name: 'Uranus', x: 1.8, y: -1.5, enemies: [ { id: 1, count: 500 }, { id: 2, count: 500 }, { id: 3, count: 50 } ], image: 'planet14.png' },
+		{ id: 7, name: 'Neptune', x: 2.25, y: -1, enemies: [ { id: 1, count: 5000 }, { id: 2, count: 2500 }, { id: 3, count: 250 } ], image: 'planet7.png' },
+		{ id: 8, name: 'Pluto', x: -2.2, y: -2.1, enemies: [ { id: 1, count: 10000 }, { id: 2, count: 10000 }, { id: 3, count: 500 } ], image: 'planet8.png' },
 		{ id: 9, name: 'Sun', x: 0, y: 0, image: 'sun.png', cannotSelect: true },
 	];
 
@@ -822,7 +822,7 @@ idleGame.service('gameService', function() {
 			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
 			property: 'mps',
 			effect: .15,
-			price: 1500
+			price: 15000
 		},
 		{
 			id: 1, 
@@ -830,7 +830,7 @@ idleGame.service('gameService', function() {
 			description: 'Why hire employees when you can just create them?',
 			property: 'mps',
 			effect: .15,
-			price: 3000
+			price: 30000
 		},
 		{
 			id: 2, 
@@ -838,7 +838,7 @@ idleGame.service('gameService', function() {
 			description: 'Business meetings become irrelevant when every employee is already on the same page.',
 			property: 'mps',
 			effect: .15,
-			price: 5000
+			price: 50000
 		},
 		{
 			id: 3, 
@@ -846,7 +846,7 @@ idleGame.service('gameService', function() {
 			description: 'Studying the remains of dead aliens will help you understand how to hit them where it hurts.',
 			property: 'attack',
 			effect: .15,
-			price: 10000
+			price: 100000
 		},
 		{
 			id: 4, 
@@ -854,7 +854,7 @@ idleGame.service('gameService', function() {
 			description: 'Recreating high-tech alien weapons will improve the attack of your fleet.',
 			property: 'attack',
 			effect: .15,
-			price: 10000
+			price: 100000
 		},
 		{
 			id: 5, 
@@ -862,7 +862,7 @@ idleGame.service('gameService', function() {
 			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
 			property: 'defense',
 			effect: .15,
-			price: 10000
+			price: 100000
 		},
 		{
 			id: 6, 
@@ -870,7 +870,7 @@ idleGame.service('gameService', function() {
 			description: 'Study alien explosive technology to increase rate at which your Giant Shaft mines can be dug.',
 			property: 'resources',
 			effect: .15,
-			price: 20000
+			price: 200000
 		},
 		{
 			id: 7, 
@@ -878,7 +878,7 @@ idleGame.service('gameService', function() {
 			description: 'Discover how to use alien scanning technology to help locate resources beneath the surface of the planet.',
 			property: 'resources',
 			effect: .15,
-			price: 25000
+			price: 250000
 		},
 	];
 
