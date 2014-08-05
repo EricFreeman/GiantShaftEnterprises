@@ -46,6 +46,9 @@ idleGame.service('playerService', function () {
 	this.tutorialStep = 0;
 	this.fps = 10;
 	this.customIncrement = 1;
+	this.hideResources = false;
+	this.hideFleet = false;
+	this.hideResearch = false;
 
 	this.vcPointsToMoney = function(pts) {
 		// 1 pt = $1000, but maybe make this value upgradeable in the future?
