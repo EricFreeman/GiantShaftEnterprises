@@ -155,7 +155,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	$scope.updatePlanet = function(p) {
 		// Make sure DOM is updated
 		$timeout(function() { 
-			$('#' + p.id).css({'left': p.x * $scope.scale, 'top': p.y * $scope.scale});
+			$('#' + p.id).css({'left': p.x * $scope.scale - 32 + 250, 'top': p.y * $scope.scale - 32 + 250});
 		}, 50);
 	}
 
@@ -205,7 +205,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if($scope.selectedPlanet == null) return false;
 
 		var pb = $scope.selectedPlanet.buildings.filter(function(d) { return d.id == building.id });
-		if(pb.length >= 0) pb = pb[0];
+		if(pb.length > 0) pb = pb[0];
 		else return false;
 
 		return pb.level >= building.maxLevel;

@@ -26,10 +26,12 @@
 }
 
 .spaceScroller {
+	margin-top: 16px;
 	height: 500px;
 	overflow: auto;
 	position: relative;
 	background-image: url('../images/space/background.jpg');
+	box-shadow: 0 0 10px;
 }
 
 .planet {
