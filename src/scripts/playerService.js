@@ -104,7 +104,7 @@ idleGame.service('playerService', function () {
 
 			// Add an entry for it if nobody has bought it yet.
 			if(item.id === -1) {
-				this.resources.push({id: items[0].id, count: 1});
+				this.resources.push({id: items[i].id, count: 1});
 			}
 			else {
 				var index = this.resources.indexOf(item);
