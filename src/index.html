@@ -241,6 +241,10 @@
 
 								<div ng-show="playerService.resources.length > 0">
 									<p class="name">Resources</p>
+									<div ng-show="miningRate() > 0">
+										Mining: {{miningRate()}}/sec
+										<br /><br />
+									</div>
 									<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count | number}}</p>
 								</div>
 

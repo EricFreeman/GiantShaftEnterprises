@@ -79,6 +79,10 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		$scope.current = null;
 	}
 
+	$scope.miningRate = function() {
+		return cacheService.cachedResearchPerSecond;
+	}
+
 	///////////
 	// FLEET //
 	///////////
