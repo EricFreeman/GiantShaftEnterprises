@@ -328,6 +328,8 @@
 									<p class="info">Research: {{perk.price | number}}</p>
 									<br /><br />
 									<p class="info">{{perk.description}}</p>
+									<br /><br />
+									<p class="info">Increases <span class="bold">{{perk.property | uppercase}}</span> by <span class="bold">{{perk.effect * 100}}</span>%</p>
 								</div>
 							</div>
 						</div>
@@ -359,7 +361,7 @@
 							   	</div>
 							   	<div ng-show="log.remaining.length > 0">
 							   		<p class="info">{{log.name}} destroyed {{log.damage | number}} ships.</p><br />
-							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining | number}}</p>
+							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining}}</p>
 							   	</div>
 							</div>
 						</div>
