@@ -414,7 +414,11 @@
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
 								</div>
-								<a class="button" ng-click="attack()">Attack</a>
+								<a class="button" 
+								   ng-click="attack()"
+								   ng-show="playerService.ships.length > 0">
+									Attack
+								</a>
 							</div>
 						</div>
 					</div>
