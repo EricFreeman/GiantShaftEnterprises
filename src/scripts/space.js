@@ -359,11 +359,14 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	}
 
 	$scope.availablePerks = function() {
+		if(!playerService.hideBoughtUpgrades) return gameService.perks;
+
 		return gameService.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
 	}
 
 	$scope.canBuyPerk = function(perk) {
-		return playerService.research >= perk.price;
+		return playerService.research >= perk.price &&
+				!$scope.alreadyBought(perk.id);
 	}
 
 	$scope.alreadyBought = function(id) {
