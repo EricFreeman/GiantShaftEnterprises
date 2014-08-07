@@ -356,6 +356,12 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	// RESEARCH //
 	//////////////
 
+	$scope.perks = gameService.perks.sort(function(a, b) {
+		if(a.price > b.price) return 1;
+		if(a.price < b.price) return -1;
+		return 0;
+	});
+
 	$scope.getResearch = function() {
 		return Math.floor(playerService.research);
 	}
@@ -365,9 +371,9 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	}
 
 	$scope.availablePerks = function() {
-		if(!playerService.hideBoughtUpgrades) return gameService.perks;
+		if(!playerService.hideBoughtUpgrades) return $scope.perks;
 
-		return gameService.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
+		return $scope.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
 	}
 
 	$scope.canBuyPerk = function(perk) {
@@ -385,6 +391,17 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 			playerService.perks.push({id: perk.id});
 
 			$rootScope.$broadcast('updateCache');
+		}
+	}
+
+	$scope.translateProperty = function(property) {
+		switch(property) {
+			case 'resources':
+				return 'resource mining rate';
+			case 'asteroid':
+				return 'asteroid quality';
+			default:
+				return property;
 		}
 	}
 }

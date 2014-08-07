@@ -333,7 +333,8 @@
 									<br /><br />
 									<p class="info">{{perk.description}}</p>
 									<br /><br />
-									<p class="info">Increases <span class="bold">{{perk.property | uppercase}}</span> by <span class="bold">{{perk.effect * 100}}</span>%</p>
+									<p class="info">Increases <span class="bold">{{translateProperty(perk.property) | uppercase}}</span> 
+									<span ng-show="!perk.skipEffect">by <span class="bold">{{perk.effect * 100}}</span>%</p></span>
 								</div>
 							</div>
 						</div>
