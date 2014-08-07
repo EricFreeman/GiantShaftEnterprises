@@ -251,7 +251,7 @@
 								<br /><br />
 								
 								<p class="name">Shaft Mining</p>
-								<a class="button" ng-show="current == null" ng-click="scanForAsteroid(0)">Scan For Asteroid</a>
+								<a class="button" ng-show="current == null" ng-click="scanForAsteroid()">Scan For Asteroid</a>
 								<div class="asteroid" ng-show="current != null">
 									<p>Mining Cost - {{current.miningCost | currency}}</p>
 									<p>Chance - {{current.chance | number:0}}%</p>

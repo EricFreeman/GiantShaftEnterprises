@@ -15,8 +15,10 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	//		chance		- % chance that mining will return any valuables
 	//		maxPerMine	- maximum amount of minerals you can earn when the mining is successful
 	//		resources	- array of what resources and how many of each are on the specific asteroid
-	$scope.scanForAsteroid = function(difficulty)
+	$scope.scanForAsteroid = function()
 	{
+		var difficulty = 1 + cacheService.cachedAsteroidBoost;
+		
 		$scope.current = { 
 			miningCost: $scope.getMiningCost(difficulty), 
 			chance: $scope.getChance(difficulty), 
