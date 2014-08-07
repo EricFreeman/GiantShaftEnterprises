@@ -15,8 +15,10 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	//		chance		- % chance that mining will return any valuables
 	//		maxPerMine	- maximum amount of minerals you can earn when the mining is successful
 	//		resources	- array of what resources and how many of each are on the specific asteroid
-	$scope.scanForAsteroid = function(difficulty)
+	$scope.scanForAsteroid = function()
 	{
+		var difficulty = 1 + cacheService.cachedAsteroidBoost;
+		
 		$scope.current = { 
 			miningCost: $scope.getMiningCost(difficulty), 
 			chance: $scope.getChance(difficulty), 
@@ -77,6 +79,10 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 
 	$scope.abandon = function() {
 		$scope.current = null;
+	}
+
+	$scope.miningRate = function() {
+		return cacheService.cachedResearchPerSecond;
 	}
 
 	///////////
@@ -359,11 +365,14 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	}
 
 	$scope.availablePerks = function() {
+		if(!playerService.hideBoughtUpgrades) return gameService.perks;
+
 		return gameService.perks.filter(function(d) { return !$scope.alreadyBought(d.id); });
 	}
 
 	$scope.canBuyPerk = function(perk) {
-		return playerService.research >= perk.price;
+		return playerService.research >= perk.price &&
+				!$scope.alreadyBought(perk.id);
 	}
 
 	$scope.alreadyBought = function(id) {

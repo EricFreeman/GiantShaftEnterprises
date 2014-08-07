@@ -241,13 +241,17 @@
 
 								<div ng-show="playerService.resources.length > 0">
 									<p class="name">Resources</p>
+									<div ng-show="miningRate() > 0">
+										Mining: {{miningRate()}}/sec
+										<br /><br />
+									</div>
 									<p ng-repeat="resource in playerService.resources" ng-show="resource.count > 0">{{getName(resource.id)}} - {{resource.count | number}}</p>
 								</div>
 
 								<br /><br />
 								
 								<p class="name">Shaft Mining</p>
-								<a class="button" ng-show="current == null" ng-click="scanForAsteroid(0)">Scan For Asteroid</a>
+								<a class="button" ng-show="current == null" ng-click="scanForAsteroid()">Scan For Asteroid</a>
 								<div class="asteroid" ng-show="current != null">
 									<p>Mining Cost - {{current.miningCost | currency}}</p>
 									<p>Chance - {{current.chance | number:0}}%</p>
@@ -328,6 +332,8 @@
 									<p class="info">Research: {{perk.price | number}}</p>
 									<br /><br />
 									<p class="info">{{perk.description}}</p>
+									<br /><br />
+									<p class="info">Increases <span class="bold">{{perk.property | uppercase}}</span> by <span class="bold">{{perk.effect * 100}}</span>%</p>
 								</div>
 							</div>
 						</div>
@@ -359,7 +365,7 @@
 							   	</div>
 							   	<div ng-show="log.remaining.length > 0">
 							   		<p class="info">{{log.name}} destroyed {{log.damage | number}} ships.</p><br />
-							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining | number}}</p>
+							   		<p class="info">{{log.against}} fleet remaining: {{log.remaining}}</p>
 							   	</div>
 							</div>
 						</div>
@@ -412,7 +418,11 @@
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
 								</div>
-								<a class="button" ng-click="attack()">Attack</a>
+								<a class="button" 
+								   ng-click="attack()"
+								   ng-show="playerService.ships.length > 0">
+									Attack
+								</a>
 							</div>
 						</div>
 					</div>

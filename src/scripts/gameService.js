@@ -821,7 +821,7 @@ idleGame.service('gameService', function() {
 			name: 'Cybornetic Implants',
 			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
 			property: 'mps',
-			effect: .15,
+			effect: .10,
 			price: 15000
 		},
 		{
@@ -837,7 +837,7 @@ idleGame.service('gameService', function() {
 			name: 'Hive Mind',
 			description: 'Business meetings become irrelevant when every employee is already on the same page.',
 			property: 'mps',
-			effect: .15,
+			effect: .20,
 			price: 50000
 		},
 		{
@@ -845,7 +845,7 @@ idleGame.service('gameService', function() {
 			name: 'Alien Biology',
 			description: 'Studying the remains of dead aliens will help you understand how to hit them where it hurts.',
 			property: 'attack',
-			effect: .15,
+			effect: .10,
 			price: 100000
 		},
 		{
@@ -861,7 +861,7 @@ idleGame.service('gameService', function() {
 			name: 'Alien Defenses',
 			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
 			property: 'defense',
-			effect: .15,
+			effect: .10,
 			price: 100000
 		},
 		{
@@ -869,7 +869,7 @@ idleGame.service('gameService', function() {
 			name: 'Shaft Expansion',
 			description: 'Study alien explosive technology to increase rate at which your Giant Shaft mines can be dug.',
 			property: 'resources',
-			effect: .15,
+			effect: .10,
 			price: 200000
 		},
 		{
@@ -880,6 +880,22 @@ idleGame.service('gameService', function() {
 			effect: .15,
 			price: 250000
 		},
+		{
+			id: 8,
+			name: 'Engine Cooling Technology',
+			description: 'Keeping engines cool allows you to push them to their limits without worrying about a meltdown.  This will help your mining ships reach asteroids further away!',
+			property: 'asteroid',
+			effect: 1,
+			price: 10000
+		},
+		{
+			id: 9,
+			name: 'FTL Drive',
+			description: 'The grass is always greener on the other side just like the asteroids are always more resource-filled on the other side (of the galaxy).',
+			property: 'asteroid',
+			effect: 1,
+			price: 25000
+		}
 	];
 
 	this.getItem = function(id) {
