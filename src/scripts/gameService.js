@@ -880,6 +880,22 @@ idleGame.service('gameService', function() {
 			effect: .15,
 			price: 250000
 		},
+		{
+			id: 8,
+			name: 'Engine Cooling Technology',
+			description: 'Keeping engines cool allows you to push them to their limits without worrying about a meltdown.  This will help your mining ships reach asteroids further away!',
+			property: 'asteroid',
+			effect: 1,
+			price: 10000
+		},
+		{
+			id: 9,
+			name: 'FTL Drive',
+			description: 'The grass is always greener on the other side just like the asteroids are always more resource-filled on the other side (of the galaxy).',
+			property: 'asteroid',
+			effect: 1,
+			price: 25000
+		}
 	];
 
 	this.getItem = function(id) {

@@ -67,6 +67,7 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 	this.cachedResourcesPerSecond = 0;
 	this.cachedResearchPerSecond = 0;
 	this.cachedPerks = {};
+	this.cachedAsteroidBoost = 0;
 
 	this.getMps = function() {
 		return this.cachedMps;
@@ -88,6 +89,14 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 		self.cachedPlanetMps = self.getPlanetMps();
 		self.cachedResourcesPerSecond = Math.floor(self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.resources }, 0));
 		self.cachedResearchPerSecond = self.cachedPlanetMps.reduce(function(prev, cur) { return prev += cur.resources.research }, 0);
+		self.cachedAsteroidBoost = gameService.perks
+									.filter(function(d) { return d.property == 'asteroid'; })
+									.reduce(function(prev, cur) { 
+										var perk = search(playerService.perks, 'id', cur.id, { id: -1 });
+										if(perk.id > -1) return prev += cur.effect;
+										
+										return prev;
+									}, 0);
 		self.cachedBcBoost = self.getNewBcBoost();
 		self.cachedMps = self.getNewMps();
 		self.cachedClickPower = self.getNewClickPower();
