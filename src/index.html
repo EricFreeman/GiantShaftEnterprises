@@ -377,7 +377,12 @@
 							<p class="name">{{selectedPlanet.name}}</p>
 							<br /><br />
 
-							<div ng-show="hasConquered()">
+							<p title="Allows you to purchased one of each building."
+							   ng-show="isAppeased()">
+								{{selectedPlanet.name}} is appeased.
+							</p>
+
+							<div ng-show="canBuildBuildings()">
 								<p ng-show="cacheService.planetBoost(selectedPlanet.id).mps > 0">
 									Adds: {{cacheService.planetBoost(selectedPlanet.id).mps | currency}}/sec
 								</p>
@@ -392,7 +397,7 @@
 
 							<div class="row"
 								 ng-repeat="building in gameService.buildings"
-								 ng-show="hasConquered()">
+								 ng-show="canBuildBuildings()">
 								<div class="triColumn">
 									<p title="{{building.description}}">{{building.name}}</p>
 								</div>
@@ -414,7 +419,7 @@
 							</div>
 
 							<div class="battleOverview"
-								 ng-show="!hasConquered()">
+								 ng-show="!canBuildBuildings()">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
@@ -423,6 +428,11 @@
 								   ng-click="attack()"
 								   ng-show="playerService.ships.length > 0">
 									Attack
+								</a>
+								<a class="button" 
+								   ng-click="appease()"
+								   ng-show="playerService.ships.length > 0">
+									Appease
 								</a>
 							</div>
 						</div>

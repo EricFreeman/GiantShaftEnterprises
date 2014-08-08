@@ -154,7 +154,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 			$scope.updatePlanet(p);
 
 			if(!playerService.planets.filter(function(d) {return d.id == p.id;}).length > 0)
-				playerService.planets.push({id: p.id, buildings: [], isConquered: false})
+				playerService.planets.push({id: p.id, buildings: [], isConquered: false, isAppeased: false})
 		}
 	}
 
@@ -182,7 +182,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		// Buildings are persisted, thus stored on the playerService, so you need to combine both 
 		// versions of the planet to get all the properties for it (names, ids, locations, etc aren't 
 		// persisted in case I ever change them - I want the player's version to update, not overwrite)
-		var savedPlanet = playerService.planets.filter(function(d) {return d.id == planet.id;})[0];
+		var savedPlanet = $scope.getPlanet(planet.id, true);
 		planet['buildings'] = savedPlanet != null ? savedPlanet.buildings : [];
 		$scope.selectedPlanet = planet;
 	}
@@ -214,13 +214,25 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		if(pb.length > 0) pb = pb[0];
 		else return false;
 
-		return pb.level >= building.maxLevel;
+		// Max level of appeased planets is only 1
+		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
+		if(planet.isAppeased && !planet.isConquered) return 1;
+		else return pb.level >= building.maxLevel;
+	}
+
+	$scope.isAppeased = function() {
+		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
+		return !!planet.isAppeased;
 	}
 
 	$scope.getShipName = function(id) {
 		var ship = gameService.ships.filter(function(d) { return d.id == id });
 		if(ship.length > 0) return ship[0].name;
 		else return 'Error - Ship not found';
+	}
+
+	$scope.appease = function() {
+		$scope.getPlanet($scope.selectedPlanet.id, true).isAppeased = true;
 	}
 
 	$scope.battleLog = [];
@@ -255,7 +267,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		}
 
 		// you conquered the planet if all the enemies are gone
-		playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered = $scope.selectedPlanet.enemies.length == 0;
+		$scope.getPlanet($scope.selectedPlanet.id, true).isConquered = $scope.selectedPlanet.enemies.length == 0;
 	
 		// update cache because if you reconquered a planet with buildings then you need to recalculate the planet's MPS
 		$rootScope.$broadcast('updateCache');
@@ -346,10 +358,12 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		return ships.reduce(function(prev, cur) { return prev += $scope.getShip(cur.id)[field] * cur.count; }, 0)
 	}
 
-	$scope.hasConquered = function() {
+	$scope.canBuildBuildings = function() {
 		if($scope.selectedPlanet == null) return;
-		return (!$scope.selectedPlanet.enemies || $scope.selectedPlanet.enemies.length == 0) || 
-				!!playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0].isConquered;
+		var noEnemies = !$scope.selectedPlanet.enemies || $scope.selectedPlanet.enemies.length == 0;
+		var planet = playerService.planets.filter(function(d) { return d.id == $scope.selectedPlanet.id; })[0];
+		
+		return noEnemies || !!planet.isConquered || !!planet.isAppeased;
 	}
 
 	//////////////
