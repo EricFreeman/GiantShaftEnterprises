@@ -145,6 +145,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 	$scope.planets = [];
 	$scope.selectedPlanet;
 	$scope.scale = 100;
+	$scope.cachedAppeasementCost = 0;
 
 	$scope.initPlanets = function() {
 		// Add every planet to the array
@@ -185,6 +186,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		var savedPlanet = $scope.getPlanet(planet.id, true);
 		planet['buildings'] = savedPlanet != null ? savedPlanet.buildings : [];
 		$scope.selectedPlanet = planet;
+		$scope.cachedAppeasementCost = $scope.getAppeasementCost();
 	}
 
 	$scope.getLevel = function(building) {
@@ -220,19 +222,45 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		else return pb.level >= building.maxLevel;
 	}
 
-	$scope.isAppeased = function() {
-		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
-		return !!planet.isAppeased;
-	}
-
 	$scope.getShipName = function(id) {
 		var ship = gameService.ships.filter(function(d) { return d.id == id });
 		if(ship.length > 0) return ship[0].name;
 		else return 'Error - Ship not found';
 	}
 
+	$scope.canAppease = function() {
+		var gold = $scope.getGold();
+		return gold.count >= $scope.cachedAppeasementCost && !$scope.isAppeased();
+	}
+
+	$scope.getGold = function() {
+		var goldId = 4; // TODO: Get a better way to find this later or something
+		var gold = search(playerService.resources, 'id', goldId, { id: -1, count: 0 });
+		if(gold.id === -1) return false;
+		else return gold;
+	}
+
+	$scope.isAppeased = function() {
+		if($scope.selectedPlanet == null) return false;
+
+		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
+		return !!planet.isAppeased;
+	}
+
 	$scope.appease = function() {
+		var gold = $scope.getGold();
+		gold.count -= $scope.cachedAppeasementCost;
 		$scope.getPlanet($scope.selectedPlanet.id, true).isAppeased = true;
+	}
+
+	// TODO: Figure out a better way to formulate how much appeasing should cost
+	$scope.getAppeasementCost = function() {
+		if($scope.selectedPlanet == null) return;
+
+		var planetsConquered = playerService.planets.filter(function(d) { return d.isConquered; }).length;
+		var shipsOnPlanet = $scope.selectedPlanet.enemies.reduce(function(prev, cur) { return prev += cur.count; }, 0);
+
+		return (planetsConquered + 1) * shipsOnPlanet;
 	}
 
 	$scope.battleLog = [];

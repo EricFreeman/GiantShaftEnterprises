@@ -243,3 +243,7 @@ li {
 .button.small {
 	max-width: 40px;
 }
+
+.button.large {
+	width: 200px;
+}

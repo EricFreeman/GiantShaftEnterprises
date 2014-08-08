@@ -429,10 +429,10 @@
 								   ng-show="playerService.ships.length > 0">
 									Attack
 								</a>
-								<a class="button" 
+								<a class="button large" 
 								   ng-click="appease()"
-								   ng-show="playerService.ships.length > 0">
-									Appease
+								   ng-show="playerService.ships.length > 0 && canAppease()">
+									Appease ({{cachedAppeasementCost}} Gold)
 								</a>
 							</div>
 						</div>
