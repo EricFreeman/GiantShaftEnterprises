@@ -230,7 +230,7 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 
 	$scope.canAppease = function() {
 		var gold = $scope.getGold();
-		return gold.count >= $scope.cachedAppeasementCost && !$scope.isAppeased();
+		return gold.count >= $scope.cachedAppeasementCost && !$scope.isAppeased() && !$scope.isConquered();
 	}
 
 	$scope.getGold = function() {
@@ -245,6 +245,13 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 
 		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
 		return !!planet.isAppeased;
+	}
+
+	$scope.isConquered = function() {
+		if($scope.selectedPlanet == null) return false;
+
+		var planet = $scope.getPlanet($scope.selectedPlanet.id, true);
+		return !!planet.isConquered;
 	}
 
 	$scope.appease = function() {

@@ -378,7 +378,7 @@
 							<br /><br />
 
 							<p title="Allows you to purchased one of each building."
-							   ng-show="isAppeased()">
+							   ng-show="isAppeased() && !isConquered()">
 								{{selectedPlanet.name}} is appeased.
 							</p>
 
@@ -418,8 +418,7 @@
 								</div>
 							</div>
 
-							<div class="battleOverview"
-								 ng-show="!canBuildBuildings()">
+							<div class="battleOverview">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
