@@ -11,7 +11,7 @@ idleGame.service('playerService', function () {
 	this.achievements = [];
 	// Owned space ships are stored here as { id: x, count: y }
 	this.ships = [];
-	// Discovered planets are stored here as { id: x, buildings: [], isConquered: t/f }
+	// Discovered planets are stored here as { id: x, buildings: [], isConquered: t/f, isAppeased: t/f }
 	this.planets = [];
 	// Unlocked perks from research stations on planets are stored as { id: x }
 	this.perks = [];

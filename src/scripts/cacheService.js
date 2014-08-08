@@ -271,7 +271,8 @@ idleGame.service('cacheService', function($rootScope, gameService, playerService
 
 	this.calculatePlanetMps = function(planet) {
 		var enemies = search(gameService.planets, "id", planet.id, {enemies: []}).enemies;
-		if(!planet.isConquered && (!!enemies && enemies.length > 0)) return { mps: 0, resources: 0, research: 0 };
+		if((!planet.isConquered && (!!enemies && enemies.length > 0)) && !planet.isAppeased)
+			return { mps: 0, resources: 0, research: 0 };
 
 		var mps = 0, resources = 0, research = 0;
 
