@@ -378,7 +378,7 @@
 							<br /><br />
 
 							<p title="Allows you to purchased one of each building."
-							   ng-show="isAppeased()">
+							   ng-show="isAppeased() && !isConquered()">
 								{{selectedPlanet.name}} is appeased.
 							</p>
 
@@ -418,8 +418,7 @@
 								</div>
 							</div>
 
-							<div class="battleOverview"
-								 ng-show="!canBuildBuildings()">
+							<div class="battleOverview">
 								<div class="row"
 									 ng-repeat="enemy in selectedPlanet.enemies">
 									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
@@ -429,10 +428,10 @@
 								   ng-show="playerService.ships.length > 0">
 									Attack
 								</a>
-								<a class="button" 
+								<a class="button large" 
 								   ng-click="appease()"
-								   ng-show="playerService.ships.length > 0">
-									Appease
+								   ng-show="playerService.ships.length > 0 && canAppease()">
+									Appease ({{cachedAppeasementCost}} Gold)
 								</a>
 							</div>
 						</div>
