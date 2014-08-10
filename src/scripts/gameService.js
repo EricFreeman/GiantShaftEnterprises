@@ -3,7 +3,7 @@ var idleGame = angular.module('idleGame');
 
 idleGame.service('gameService', function() {
 	// All base items (not upgrades) you can purchase are defined here
-	// WARNING: When adding new items, it is essntial to check knowledgeItems when determining what the next id for the item should be!
+	// WARNING: When adding new items, it is essential to check knowledgeItems when determining what the next id for the item should be!
 	this.items = [
 		{ id: 0, name: "Minimum Wage Worker", mps: .1 , price: 15 },
 		{ id: 1, name: "Cubicle", mps: .3 , price: 100 },
@@ -25,7 +25,7 @@ idleGame.service('gameService', function() {
 	//		mpop - 			money per opportunity percentage (of MPS)
 	//		showAfter - 	array of other upgrade ids to only show upgrade after listed upgrades were purchased
 	//		count -			amount of the item you need to own before the upgrade shows up
-	// WARNING: When adding new upgrades, it is essntial to check knowledgeItems when determining what the next id for the upgrade should be!
+	// WARNING: When adding new upgrades, it is essential to check knowledgeItems when determining what the next id for the upgrade should be!
 	this.upgrades = [
 		{ id: 0, itemId: 0, name: "Positive Reinforcement", price: 500, mps: .05,
 			description: "Studies have shown that training employees is the same as training a dog: use lots of positive reinforcement to get them to behave correctly." },
@@ -42,7 +42,7 @@ idleGame.service('gameService', function() {
 			description: "Adding better lighting, air-purifying plants, and other solutions to increase Feng Shui!" },
 		
 		{ id: 6, itemId: 2, name: "Four Tens", price: 10000, mps: .5, 
-			description: "Changing the work schedule to four ten hour days and giving the employees a three day weekened boosts employee retention cutting down on the cost to train new employees!" },
+			description: "Changing the work schedule to four ten hour days and giving the employees a three day weekend boosts employee retention cutting down on the cost to train new employees!" },
 		{ id: 7, itemId: 2, name: "Free Lunch", price: 60000, mps: 1, count: 10,
 			description: "I guess there is such a thing." },
 		{ id: 8, itemId: 2, name: "80/20", price: 1200000, mps: 2, count: 100,
@@ -63,7 +63,7 @@ idleGame.service('gameService', function() {
 			description: "Your employees will never forget how drunk Jason from Accounting was that night!" },
 				
 		{ id: 18, itemId: 4, name: "Chasing Nickels Around Dollar Bills", price: 150000, mps: 1.5, 
-			description: "Increase the effectiveness of your business by trimming small expenses.  Your employees are now unhappy your business charges for coffee in the breakroom." },
+			description: "Increase the effectiveness of your business by trimming small expenses.  Your employees are now unhappy your business charges for coffee in the break room." },
 		{ id: 19, itemId: 4, name: "Investments", price: 250000, mps: 2, count: 10,
 			description: "Purchase goods or services to make huge gains in the long run." },
 		{ id: 20, itemId: 4, name: "Strategic Financial Management", price: 350000, mps: 3, count: 100,
@@ -91,7 +91,7 @@ idleGame.service('gameService', function() {
 			description: "Ensure your executive's loyalty by paying them large sign on bonuses that they have to pay back if they quit within a certain amount of years." },
 		
 		{ id: 27, itemId: 8, name: "Recreations", price: 50000000, mps: 25, 
-			description: "Ping-Pong tables, olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
+			description: "Ping-Pong tables, Olympic size swimming pool, and bike trails will make sure your employees always have something they can do if they want to take a break." },
 		{ id: 28, itemId: 8, name: "Electric Car Charging Parking Lot", price: 100000000, mps: 50, count: 10,
 			description: "Now your employees can take their Tesla to work." },
 		{ id: 29, itemId: 8, name: "Improved Space", price: 150000000, mps: 100, count: 100,
@@ -585,7 +585,7 @@ idleGame.service('gameService', function() {
 			description: "Having a secretary frees you up to focus more on your work." } },
 		
 		{ id: 38, price: 15, type: 'upgrade', description: 'New mid/late game click buff',
-			item: { id: 81, itemId: "Business Opportunity", name: "Chauffer", price: 1000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
+			item: { id: 81, itemId: "Business Opportunity", name: "Chauffeur", price: 1000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
 			description: "Get where you're going faster with a private driver." }, },
 		{ id: 38, price: 20, type: 'upgrade', description: 'New mid/late game click buff',
 			item: { id: 82, itemId: "Business Opportunity", name: "Private Jet", price: 100000000, mps: 0, mpop: .01, isOpportunity: 1, isBusiness: 1,
@@ -690,7 +690,7 @@ idleGame.service('gameService', function() {
 			description: "Finally a real use for upper management!" } },
 		{ id: 17, price: 9, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Executive',
 			item: { id: 53, itemId: 6, name: "Fleet Admiral", price: 2000000000, mps: 2250, showAfter: [42],
-			description: "Your executives now have a roadmap of what planets to mine for years to come." } },
+			description: "Your executives now have a road map of what planets to mine for years to come." } },
 		{ id: 18, price: 10, type: 'upgrade', parent: [8], description: '4th Tier Upgrade for Office Building',
 			item: { id: 54, itemId: 8, name: "Space Station", price: 5000000000, mps: 5000, showAfter: [42],
 			description: "Land is getting scarce on the planet surface, so expanding your offices to the outer reaches of the galaxy cuts down heavily on expenses." } },
@@ -818,8 +818,8 @@ idleGame.service('gameService', function() {
 	this.perks = [
 		{
 			id: 0, 
-			name: 'Cybornetic Implants',
-			description: 'Give your employees cybornetic implants to increase their work speed and efficiency.',
+			name: 'Cybernetic Implants',
+			description: 'Give your employees cybernetic implants to increase their work speed and efficiency.',
 			property: 'mps',
 			effect: .10,
 			price: 15000
