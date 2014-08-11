@@ -858,8 +858,8 @@ idleGame.service('gameService', function() {
 		},
 		{
 			id: 5, 
-			name: 'Alien Defenses',
-			description: 'Usage of alien shields, construction materials, and designs will help your fleet withstand more of a beating.',
+			name: 'Alien Shields',
+			description: 'Usage of alien shields will help your fleet withstand more of a beating.',
 			property: 'defense',
 			effect: .10,
 			price: 100000
@@ -897,6 +897,14 @@ idleGame.service('gameService', function() {
 			effect: 1,
 			price: 50000,
 			skipEffect: true
+		},
+		{
+			id: 10, 
+			name: 'Advanced Training',
+			description: 'Studying alien attack formations can help your fleet learn how best to defend themselves in battle.',
+			property: 'defense',
+			effect: .15,
+			price: 200000
 		}
 	];
 
