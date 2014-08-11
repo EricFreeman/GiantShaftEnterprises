@@ -419,15 +419,17 @@
 							</div>
 
 							<div class="battleOverview">
-								<div class="row"
-									 ng-repeat="enemy in selectedPlanet.enemies">
-									 {{getShipName(enemy.id)}} - {{enemy.count | number}}
-								</div>
-								<a class="button" 
-								   ng-click="attack()"
-								   ng-show="playerService.ships.length > 0">
-									Attack
-								</a>
+								<span ng-show="!isConquered()">
+									<div class="row"
+										 ng-repeat="enemy in selectedPlanet.enemies">
+										 {{getShipName(enemy.id)}} - {{enemy.count | number}}
+									</div>
+									<a class="button" 
+									   ng-click="attack()"
+									   ng-show="playerService.ships.length > 0">
+										Attack
+									</a>
+								</span>
 								<a class="button large" 
 								   ng-click="appease()"
 								   ng-show="playerService.ships.length > 0 && canAppease()">
