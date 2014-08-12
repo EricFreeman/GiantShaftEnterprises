@@ -2,23 +2,32 @@ var idleGame = angular.module('idleGame');
 
 idleGame.service('spaceStory', function ($rootScope, playerService) {
 	this.peacefulMessages = [
-		'Hello.',
+		'Welcome, friends.',
 		'Would you like to trade?',
 		'Welcome to our colony.',
-		'We look forward to a sustainable, peaceful relationship.'
+		'We look forward to a peaceful relationship.',
+		'We are eager to learn about your culture.',
+		'Let us benefit each other.'
 	];
 
 	this.neutralMessages = [
 		'We do not want any trouble.',
 		'We are wary of you.',
-		'Your planet has earned a bad reputation.'
+		'Your planet has earned a bad reputation.',
+		'Please, quit your planetary expansion.',
+		'We only wish to be friends.',
+		'We are a peaceful colony.  We wish you no harm.'
 	];
 
 	this.enemyMessages = [
 		'Your planet disgusts us.',
 		'Leave.',
 		'Go away.',
-		'We do not want any trouble.'
+		'You are despicable.',
+		'We will destroy you.',
+		'We welcome the chance to crush you in battle.',
+		'Please spare us.',
+		'Why are you attacking us?'
 	];
 
 	this.broadcastMessage = function() {
