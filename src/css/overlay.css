@@ -54,3 +54,34 @@
 	word-wrap: break-word;
 	display: inline-block;
 }
+
+#helpBalloon {
+	position: fixed;
+	right: 4px;
+	bottom: 74px;
+
+	max-height: 200px;
+	width: 128px;
+
+	background-color: #DDDDDD;
+	border: 2px solid;
+	border-color: #999999;
+	border-radius: 8px;
+	padding: 4px;
+
+	font-size: 12px;
+}
+
+#clippy {
+	position: fixed;
+	right: 4px;
+	bottom: 4px;
+}
+
+.helpLink {
+	cursor: pointer;
+}
+
+.helpLink:hover {
+	text-decoration: underline;
+}

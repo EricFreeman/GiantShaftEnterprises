@@ -16,6 +16,7 @@
 	<script src="scripts/overlay.js"></script>
 	<script src="scripts/space.js"></script>
 	<script src="scripts/spaceStory.js"></script>
+	<script src="scripts/help.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<link rel="stylesheet" type="text/css" href="css/store.css" />
@@ -608,6 +609,39 @@
 						<p>{{progress}}</p>
 					</div>
 					<img src="images/arrow.png" />
+				</div>
+			</div>
+
+			<div ng-controller="HelpController">
+				<div id="helpBalloon"
+					 class="noSelect">
+					<img id="clippy"
+						 src="images/clippy.png" 
+						 ng-show="displayHelp" 
+						 ng-click="displayTopics = !displayTopics"/>
+
+					<div ng-show="selectedTopic == null">
+						<div ng-repeat="topic in topics">
+							<a class="helpLink" 
+							   ng-click="selectTopic(topic)">{{topic.name}}</a>
+						</div>
+					</div>
+
+					<div ng-show="selectedTopic != null && selectedQuestion == null">
+						<div ng-repeat="question in selectedTopic.questions">
+							<a class="helpLink" ng-click="selectQuestion(question)">{{question.name}}</a>
+						</div>
+						<br />
+						<a class="helpLink" ng-click="selectTopic()"><< Back</a>
+					</div>
+
+					<div ng-show="selectedTopic != null && selectedQuestion != null">
+						<span>{{selectedQuestion.name}}</span>
+						<br /><br />
+						<span>{{selectedQuestion.answer}}</span>
+						<br /><br />
+						<a class="helpLink" ng-click="selectQuestion()"><< Back</a>
+					</div>
 				</div>
 			</div>
 		</div>
