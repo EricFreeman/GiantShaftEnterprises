@@ -1,4 +1,4 @@
-function SpaceController($rootScope, $scope, $timeout, playerService, gameService, cacheService, miningService) {
+function SpaceController($rootScope, $scope, $timeout, playerService, gameService, cacheService, miningService, spaceStory) {
 	////////////
 	// Mining //
 	////////////
@@ -185,8 +185,13 @@ function SpaceController($rootScope, $scope, $timeout, playerService, gameServic
 		// persisted in case I ever change them - I want the player's version to update, not overwrite)
 		var savedPlanet = $scope.getPlanet(planet.id, true);
 		planet['buildings'] = savedPlanet != null ? savedPlanet.buildings : [];
+		planet['isConquered'] = savedPlanet.isConquered;
+		planet['isAppeased'] = savedPlanet.isAppeased;
 		$scope.selectedPlanet = planet;
 		$scope.cachedAppeasementCost = $scope.getAppeasementCost();
+
+		if(!planet.isConquered && !planet.isAppeased)
+			spaceStory.broadcastMessage();
 	}
 
 	$scope.getLevel = function(building) {
