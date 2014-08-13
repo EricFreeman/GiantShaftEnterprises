@@ -54,3 +54,51 @@
 	word-wrap: break-word;
 	display: inline-block;
 }
+
+#helpBalloon {
+	position: fixed;
+	right: 4px;
+	bottom: 81px;
+
+	width: 160px;
+
+	background-color: #FFFFCC;
+	border: 1px solid;
+	border-color: #010101;
+	border-radius: 8px;
+	padding: 16px;
+
+	font-size: 12px;
+}
+
+#helpClosed {
+	position: fixed;
+	right: 4px;
+	bottom: 4px;
+}
+
+.closeClippy {
+	float: right;
+	margin-top: -14px;
+	margin-right: -12px;
+}
+
+#clippyTip {
+	position: fixed;
+	right: 16px;
+	bottom: 74px;
+}
+
+#clippy {
+	position: fixed;
+	right: 8px;
+	bottom: 4px;
+}
+
+.helpLink {
+	cursor: pointer;
+}
+
+.helpLink:hover {
+	text-decoration: underline;
+}
