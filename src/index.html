@@ -613,34 +613,52 @@
 			</div>
 
 			<div ng-controller="HelpController">
+				<div id="helpClosed"
+					 ng-show="!displayHelp">
+					<a class="helpLink"><img src="images/icons/help.png" ng-click="displayHelp = true" /></a>
+				</div>
+
 				<div id="helpBalloon"
+					 ng-show="displayHelp" 
 					 class="noSelect">
+
+					<div class="closeClippy helpLink" ng-click="closeHelp()">x</div>
+
+					<img src="images/clippyTip.png" id="clippyTip" />
+
 					<img id="clippy"
-						 src="images/clippy.png" 
-						 ng-show="displayHelp" 
+						 src="images/clippy.png"
 						 ng-click="displayTopics = !displayTopics"/>
 
 					<div ng-show="selectedTopic == null">
-						<div ng-repeat="topic in topics">
-							<a class="helpLink" 
-							   ng-click="selectTopic(topic)">{{topic.name}}</a>
-						</div>
+						<span class="bold">What can I help you with today?</span>
+						<br /><br />
+						<ul>
+							<li ng-repeat="topic in topics">
+								<a class="helpLink" 
+								   ng-click="selectTopic(topic)">{{topic.name}}</a>
+							</li>
+						</ul>
 					</div>
 
 					<div ng-show="selectedTopic != null && selectedQuestion == null">
-						<div ng-repeat="question in selectedTopic.questions">
-							<a class="helpLink" ng-click="selectQuestion(question)">{{question.name}}</a>
-						</div>
-						<br />
-						<a class="helpLink" ng-click="selectTopic()"><< Back</a>
+						<span class="bold">{{selectedTopic.name}}</span>
+						<br /><br />
+						<ul>
+							<li ng-repeat="question in selectedTopic.questions">
+								<a class="helpLink" ng-click="selectQuestion(question)">{{question.name}}</a>
+							</li>
+						</ul>
+						<br/>
+						<a class="helpLink" ng-click="selectTopic()">< Back</a>
 					</div>
 
 					<div ng-show="selectedTopic != null && selectedQuestion != null">
-						<span>{{selectedQuestion.name}}</span>
+						<span class="bold">{{selectedQuestion.name}}</span>
 						<br /><br />
 						<span>{{selectedQuestion.answer}}</span>
 						<br /><br />
-						<a class="helpLink" ng-click="selectQuestion()"><< Back</a>
+						<a class="helpLink" ng-click="selectQuestion()">< Back</a>
 					</div>
 				</div>
 			</div>

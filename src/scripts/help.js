@@ -1,5 +1,5 @@
 function HelpController($scope) {
-	$scope.displayHelp = true;
+	$scope.displayHelp = false;
 	$scope.selectedTopic = null;
 	$scope.selectedQuestion = null;
 
@@ -24,5 +24,11 @@ function HelpController($scope) {
 
 	$scope.selectQuestion = function(question) {
 		$scope.selectedQuestion = question;
+	}
+
+	$scope.closeHelp = function() {
+		$scope.displayHelp = false;
+		$scope.selectedTopic = null;
+		$scope.selectedQuestion = null;
 	}
 }
